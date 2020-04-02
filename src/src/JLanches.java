@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package src;
+
+import src.dao.BDConnector;
 
 /**
  *
  * @author arthur
  */
-public class BDConnector {
-    
+public class JLanches {
+    public static void main(String[] args) {
+        BDConnector bd = new BDConnector();
+    }
 }
