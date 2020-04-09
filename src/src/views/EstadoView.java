@@ -5,6 +5,8 @@
  */
 package src.views;
 
+import src.dao.EstadoDAO;
+
 /**
  *
  * @author arthur
@@ -16,6 +18,7 @@ public class EstadoView extends javax.swing.JInternalFrame {
      */
     public EstadoView() {
         initComponents();
+        new EstadoDAO().fillTable(this.tableEstados, "");
     }
 
     /**
@@ -34,7 +37,7 @@ public class EstadoView extends javax.swing.JInternalFrame {
         campoPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableEstados = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -86,8 +89,8 @@ public class EstadoView extends javax.swing.JInternalFrame {
                     .addComponent(campoPesquisar)))
         );
 
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableEstados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tableEstados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -106,7 +109,7 @@ public class EstadoView extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableEstados);
 
         jPanel3.setBackground(new java.awt.Color(207, 216, 220));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
@@ -327,6 +330,6 @@ public class EstadoView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableEstados;
     // End of variables declaration//GEN-END:variables
 }
