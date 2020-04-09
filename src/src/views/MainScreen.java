@@ -28,31 +28,33 @@ public class MainScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        frameInterno = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        itemFuncionario = new javax.swing.JMenuItem();
+        itemCliente = new javax.swing.JMenuItem();
+        itemPedido = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        itemLanche = new javax.swing.JMenuItem();
+        itemCategoria = new javax.swing.JMenuItem();
+        itemContato = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        itemCidade = new javax.swing.JMenuItem();
+        itemEstado = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        itemCreditos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("jLanches");
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout frameInternoLayout = new javax.swing.GroupLayout(frameInterno);
+        frameInterno.setLayout(frameInternoLayout);
+        frameInternoLayout.setHorizontalGroup(
+            frameInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 715, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        frameInternoLayout.setVerticalGroup(
+            frameInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 504, Short.MAX_VALUE)
         );
 
@@ -62,57 +64,66 @@ public class MainScreen extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-editar-arquivo-16.png"))); // NOI18N
         jMenu1.setText("Cadastro");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-nome-16.png"))); // NOI18N
-        jMenuItem1.setText("Funcionário");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        itemFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-nome-16.png"))); // NOI18N
+        itemFuncionario.setText("Funcionário");
+        itemFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                itemFuncionarioActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(itemFuncionario);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-nome-16.png"))); // NOI18N
-        jMenuItem2.setText("Cliente");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        itemCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-nome-16.png"))); // NOI18N
+        itemCliente.setText("Cliente");
+        itemCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                itemClienteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(itemCliente);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-lancheira-16.png"))); // NOI18N
-        jMenu2.setText("Pedidos");
+        itemPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-lancheira-16.png"))); // NOI18N
+        itemPedido.setText("Pedidos");
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-papel-16.png"))); // NOI18N
         jMenuItem4.setText("Pedido");
-        jMenu2.add(jMenuItem4);
+        itemPedido.add(jMenuItem4);
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-lancheira-16.png"))); // NOI18N
-        jMenuItem5.setText("Lanches");
-        jMenu2.add(jMenuItem5);
+        itemLanche.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-lancheira-16.png"))); // NOI18N
+        itemLanche.setText("Lanches");
+        itemPedido.add(itemLanche);
 
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-abrir-pasta-16.png"))); // NOI18N
-        jMenuItem6.setText("Categorias");
-        jMenu2.add(jMenuItem6);
+        itemCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-abrir-pasta-16.png"))); // NOI18N
+        itemCategoria.setText("Categorias");
+        itemPedido.add(itemCategoria);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(itemPedido);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-mapa-do-tesouro-16.png"))); // NOI18N
-        jMenu3.setText("Endereço e contatos");
+        itemContato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-mapa-do-tesouro-16.png"))); // NOI18N
+        itemContato.setText("Endereço e contatos");
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-telefone-sem-uso-16.png"))); // NOI18N
         jMenuItem3.setText("Contato");
-        jMenu3.add(jMenuItem3);
+        itemContato.add(jMenuItem3);
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pedido-entregue-16.png"))); // NOI18N
-        jMenuItem7.setText("Cidade");
-        jMenu3.add(jMenuItem7);
+        itemCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pedido-entregue-16.png"))); // NOI18N
+        itemCidade.setText("Cidade");
+        itemContato.add(itemCidade);
 
-        jMenuBar1.add(jMenu3);
+        itemEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-mapa-do-tesouro-16.png"))); // NOI18N
+        itemEstado.setText("Estado");
+        itemContato.add(itemEstado);
+
+        jMenuBar1.add(itemContato);
 
         jMenu4.setText("Outros");
+
+        itemCreditos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-arquivo-de-fichas-16.png"))); // NOI18N
+        itemCreditos.setText("Créditos");
+        jMenu4.add(itemCreditos);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -122,24 +133,24 @@ public class MainScreen extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(frameInterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(frameInterno, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void itemFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFuncionarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_itemFuncionarioActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void itemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_itemClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,19 +188,21 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane frameInterno;
+    private javax.swing.JMenuItem itemCategoria;
+    private javax.swing.JMenuItem itemCidade;
+    private javax.swing.JMenuItem itemCliente;
+    private javax.swing.JMenu itemContato;
+    private javax.swing.JMenuItem itemCreditos;
+    private javax.swing.JMenuItem itemEstado;
+    private javax.swing.JMenuItem itemFuncionario;
+    private javax.swing.JMenuItem itemLanche;
+    private javax.swing.JMenu itemPedido;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPopupMenu jPopupMenu1;
     // End of variables declaration//GEN-END:variables
 }
