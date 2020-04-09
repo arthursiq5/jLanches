@@ -5,6 +5,8 @@
  */
 package src.views;
 
+import javax.swing.JInternalFrame;
+
 /**
  *
  * @author arthur
@@ -17,6 +19,13 @@ public class MainScreen extends javax.swing.JFrame {
     public MainScreen() {
         initComponents();
     }
+    
+    private void openView(JInternalFrame view){
+        this.frameInterno.removeAll();
+        this.frameInterno.add(view);
+        view.setVisible(true);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -163,17 +172,11 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_itemClienteActionPerformed
 
     private void itemEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEstadoActionPerformed
-        EstadoView estado = new EstadoView();
-        this.frameInterno.removeAll();
-        this.frameInterno.add(estado);
-        estado.setVisible(true);
+        this.openView(new EstadoView());
     }//GEN-LAST:event_itemEstadoActionPerformed
 
     private void itemCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCategoriaActionPerformed
-        CategoriaView categoria = new CategoriaView();
-        this.frameInterno.removeAll();
-        this.frameInterno.add(categoria);
-        categoria.setVisible(true);
+        this.openView(new CategoriaView());
     }//GEN-LAST:event_itemCategoriaActionPerformed
 
     /**
