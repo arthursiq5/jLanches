@@ -164,12 +164,14 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void itemEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEstadoActionPerformed
         EstadoView estado = new EstadoView();
+        this.frameInterno.removeAll();
         this.frameInterno.add(estado);
         estado.setVisible(true);
     }//GEN-LAST:event_itemEstadoActionPerformed
 
     private void itemCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCategoriaActionPerformed
         CategoriaView categoria = new CategoriaView();
+        this.frameInterno.removeAll();
         this.frameInterno.add(categoria);
         categoria.setVisible(true);
     }//GEN-LAST:event_itemCategoriaActionPerformed
