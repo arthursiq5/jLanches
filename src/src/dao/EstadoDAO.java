@@ -23,12 +23,42 @@ public class EstadoDAO implements ModelDAO<Estado> {
 
     @Override
     public void save(Estado objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Statement st = BDConnector.getInstance().getConnection().createStatement();
+            
+            String sql = "INSERT INTO estado (id, sigla) VALUES ("
+                        + "DEFAULT, "
+                        + "'" + objeto.sigla + "')";
+            st.executeUpdate(sql);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                    null, 
+                    "Erro ao inserir dados no banco", 
+                    "Erro", 
+                    JOptionPane.ERROR_MESSAGE
+            );
+            System.err.println("Erro: " + e);
+        }
     }
 
     @Override
     public void update(Estado objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Statement st = BDConnector.getInstance().getConnection().createStatement();
+            
+            String sql = "UPDATE estado "
+                        + "SET sigla = '" + objeto.sigla + "' "
+                        + "WHERE id = '" + objeto.id + "'";
+            st.executeUpdate(sql);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                    null, 
+                    "Erro ao inserir dados no banco", 
+                    "Erro", 
+                    JOptionPane.ERROR_MESSAGE
+            );
+            System.err.println("Erro: " + e);
+        }
     }
 
     @Override
