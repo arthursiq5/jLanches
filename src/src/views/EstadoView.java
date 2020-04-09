@@ -26,6 +26,12 @@ public class EstadoView extends javax.swing.JInternalFrame {
     private void updateTable(){
         new EstadoDAO().fillTable(this.tableEstados, "");
     }
+    
+    private void resetInputs(){
+        this.campoId.setText("");
+        this.campoPesquisar.setText("");
+        this.campoSigla.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -189,6 +195,11 @@ public class EstadoView extends javax.swing.JInternalFrame {
         btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-apagador-64.png"))); // NOI18N
         btnLimpar.setText("Limpar");
         btnLimpar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         btnCadastrar.setBackground(new java.awt.Color(178, 255, 89));
         btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-selecionado-64.png"))); // NOI18N
@@ -334,7 +345,12 @@ public class EstadoView extends javax.swing.JInternalFrame {
             new EstadoDAO().update(estado);
         }
         this.updateTable();
+        this.resetInputs();
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        this.resetInputs();
+    }//GEN-LAST:event_btnLimparActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
