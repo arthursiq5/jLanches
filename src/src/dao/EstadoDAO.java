@@ -103,7 +103,7 @@ public class EstadoDAO implements ModelDAO<Estado> {
         cabecalho[0] = "ID";
         cabecalho[1] = "Sigla";
         
-        String ilike = criteria.equals("") ? "" : ("WHERE sigla ILIKE '%" + criteria + "%'");
+        String like = criteria.equals("") ? "" : ("WHERE UCASE(sigla) LIKE UCASE('%" + criteria + "%')");
         
         try {
             this.resultadoQuery = BDConnector.getInstance()
@@ -112,7 +112,7 @@ public class EstadoDAO implements ModelDAO<Estado> {
                                     .executeQuery(""
                                             + "SELECT count(*) "
                                             + "FROM estado "
-                                            + ilike
+                                            + like
                                     );
             
             this.resultadoQuery.next();
@@ -135,7 +135,7 @@ public class EstadoDAO implements ModelDAO<Estado> {
                                     .executeQuery(""
                                             + "SELECT * "
                                             + "FROM estado "
-                                            + ilike
+                                            + like
                                     );
             int line = 0;
             while(this.resultadoQuery.next()){

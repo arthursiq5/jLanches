@@ -78,6 +78,11 @@ public class EstadoView extends javax.swing.JInternalFrame {
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pesquisar-16.png"))); // NOI18N
         btnPesquisar.setText("Ir");
         btnPesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -385,6 +390,10 @@ public class EstadoView extends javax.swing.JInternalFrame {
         
         this.abasDoSistema.setSelectedIndex(1);
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        new EstadoDAO().fillTable(this.tableEstados, this.campoPesquisar.getText());
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
