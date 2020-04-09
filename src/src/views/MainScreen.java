@@ -97,6 +97,11 @@ public class MainScreen extends javax.swing.JFrame {
 
         itemCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-abrir-pasta-16.png"))); // NOI18N
         itemCategoria.setText("Categorias");
+        itemCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCategoriaActionPerformed(evt);
+            }
+        });
         itemPedido.add(itemCategoria);
 
         jMenuBar1.add(itemPedido);
@@ -162,6 +167,12 @@ public class MainScreen extends javax.swing.JFrame {
         this.frameInterno.add(estado);
         estado.setVisible(true);
     }//GEN-LAST:event_itemEstadoActionPerformed
+
+    private void itemCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCategoriaActionPerformed
+        CategoriaView categoria = new CategoriaView();
+        this.frameInterno.add(categoria);
+        categoria.setVisible(true);
+    }//GEN-LAST:event_itemCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
