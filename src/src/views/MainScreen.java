@@ -51,7 +51,7 @@ public class MainScreen extends javax.swing.JFrame {
         frameInterno.setLayout(frameInternoLayout);
         frameInternoLayout.setHorizontalGroup(
             frameInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
+            .addGap(0, 519, Short.MAX_VALUE)
         );
         frameInternoLayout.setVerticalGroup(
             frameInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,6 +114,11 @@ public class MainScreen extends javax.swing.JFrame {
 
         itemEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-mapa-do-tesouro-16.png"))); // NOI18N
         itemEstado.setText("Estado");
+        itemEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEstadoActionPerformed(evt);
+            }
+        });
         itemContato.add(itemEstado);
 
         jMenuBar1.add(itemContato);
@@ -132,9 +137,7 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(frameInterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(frameInterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,6 +154,12 @@ public class MainScreen extends javax.swing.JFrame {
     private void itemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itemClienteActionPerformed
+
+    private void itemEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEstadoActionPerformed
+        EstadoView estado = new EstadoView();
+        this.frameInterno.add(estado);
+        estado.setVisible(true);
+    }//GEN-LAST:event_itemEstadoActionPerformed
 
     /**
      * @param args the command line arguments
