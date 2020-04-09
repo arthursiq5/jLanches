@@ -6,6 +6,7 @@
 package src;
 
 import src.dao.BDConnector;
+import src.views.MainScreen;
 
 /**
  *
@@ -13,6 +14,7 @@ import src.dao.BDConnector;
  */
 public class JLanches {
     public static void main(String[] args) {
-        BDConnector bd = new BDConnector();
+        MainScreen mainScreen = new MainScreen();
+        mainScreen.setVisible(true);
     }
 }
