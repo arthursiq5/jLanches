@@ -42,7 +42,6 @@ public class EstadoView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
         abasDoSistema = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -62,9 +61,6 @@ public class EstadoView extends javax.swing.JInternalFrame {
         campoSigla = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         campoId = new javax.swing.JTextField();
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-editar-arquivo-64.png"))); // NOI18N
-        jButton2.setText("Alterar");
 
         setClosable(true);
         setTitle("Estado");
@@ -410,7 +406,6 @@ public class EstadoView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField campoId;
     private javax.swing.JTextField campoPesquisar;
     private javax.swing.JTextField campoSigla;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
