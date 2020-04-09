@@ -348,11 +348,11 @@ public class EstadoView extends javax.swing.JInternalFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         if(this.campoSigla.getText().length() > 2){
-            JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter no máximo dois caracteres");
+            JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter no máximo dois caracteres", "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if(this.campoSigla.getText().length() < 2){
-            JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter ao menos dois caracteres");
+            JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter ao menos dois caracteres", "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
             return;
         }
         Estado estado = new Estado();
