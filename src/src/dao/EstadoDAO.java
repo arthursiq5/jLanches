@@ -63,7 +63,23 @@ public class EstadoDAO implements ModelDAO<Estado> {
 
     @Override
     public void delete(Estado objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String sql = "DELETE "
+                    + "FROM estado "
+                    + "WHERE id = '" + objeto.id + "'";
+            BDConnector.getInstance()
+                        .getConnection()
+                        .createStatement()
+                        .executeUpdate(sql);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                    null, 
+                    "Erro ao remover dados do banco", 
+                    "Erro", 
+                    JOptionPane.ERROR_MESSAGE
+            );
+            System.err.println("Erro: " + e);
+        }
     }
 
     @Override
