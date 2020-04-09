@@ -35,7 +35,6 @@ public class BDConnector {
             }else{
                 this.connection = DriverManager.getConnection(dburl);
             }
-            JOptionPane.showMessageDialog(null, "deu certo");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(
                 null,
