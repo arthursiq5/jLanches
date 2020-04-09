@@ -135,6 +135,11 @@ public class EstadoView extends javax.swing.JInternalFrame {
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-excluir-64.png"))); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -351,6 +356,18 @@ public class EstadoView extends javax.swing.JInternalFrame {
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         this.resetInputs();
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        Estado estado = new Estado();
+        estado.id = Integer.parseInt(
+                String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
+        estado.sigla = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+        
+        if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
+            new EstadoDAO().delete(estado);
+            this.updateTable();
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
