@@ -11,6 +11,10 @@
       </Properties>
     </Component>
   </NonVisualComponents>
+  <Properties>
+    <Property name="closable" type="boolean" value="true"/>
+    <Property name="title" type="java.lang.String" value="Estado"/>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -107,7 +111,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField1" min="-2" pref="326" max="-2" attributes="0"/>
+                          <Component id="campoPesquisar" min="-2" pref="326" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnPesquisar" pref="61" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -123,14 +127,14 @@
                                   <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jTextField1" max="32767" attributes="0"/>
+                              <Component id="campoPesquisar" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="campoPesquisar">
                 </Component>
                 <Component class="javax.swing.JButton" name="btnPesquisar">
                   <Properties>
@@ -363,9 +367,9 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jButton1" pref="185" max="32767" attributes="0"/>
+                              <Component id="btnLimpar" pref="185" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton3" min="-2" pref="190" max="-2" attributes="0"/>
+                              <Component id="btnCadastrar" min="-2" pref="190" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -374,15 +378,15 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="jButton1">
+                    <Component class="javax.swing.JButton" name="btnLimpar">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="b1" red="82" type="rgb"/>
@@ -398,7 +402,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton3">
+                    <Component class="javax.swing.JButton" name="btnCadastrar">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="59" green="ff" red="b2" type="rgb"/>
@@ -437,7 +441,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField2" max="32767" attributes="0"/>
+                              <Component id="campoSigla" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -446,14 +450,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField2" pref="76" max="32767" attributes="0"/>
+                              <Component id="campoSigla" pref="76" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="jTextField2">
+                    <Component class="javax.swing.JTextField" name="campoSigla">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Dialog" size="24" style="0"/>
@@ -483,7 +487,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField3" max="32767" attributes="0"/>
+                              <Component id="campoId" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -492,14 +496,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField3" pref="76" max="32767" attributes="0"/>
+                              <Component id="campoId" pref="76" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="jTextField3">
+                    <Component class="javax.swing.JTextField" name="campoId">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Dialog" size="24" style="0"/>

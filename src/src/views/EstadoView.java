@@ -31,7 +31,7 @@ public class EstadoView extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        campoPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -41,15 +41,18 @@ public class EstadoView extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        campoSigla = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
+        campoId = new javax.swing.JTextField();
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-editar-arquivo-64.png"))); // NOI18N
         jButton2.setText("Alterar");
+
+        setClosable(true);
+        setTitle("Estado");
 
         jPanel1.setBackground(new java.awt.Color(207, 216, 220));
 
@@ -67,7 +70,7 @@ public class EstadoView extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                 .addContainerGap())
@@ -80,7 +83,7 @@ public class EstadoView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnPesquisar)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextField1)))
+                    .addComponent(campoPesquisar)))
         );
 
         jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -173,38 +176,38 @@ public class EstadoView extends javax.swing.JInternalFrame {
         jPanel6.setBackground(new java.awt.Color(207, 216, 220));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
 
-        jButton1.setBackground(new java.awt.Color(130, 177, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-apagador-64.png"))); // NOI18N
-        jButton1.setText("Limpar");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLimpar.setBackground(new java.awt.Color(130, 177, 255));
+        btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-apagador-64.png"))); // NOI18N
+        btnLimpar.setText("Limpar");
+        btnLimpar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton3.setBackground(new java.awt.Color(178, 255, 89));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-selecionado-64.png"))); // NOI18N
-        jButton3.setText("Cadastrar");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCadastrar.setBackground(new java.awt.Color(178, 255, 89));
+        btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-selecionado-64.png"))); // NOI18N
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1)))
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnLimpar)))
         );
 
         jPanel7.setBackground(new java.awt.Color(207, 216, 220));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Sigla"));
 
-        jTextField2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoSigla.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -212,22 +215,22 @@ public class EstadoView extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2)
+                .addComponent(campoSigla)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(campoSigla, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel8.setBackground(new java.awt.Color(207, 216, 220));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "ID"));
 
-        jTextField3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jTextField3.setEnabled(false);
+        campoId.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoId.setEnabled(false);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -235,14 +238,14 @@ public class EstadoView extends javax.swing.JInternalFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField3)
+                .addComponent(campoId)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(campoId, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -305,12 +308,15 @@ public class EstadoView extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField campoId;
+    private javax.swing.JTextField campoPesquisar;
+    private javax.swing.JTextField campoSigla;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -322,8 +328,5 @@ public class EstadoView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
