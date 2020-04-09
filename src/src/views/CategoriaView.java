@@ -347,6 +347,9 @@ public class CategoriaView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        if(this.campoNome.getText().length() <= 3){
+            JOptionPane.showMessageDialog(null, "O nome da categoria deve ter ao menos três caracteres", "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
+        }
         Categoria categoria = new Categoria();
         categoria.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
         categoria.nome = this.campoNome.getText();
