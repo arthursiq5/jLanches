@@ -356,6 +356,7 @@ public class EstadoView extends javax.swing.JInternalFrame {
         }
         this.updateTable();
         this.resetInputs();
+        this.abasDoSistema.setSelectedIndex(0);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
