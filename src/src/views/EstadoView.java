@@ -5,7 +5,9 @@
  */
 package src.views;
 
+import javax.swing.JOptionPane;
 import src.dao.EstadoDAO;
+import src.model.Estado;
 
 /**
  *
@@ -18,6 +20,10 @@ public class EstadoView extends javax.swing.JInternalFrame {
      */
     public EstadoView() {
         initComponents();
+        this.updateTable();
+    }
+    
+    private void updateTable(){
         new EstadoDAO().fillTable(this.tableEstados, "");
     }
 
@@ -188,6 +194,11 @@ public class EstadoView extends javax.swing.JInternalFrame {
         btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-selecionado-64.png"))); // NOI18N
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -308,6 +319,22 @@ public class EstadoView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        if(this.campoSigla.getText().length() > 2){
+            JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter no máximo dois caracteres");
+            return;
+        }
+        Estado estado = new Estado();
+        estado.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
+        estado.sigla = this.campoSigla.getText().toUpperCase();
+        if(estado.id == 0){
+            new EstadoDAO().save(estado);
+        }else{
+            new EstadoDAO().update(estado);
+        }
+        this.updateTable();
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
