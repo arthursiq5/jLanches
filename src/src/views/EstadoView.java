@@ -351,6 +351,10 @@ public class EstadoView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter no máximo dois caracteres");
             return;
         }
+        if(this.campoSigla.getText().length() < 2){
+            JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter ao menos dois caracteres");
+            return;
+        }
         Estado estado = new Estado();
         estado.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
         estado.sigla = this.campoSigla.getText().toUpperCase();
