@@ -175,7 +175,7 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_itemFuncionarioActionPerformed
 
     private void itemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteActionPerformed
-        // TODO add your handling code here:
+        this.openView(new ClienteView());
     }//GEN-LAST:event_itemClienteActionPerformed
 
     private void itemEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEstadoActionPerformed
