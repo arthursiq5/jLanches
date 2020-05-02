@@ -51,6 +51,7 @@ public class MainScreen extends javax.swing.JFrame {
         itemCidade = new javax.swing.JMenuItem();
         itemEstado = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         itemCreditos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -143,6 +144,10 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuBar1.add(itemContato);
 
         jMenu4.setText("Outros");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pdf-2-16.png"))); // NOI18N
+        jMenuItem1.setText("Relatórios");
+        jMenu4.add(jMenuItem1);
 
         itemCreditos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-arquivo-de-fichas-16.png"))); // NOI18N
         itemCreditos.setText("Créditos");
@@ -239,6 +244,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu jPopupMenu1;
