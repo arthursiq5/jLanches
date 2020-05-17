@@ -19,6 +19,11 @@ public class LoginScreen extends javax.swing.JFrame {
     public LoginScreen() {
         initComponents();
     }
+    
+    private void clearForm(){
+        this.inputCPF.setText("");
+        this.inputPassword.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,6 +48,11 @@ public class LoginScreen extends javax.swing.JFrame {
 
         btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-selecionado-64.png"))); // NOI18N
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados de login"));
 
@@ -135,6 +145,10 @@ public class LoginScreen extends javax.swing.JFrame {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
