@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.views;
+package src.views.internalFrame;
 
 import javax.swing.JOptionPane;
 import src.dao.CategoriaDAO;
