@@ -40,8 +40,12 @@ public class CreditosView extends javax.swing.JInternalFrame {
         jLabel1.setToolTipText("");
         jLabel1.setFocusable(false);
 
+        btnOk.setBackground(new java.awt.Color(204, 204, 255));
+        btnOk.setForeground(new java.awt.Color(0, 0, 0));
         btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-selecionado-64.png"))); // NOI18N
         btnOk.setText("OK");
+        btnOk.setToolTipText("");
+        btnOk.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOkActionPerformed(evt);
