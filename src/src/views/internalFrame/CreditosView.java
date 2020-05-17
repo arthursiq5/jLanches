@@ -35,6 +35,9 @@ public class CreditosView extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         btnOk = new javax.swing.JButton();
 
+        setClosable(true);
+        setTitle("Créditos");
+
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("<html><body><p style=\"text-align: justify\">Software desenvolvido e mantido por Arthur Siqueira. Ícones utilizados baixados do website Icons8. Os demais componentes pertencem a seus respectivos proprietários.</p></body></html>");
         jLabel1.setToolTipText("");
