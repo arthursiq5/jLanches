@@ -10,6 +10,7 @@ import src.views.internalFrame.ClienteView;
 import src.views.internalFrame.EstadoView;
 import src.views.internalFrame.ContatoView;
 import javax.swing.JInternalFrame;
+import src.views.internalFrame.CreditosView;
 
 /**
  *
@@ -30,6 +31,10 @@ public class MainScreen extends javax.swing.JFrame {
         view.setVisible(true);
     }
     
+    public void closeAllWindows(){
+        this.frameInterno.removeAll();
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,18 +48,18 @@ public class MainScreen extends javax.swing.JFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         frameInterno = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuCadastro = new javax.swing.JMenu();
         itemFuncionario = new javax.swing.JMenuItem();
         itemCliente = new javax.swing.JMenuItem();
-        itemPedido = new javax.swing.JMenu();
+        menuPedido = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         itemLanche = new javax.swing.JMenuItem();
         itemCategoria = new javax.swing.JMenuItem();
-        itemContato = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        menuEnderecoContato = new javax.swing.JMenu();
+        itemContato = new javax.swing.JMenuItem();
         itemCidade = new javax.swing.JMenuItem();
         itemEstado = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        menuOutros = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         itemCreditos = new javax.swing.JMenuItem();
 
@@ -75,8 +80,8 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 255));
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-editar-arquivo-16.png"))); // NOI18N
-        jMenu1.setText("Cadastro");
+        menuCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-editar-arquivo-16.png"))); // NOI18N
+        menuCadastro.setText("Cadastro");
 
         itemFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-nome-16.png"))); // NOI18N
         itemFuncionario.setText("Funcionário");
@@ -85,7 +90,7 @@ public class MainScreen extends javax.swing.JFrame {
                 itemFuncionarioActionPerformed(evt);
             }
         });
-        jMenu1.add(itemFuncionario);
+        menuCadastro.add(itemFuncionario);
 
         itemCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-nome-16.png"))); // NOI18N
         itemCliente.setText("Cliente");
@@ -94,20 +99,20 @@ public class MainScreen extends javax.swing.JFrame {
                 itemClienteActionPerformed(evt);
             }
         });
-        jMenu1.add(itemCliente);
+        menuCadastro.add(itemCliente);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuCadastro);
 
-        itemPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-lancheira-16.png"))); // NOI18N
-        itemPedido.setText("Pedidos");
+        menuPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-lancheira-16.png"))); // NOI18N
+        menuPedido.setText("Pedidos");
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-papel-16.png"))); // NOI18N
         jMenuItem4.setText("Pedido");
-        itemPedido.add(jMenuItem4);
+        menuPedido.add(jMenuItem4);
 
         itemLanche.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-lancheira-16.png"))); // NOI18N
         itemLanche.setText("Lanches");
-        itemPedido.add(itemLanche);
+        menuPedido.add(itemLanche);
 
         itemCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-abrir-pasta-16.png"))); // NOI18N
         itemCategoria.setText("Categorias");
@@ -116,25 +121,25 @@ public class MainScreen extends javax.swing.JFrame {
                 itemCategoriaActionPerformed(evt);
             }
         });
-        itemPedido.add(itemCategoria);
+        menuPedido.add(itemCategoria);
 
-        jMenuBar1.add(itemPedido);
+        jMenuBar1.add(menuPedido);
 
-        itemContato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-mapa-do-tesouro-16.png"))); // NOI18N
-        itemContato.setText("Endereço e contatos");
+        menuEnderecoContato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-mapa-do-tesouro-16.png"))); // NOI18N
+        menuEnderecoContato.setText("Endereço e contatos");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-telefone-sem-uso-16.png"))); // NOI18N
-        jMenuItem3.setText("Contato");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        itemContato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-telefone-sem-uso-16.png"))); // NOI18N
+        itemContato.setText("Contato");
+        itemContato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                itemContatoActionPerformed(evt);
             }
         });
-        itemContato.add(jMenuItem3);
+        menuEnderecoContato.add(itemContato);
 
         itemCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pedido-entregue-16.png"))); // NOI18N
         itemCidade.setText("Cidade");
-        itemContato.add(itemCidade);
+        menuEnderecoContato.add(itemCidade);
 
         itemEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-mapa-do-tesouro-16.png"))); // NOI18N
         itemEstado.setText("Estado");
@@ -143,21 +148,26 @@ public class MainScreen extends javax.swing.JFrame {
                 itemEstadoActionPerformed(evt);
             }
         });
-        itemContato.add(itemEstado);
+        menuEnderecoContato.add(itemEstado);
 
-        jMenuBar1.add(itemContato);
+        jMenuBar1.add(menuEnderecoContato);
 
-        jMenu4.setText("Outros");
+        menuOutros.setText("Outros");
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pdf-2-16.png"))); // NOI18N
         jMenuItem1.setText("Relatórios");
-        jMenu4.add(jMenuItem1);
+        menuOutros.add(jMenuItem1);
 
         itemCreditos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-arquivo-de-fichas-16.png"))); // NOI18N
         itemCreditos.setText("Créditos");
-        jMenu4.add(itemCreditos);
+        itemCreditos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCreditosActionPerformed(evt);
+            }
+        });
+        menuOutros.add(itemCreditos);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(menuOutros);
 
         setJMenuBar(jMenuBar1);
 
@@ -195,9 +205,13 @@ public class MainScreen extends javax.swing.JFrame {
         this.openView(new CategoriaView());
     }//GEN-LAST:event_itemCategoriaActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void itemContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemContatoActionPerformed
         this.openView(new ContatoView());
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_itemContatoActionPerformed
+
+    private void itemCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCreditosActionPerformed
+        this.openView(new CreditosView(this));
+    }//GEN-LAST:event_itemCreditosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,18 +253,18 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCategoria;
     private javax.swing.JMenuItem itemCidade;
     private javax.swing.JMenuItem itemCliente;
-    private javax.swing.JMenu itemContato;
+    private javax.swing.JMenuItem itemContato;
     private javax.swing.JMenuItem itemCreditos;
     private javax.swing.JMenuItem itemEstado;
     private javax.swing.JMenuItem itemFuncionario;
     private javax.swing.JMenuItem itemLanche;
-    private javax.swing.JMenu itemPedido;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JMenu menuCadastro;
+    private javax.swing.JMenu menuEnderecoContato;
+    private javax.swing.JMenu menuOutros;
+    private javax.swing.JMenu menuPedido;
     // End of variables declaration//GEN-END:variables
 }
