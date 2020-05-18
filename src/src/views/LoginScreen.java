@@ -7,6 +7,7 @@ package src.views;
 
 import java.awt.event.WindowEvent;
 import src.dao.FuncionarioDAO;
+import src.helpers.MessageHelper;
 
 /**
  *
@@ -153,8 +154,9 @@ public class LoginScreen extends javax.swing.JFrame {
         
         if(new FuncionarioDAO().autenticate(cpf, password)){
             new MainScreen().setVisible(true);
+            this.dispose();
         }else{
-            System.out.println("erro");
+            MessageHelper.createWarningMessage("Erro", "Login ou senha inválidos");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
