@@ -6,6 +6,7 @@
 package src.views;
 
 import java.awt.event.WindowEvent;
+import src.dao.FuncionarioDAO;
 
 /**
  *
@@ -147,7 +148,14 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String cpf = this.inputCPF.getText().replaceAll("[^0-9]", "");
+        String password = new String(this.inputPassword.getPassword());
         
+        if(new FuncionarioDAO().autenticate(cpf, password)){
+            new MainScreen().setVisible(true);
+        }else{
+            System.out.println("erro");
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
