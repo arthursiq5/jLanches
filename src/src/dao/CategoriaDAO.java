@@ -8,10 +8,10 @@ package src.dao;
 import java.util.ArrayList;
 import src.model.Categoria;
 import java.sql.*;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import src.helpers.MessageHelper;
 
 /**
  *
@@ -31,12 +31,7 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
                         + "'" + objeto.nome + "')";
             st.executeUpdate(sql);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(
-                    null, 
-                    "Erro ao inserir dados no banco", 
-                    "Erro", 
-                    JOptionPane.ERROR_MESSAGE
-            );
+            MessageHelper.createErrorMessage("Erro", "Erro ao inserir dados de categorias do banco");
             System.err.println("Erro: " + e);
         }
     }
@@ -51,12 +46,7 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
                         + "WHERE id = '" + objeto.id + "'";
             st.executeUpdate(sql);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(
-                    null, 
-                    "Erro ao inserir dados no banco", 
-                    "Erro", 
-                    JOptionPane.ERROR_MESSAGE
-            );
+            MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de categorias do banco");
             System.err.println("Erro: " + e);
         }
     }
@@ -72,12 +62,7 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
                         .createStatement()
                         .executeUpdate(sql);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(
-                    null, 
-                    "Erro ao remover dados do banco", 
-                    "Erro", 
-                    JOptionPane.ERROR_MESSAGE
-            );
+            MessageHelper.createErrorMessage("Erro", "Erro ao remover dados de categorias do banco");
             System.err.println("Erro: " + e);
         }
     }
@@ -119,12 +104,7 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
             
             dadosTabela = new Object[this.resultadoQuery.getInt(1)][2];
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(
-                    null, 
-                    "Erro ao puxar dados do banco", 
-                    "Erro", 
-                    JOptionPane.ERROR_MESSAGE
-            );
+            MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de categorias do banco");
             System.err.println("Erro: \n" + e);
         }
         
@@ -144,12 +124,7 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
                 line++;
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(
-                    null, 
-                    "Erro ao puxar dados do banco", 
-                    "Erro", 
-                    JOptionPane.ERROR_MESSAGE
-            );
+            MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de categorias do banco");
             System.err.println("Erro: \n" + e);
         }
         

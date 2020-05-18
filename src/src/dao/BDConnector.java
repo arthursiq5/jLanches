@@ -8,7 +8,7 @@ package src.dao;
 import java.sql.*;
 import java.io.*;
 import java.util.*;
-import javax.swing.JOptionPane;
+import src.helpers.MessageHelper;
 
 /**
  *
@@ -36,12 +36,7 @@ public class BDConnector {
                 this.connection = DriverManager.getConnection(dburl);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(
-                null,
-                "Erro ao conectar na base de dados",
-                "Erro",
-                JOptionPane.ERROR_MESSAGE
-            );
+            MessageHelper.createErrorMessage("Erro", "Erro ao conectar na base de dados");
             System.err.println(e);
         }
     }
@@ -64,12 +59,7 @@ public class BDConnector {
             instance = null;
             this.connection = null;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(
-                null,
-                "Erro ao encerrar a conexão",
-                "Erro",
-                JOptionPane.ERROR_MESSAGE
-            );
+            MessageHelper.createErrorMessage("Erro", "Erro ao encerrar a conexão");
             System.err.println(e);
         }
     }

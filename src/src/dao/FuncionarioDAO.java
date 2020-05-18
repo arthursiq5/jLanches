@@ -8,10 +8,10 @@ package src.dao;
 import java.util.ArrayList;
 import src.model.Funcionario;
 import java.sql.*;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import src.helpers.MessageHelper;
 
 /**
  *
@@ -69,6 +69,7 @@ public class FuncionarioDAO implements ModelDAO<Funcionario>{
             return this.resultadoQuery.next();
             
         } catch (Exception e) {
+            MessageHelper.createErrorMessage("Erro", "Erro ao autenticar");
             System.err.println("Erro ao autenticar: \n" + e);
             return false;
         }
