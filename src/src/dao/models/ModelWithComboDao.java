@@ -11,6 +11,6 @@ import javax.swing.JComboBox;
  *
  * @author arthur
  */
-public interface ModelWithComboDao extends ModelDAO<Object> {
+public interface ModelWithComboDao<T> extends ModelDAO<T> {
     public void fillCombo(JComboBox combo);
 }
