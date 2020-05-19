@@ -5,6 +5,7 @@
  */
 package src.dao;
 
+import src.dao.models.ModelDAO;
 import java.util.ArrayList;
 import src.model.Estado;
 import java.sql.*;
