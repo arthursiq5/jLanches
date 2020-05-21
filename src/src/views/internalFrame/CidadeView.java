@@ -6,8 +6,12 @@
 package src.views.internalFrame;
 
 import javax.swing.JOptionPane;
+import src.dao.CidadeDAO;
 import src.dao.EstadoDAO;
+import src.helpers.MessageHelper;
+import src.model.Cidade;
 import src.model.Estado;
+import src.views.extensionElements.ComboItem;
 
 /**
  *
@@ -29,7 +33,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
     }
     
     private void updateTable(){
-        new EstadoDAO().fillTable(this.tableEstados, "");
+        new CidadeDAO().fillTable(this.tableEstados, "");
     }
     
     private void resetInputs(){
@@ -394,21 +398,26 @@ public class CidadeView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        if(this.campoNome.getText().length() > 2){
-            JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter no máximo dois caracteres", "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
+        if(this.campoNome.getText().length() > 255){
+            MessageHelper.createWarningMessage("Erro de cadastro", "O campo \"nome\" deve ter no máximo 255 caracteres");
             return;
         }
         if(this.campoNome.getText().length() < 2){
-            JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter ao menos dois caracteres", "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
+            MessageHelper.createWarningMessage("Erro de cadastro", "O campo \"nome\" deve ter ao menos dois caracteres");
             return;
         }
-        Estado estado = new Estado();
-        estado.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
-        estado.sigla = this.campoNome.getText().toUpperCase();
-        if(estado.id == 0){
-            new EstadoDAO().save(estado);
+        Cidade cidade = new Cidade();
+        cidade.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
+        cidade.nome = this.campoNome.getText();
+        
+        ComboItem estado = (ComboItem) this.selectEstado.getSelectedItem();
+        
+        cidade.estado_id = estado.id;
+        
+        if(cidade.id == 0){
+            new CidadeDAO().save(cidade);
         }else{
-            new EstadoDAO().update(estado);
+            new CidadeDAO().update(cidade);
         }
         this.updateTable();
         this.resetInputs();
