@@ -5,6 +5,9 @@
  */
 package src.model;
 
+import src.dao.CidadeDAO;
+import src.dao.EstadoDAO;
+
 /**
  *
  * @author arthur
@@ -15,4 +18,12 @@ public class Franquia {
     public String cnpj;
     public boolean ativo;
     public int cidade_id;
+    
+    @Override
+    public String toString(){
+        Cidade cidade = new CidadeDAO().get(this.cidade_id + "");
+        Estado estado = new EstadoDAO().get(cidade.estado_id + "");
+        String name =  "Franquia " + this.id + " de " + cidade + "/" + estado;
+        return name;
+    }
 }
