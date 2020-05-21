@@ -176,13 +176,17 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
                     .getConnection()
                     .createStatement()
                     .executeQuery("" +
-                            "SELECT * FROM estado"
+                            "SELECT * FROM cidade"
                     );
             if(this.resultadoQuery.isBeforeFirst()){
                 while(this.resultadoQuery.next()){
                     item = new ComboItem(
-                        this.resultadoQuery.getInt(1), 
-                        this.resultadoQuery.getString(2)
+                        this.resultadoQuery.getInt(1),
+                        (
+                            this.resultadoQuery.getString(2)
+                          + "/"
+                          + new EstadoDAO().get(this.resultadoQuery.getInt("estado_id") + "")
+                        )
                     );
             
                     combo.addItem(item);
