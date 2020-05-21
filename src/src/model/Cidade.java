@@ -13,4 +13,9 @@ public class Cidade {
     public int id;
     public String nome;
     public int estado_id;
+    
+    @Override
+    public String toString(){
+        return this.nome;
+    }
 }
