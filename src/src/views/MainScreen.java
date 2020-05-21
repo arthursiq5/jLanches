@@ -10,6 +10,7 @@ import src.views.internalFrame.ClienteView;
 import src.views.internalFrame.EstadoView;
 import src.views.internalFrame.ContatoView;
 import javax.swing.JInternalFrame;
+import src.views.internalFrame.CidadeView;
 import src.views.internalFrame.CreditosView;
 
 /**
@@ -139,6 +140,11 @@ public class MainScreen extends javax.swing.JFrame {
 
         itemCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pedido-entregue-16.png"))); // NOI18N
         itemCidade.setText("Cidade");
+        itemCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCidadeActionPerformed(evt);
+            }
+        });
         menuEnderecoContato.add(itemCidade);
 
         itemEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-mapa-do-tesouro-16.png"))); // NOI18N
@@ -212,6 +218,10 @@ public class MainScreen extends javax.swing.JFrame {
     private void itemCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCreditosActionPerformed
         this.openView(new CreditosView(this));
     }//GEN-LAST:event_itemCreditosActionPerformed
+
+    private void itemCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCidadeActionPerformed
+        this.openView(new CidadeView());
+    }//GEN-LAST:event_itemCidadeActionPerformed
 
     /**
      * @param args the command line arguments
