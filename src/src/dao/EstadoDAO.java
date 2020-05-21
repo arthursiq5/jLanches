@@ -9,16 +9,19 @@ import src.dao.models.ModelDAO;
 import java.util.ArrayList;
 import src.model.Estado;
 import java.sql.*;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import src.dao.models.ModelWithComboDao;
 import src.helpers.MessageHelper;
+import src.views.extensionElements.ComboItem;
 
 /**
  *
  * @author arthur
  */
-public class EstadoDAO implements ModelDAO<Estado> {
+public class EstadoDAO implements ModelWithComboDao<Estado> {
     
     private ResultSet resultadoQuery = null;
 
@@ -151,6 +154,41 @@ public class EstadoDAO implements ModelDAO<Estado> {
                     column.setPreferredWidth(140);
                     break;
             }
+        }
+    }
+
+    @Override
+    public void fillCombo(JComboBox combo) {
+        combo.removeAllItems();
+        
+        ComboItem item = new ComboItem();
+        item.id = 0;
+        item.descricao = "Selecione";
+        combo.addItem(item);
+        
+        try {
+            
+            this.resultadoQuery = new BDConnector()
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery("" +
+                            "SELECT * FROM estado"
+                    );
+            if(this.resultadoQuery.isBeforeFirst()){
+                while(this.resultadoQuery.next()){
+                    item = new ComboItem(
+                        this.resultadoQuery.getInt(1), 
+                        this.resultadoQuery.getString(2)
+                    );
+            
+                    combo.addItem(item);
+                }
+            }
+            
+            
+        } catch (Exception e) {
+            MessageHelper.createErrorMessage("Erro", "Erro ao tentar popular o campo \"select\"");
+            System.err.println("Erro: \n" + e);
         }
     }
 }
