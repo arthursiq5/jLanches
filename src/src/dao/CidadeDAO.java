@@ -90,9 +90,10 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
     
     public void fillTable(JTable table, String criteria){
         Object [][] dadosTabela = null;
-        Object [] cabecalho = new Object[2];
+        Object [] cabecalho = new Object[3];
         cabecalho[0] = "ID";
         cabecalho[1] = "Nome";
+        cabecalho[2] = "Estado";
         
         String like = criteria.equals("") ? "" : ("WHERE UCASE(nome) LIKE UCASE('%" + criteria + "%')");
         
@@ -108,7 +109,7 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
             
             this.resultadoQuery.next();
             
-            dadosTabela = new Object[this.resultadoQuery.getInt(1)][2];
+            dadosTabela = new Object[this.resultadoQuery.getInt(1)][3];
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de cidades do banco");
             System.err.println("Erro: \n" + e);
@@ -127,6 +128,7 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
             while(this.resultadoQuery.next()){
                 dadosTabela[line][0] = this.resultadoQuery.getInt("id");
                 dadosTabela[line][1] = this.resultadoQuery.getString("nome");
+                dadosTabela[line][2] = new EstadoDAO().get(this.resultadoQuery.getInt("estado_id") + "").sigla;
                 line++;
             }
         } catch (Exception e) {

@@ -83,7 +83,37 @@ public class EstadoDAO implements ModelWithComboDao<Estado> {
 
     @Override
     public Estado get(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Estado estado = new Estado();
+        try {
+            Statement statement = BDConnector.getInstance().getConnection().createStatement();
+            
+            String sql = ""
+                    + "SELECT * "
+                    + "FROM estado "
+                    + "WHERE "
+                    + "id LIKE '" + id +"'";
+            
+            System.out.println("SQL: " + sql);
+            
+            this.resultadoQuery = statement.executeQuery(sql);
+            
+            this.resultadoQuery.next();
+            
+            estado.id = this.resultadoQuery.getInt("id");
+            estado.sigla = this.resultadoQuery.getString("sigla");
+            
+            
+        } catch (Exception e) {
+            MessageHelper.createWarningMessage(
+                    "Aviso", 
+                    "Houveram problemas ao recuperar os estados do banco.\n"
+                  + "Por favor, tente novamente mais tarde"
+            );
+            System.err.println("Erro: \n" + e);
+            estado.id = 0;
+            estado.sigla = "";
+        }
+        return estado;
     }
     
     public void fillTable(JTable table, String criteria){

@@ -429,13 +429,13 @@ public class CidadeView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        Estado estado = new Estado();
-        estado.id = Integer.parseInt(
+        Cidade cidade = new Cidade();
+        cidade.id = Integer.parseInt(
                 String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        estado.sigla = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+        cidade.nome = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
         
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
-            new EstadoDAO().delete(estado);
+            new CidadeDAO().delete(cidade);
             this.updateTable();
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
