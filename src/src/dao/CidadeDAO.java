@@ -85,7 +85,39 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
 
     @Override
     public Cidade get(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cidade cidade = new Cidade();
+        try {
+            Statement statement = BDConnector.getInstance().getConnection().createStatement();
+            
+            String sql = ""
+                    + "SELECT * "
+                    + "FROM cidade "
+                    + "WHERE "
+                    + "id LIKE '" + id +"'";
+            
+            System.out.println("SQL: " + sql);
+            
+            this.resultadoQuery = statement.executeQuery(sql);
+            
+            this.resultadoQuery.next();
+            
+            cidade.id = this.resultadoQuery.getInt("id");
+            cidade.nome = this.resultadoQuery.getString("nome");
+            cidade.estado_id = this.resultadoQuery.getInt("estado_id");
+            
+            
+        } catch (Exception e) {
+            MessageHelper.createWarningMessage(
+                    "Aviso", 
+                    "Houveram problemas ao recuperar os estados do banco.\n"
+                  + "Por favor, tente novamente mais tarde"
+            );
+            System.err.println("Erro: \n" + e);
+            cidade.id = 0;
+            cidade.nome = "";
+            cidade.estado_id = 0;
+        }
+        return cidade;
     }
     
     public void fillTable(JTable table, String criteria){

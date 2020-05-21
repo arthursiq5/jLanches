@@ -35,7 +35,7 @@ public class FranquiaDAO implements ModelWithComboDao<Franquia> {
                     + "DEFAULT, "
                     + "'" + objeto.endereco + "', "
                     + "'" + objeto.cnpj + "', "
-                    + "'" + objeto.ativo + "', "
+                    + "" + objeto.ativo + ", "
                     + objeto.cidade_id
                     + ")";
             st.executeUpdate(sql);
@@ -53,9 +53,9 @@ public class FranquiaDAO implements ModelWithComboDao<Franquia> {
             String sql = "UPDATE franquia SET "
                         + "cnpj = '" + objeto.cnpj + "', "
                         + "endereco = '" + objeto.endereco + "', "
-                        + "ativo = '" + objeto.ativo + "', "
-                        + "cidade_id = " + objeto.cidade_id
-                    + "WHERE id = '" + objeto.id + "'";
+                        + "ativo = " + objeto.ativo + ", "
+                        + "cidade_id = " + objeto.cidade_id + " "
+                    + "WHERE id = " + objeto.id;
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de estados do banco");
@@ -67,7 +67,7 @@ public class FranquiaDAO implements ModelWithComboDao<Franquia> {
     public void delete(Franquia objeto) {
         try {
             String sql = "DELETE "
-                    + "FROM estado "
+                    + "FROM franquia "
                     + "WHERE id = '" + objeto.id + "'";
             BDConnector.getInstance()
                         .getConnection()

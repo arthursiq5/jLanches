@@ -8,10 +8,12 @@ package src.views.internalFrame;
 import javax.swing.JOptionPane;
 import src.dao.CidadeDAO;
 import src.dao.EstadoDAO;
+import src.dao.FranquiaDAO;
 import src.helpers.ComboHelper;
 import src.helpers.MessageHelper;
 import src.model.Cidade;
 import src.model.Estado;
+import src.model.Franquia;
 import src.views.extensionElements.ComboItem;
 
 /**
@@ -43,7 +45,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
     }
     
     private void updateTable(){
-        new CidadeDAO().fillTable(this.tableFranquias, "");
+        new FranquiaDAO().fillTable(this.tableFranquias, "");
     }
     
     private void resetInputs(){
@@ -123,9 +125,9 @@ public class FranquiaView extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLimparBusca, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                .addComponent(campoPesquisar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLimparBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -196,7 +198,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -476,18 +478,18 @@ public class FranquiaView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Cidade cidade = new Cidade();
-        cidade.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
-        cidade.nome = this.campoCNPJ.getText();
+        Franquia franquia = new Franquia();
+        franquia.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
+        franquia.cnpj = this.campoCNPJ.getText();
         
-        ComboItem estado = (ComboItem) this.selectCidade.getSelectedItem();
+        ComboItem cidade = (ComboItem) this.selectCidade.getSelectedItem();
         
-        cidade.estado_id = estado.id;
+        franquia.cidade_id = cidade.id;
         
-        if(cidade.id == 0){
-            new CidadeDAO().save(cidade);
+        if(franquia.id == 0){
+            new FranquiaDAO().save(franquia);
         }else{
-            new CidadeDAO().update(cidade);
+            new FranquiaDAO().update(franquia);
         }
         this.updateTable();
         this.resetInputs();
@@ -499,31 +501,27 @@ public class FranquiaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        Cidade cidade = new Cidade();
-        cidade.id = Integer.parseInt(
+        Franquia franquia = new Franquia();
+        franquia.id = Integer.parseInt(
                 String.valueOf(this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 0)));
-        cidade.nome = String.valueOf(this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 1));
         
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
-            new CidadeDAO().delete(cidade);
+            new FranquiaDAO().delete(franquia);
             this.updateTable();
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Cidade cidade = new Cidade();
-        cidade.id = Integer.parseInt(
-                String.valueOf(this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 0)));
-        cidade.nome = String.valueOf(this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 1));
+        Franquia franquia = new Franquia();
+        franquia = (Franquia) this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 1);
         //Estado estado = new EstadoDAO().getBySigla(
         //        String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1)));
-        Estado estado = (Estado) (this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 2));
-        cidade.estado_id = estado.id;
         
-        this.campoId.setText(cidade.id + "");
-        this.campoCNPJ.setText(cidade.nome);
+        this.campoId.setText(franquia.id + "");
+        this.campoCNPJ.setText(franquia.cnpj);
+        this.campoEndereco.setText(franquia.endereco);
         
-        ComboHelper.setIndex(this.selectCidade, cidade.estado_id);
+        ComboHelper.setIndex(this.selectCidade, franquia.cidade_id);
         
         this.abasDoSistema.setSelectedIndex(1);
     }//GEN-LAST:event_btnEditarActionPerformed
