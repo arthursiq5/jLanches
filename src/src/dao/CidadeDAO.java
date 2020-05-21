@@ -128,7 +128,7 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
             while(this.resultadoQuery.next()){
                 dadosTabela[line][0] = this.resultadoQuery.getInt("id");
                 dadosTabela[line][1] = this.resultadoQuery.getString("nome");
-                dadosTabela[line][2] = new EstadoDAO().get(this.resultadoQuery.getInt("estado_id") + "").sigla;
+                dadosTabela[line][2] = new EstadoDAO().get(this.resultadoQuery.getInt("estado_id") + "");
                 line++;
             }
         } catch (Exception e) {

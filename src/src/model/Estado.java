@@ -12,4 +12,9 @@ package src.model;
 public class Estado {
     public int id;
     public String sigla;
+    
+    @Override
+    public String toString(){
+        return sigla;
+    }
 }
