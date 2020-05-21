@@ -8,6 +8,7 @@ package src.views.internalFrame;
 import javax.swing.JOptionPane;
 import src.dao.CidadeDAO;
 import src.dao.EstadoDAO;
+import src.helpers.ComboHelper;
 import src.helpers.MessageHelper;
 import src.model.Cidade;
 import src.model.Estado;
@@ -441,12 +442,19 @@ public class CidadeView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Estado estado = new Estado();
-        estado.id = Integer.parseInt(
+        Cidade cidade = new Cidade();
+        cidade.id = Integer.parseInt(
                 String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        estado.sigla = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
-        this.campoId.setText(estado.id + "");
-        this.campoNome.setText(estado.sigla);
+        cidade.nome = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+        //Estado estado = new EstadoDAO().getBySigla(
+        //        String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1)));
+        Estado estado = (Estado) (this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 2));
+        cidade.estado_id = estado.id;
+        
+        this.campoId.setText(cidade.id + "");
+        this.campoNome.setText(cidade.nome);
+        
+        ComboHelper.setIndex(this.selectEstado, cidade.estado_id);
         
         this.abasDoSistema.setSelectedIndex(1);
     }//GEN-LAST:event_btnEditarActionPerformed
