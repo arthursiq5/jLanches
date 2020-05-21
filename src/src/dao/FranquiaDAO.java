@@ -129,7 +129,7 @@ public class FranquiaDAO implements ModelWithComboDao<Franquia> {
         return franquia;
     }
     
-    public void fillTable(JTable table){
+    public void fillTable(JTable table, String criteria){
         Object [][] dadosTabela = null;
         Object [] cabecalho = new Object[5];
         cabecalho[0] = "ID";
