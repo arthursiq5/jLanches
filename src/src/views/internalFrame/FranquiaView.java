@@ -43,7 +43,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
     }
     
     private void updateTable(){
-        new CidadeDAO().fillTable(this.tableEstados, "");
+        new CidadeDAO().fillTable(this.tableFranquias, "");
     }
     
     private void resetInputs(){
@@ -68,7 +68,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
         btnPesquisar = new javax.swing.JButton();
         btnLimparBusca = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableEstados = new javax.swing.JTable();
+        tableFranquias = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -84,11 +84,13 @@ public class FranquiaView extends javax.swing.JInternalFrame {
         jPanel9 = new javax.swing.JPanel();
         selectCidade = new javax.swing.JComboBox<>();
         jPanel10 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        campoEndereco = new javax.swing.JTextArea();
         jPanel11 = new javax.swing.JPanel();
         btnAtivo = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Cidade");
+        setTitle("Franquia");
 
         jPanel1.setBackground(new java.awt.Color(207, 216, 220));
 
@@ -141,8 +143,8 @@ public class FranquiaView extends javax.swing.JInternalFrame {
                     .addComponent(campoPesquisar)))
         );
 
-        tableEstados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tableEstados.setModel(new javax.swing.table.DefaultTableModel(
+        tableFranquias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tableFranquias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -161,7 +163,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableEstados);
+        jScrollPane1.setViewportView(tableFranquias);
 
         jPanel3.setBackground(new java.awt.Color(207, 216, 220));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
@@ -202,7 +204,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -225,9 +227,9 @@ public class FranquiaView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -268,7 +270,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,7 +327,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoId, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(campoId)
                 .addContainerGap())
         );
 
@@ -340,7 +342,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(selectCidade, 0, 260, Short.MAX_VALUE)
+                .addComponent(selectCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -354,15 +356,28 @@ public class FranquiaView extends javax.swing.JInternalFrame {
         jPanel10.setBackground(new java.awt.Color(207, 216, 220));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Endereço"));
 
+        campoEndereco.setColumns(10);
+        campoEndereco.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        campoEndereco.setLineWrap(true);
+        campoEndereco.setRows(5);
+        campoEndereco.setTabSize(5);
+        jScrollPane2.setViewportView(campoEndereco);
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 196, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel11.setBackground(new java.awt.Color(207, 216, 220));
@@ -381,14 +396,14 @@ public class FranquiaView extends javax.swing.JInternalFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAtivo, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(btnAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAtivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAtivo, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -405,9 +420,9 @@ public class FranquiaView extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -420,7 +435,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -440,8 +455,8 @@ public class FranquiaView extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         abasDoSistema.addTab("Cadastrar", jPanel4);
@@ -454,9 +469,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(abasDoSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(abasDoSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -488,8 +501,8 @@ public class FranquiaView extends javax.swing.JInternalFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         Cidade cidade = new Cidade();
         cidade.id = Integer.parseInt(
-                String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        cidade.nome = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+                String.valueOf(this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 0)));
+        cidade.nome = String.valueOf(this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 1));
         
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
             new CidadeDAO().delete(cidade);
@@ -500,11 +513,11 @@ public class FranquiaView extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         Cidade cidade = new Cidade();
         cidade.id = Integer.parseInt(
-                String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        cidade.nome = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+                String.valueOf(this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 0)));
+        cidade.nome = String.valueOf(this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 1));
         //Estado estado = new EstadoDAO().getBySigla(
         //        String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1)));
-        Estado estado = (Estado) (this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 2));
+        Estado estado = (Estado) (this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 2));
         cidade.estado_id = estado.id;
         
         this.campoId.setText(cidade.id + "");
@@ -516,7 +529,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new CidadeDAO().fillTable(this.tableEstados, this.campoPesquisar.getText());
+        new CidadeDAO().fillTable(this.tableFranquias, this.campoPesquisar.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnLimparBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaActionPerformed
@@ -549,6 +562,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimparBusca;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JFormattedTextField campoCNPJ;
+    private javax.swing.JTextArea campoEndereco;
     private javax.swing.JTextField campoId;
     private javax.swing.JTextField campoPesquisar;
     private javax.swing.JPanel jPanel1;
@@ -563,7 +577,8 @@ public class FranquiaView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> selectCidade;
-    private javax.swing.JTable tableEstados;
+    private javax.swing.JTable tableFranquias;
     // End of variables declaration//GEN-END:variables
 }
