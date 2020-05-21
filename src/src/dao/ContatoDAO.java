@@ -6,6 +6,7 @@
 package src.dao;
 
 import java.sql.ResultSet;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
@@ -14,90 +15,92 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import src.dao.models.ModelWithComboDao;
 import src.helpers.MessageHelper;
-import src.model.Franquia;
+import src.model.Contato;
+import src.model.Estado;
 import src.views.extensionElements.ComboItem;
 
 /**
  *
  * @author arthur
  */
-public class FranquiaDAO implements ModelWithComboDao<Franquia> {
+public class ContatoDAO implements ModelWithComboDao<Contato> {
+    
     private ResultSet resultadoQuery = null;
 
     @Override
-    public void save(Franquia objeto) {
+    public void save(Contato objeto) {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
             
-            String sql = "INSERT INTO franquia"
-                    +" (id, endereco, cnpj, ativo, cidade_id) "
-                    + "VALUES ("
-                    + "DEFAULT, "
-                    + "'" + objeto.endereco + "', "
-                    + "'" + objeto.cnpj + "', "
-                    + "" + objeto.ativo + ", "
-                    + objeto.cidade_id
-                    + ")";
+            String sql = "INSERT INTO contato (id, fone, email) VALUES ("
+                        + "DEFAULT, "
+                        + "'" + objeto.fone + "', "
+                        + "'" + objeto.email + "')";
             st.executeUpdate(sql);
         } catch (Exception e) {
-            MessageHelper.createErrorMessage("Erro", "Erro ao inserir dados de estados do banco");
+            MessageHelper.createErrorMessage("Erro", "Erro ao inserir dados de contatos do banco");
             System.err.println("Erro: " + e);
         }
     }
 
     @Override
-    public void update(Franquia objeto) {
+    public void update(Contato objeto) {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
             
-            String sql = "UPDATE franquia SET "
-                        + "cnpj = '" + objeto.cnpj + "', "
-                        + "endereco = '" + objeto.endereco + "', "
-                        + "ativo = " + objeto.ativo + ", "
-                        + "cidade_id = " + objeto.cidade_id + " "
-                    + "WHERE id = " + objeto.id;
+            String sql = "UPDATE contato "
+                     + "SET fone = '" + objeto.fone + "', "
+                        + "email = '" + objeto.email + "' "
+                     + "WHERE id = '" + objeto.id + "'";
             st.executeUpdate(sql);
         } catch (Exception e) {
-            MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de estados do banco");
+            MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de contatos do banco");
             System.err.println("Erro: " + e);
         }
     }
 
     @Override
-    public void delete(Franquia objeto) {
+    public void delete(Contato objeto) {
         try {
             String sql = "DELETE "
-                    + "FROM franquia "
-                    + "WHERE id = '" + objeto.id + "'";
+                    + "FROM contato "
+                    + "WHERE id = " + objeto.id;
             BDConnector.getInstance()
                         .getConnection()
                         .createStatement()
                         .executeUpdate(sql);
-        } catch (Exception e) {
-            MessageHelper.createErrorMessage("Erro", "Erro ao remover dados de franquias do banco");
+        }catch(SQLIntegrityConstraintViolationException e){
+            MessageHelper.createInfoMessage(
+                "Falha", 
+                "Não foi possível remover o contato, pois ele está atrelado a um usuário ou cliente"
+            );
+            System.err.println("Falha: " + e);
+        }
+        catch (Exception e) {
+            MessageHelper.createErrorMessage("Erro", "Erro ao remover dados de contatos do banco");
             System.err.println("Erro: " + e);
         }
     }
 
     @Override
-    public ArrayList<Franquia> getAll() {
+    public ArrayList<Contato> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Franquia> search(String criterio) {
+    public ArrayList<Contato> search(String criterio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Franquia get(String id) {
-        Franquia franquia = new Franquia();
+    public Contato get(String id) {
+        Contato contato = new Contato();
         try {
             Statement statement = BDConnector.getInstance().getConnection().createStatement();
             
             String sql = ""
                     + "SELECT * "
-                    + "FROM franquia "
+                    + "FROM contato "
                     + "WHERE "
                     + "id LIKE '" + id +"'";
             
@@ -107,36 +110,36 @@ public class FranquiaDAO implements ModelWithComboDao<Franquia> {
             
             this.resultadoQuery.next();
             
-            franquia.id = this.resultadoQuery.getInt("id");
-            franquia.endereco = this.resultadoQuery.getString("endereco");
-            franquia.cnpj = this.resultadoQuery.getString("cnpj");
-            franquia.ativo = this.resultadoQuery.getBoolean("ativo");
-            franquia.cidade_id = this.resultadoQuery.getInt("cidade_id");
+            contato.id = this.resultadoQuery.getInt("id");
+            contato.fone = this.resultadoQuery.getString("fone");
+            contato.email = this.resultadoQuery.getString("email");
+            
             
         } catch (Exception e) {
             MessageHelper.createWarningMessage(
                     "Aviso", 
-                    "Houveram problemas ao recuperar as franquias do banco.\n"
+                    "Houveram problemas ao recuperar os contatos do banco.\n"
                   + "Por favor, tente novamente mais tarde"
             );
             System.err.println("Erro: \n" + e);
-            franquia.id = 0;
-            franquia.endereco = "erro";
-            franquia.cnpj = "erro";
-            franquia.ativo = false;
-            franquia.cidade_id = 0;
+            contato.id = 0;
+            contato.fone = "";
+            contato.email = "";
         }
-        return franquia;
+        return contato;
     }
     
     public void fillTable(JTable table, String criteria){
         Object [][] dadosTabela = null;
-        Object [] cabecalho = new Object[5];
+        Object [] cabecalho = new Object[3];
         cabecalho[0] = "ID";
-        cabecalho[1] = "Nome";
-        cabecalho[2] = "CNPJ";
-        cabecalho[3] = "Endereço";
-        cabecalho[4] = "Ativo";
+        cabecalho[1] = "Fone";
+        cabecalho[2] = "Email";
+        
+        String like = criteria.equals("") 
+                ? "" 
+                : ("WHERE UCASE(fone) LIKE UCASE('%" + criteria + "%') " 
+                + "OR UCASE(email) LIKE UCASE('%" + criteria +"%')");
         
         try {
             this.resultadoQuery = BDConnector.getInstance()
@@ -144,12 +147,13 @@ public class FranquiaDAO implements ModelWithComboDao<Franquia> {
                                     .createStatement()
                                     .executeQuery(""
                                             + "SELECT count(*) "
-                                            + "FROM franquia "
+                                            + "FROM contato "
+                                            + like
                                     );
             
             this.resultadoQuery.next();
             
-            dadosTabela = new Object[this.resultadoQuery.getInt(1)][5];
+            dadosTabela = new Object[this.resultadoQuery.getInt(1)][3];
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de estados do banco");
             System.err.println("Erro: \n" + e);
@@ -161,26 +165,25 @@ public class FranquiaDAO implements ModelWithComboDao<Franquia> {
                                     .createStatement()
                                     .executeQuery(""
                                             + "SELECT * "
-                                            + "FROM franquia "
+                                            + "FROM contato "
+                                            + like
                                     );
+            
             int line = 0;
             while(this.resultadoQuery.next()){
-                Franquia franquia = new Franquia();
-                franquia.id = this.resultadoQuery.getInt("id");
-                franquia.endereco = this.resultadoQuery.getString("endereco");
-                franquia.cnpj = this.resultadoQuery.getString("cnpj");
-                franquia.ativo = this.resultadoQuery.getBoolean("ativo");
-                franquia.cidade_id = this.resultadoQuery.getInt("cidade_id");
+                Contato contato = new Contato();
+                contato.id = this.resultadoQuery.getInt("id");
+                contato.fone = this.resultadoQuery.getString("fone");
+                contato.email = this.resultadoQuery.getString("email");
+
+                dadosTabela[line][0] = contato.id;
+                dadosTabela[line][1] = contato.fone;
+                dadosTabela[line][2] = contato.email;
                 
-                dadosTabela[line][0] = franquia.id;
-                dadosTabela[line][1] = franquia;
-                dadosTabela[line][2] = franquia.cnpj;
-                dadosTabela[line][3] = franquia.endereco;
-                dadosTabela[line][4] = franquia.ativo ? "ativo" : "inativo";
                 line++;
             }
         } catch (Exception e) {
-            MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de franquias do banco");
+            MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de contatos do banco");
             System.err.println("Erro: \n" + e);
         }
         
@@ -224,21 +227,18 @@ public class FranquiaDAO implements ModelWithComboDao<Franquia> {
                     .getConnection()
                     .createStatement()
                     .executeQuery("" +
-                            "SELECT * FROM franquia"
+                            "SELECT * FROM contato"
                     );
             if(this.resultadoQuery.isBeforeFirst()){
                 while(this.resultadoQuery.next()){
-                    
-                    Franquia franquia = new Franquia();
-                    franquia.id = this.resultadoQuery.getInt("id");
-                    franquia.endereco = this.resultadoQuery.getString("endereco");
-                    franquia.cnpj = this.resultadoQuery.getString("cnpj");
-                    franquia.ativo = this.resultadoQuery.getBoolean("ativo");
-                    franquia.cidade_id = this.resultadoQuery.getInt("cidade_id");
-                    
+                    Contato contato = new Contato(
+                        this.resultadoQuery.getInt("id"),
+                        this.resultadoQuery.getString("fone"),
+                        this.resultadoQuery.getString("email")
+                    );
                     item = new ComboItem(
-                        franquia.id, 
-                        franquia.toString()
+                        contato.id,
+                        contato + ""
                     );
             
                     combo.addItem(item);

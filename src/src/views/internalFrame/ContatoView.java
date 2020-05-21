@@ -6,7 +6,9 @@
 package src.views.internalFrame;
 
 import javax.swing.JOptionPane;
+import src.dao.ContatoDAO;
 import src.dao.EstadoDAO;
+import src.model.Contato;
 import src.model.Estado;
 
 /**
@@ -24,7 +26,7 @@ public class ContatoView extends javax.swing.JInternalFrame {
     }
     
     private void updateTable(){
-        new EstadoDAO().fillTable(this.tableEstados, "");
+        new ContatoDAO().fillTable(this.tableEstados, "");
     }
     
     private void resetInputs(){
@@ -389,21 +391,14 @@ public class ContatoView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        if(this.campoEmail.getText().length() > 2){
-            JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter no máximo dois caracteres", "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if(this.campoEmail.getText().length() < 2){
-            JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter ao menos dois caracteres", "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        Estado estado = new Estado();
-        estado.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
-        estado.sigla = this.campoEmail.getText().toUpperCase();
-        if(estado.id == 0){
-            new EstadoDAO().save(estado);
+        Contato contato = new Contato();
+        contato.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
+        contato.fone = this.campoFone.getText().replaceAll("[^0-9]", "");
+        contato.email = this.campoEmail.getText().toUpperCase();
+        if(contato.id == 0){
+            new ContatoDAO().save(contato);
         }else{
-            new EstadoDAO().update(estado);
+            new ContatoDAO().update(contato);
         }
         this.updateTable();
         this.resetInputs();
@@ -415,30 +410,33 @@ public class ContatoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        Estado estado = new Estado();
-        estado.id = Integer.parseInt(
+        Contato contato = new Contato();
+        contato.id = Integer.parseInt(
                 String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        estado.sigla = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+        contato.fone = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+        contato.email = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 2));
         
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
-            new EstadoDAO().delete(estado);
+            new ContatoDAO().delete(contato);
             this.updateTable();
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Estado estado = new Estado();
-        estado.id = Integer.parseInt(
+        Contato contato = new Contato();
+        contato.id = Integer.parseInt(
                 String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        estado.sigla = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
-        this.campoId.setText(estado.id + "");
-        this.campoEmail.setText(estado.sigla);
+        contato.fone = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+        contato.email = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 2));
+        this.campoId.setText(contato.id + "");
+        this.campoEmail.setText(contato.email);
+        this.campoFone.setText(contato.fone);
         
         this.abasDoSistema.setSelectedIndex(1);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new EstadoDAO().fillTable(this.tableEstados, this.campoPesquisar.getText());
+        new ContatoDAO().fillTable(this.tableEstados, this.campoPesquisar.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnLimparBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaActionPerformed
