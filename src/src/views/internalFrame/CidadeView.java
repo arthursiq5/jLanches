@@ -34,7 +34,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
     }
     
     private void updateTable(){
-        new CidadeDAO().fillTable(this.tableEstados, "");
+        new CidadeDAO().fillTable(this.tableCidades, "");
     }
     
     private void resetInputs(){
@@ -59,7 +59,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
         btnPesquisar = new javax.swing.JButton();
         btnLimparBusca = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableEstados = new javax.swing.JTable();
+        tableCidades = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -129,8 +129,8 @@ public class CidadeView extends javax.swing.JInternalFrame {
                     .addComponent(campoPesquisar)))
         );
 
-        tableEstados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tableEstados.setModel(new javax.swing.table.DefaultTableModel(
+        tableCidades.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tableCidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -149,7 +149,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableEstados);
+        jScrollPane1.setViewportView(tableCidades);
 
         jPanel3.setBackground(new java.awt.Color(207, 216, 220));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
@@ -432,8 +432,8 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         Cidade cidade = new Cidade();
         cidade.id = Integer.parseInt(
-                String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        cidade.nome = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+                String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 0)));
+        cidade.nome = String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 1));
         
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
             new CidadeDAO().delete(cidade);
@@ -444,11 +444,11 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         Cidade cidade = new Cidade();
         cidade.id = Integer.parseInt(
-                String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        cidade.nome = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+                String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 0)));
+        cidade.nome = String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 1));
         //Estado estado = new EstadoDAO().getBySigla(
         //        String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1)));
-        Estado estado = (Estado) (this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 2));
+        Estado estado = (Estado) (this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 2));
         cidade.estado_id = estado.id;
         
         this.campoId.setText(cidade.id + "");
@@ -460,7 +460,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new CidadeDAO().fillTable(this.tableEstados, this.campoPesquisar.getText());
+        new CidadeDAO().fillTable(this.tableCidades, this.campoPesquisar.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnLimparBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaActionPerformed
@@ -491,6 +491,6 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> selectEstado;
-    private javax.swing.JTable tableEstados;
+    private javax.swing.JTable tableCidades;
     // End of variables declaration//GEN-END:variables
 }
