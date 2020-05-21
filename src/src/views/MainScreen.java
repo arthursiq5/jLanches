@@ -12,6 +12,7 @@ import src.views.internalFrame.ContatoView;
 import javax.swing.JInternalFrame;
 import src.views.internalFrame.CidadeView;
 import src.views.internalFrame.CreditosView;
+import src.views.internalFrame.FranquiaView;
 
 /**
  *
@@ -52,6 +53,7 @@ public class MainScreen extends javax.swing.JFrame {
         menuCadastro = new javax.swing.JMenu();
         itemFuncionario = new javax.swing.JMenuItem();
         itemCliente = new javax.swing.JMenuItem();
+        itemFranquia = new javax.swing.JMenuItem();
         menuPedido = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         itemLanche = new javax.swing.JMenuItem();
@@ -101,6 +103,15 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
         menuCadastro.add(itemCliente);
+
+        itemFranquia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-mapa-do-tesouro-16.png"))); // NOI18N
+        itemFranquia.setText("Franquia");
+        itemFranquia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemFranquiaActionPerformed(evt);
+            }
+        });
+        menuCadastro.add(itemFranquia);
 
         jMenuBar1.add(menuCadastro);
 
@@ -223,6 +234,10 @@ public class MainScreen extends javax.swing.JFrame {
         this.openView(new CidadeView());
     }//GEN-LAST:event_itemCidadeActionPerformed
 
+    private void itemFranquiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFranquiaActionPerformed
+        this.openView(new FranquiaView());
+    }//GEN-LAST:event_itemFranquiaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -266,6 +281,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemContato;
     private javax.swing.JMenuItem itemCreditos;
     private javax.swing.JMenuItem itemEstado;
+    private javax.swing.JMenuItem itemFranquia;
     private javax.swing.JMenuItem itemFuncionario;
     private javax.swing.JMenuItem itemLanche;
     private javax.swing.JMenuBar jMenuBar1;
