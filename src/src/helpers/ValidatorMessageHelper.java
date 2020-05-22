@@ -38,4 +38,8 @@ public class ValidatorMessageHelper {
     public static boolean alertGiantCamp(String campo, int maximo){
         return ValidatorMessageHelper.alert("O campo " + campo + " não pode ter mais que " + maximo + " caracteres");
     }
+    
+    public static boolean alertShortCamp(String campo, int minimo){
+        return ValidatorMessageHelper.alert("O campo " + campo + " não pode ter menos que " + minimo + " caracteres");
+    }
 }

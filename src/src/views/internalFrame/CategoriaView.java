@@ -8,6 +8,7 @@ package src.views.internalFrame;
 import javax.swing.JOptionPane;
 import src.dao.CategoriaDAO;
 import src.model.Categoria;
+import src.validators.testers.CategoriaValidator;
 
 /**
  *
@@ -358,16 +359,15 @@ public class CategoriaView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        if(this.campoNome.getText().length() <= 3){
-            JOptionPane.showMessageDialog(null, "O nome da categoria deve ter ao menos três caracteres", "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
-        }
         Categoria categoria = new Categoria();
         categoria.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
         categoria.nome = this.campoNome.getText();
-        if(categoria.id == 0){
+        if(categoria.id == 0 && CategoriaValidator.insert(categoria)){
             new CategoriaDAO().save(categoria);
-        }else{
+        }else if(CategoriaValidator.update(categoria)){
             new CategoriaDAO().update(categoria);
+        }else{
+            return;
         }
         this.updateTable();
         this.resetInputs();
