@@ -6,14 +6,23 @@
 package src.views.internalFrame;
 
 import javax.swing.JOptionPane;
-import src.dao.EstadoDAO;
-import src.model.Estado;
+import src.dao.CidadeDAO;
+import src.dao.ClienteDAO;
+import src.dao.ContatoDAO;
+import src.helpers.ComboHelper;
+import src.model.Cidade;
+import src.model.Cliente;
+import src.model.Contato;
+import src.views.extensionElements.ComboItem;
 
 /**
  *
  * @author arthur
  */
 public class ClienteView extends javax.swing.JInternalFrame {
+    
+    private String cpfAtual;
+    private boolean editar;
 
     /**
      * Creates new form EstadoView
@@ -21,16 +30,29 @@ public class ClienteView extends javax.swing.JInternalFrame {
     public ClienteView() {
         initComponents();
         this.updateTable();
+        this.carregaSelects();
+        this.cpfAtual = "";
+        this.editar = false;
+    }
+    
+    private void carregaSelects(){
+        new CidadeDAO().fillCombo(this.selectCidade);
+        new ContatoDAO().fillCombo(this.selectContato);
     }
     
     private void updateTable(){
-        new EstadoDAO().fillTable(this.tableEstados, "");
+        new ClienteDAO().fillTable(this.tableEstados, "");
     }
     
     private void resetInputs(){
-        this.campoId.setText("");
+        this.editar = false;
+        
+        this.campoCPF.setText("");
         this.campoPesquisar.setText("");
-        this.campoSigla.setText("");
+        this.campoNome.setText("");
+        this.campoEndereco.setText("");
+        ComboHelper.setIndex(this.selectContato, 0);
+        ComboHelper.setIndex(this.selectCidade, 0);
     }
 
     /**
@@ -59,18 +81,16 @@ public class ClienteView extends javax.swing.JInternalFrame {
         btnLimpar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        campoSigla = new javax.swing.JTextField();
+        campoNome = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
-        campoId = new javax.swing.JTextField();
+        campoCPF = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
-        campoContato = new javax.swing.JTextField();
-        btnSelecionarContato = new javax.swing.JButton();
+        selectContato = new javax.swing.JComboBox<>();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        campoEndereco = new javax.swing.JTextArea();
         jPanel11 = new javax.swing.JPanel();
-        campoCidade = new javax.swing.JTextField();
-        btnSelecionarCidade = new javax.swing.JButton();
+        selectCidade = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Cliente");
@@ -264,7 +284,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jPanel7.setBackground(new java.awt.Color(207, 216, 220));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Nome"));
 
-        campoSigla.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoNome.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -272,23 +292,21 @@ public class ClienteView extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoSigla)
+                .addComponent(campoNome)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoSigla, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(campoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel8.setBackground(new java.awt.Color(207, 216, 220));
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "ID"));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "CPF"));
 
-        campoId.setEditable(false);
-        campoId.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        campoId.setEnabled(false);
+        campoCPF.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -296,25 +314,21 @@ public class ClienteView extends javax.swing.JInternalFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoId, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addComponent(campoCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoId)
+                .addComponent(campoCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel9.setBackground(new java.awt.Color(207, 216, 220));
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Contato"));
 
-        campoContato.setEditable(false);
-
-        btnSelecionarContato.setBackground(new java.awt.Color(54, 231, 130));
-        btnSelecionarContato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pesquisar-64.png"))); // NOI18N
-        btnSelecionarContato.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        selectContato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -322,27 +336,24 @@ public class ClienteView extends javax.swing.JInternalFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoContato)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSelecionarContato, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectContato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSelecionarContato, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                    .addComponent(campoContato))
+                .addContainerGap()
+                .addComponent(selectContato)
                 .addContainerGap())
         );
 
         jPanel10.setBackground(new java.awt.Color(207, 216, 220));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Endereço"));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        campoEndereco.setColumns(20);
+        campoEndereco.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        campoEndereco.setRows(5);
+        jScrollPane2.setViewportView(campoEndereco);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -363,11 +374,8 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jPanel11.setBackground(new java.awt.Color(207, 216, 220));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Cidade"));
 
-        campoCidade.setEditable(false);
-
-        btnSelecionarCidade.setBackground(new java.awt.Color(54, 231, 130));
-        btnSelecionarCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pesquisar-64.png"))); // NOI18N
-        btnSelecionarCidade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        selectCidade.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        selectCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -375,17 +383,14 @@ public class ClienteView extends javax.swing.JInternalFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoCidade, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSelecionarCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectCidade, 0, 266, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSelecionarCidade, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                    .addComponent(campoCidade))
+                .addContainerGap()
+                .addComponent(selectCidade, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -464,22 +469,20 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        if(this.campoSigla.getText().length() > 2){
-            JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter no máximo dois caracteres", "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if(this.campoSigla.getText().length() < 2){
-            JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter ao menos dois caracteres", "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        Estado estado = new Estado();
-        estado.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
-        estado.sigla = this.campoSigla.getText().toUpperCase();
-        if(estado.id == 0){
-            new EstadoDAO().save(estado);
+        Cliente cliente = new Cliente();
+        cliente.cpf = this.campoCPF.getText().replaceAll("[^0-9]", "");
+        cliente.nome = this.campoNome.getText();
+        cliente.endereco = this.campoEndereco.getText();
+        cliente.cidade_id = ((ComboItem) this.selectCidade.getSelectedItem()).id;
+        cliente.contato_id = ((ComboItem) this.selectContato.getSelectedItem()).id;
+        if(this.editar){
+            cliente.cpfEditar = this.cpfAtual;
+            new ClienteDAO().update(cliente);
+            this.editar = false;
         }else{
-            new EstadoDAO().update(estado);
+            new ClienteDAO().save(cliente);
         }
+        
         this.updateTable();
         this.resetInputs();
         this.abasDoSistema.setSelectedIndex(0);
@@ -490,30 +493,47 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        Estado estado = new Estado();
-        estado.id = Integer.parseInt(
-                String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        estado.sigla = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+        Cliente cliente = new Cliente();
+        cliente.cpf = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0));
+        cliente.nome = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+        cliente.endereco = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+        cliente.cidade_id = Integer.parseInt(
+            String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1))
+        );
+        cliente.contato_id = Integer.parseInt(
+            String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1))
+        );
         
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
-            new EstadoDAO().delete(estado);
+            new ClienteDAO().delete(cliente);
             this.updateTable();
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Estado estado = new Estado();
-        estado.id = Integer.parseInt(
-                String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        estado.sigla = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
-        this.campoId.setText(estado.id + "");
-        this.campoSigla.setText(estado.sigla);
+        this.editar = true;
+        
+        Cliente cliente = new Cliente();
+        cliente.cpf = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0));
+        cliente.nome = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+        cliente.endereco = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 2));
+        cliente.cidade_id = ((Cidade)this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 3)).id;
+        cliente.contato_id = ((Contato)this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 4)).id;
+        
+        this.cpfAtual = cliente.cpf;
+        this.campoCPF.setText(cliente.cpf);
+        this.campoEndereco.setText(cliente.endereco);
+        this.campoNome.setText(cliente.nome);
+        
+        ComboHelper.setIndex(this.selectContato, cliente.contato_id);
+        ComboHelper.setIndex(this.selectCidade, cliente.cidade_id);
+        
         
         this.abasDoSistema.setSelectedIndex(1);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new EstadoDAO().fillTable(this.tableEstados, this.campoPesquisar.getText());
+        new ClienteDAO().fillTable(this.tableEstados, this.campoPesquisar.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnLimparBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaActionPerformed
@@ -530,13 +550,10 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnLimparBusca;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JButton btnSelecionarCidade;
-    private javax.swing.JButton btnSelecionarContato;
-    private javax.swing.JTextField campoCidade;
-    private javax.swing.JTextField campoContato;
-    private javax.swing.JTextField campoId;
+    private javax.swing.JTextField campoCPF;
+    private javax.swing.JTextArea campoEndereco;
+    private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoPesquisar;
-    private javax.swing.JTextField campoSigla;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -550,7 +567,8 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JComboBox<String> selectCidade;
+    private javax.swing.JComboBox<String> selectContato;
     private javax.swing.JTable tableEstados;
     // End of variables declaration//GEN-END:variables
 }
