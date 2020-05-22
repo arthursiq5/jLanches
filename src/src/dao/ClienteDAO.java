@@ -54,7 +54,7 @@ public class ClienteDAO implements ModelWithComboDao<Cliente> {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
             
             String sql = "" 
-                + "UPDATE estado "
+                + "UPDATE funcionario "
                 + "SET " 
                             + " cpf = '"  + objeto.cpf + "', "
                             + " nome = '" + objeto.nome + "', "
