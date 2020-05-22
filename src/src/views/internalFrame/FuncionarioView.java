@@ -9,10 +9,14 @@ import javax.swing.JOptionPane;
 import src.dao.CidadeDAO;
 import src.dao.ClienteDAO;
 import src.dao.ContatoDAO;
+import src.dao.FranquiaDAO;
+import src.dao.FuncionarioDAO;
 import src.helpers.ComboHelper;
 import src.model.Cidade;
 import src.model.Cliente;
 import src.model.Contato;
+import src.model.Franquia;
+import src.model.Funcionario;
 import src.validators.testers.FuncionarioValidator;
 import src.views.extensionElements.ComboItem;
 
@@ -39,10 +43,11 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private void carregaSelects(){
         new CidadeDAO().fillCombo(this.selectCidade);
         new ContatoDAO().fillCombo(this.selectContato);
+        new FranquiaDAO().fillCombo(this.selectFranquia);
     }
     
     private void updateTable(){
-        new ClienteDAO().fillTable(this.tableClientes, "");
+        new FuncionarioDAO().fillTable(this.tableClientes, "");
     }
     
     private void resetInputs(){
@@ -54,6 +59,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         this.campoEndereco.setText("");
         ComboHelper.setIndex(this.selectContato, 0);
         ComboHelper.setIndex(this.selectCidade, 0);
+        ComboHelper.setIndex(this.selectFranquia, 0);
     }
 
     /**
@@ -92,9 +98,11 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         campoEndereco = new javax.swing.JTextArea();
         jPanel11 = new javax.swing.JPanel();
         selectCidade = new javax.swing.JComboBox<>();
+        jPanel12 = new javax.swing.JPanel();
+        selectFranquia = new javax.swing.JComboBox<>();
 
         setClosable(true);
-        setTitle("Cliente");
+        setTitle("Funcionário");
 
         jPanel1.setBackground(new java.awt.Color(207, 216, 220));
 
@@ -231,8 +239,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -283,7 +291,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         );
 
         jPanel7.setBackground(new java.awt.Color(207, 216, 220));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Nome"));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Nome*"));
 
         campoNome.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
@@ -305,7 +313,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         );
 
         jPanel8.setBackground(new java.awt.Color(207, 216, 220));
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "CPF"));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "CPF*"));
 
         campoCPF.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
@@ -327,7 +335,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(207, 216, 220));
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Contato"));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Contato*"));
 
         selectContato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -349,7 +357,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         );
 
         jPanel10.setBackground(new java.awt.Color(207, 216, 220));
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Endereço"));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Endereço*"));
 
         campoEndereco.setColumns(20);
         campoEndereco.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -373,7 +381,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         );
 
         jPanel11.setBackground(new java.awt.Color(207, 216, 220));
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Cidade"));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Cidade*"));
 
         selectCidade.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         selectCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -395,24 +403,48 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        jPanel12.setBackground(new java.awt.Color(207, 216, 220));
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Franquia*"));
+
+        selectFranquia.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        selectFranquia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectFranquia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectFranquia, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -429,9 +461,11 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -447,8 +481,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         abasDoSistema.addTab("Cadastrar", jPanel4);
@@ -457,31 +491,33 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(abasDoSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(abasDoSistema)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(abasDoSistema)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(abasDoSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Cliente cliente = new Cliente();
-        cliente.cpf = this.campoCPF.getText().replaceAll("[^0-9]", "");
-        cliente.nome = this.campoNome.getText();
-        cliente.endereco = this.campoEndereco.getText();
-        cliente.cidade_id = ((ComboItem) this.selectCidade.getSelectedItem()).id;
-        cliente.contato_id = ((ComboItem) this.selectContato.getSelectedItem()).id;
-        if(this.editar && FuncionarioValidator.insert(funcionario)){
-            cliente.cpfEditar = this.cpfAtual;
-            new ClienteDAO().update(cliente);
+        Funcionario funcionario = new Funcionario();
+        funcionario.cpf = this.campoCPF.getText().replaceAll("[^0-9]", "");
+        funcionario.nome = this.campoNome.getText();
+        funcionario.endereco = this.campoEndereco.getText();
+        funcionario.cidade_id = ((ComboItem) this.selectCidade.getSelectedItem()).id;
+        funcionario.contato_id = ((ComboItem) this.selectContato.getSelectedItem()).id;
+        funcionario.franquia_id = ((ComboItem) this.selectFranquia.getSelectedItem()).id;
+        
+        if(this.editar && FuncionarioValidator.update(funcionario)){
+            funcionario.cpfEditar = this.cpfAtual;
+            new FuncionarioDAO().update(funcionario);
             this.editar = false;
-        }else if(FuncionarioValidator.update(funcionario)){
-            new ClienteDAO().save(cliente);
+        }else if(FuncionarioValidator.insert(funcionario)){
+            new FuncionarioDAO().save(funcionario);
         }else{
             return;
         }
@@ -496,19 +532,19 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        Cliente cliente = new Cliente();
-        cliente.cpf = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 0));
-        cliente.nome = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
-        cliente.endereco = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
-        cliente.cidade_id = Integer.parseInt(
+        Funcionario funcionario = new Funcionario();
+        funcionario.cpf = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 0));
+        funcionario.nome = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
+        funcionario.endereco = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 2));
+        funcionario.cidade_id = Integer.parseInt(
             String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1))
         );
-        cliente.contato_id = Integer.parseInt(
+        funcionario.contato_id = Integer.parseInt(
             String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1))
         );
         
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
-            new ClienteDAO().delete(cliente);
+            new FuncionarioDAO().delete(funcionario);
             this.updateTable();
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -516,21 +552,23 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         this.editar = true;
         
-        Cliente cliente = new Cliente();
-        cliente.cpf = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 0));
-        cliente.nome = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
-        cliente.endereco = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 2));
-        cliente.cidade_id = ((Cidade)this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 3)).id;
-        cliente.contato_id = ((Contato)this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 4)).id;
+        Funcionario funcionario = new Funcionario();
+        funcionario.cpf = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 0));
+        funcionario.nome = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
+        funcionario.endereco = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 2));
+        funcionario.cidade_id = ((Cidade)this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 3)).id;
+        funcionario.contato_id = ((Contato)this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 4)).id;
+        funcionario.franquia_id = ((Franquia) this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 5)).id;
         
-        this.cpfAtual = cliente.cpf;
-        this.campoCPF.setText(cliente.cpf);
-        this.campoEndereco.setText(cliente.endereco);
-        this.campoNome.setText(cliente.nome);
         
-        ComboHelper.setIndex(this.selectContato, cliente.contato_id);
-        ComboHelper.setIndex(this.selectCidade, cliente.cidade_id);
+        this.cpfAtual = funcionario.cpf;
+        this.campoCPF.setText(funcionario.cpf);
+        this.campoEndereco.setText(funcionario.endereco);
+        this.campoNome.setText(funcionario.nome);
         
+        ComboHelper.setIndex(this.selectContato, funcionario.contato_id);
+        ComboHelper.setIndex(this.selectCidade, funcionario.cidade_id);
+        ComboHelper.setIndex(this.selectFranquia, funcionario.franquia_id);
         
         this.abasDoSistema.setSelectedIndex(1);
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -560,6 +598,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -572,6 +611,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> selectCidade;
     private javax.swing.JComboBox<String> selectContato;
+    private javax.swing.JComboBox<String> selectFranquia;
     private javax.swing.JTable tableClientes;
     // End of variables declaration//GEN-END:variables
 }
