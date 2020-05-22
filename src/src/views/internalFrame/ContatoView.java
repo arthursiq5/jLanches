@@ -26,7 +26,7 @@ public class ContatoView extends javax.swing.JInternalFrame {
     }
     
     private void updateTable(){
-        new ContatoDAO().fillTable(this.tableEstados, "");
+        new ContatoDAO().fillTable(this.tableContatos, "");
     }
     
     private void resetInputs(){
@@ -51,7 +51,7 @@ public class ContatoView extends javax.swing.JInternalFrame {
         btnPesquisar = new javax.swing.JButton();
         btnLimparBusca = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableEstados = new javax.swing.JTable();
+        tableContatos = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -121,8 +121,8 @@ public class ContatoView extends javax.swing.JInternalFrame {
                     .addComponent(campoPesquisar)))
         );
 
-        tableEstados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tableEstados.setModel(new javax.swing.table.DefaultTableModel(
+        tableContatos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tableContatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -141,7 +141,7 @@ public class ContatoView extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableEstados);
+        jScrollPane1.setViewportView(tableContatos);
 
         jPanel3.setBackground(new java.awt.Color(207, 216, 220));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
@@ -370,7 +370,7 @@ public class ContatoView extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 520, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -412,9 +412,9 @@ public class ContatoView extends javax.swing.JInternalFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         Contato contato = new Contato();
         contato.id = Integer.parseInt(
-                String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        contato.fone = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
-        contato.email = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 2));
+                String.valueOf(this.tableContatos.getValueAt(this.tableContatos.getSelectedRow(), 0)));
+        contato.fone = String.valueOf(this.tableContatos.getValueAt(this.tableContatos.getSelectedRow(), 1));
+        contato.email = String.valueOf(this.tableContatos.getValueAt(this.tableContatos.getSelectedRow(), 2));
         
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
             new ContatoDAO().delete(contato);
@@ -425,9 +425,9 @@ public class ContatoView extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         Contato contato = new Contato();
         contato.id = Integer.parseInt(
-                String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        contato.fone = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
-        contato.email = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 2));
+                String.valueOf(this.tableContatos.getValueAt(this.tableContatos.getSelectedRow(), 0)));
+        contato.fone = String.valueOf(this.tableContatos.getValueAt(this.tableContatos.getSelectedRow(), 1));
+        contato.email = String.valueOf(this.tableContatos.getValueAt(this.tableContatos.getSelectedRow(), 2));
         this.campoId.setText(contato.id + "");
         this.campoEmail.setText(contato.email);
         this.campoFone.setText(contato.fone);
@@ -436,7 +436,7 @@ public class ContatoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new ContatoDAO().fillTable(this.tableEstados, this.campoPesquisar.getText());
+        new ContatoDAO().fillTable(this.tableContatos, this.campoPesquisar.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnLimparBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaActionPerformed
@@ -467,6 +467,6 @@ public class ContatoView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableEstados;
+    private javax.swing.JTable tableContatos;
     // End of variables declaration//GEN-END:variables
 }

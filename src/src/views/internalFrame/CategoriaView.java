@@ -24,7 +24,7 @@ public class CategoriaView extends javax.swing.JInternalFrame {
     }
     
     private void updateTable(){
-        new CategoriaDAO().fillTable(this.tableEstados, "");
+        new CategoriaDAO().fillTable(this.tableCategorias, "");
     }
     
     private void resetInputs(){
@@ -49,7 +49,7 @@ public class CategoriaView extends javax.swing.JInternalFrame {
         btnPesquisar = new javax.swing.JButton();
         btnLimparBusca = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableEstados = new javax.swing.JTable();
+        tableCategorias = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -109,18 +109,16 @@ public class CategoriaView extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLimparBusca))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLimparBusca))
                     .addComponent(campoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         btnPesquisar.getAccessibleContext().setAccessibleDescription("");
 
-        tableEstados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tableEstados.setModel(new javax.swing.table.DefaultTableModel(
+        tableCategorias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tableCategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -139,7 +137,7 @@ public class CategoriaView extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableEstados);
+        jScrollPane1.setViewportView(tableCategorias);
 
         jPanel3.setBackground(new java.awt.Color(207, 216, 220));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
@@ -383,8 +381,8 @@ public class CategoriaView extends javax.swing.JInternalFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         Categoria categoria = new Categoria();
         categoria.id = Integer.parseInt(
-                String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        categoria.nome = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+                String.valueOf(this.tableCategorias.getValueAt(this.tableCategorias.getSelectedRow(), 0)));
+        categoria.nome = String.valueOf(this.tableCategorias.getValueAt(this.tableCategorias.getSelectedRow(), 1));
         
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
             new CategoriaDAO().delete(categoria);
@@ -396,8 +394,8 @@ public class CategoriaView extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         Categoria categoria = new Categoria();
         categoria.id = Integer.parseInt(
-                String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0)));
-        categoria.nome = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+                String.valueOf(this.tableCategorias.getValueAt(this.tableCategorias.getSelectedRow(), 0)));
+        categoria.nome = String.valueOf(this.tableCategorias.getValueAt(this.tableCategorias.getSelectedRow(), 1));
         this.campoId.setText(categoria.id + "");
         this.campoNome.setText(categoria.nome);
         
@@ -405,7 +403,7 @@ public class CategoriaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new CategoriaDAO().fillTable(this.tableEstados, this.campoPesquisar.getText());
+        new CategoriaDAO().fillTable(this.tableCategorias, this.campoPesquisar.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnLimparBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaActionPerformed
@@ -434,6 +432,6 @@ public class CategoriaView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableEstados;
+    private javax.swing.JTable tableCategorias;
     // End of variables declaration//GEN-END:variables
 }

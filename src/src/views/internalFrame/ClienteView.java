@@ -41,7 +41,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }
     
     private void updateTable(){
-        new ClienteDAO().fillTable(this.tableEstados, "");
+        new ClienteDAO().fillTable(this.tableClientes, "");
     }
     
     private void resetInputs(){
@@ -71,7 +71,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         btnPesquisar = new javax.swing.JButton();
         btnLimparBusca = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableEstados = new javax.swing.JTable();
+        tableClientes = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -146,8 +146,8 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        tableEstados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tableEstados.setModel(new javax.swing.table.DefaultTableModel(
+        tableClientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -166,7 +166,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableEstados);
+        jScrollPane1.setViewportView(tableClientes);
 
         jPanel3.setBackground(new java.awt.Color(207, 216, 220));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
@@ -494,14 +494,14 @@ public class ClienteView extends javax.swing.JInternalFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         Cliente cliente = new Cliente();
-        cliente.cpf = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0));
-        cliente.nome = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
-        cliente.endereco = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
+        cliente.cpf = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 0));
+        cliente.nome = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
+        cliente.endereco = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
         cliente.cidade_id = Integer.parseInt(
-            String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1))
+            String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1))
         );
         cliente.contato_id = Integer.parseInt(
-            String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1))
+            String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1))
         );
         
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
@@ -514,11 +514,11 @@ public class ClienteView extends javax.swing.JInternalFrame {
         this.editar = true;
         
         Cliente cliente = new Cliente();
-        cliente.cpf = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 0));
-        cliente.nome = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1));
-        cliente.endereco = String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 2));
-        cliente.cidade_id = ((Cidade)this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 3)).id;
-        cliente.contato_id = ((Contato)this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 4)).id;
+        cliente.cpf = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 0));
+        cliente.nome = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
+        cliente.endereco = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 2));
+        cliente.cidade_id = ((Cidade)this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 3)).id;
+        cliente.contato_id = ((Contato)this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 4)).id;
         
         this.cpfAtual = cliente.cpf;
         this.campoCPF.setText(cliente.cpf);
@@ -533,7 +533,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new ClienteDAO().fillTable(this.tableEstados, this.campoPesquisar.getText());
+        new ClienteDAO().fillTable(this.tableClientes, this.campoPesquisar.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnLimparBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaActionPerformed
@@ -569,6 +569,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> selectCidade;
     private javax.swing.JComboBox<String> selectContato;
-    private javax.swing.JTable tableEstados;
+    private javax.swing.JTable tableClientes;
     // End of variables declaration//GEN-END:variables
 }
