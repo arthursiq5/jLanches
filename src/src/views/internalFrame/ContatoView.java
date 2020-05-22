@@ -10,6 +10,7 @@ import src.dao.ContatoDAO;
 import src.dao.EstadoDAO;
 import src.model.Contato;
 import src.model.Estado;
+import src.validators.testers.ContatoValidator;
 
 /**
  *
@@ -396,9 +397,17 @@ public class ContatoView extends javax.swing.JInternalFrame {
         contato.fone = this.campoFone.getText().replaceAll("[^0-9]", "");
         contato.email = this.campoEmail.getText().toUpperCase();
         if(contato.id == 0){
-            new ContatoDAO().save(contato);
+            if(ContatoValidator.insert(contato)){
+                new ContatoDAO().save(contato);
+            }else{
+                return;
+            }
         }else{
-            new ContatoDAO().update(contato);
+            if(ContatoValidator.update(contato)){
+                new ContatoDAO().update(contato);
+            }else{
+                return;
+            }
         }
         this.updateTable();
         this.resetInputs();
