@@ -20,6 +20,7 @@ CREATE TABLE contato(
 CREATE TABLE estado(
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     sigla CHAR(2) UNIQUE not null,
+    nome varchar(255) not null,
     CONSTRAINT pk_estado PRIMARY KEY(id)
 ) DEFAULT CHARSET = utf8mb4;
 
@@ -71,7 +72,6 @@ CREATE TABLE franquia(
 CREATE TABLE funcionario(
 	cpf CHAR(11) NOT NULL,
 	nome VARCHAR(255) NOT NULL,
-    nome_usuario VARCHAR(255) NOT NULL,
     senha VARCHAR(255) NOT NULL,
     ativo BOOLEAN DEFAULT true,
     endereco VARCHAR(255),
@@ -120,4 +120,3 @@ CREATE TABLE lanche_pedido(
 	CONSTRAINT fk_lanchepedido_pedido FOREIGN KEY(pedido_id)
 		REFERENCES pedido(id)
 ) DEFAULT CHARSET = utf8mb4;
-
