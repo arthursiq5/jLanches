@@ -56,7 +56,7 @@ public class MainScreen extends javax.swing.JFrame {
         itemCliente = new javax.swing.JMenuItem();
         itemFranquia = new javax.swing.JMenuItem();
         menuPedido = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        itemPedido = new javax.swing.JMenuItem();
         itemLanche = new javax.swing.JMenuItem();
         itemCategoria = new javax.swing.JMenuItem();
         menuEnderecoContato = new javax.swing.JMenu();
@@ -120,9 +120,14 @@ public class MainScreen extends javax.swing.JFrame {
         menuPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-lancheira-16.png"))); // NOI18N
         menuPedido.setText("Pedidos");
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-papel-16.png"))); // NOI18N
-        jMenuItem4.setText("Pedido");
-        menuPedido.add(jMenuItem4);
+        itemPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-papel-16.png"))); // NOI18N
+        itemPedido.setText("Pedido");
+        itemPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemPedidoActionPerformed(evt);
+            }
+        });
+        menuPedido.add(itemPedido);
 
         itemLanche.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-lancheira-16.png"))); // NOI18N
         itemLanche.setText("Lanches");
@@ -238,6 +243,10 @@ public class MainScreen extends javax.swing.JFrame {
         this.openView(new FranquiaView());
     }//GEN-LAST:event_itemFranquiaActionPerformed
 
+    private void itemPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemPedidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -284,9 +293,9 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemFranquia;
     private javax.swing.JMenuItem itemFuncionario;
     private javax.swing.JMenuItem itemLanche;
+    private javax.swing.JMenuItem itemPedido;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuEnderecoContato;
