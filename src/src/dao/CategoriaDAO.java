@@ -9,10 +9,13 @@ import src.dao.models.ModelDAO;
 import java.util.ArrayList;
 import src.model.Categoria;
 import java.sql.*;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import src.helpers.MessageHelper;
+import src.model.Contato;
+import src.views.extensionElements.ComboItem;
 
 /**
  *
@@ -151,6 +154,44 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
                     column.setPreferredWidth(140);
                     break;
             }
+        }
+    }
+    
+    public void fillCombo(JComboBox combo) {
+        combo.removeAllItems();
+        
+        ComboItem item = new ComboItem();
+        item.id = 0;
+        item.descricao = "Selecione";
+        combo.addItem(item);
+        
+        try {
+            
+            this.resultadoQuery = new BDConnector()
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery("" +
+                            "SELECT * FROM contato"
+                    );
+            if(this.resultadoQuery.isBeforeFirst()){
+                while(this.resultadoQuery.next()){
+                    Categoria categoria = new Categoria();
+                        categoria.id = this.resultadoQuery.getInt("id");
+                        categoria.nome = this.resultadoQuery.getString("fone");
+                    
+                    item = new ComboItem(
+                        categoria.id,
+                        categoria + ""
+                    );
+            
+                    combo.addItem(item);
+                }
+            }
+            
+            
+        } catch (Exception e) {
+            MessageHelper.createErrorMessage("Erro", "Erro ao tentar popular o campo \"select\"");
+            System.err.println("Erro: \n" + e);
         }
     }
 }
