@@ -17,7 +17,13 @@ public abstract class BasicValidators {
     }
     
     public static ValidationAnswers isTooLong(String message, int maxLength){
-        if(message.length() >= maxLength)
+        if(message.length() > maxLength)
+            return ValidationAnswers.FAIL;
+        return ValidationAnswers.PASS;
+    }
+    
+    public static ValidationAnswers isTooShort(String message, int minLength){
+        if(message.length() < minLength)
             return ValidationAnswers.FAIL;
         return ValidationAnswers.PASS;
     }
