@@ -12,6 +12,7 @@ import src.helpers.ComboHelper;
 import src.helpers.MessageHelper;
 import src.model.Cidade;
 import src.model.Estado;
+import src.validators.testers.CidadeValidator;
 import src.views.extensionElements.ComboItem;
 
 /**
@@ -399,14 +400,6 @@ public class CidadeView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        if(this.campoNome.getText().length() > 255){
-            MessageHelper.createWarningMessage("Erro de cadastro", "O campo \"nome\" deve ter no máximo 255 caracteres");
-            return;
-        }
-        if(this.campoNome.getText().length() < 2){
-            MessageHelper.createWarningMessage("Erro de cadastro", "O campo \"nome\" deve ter ao menos dois caracteres");
-            return;
-        }
         Cidade cidade = new Cidade();
         cidade.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
         cidade.nome = this.campoNome.getText();
@@ -416,9 +409,17 @@ public class CidadeView extends javax.swing.JInternalFrame {
         cidade.estado_id = estado.id;
         
         if(cidade.id == 0){
-            new CidadeDAO().save(cidade);
+            if(CidadeValidator.insert(cidade)){
+                new CidadeDAO().save(cidade);
+            }else{
+                return;
+            }
         }else{
-            new CidadeDAO().update(cidade);
+            if(CidadeValidator.update(cidade)){
+                new CidadeDAO().update(cidade);
+            }else{
+                return;
+            }
         }
         this.updateTable();
         this.resetInputs();
