@@ -8,6 +8,7 @@ package src.views.internalFrame;
 import javax.swing.JOptionPane;
 import src.dao.EstadoDAO;
 import src.model.Estado;
+import src.validators.testers.EstadoValidator;
 
 /**
  *
@@ -399,9 +400,17 @@ public class EstadoView extends javax.swing.JInternalFrame {
         estado.sigla = this.campoSigla.getText().toUpperCase();
         estado.nome = this.campoNome.getText();
         if(estado.id == 0){
-            new EstadoDAO().save(estado);
+            if(EstadoValidator.insert(estado)){
+                new EstadoDAO().save(estado);
+            }else{
+                return;
+            }
         }else{
-            new EstadoDAO().update(estado);
+            if(EstadoValidator.update(estado)){
+                new EstadoDAO().update(estado);
+            }else{
+                return;
+            }
         }
         this.updateTable();
         this.resetInputs();

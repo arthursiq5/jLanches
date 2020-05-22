@@ -30,9 +30,11 @@ public class EstadoDAO implements ModelWithComboDao<Estado> {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
             
-            String sql = "INSERT INTO estado (id, sigla) VALUES ("
+            String sql = "INSERT INTO estado (id, sigla, nome) VALUES ("
                         + "DEFAULT, "
-                        + "'" + objeto.sigla + "')";
+                        + "'" + objeto.sigla + "', "
+                        + "'" + objeto.nome + "' "
+                    + ")";
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao inserir dados de estados do banco");
