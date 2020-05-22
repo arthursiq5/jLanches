@@ -8,13 +8,15 @@ package src.validators.testers;
 import src.helpers.MessageHelper;
 import src.model.Estado;
 import src.validators.BasicValidators;
+import src.validators.ObjectValidator;
 import src.validators.ValidationAnswers;
 
 /**
  *
  * @author arthur
  */
-public abstract class EstadoValidator {
+public abstract class EstadoValidator extends ObjectValidator{
+    
     public static boolean insert(Estado estado){
         boolean answer = false;
         
