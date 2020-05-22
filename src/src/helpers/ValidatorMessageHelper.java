@@ -26,4 +26,8 @@ public class ValidatorMessageHelper {
     public static boolean alertID(){
         return ValidatorMessageHelper.alert("Para atualizar, é necessário um ID válido");
     }
+    
+    public static boolean alertCPF(){
+        return ValidatorMessageHelper.alert("CPF inválido");
+    }
 }

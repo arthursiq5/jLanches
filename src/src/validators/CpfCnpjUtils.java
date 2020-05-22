@@ -34,7 +34,7 @@ public class CpfCnpjUtils {
         return String.format("%11s", text).replace(' ', character);
     }
 
-    private static ValidationAnswers isValidCPF(String cpf) {
+    public static ValidationAnswers isValidCPF(String cpf) {
         cpf = cpf.trim().replace(".", "").replace("-", "");
         if ((cpf==null) || (cpf.length()!=11)) return ValidationAnswers.FAIL;
 
@@ -49,7 +49,7 @@ public class CpfCnpjUtils {
         return ValidationAnswers.FAIL;
     }
 
-    private static ValidationAnswers isValidCNPJ(String cnpj) {
+    public static ValidationAnswers isValidCNPJ(String cnpj) {
         cnpj = cnpj.trim().replace(".", "").replace("-", "");
         if ((cnpj==null)||(cnpj.length()!=14)) return ValidationAnswers.FAIL;
 
