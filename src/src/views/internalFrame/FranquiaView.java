@@ -14,6 +14,7 @@ import src.helpers.MessageHelper;
 import src.model.Cidade;
 import src.model.Estado;
 import src.model.Franquia;
+import src.validators.FranquiaValidator;
 import src.views.extensionElements.ComboItem;
 
 /**
@@ -487,9 +488,17 @@ public class FranquiaView extends javax.swing.JInternalFrame {
         franquia.cidade_id = cidade.id;
         
         if(franquia.id == 0){
-            new FranquiaDAO().save(franquia);
+            if(FranquiaValidator.insert(franquia)){
+                new FranquiaDAO().save(franquia);
+            }else{
+                return;
+            }
         }else{
-            new FranquiaDAO().update(franquia);
+            if(FranquiaValidator.update(franquia)){
+                new FranquiaDAO().update(franquia);
+            }else{
+                return;
+            }
         }
         this.updateTable();
         this.resetInputs();
