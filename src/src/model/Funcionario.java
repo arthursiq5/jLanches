@@ -10,9 +10,9 @@ package src.model;
  * @author arthur
  */
 public class Funcionario {
+    public String cpfEditar;
     public String cpf;
     public String nome;
-    public String nome_usuario;
     public String senha;
     public String endereco;
     public boolean ativo;

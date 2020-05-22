@@ -13,6 +13,7 @@ import javax.swing.JInternalFrame;
 import src.views.internalFrame.CidadeView;
 import src.views.internalFrame.CreditosView;
 import src.views.internalFrame.FranquiaView;
+import src.views.internalFrame.FuncionarioView;
 
 /**
  *
@@ -206,7 +207,7 @@ public class MainScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFuncionarioActionPerformed
-        // TODO add your handling code here:
+        this.openView(new FuncionarioView());
     }//GEN-LAST:event_itemFuncionarioActionPerformed
 
     private void itemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteActionPerformed
