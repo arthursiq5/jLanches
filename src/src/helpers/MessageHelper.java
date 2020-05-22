@@ -40,4 +40,8 @@ public class MessageHelper {
     public static void createWarningMessage(String title, String message){
         new MessageHelper().createMessage(title, message, MessageType.WARNING.getValue());
     }
+    
+    public static String createInput(String message){
+        return JOptionPane.showInputDialog(message);
+    }
 }
