@@ -13,6 +13,7 @@ import src.helpers.ComboHelper;
 import src.model.Cidade;
 import src.model.Cliente;
 import src.model.Contato;
+import src.validators.testers.ClienteValidator;
 import src.views.extensionElements.ComboItem;
 
 /**
@@ -475,12 +476,14 @@ public class ClienteView extends javax.swing.JInternalFrame {
         cliente.endereco = this.campoEndereco.getText();
         cliente.cidade_id = ((ComboItem) this.selectCidade.getSelectedItem()).id;
         cliente.contato_id = ((ComboItem) this.selectContato.getSelectedItem()).id;
-        if(this.editar){
+        if(this.editar && ClienteValidator.insert(cliente)){
             cliente.cpfEditar = this.cpfAtual;
             new ClienteDAO().update(cliente);
             this.editar = false;
-        }else{
+        }else if(ClienteValidator.update(cliente)){
             new ClienteDAO().save(cliente);
+        }else{
+            return;
         }
         
         this.updateTable();

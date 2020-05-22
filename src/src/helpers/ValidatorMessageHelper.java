@@ -30,4 +30,12 @@ public class ValidatorMessageHelper {
     public static boolean alertCPF(){
         return ValidatorMessageHelper.alert("CPF inválido");
     }
+    
+    public static boolean alertEmptyCamp(String campo){
+        return ValidatorMessageHelper.alert("O campo " + campo + " precisa ser preenchido");
+    }
+    
+    public static boolean alertGiantCamp(String campo, int maximo){
+        return ValidatorMessageHelper.alert("O campo " + campo + " não pode ter mais que " + maximo + " caracteres");
+    }
 }
