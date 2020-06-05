@@ -9,11 +9,15 @@ import javax.swing.JOptionPane;
 import src.dao.CategoriaDAO;
 import src.dao.CidadeDAO;
 import src.dao.EstadoDAO;
+import src.dao.LancheDAO;
 import src.helpers.ComboHelper;
 import src.helpers.MessageHelper;
+import src.model.Categoria;
 import src.model.Cidade;
 import src.model.Estado;
+import src.model.Lanche;
 import src.validators.testers.CidadeValidator;
+import src.validators.testers.LancheValidator;
 import src.views.extensionElements.ComboItem;
 
 /**
@@ -43,13 +47,17 @@ public class LanchesView extends javax.swing.JInternalFrame {
     }
     
     private void updateTable(){
-        new CidadeDAO().fillTable(this.tableCidades, "");
+        new LancheDAO().fillTable(this.tableCidades, "");
     }
     
     private void resetInputs(){
         this.campoId.setText("");
         this.campoPesquisar.setText("");
         this.campoNome.setText("");
+    }
+    
+    private Lanche getItemFromTable(){
+        return (Lanche)(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 1));
     }
 
     /**
@@ -89,7 +97,7 @@ public class LanchesView extends javax.swing.JInternalFrame {
         jPanel11 = new javax.swing.JPanel();
         btnAtivo = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        campoValor = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setTitle("Lanches");
@@ -125,9 +133,9 @@ public class LanchesView extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoPesquisar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLimparBusca, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
+                .addComponent(btnLimparBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -137,12 +145,9 @@ public class LanchesView extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnPesquisar)
-                            .addComponent(btnLimparBusca))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(campoPesquisar)))
+                    .addComponent(campoPesquisar)
+                    .addComponent(btnLimparBusca, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         tableCidades.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -196,9 +201,9 @@ public class LanchesView extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -206,8 +211,8 @@ public class LanchesView extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -229,7 +234,7 @@ public class LanchesView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -406,8 +411,8 @@ public class LanchesView extends javax.swing.JInternalFrame {
         jPanel12.setBackground(new java.awt.Color(207, 216, 220));
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Valor*"));
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###,##"))));
-        jFormattedTextField1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###,##"))));
+        campoValor.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -415,14 +420,14 @@ public class LanchesView extends javax.swing.JInternalFrame {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jFormattedTextField1)
+                .addComponent(campoValor)
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(campoValor, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -508,23 +513,26 @@ public class LanchesView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Cidade cidade = new Cidade();
-        cidade.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
-        cidade.nome = this.campoNome.getText();
+        Lanche lanche = new Lanche();
+        lanche.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
+        lanche.nome = this.campoNome.getText();
+        lanche.valor = this.campoValor.getText().replaceAll(",", ".");
+        lanche.disponivel = this.disponivel;
+        lanche.ingredientes = this.campoIngredientes.getText();
         
-        ComboItem estado = (ComboItem) this.selectCategoria.getSelectedItem();
+        ComboItem categoria = (ComboItem) this.selectCategoria.getSelectedItem();
         
-        cidade.estado_id = estado.id;
+        lanche.categoria_id = categoria.id;
         
-        if(cidade.id == 0){
-            if(CidadeValidator.insert(cidade)){
-                new CidadeDAO().save(cidade);
+        if(lanche.id == 0){
+            if(LancheValidator.insert(lanche)){
+                new LancheDAO().save(lanche);
             }else{
                 return;
             }
         }else{
-            if(CidadeValidator.update(cidade)){
-                new CidadeDAO().update(cidade);
+            if(LancheValidator.update(lanche)){
+                new LancheDAO().update(lanche);
             }else{
                 return;
             }
@@ -539,37 +547,29 @@ public class LanchesView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        Cidade cidade = new Cidade();
-        cidade.id = Integer.parseInt(
-                String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 0)));
-        cidade.nome = String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 1));
+        Lanche lanche = (Lanche)(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 0));
         
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
-            new CidadeDAO().delete(cidade);
+            new LancheDAO().delete(lanche);
             this.updateTable();
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Cidade cidade = new Cidade();
-        cidade.id = Integer.parseInt(
-                String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 0)));
-        cidade.nome = String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 1));
-        //Estado estado = new EstadoDAO().getBySigla(
-        //        String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1)));
-        Estado estado = (Estado) (this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 2));
-        cidade.estado_id = estado.id;
+        Lanche lanche =  this.getItemFromTable();
         
-        this.campoId.setText(cidade.id + "");
-        this.campoNome.setText(cidade.nome);
+        Categoria categoria = (Categoria)(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 5));
         
-        ComboHelper.setIndex(this.selectCategoria, cidade.estado_id);
+        this.campoId.setText(lanche.id + "");
+        this.campoNome.setText(lanche.nome);
+        
+        ComboHelper.setIndex(this.selectCategoria, lanche.categoria_id);
         
         this.abasDoSistema.setSelectedIndex(1);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new CidadeDAO().fillTable(this.tableCidades, this.campoPesquisar.getText());
+        new LancheDAO().fillTable(this.tableCidades, this.campoPesquisar.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnLimparBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaActionPerformed
@@ -605,7 +605,7 @@ public class LanchesView extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea campoIngredientes;
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoPesquisar;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField campoValor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
