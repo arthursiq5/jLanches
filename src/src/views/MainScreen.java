@@ -10,6 +10,7 @@ import src.views.internalFrame.ClienteView;
 import src.views.internalFrame.EstadoView;
 import src.views.internalFrame.ContatoView;
 import javax.swing.JInternalFrame;
+import src.model.Funcionario;
 import src.views.internalFrame.CidadeView;
 import src.views.internalFrame.CreditosView;
 import src.views.internalFrame.FranquiaView;
@@ -21,11 +22,19 @@ import src.views.internalFrame.FuncionarioView;
  */
 public class MainScreen extends javax.swing.JFrame {
 
+    private Funcionario funcionario;
+    
     /**
      * Creates new form MainScreen
      */
     public MainScreen() {
+        this.funcionario = null;
         initComponents();
+    }
+    
+    public MainScreen(Funcionario funcionario){
+        this.funcionario = funcionario;
+        this.initComponents();
     }
     
     private void openView(JInternalFrame view){
