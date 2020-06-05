@@ -16,6 +16,7 @@ public class Funcionario {
     public String senha;
     public String endereco;
     public boolean ativo;
+    public boolean administrador;
     public int cidade_id;
     public int franquia_id;
     public int contato_id;
