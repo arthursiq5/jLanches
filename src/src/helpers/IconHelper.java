@@ -6,6 +6,8 @@
 package src.helpers;
 
 import javax.swing.ImageIcon;
+import src.constants.MediaExtensions;
+import src.constants.Paths;
 
 /**
  *
@@ -17,6 +19,6 @@ public class IconHelper {
     }
     
     private ImageIcon getStaticPngIcon(String name){
-        return new ImageIcon(getClass().getResource("/media/icons/" + name + ".png"));
+        return new ImageIcon(getClass().getResource(Paths.ICONS + name + MediaExtensions.PNG));
     }
 }
