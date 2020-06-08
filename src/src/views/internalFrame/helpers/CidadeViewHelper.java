@@ -5,10 +5,7 @@
  */
 package src.views.internalFrame.helpers;
 
-import javax.swing.JButton;
-import javax.swing.JTextField;
 import src.dao.CidadeDAO;
-import src.dao.EstadoDAO;
 import src.helpers.ViewHelper;
 import src.model.Cidade;
 import src.model.views.CidadeViewModel;

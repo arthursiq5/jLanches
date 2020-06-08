@@ -5,23 +5,14 @@
  */
 package src.views.internalFrame;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import src.constants.Icons;
-import src.constants.SystemColors;
 import src.dao.CidadeDAO;
 import src.dao.EstadoDAO;
-import src.helpers.ColorHelper;
 import src.helpers.ComboHelper;
-import src.helpers.IconHelper;
-import src.helpers.MessageHelper;
-import src.helpers.ViewHelper;
 import src.model.Cidade;
 import src.model.Estado;
 import src.model.views.CidadeViewModel;
 import src.model.views.EstadoViewModel;
-import src.validators.testers.CidadeValidator;
-import src.views.extensionElements.ComboItem;
 import src.views.internalFrame.helpers.CidadeViewHelper;
 
 /**

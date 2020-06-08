@@ -7,7 +7,6 @@ package src.views.internalFrame.helpers;
 
 import src.dao.EstadoDAO;
 import src.helpers.ViewHelper;
-import src.model.views.CidadeViewModel;
 import src.model.views.EstadoViewModel;
 
 /**
