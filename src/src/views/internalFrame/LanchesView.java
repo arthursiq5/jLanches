@@ -6,6 +6,7 @@
 package src.views.internalFrame;
 
 import javax.swing.JOptionPane;
+import src.constants.Icons;
 import src.dao.CategoriaDAO;
 import src.dao.CidadeDAO;
 import src.dao.EstadoDAO;
@@ -28,10 +29,6 @@ import src.views.extensionElements.ComboItem;
 public class LanchesView extends javax.swing.JInternalFrame {
     
     private boolean disponivel;
-    private String disponivelIndisponivel[] = {
-        "icons8-selecionado-64",
-        "icons8-cancelar-64"
-    };
 
     /**
      * Creates new form EstadoView
@@ -582,12 +579,12 @@ public class LanchesView extends javax.swing.JInternalFrame {
         if(this.disponivel){
             this.disponivel = false;
             this.btnAtivo.setIcon(
-                IconHelper.getPngIcon(this.disponivelIndisponivel[1])
+                IconHelper.getPngIcon(Icons.CANCELAR_64.getPath())
             );
         }else{
             this.disponivel = true;
             this.btnAtivo.setIcon(
-                IconHelper.getPngIcon(this.disponivelIndisponivel[0])
+                IconHelper.getPngIcon(Icons.SELECIONADO_64.getPath())
             );
         }
     }//GEN-LAST:event_btnAtivoMouseClicked
