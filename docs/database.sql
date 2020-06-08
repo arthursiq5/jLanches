@@ -37,6 +37,7 @@ CREATE TABLE cliente(
 	cpf CHAR(11) NOT NULL,
     nome VARCHAR(45) NOT NULL,
     endereco VARCHAR(255),
+    ativo BOOLEAN  DEFAULT TRUE,
     cidade_id BIGINT UNSIGNED NOT NULL,
     contato_id BIGINT UNSIGNED NOT NULL,
     CONSTRAINT pk_cliente PRIMARY KEY (cpf),
@@ -62,7 +63,7 @@ CREATE TABLE franquia(
 	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     endereco VARCHAR(255) NOT NULL,
     cnpj CHAR(14),
-    ativo BOOLEAN DEFAULT true,
+    ativo BOOLEAN DEFAULT TRUE,
     cidade_id BIGINT UNSIGNED NOT NULL,
     CONSTRAINT pk_franquia PRIMARY KEY(id),
     CONSTRAINT fk_franquia_cidade FOREIGN KEY(cidade_id)
@@ -77,7 +78,7 @@ CREATE TABLE funcionario(
     ativo BOOLEAN DEFAULT true,
     endereco VARCHAR(255),
     cidade_id BIGINT UNSIGNED,
-    franquia_id BIGINT UNSIGNED,
+    franquia_id BIGINT UNSIGNED NOT NULL,
     contato_id BIGINT UNSIGNED,
     CONSTRAINT pk_funcionario PRIMARY KEY(cpf),
     CONSTRAINT fk_funcionario_cidade FOREIGN KEY(cidade_id)
