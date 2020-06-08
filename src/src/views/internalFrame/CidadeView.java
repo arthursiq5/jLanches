@@ -20,6 +20,7 @@ import src.model.Cidade;
 import src.model.Estado;
 import src.validators.testers.CidadeValidator;
 import src.views.extensionElements.ComboItem;
+import src.views.internalFrame.helpers.CidadeViewHelper;
 
 /**
  *
@@ -38,14 +39,16 @@ public class CidadeView extends javax.swing.JInternalFrame {
     }
     
     private void initStyle(){
-        ViewHelper.setEditButtonStyle(this.btnEditarCidade);
-        ViewHelper.setEditButtonStyle(this.btnEditarEstado);
-        ViewHelper.setDeleteButtonStyle(this.btnExcluirCidade);
-        ViewHelper.setDeleteButtonStyle(this.btnExluirEstado);
-        ViewHelper.setSearchButtonStyle(this.btnPesquisarCidades);
-        ViewHelper.setSearchButtonStyle(this.btnPesquisarEstados);
-        ViewHelper.setClearSearchButtonStyle(this.btnLimparBuscaCidades);
-        ViewHelper.setClearSearchButtonStyle(this.btnLimparBuscaEstados);
+        CidadeViewHelper.initButtons(
+            this.btnEditarCidade,
+            this.btnEditarEstado,
+            this.btnExcluirCidade,
+            this.btnExcluirEstado,
+            this.btnPesquisarCidades,
+            this.btnPesquisarEstados,
+            this.btnLimparBuscaCidades,
+            this.btnLimparBuscaEstados
+        );
     }
     
     private void fillSelectEstado(){
@@ -102,7 +105,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
         tableEstados = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
         btnEditarEstado = new javax.swing.JButton();
-        btnExluirEstado = new javax.swing.JButton();
+        btnExcluirEstado = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Cidade");
@@ -466,8 +469,8 @@ public class CidadeView extends javax.swing.JInternalFrame {
 
         btnEditarEstado.setText("Editar");
 
-        btnExluirEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-excluir-64.png"))); // NOI18N
-        btnExluirEstado.setText("Excluir");
+        btnExcluirEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-excluir-64.png"))); // NOI18N
+        btnExcluirEstado.setText("Excluir");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -477,7 +480,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(btnEditarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnExluirEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExcluirEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -485,7 +488,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnExluirEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                    .addComponent(btnExcluirEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                     .addComponent(btnEditarEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -611,7 +614,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEditarCidade;
     private javax.swing.JButton btnEditarEstado;
     private javax.swing.JButton btnExcluirCidade;
-    private javax.swing.JButton btnExluirEstado;
+    private javax.swing.JButton btnExcluirEstado;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnLimparBuscaCidades;
     private javax.swing.JButton btnLimparBuscaEstados;

@@ -794,7 +794,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnEditarEstado" min="-2" pref="291" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnExluirEstado" max="32767" attributes="0"/>
+                          <Component id="btnExcluirEstado" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -804,7 +804,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btnExluirEstado" pref="97" max="32767" attributes="0"/>
+                              <Component id="btnExcluirEstado" pref="97" max="32767" attributes="0"/>
                               <Component id="btnEditarEstado" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -818,7 +818,7 @@
                     <Property name="text" type="java.lang.String" value="Editar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnExluirEstado">
+                <Component class="javax.swing.JButton" name="btnExcluirEstado">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/media/icons/icons8-excluir-64.png"/>
