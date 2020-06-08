@@ -54,7 +54,7 @@ public class ClienteDAO implements ModelWithComboDao<Cliente> {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
             
             String sql = "" 
-                + "UPDATE funcionario "
+                + "UPDATE cliente "
                 + "SET " 
                             + " cpf = '"  + objeto.cpf + "', "
                             + " nome = '" + objeto.nome + "', "
@@ -72,9 +72,10 @@ public class ClienteDAO implements ModelWithComboDao<Cliente> {
     @Override
     public void delete(Cliente objeto) {
         try {
-            String sql = "DELETE "
-                    + "FROM cliente "
-                    + "WHERE cpf = '" + objeto.cpf + "'";
+            String sql = ""
+                + "UPDATE  cliente "
+                + "SET ativo = FALSE "
+                + "WHERE cpf = '" + objeto.cpf + "'";
             BDConnector.getInstance()
                         .getConnection()
                         .createStatement()
@@ -82,7 +83,29 @@ public class ClienteDAO implements ModelWithComboDao<Cliente> {
         }catch(SQLIntegrityConstraintViolationException e){
             MessageHelper.createInfoMessage(
                 "Falha", 
-                "Não foi possível remover o cliente, pois ele está atrelado a um pedido"
+                "Não foi possível remover o cliente"
+            );
+            System.err.println("Falha: " + e);
+        } catch (Exception e) {
+            MessageHelper.createErrorMessage("Erro", "Erro ao remover dados de cliente do banco");
+            System.err.println("Erro: " + e);
+        }
+    }
+    
+    public void restore(Cliente objeto) {
+        try {
+            String sql = ""
+                + "UPDATE  cliente "
+                + "SET ativo = TRUE "
+                + "WHERE cpf = '" + objeto.cpf + "'";
+            BDConnector.getInstance()
+                        .getConnection()
+                        .createStatement()
+                        .executeUpdate(sql);
+        }catch(SQLIntegrityConstraintViolationException e){
+            MessageHelper.createInfoMessage(
+                "Falha", 
+                "Não foi possível restaurar o cliente"
             );
             System.err.println("Falha: " + e);
         } catch (Exception e) {

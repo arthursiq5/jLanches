@@ -86,9 +86,10 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
     @Override
     public void delete(Funcionario objeto) {
         try {
-            String sql = "DELETE "
-                    + "FROM funcionario "
-                    + "WHERE cpf = '" + objeto.cpf + "'";
+            String sql = ""
+                + "UPDATE  funcionario "
+                + "SET ativo = FALSE "
+                + "WHERE cpf = '" + objeto.cpf + "'";
             BDConnector.getInstance()
                         .getConnection()
                         .createStatement()
@@ -96,7 +97,29 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
         }catch(SQLIntegrityConstraintViolationException e){
             MessageHelper.createInfoMessage(
                 "Falha", 
-                "Não foi possível remover o cliente, pois ele está atrelado a um pedido"
+                "Não foi possível remover o funcionario"
+            );
+            System.err.println("Falha: " + e);
+        } catch (Exception e) {
+            MessageHelper.createErrorMessage("Erro", "Erro ao remover dados de cliente do banco");
+            System.err.println("Erro: " + e);
+        }
+    }
+    
+    public void retore(Funcionario objeto) {
+        try {
+            String sql = ""
+                + "UPDATE  funcionario "
+                + "SET ativo = TRUE "
+                + "WHERE cpf = '" + objeto.cpf + "'";
+            BDConnector.getInstance()
+                        .getConnection()
+                        .createStatement()
+                        .executeUpdate(sql);
+        }catch(SQLIntegrityConstraintViolationException e){
+            MessageHelper.createInfoMessage(
+                "Falha", 
+                "Não foi possível restaurar o funcionario"
             );
             System.err.println("Falha: " + e);
         } catch (Exception e) {
