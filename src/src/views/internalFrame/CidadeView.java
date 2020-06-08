@@ -5,11 +5,17 @@
  */
 package src.views.internalFrame;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import src.constants.Icons;
+import src.constants.SystemColors;
 import src.dao.CidadeDAO;
 import src.dao.EstadoDAO;
+import src.helpers.ColorHelper;
 import src.helpers.ComboHelper;
+import src.helpers.IconHelper;
 import src.helpers.MessageHelper;
+import src.helpers.ViewHelper;
 import src.model.Cidade;
 import src.model.Estado;
 import src.validators.testers.CidadeValidator;
@@ -27,7 +33,19 @@ public class CidadeView extends javax.swing.JInternalFrame {
     public CidadeView() {
         initComponents();
         this.updateTable();
+        this.initStyle();
         this.fillSelectEstado();
+    }
+    
+    private void initStyle(){
+        ViewHelper.setEditButtonStyle(this.btnEditarCidade);
+        ViewHelper.setEditButtonStyle(this.btnEditarEstado);
+        ViewHelper.setDeleteButtonStyle(this.btnExcluirCidade);
+        ViewHelper.setDeleteButtonStyle(this.btnExluirEstado);
+        ViewHelper.setSearchButtonStyle(this.btnPesquisarCidades);
+        ViewHelper.setSearchButtonStyle(this.btnPesquisarEstados);
+        ViewHelper.setClearSearchButtonStyle(this.btnLimparBuscaCidades);
+        ViewHelper.setClearSearchButtonStyle(this.btnLimparBuscaEstados);
     }
     
     private void fillSelectEstado(){
@@ -40,7 +58,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
     
     private void resetInputs(){
         this.campoId.setText("");
-        this.campoPesquisar.setText("");
+        this.campoPesquisarCidades.setText("");
         this.campoNome.setText("");
     }
 
@@ -56,14 +74,14 @@ public class CidadeView extends javax.swing.JInternalFrame {
         abasDoSistema = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        campoPesquisar = new javax.swing.JTextField();
-        btnPesquisar = new javax.swing.JButton();
-        btnLimparBusca = new javax.swing.JButton();
+        campoPesquisarCidades = new javax.swing.JTextField();
+        btnPesquisarCidades = new javax.swing.JButton();
+        btnLimparBuscaCidades = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCidades = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        btnEditar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
+        btnEditarCidade = new javax.swing.JButton();
+        btnExcluirCidade = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -75,6 +93,16 @@ public class CidadeView extends javax.swing.JInternalFrame {
         campoId = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         selectEstado = new javax.swing.JComboBox<>();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        btnLimparBuscaEstados = new javax.swing.JButton();
+        btnPesquisarEstados = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableEstados = new javax.swing.JTable();
+        jPanel12 = new javax.swing.JPanel();
+        btnEditarEstado = new javax.swing.JButton();
+        btnExluirEstado = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Cidade");
@@ -84,23 +112,26 @@ public class CidadeView extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(207, 216, 220));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Pesquisar"));
 
-        btnPesquisar.setBackground(new java.awt.Color(197, 202, 233));
-        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pesquisar-16.png"))); // NOI18N
-        btnPesquisar.setText("Ir");
-        btnPesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        campoPesquisarCidades.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoPesquisarCidades.setText("teste");
+
+        btnPesquisarCidades.setBackground(new java.awt.Color(197, 202, 233));
+        btnPesquisarCidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pesquisar-16.png"))); // NOI18N
+        btnPesquisarCidades.setText("Ir");
+        btnPesquisarCidades.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPesquisarCidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarActionPerformed(evt);
+                btnPesquisarCidadesActionPerformed(evt);
             }
         });
 
-        btnLimparBusca.setBackground(new java.awt.Color(197, 202, 233));
-        btnLimparBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-apagador-16.png"))); // NOI18N
-        btnLimparBusca.setText("Limpar");
-        btnLimparBusca.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnLimparBusca.addActionListener(new java.awt.event.ActionListener() {
+        btnLimparBuscaCidades.setBackground(new java.awt.Color(197, 202, 233));
+        btnLimparBuscaCidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-apagador-16.png"))); // NOI18N
+        btnLimparBuscaCidades.setText("Limpar");
+        btnLimparBuscaCidades.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLimparBuscaCidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimparBuscaActionPerformed(evt);
+                btnLimparBuscaCidadesActionPerformed(evt);
             }
         });
 
@@ -110,24 +141,22 @@ public class CidadeView extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoPesquisarCidades)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLimparBuscaCidades, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLimparBusca, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPesquisarCidades, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnPesquisar)
-                            .addComponent(btnLimparBusca))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(campoPesquisar)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnPesquisarCidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(campoPesquisarCidades, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLimparBuscaCidades, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tableCidades.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -155,23 +184,23 @@ public class CidadeView extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(207, 216, 220));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
 
-        btnEditar.setBackground(new java.awt.Color(220, 237, 200));
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-editar-arquivo-64.png"))); // NOI18N
-        btnEditar.setText("Editar");
-        btnEditar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarCidade.setBackground(new java.awt.Color(220, 237, 200));
+        btnEditarCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-editar-arquivo-64.png"))); // NOI18N
+        btnEditarCidade.setText("Editar");
+        btnEditarCidade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEditarCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                btnEditarCidadeActionPerformed(evt);
             }
         });
 
-        btnExcluir.setBackground(new java.awt.Color(255, 205, 210));
-        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-excluir-64.png"))); // NOI18N
-        btnExcluir.setText("Excluir");
-        btnExcluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluirCidade.setBackground(new java.awt.Color(255, 205, 210));
+        btnExcluirCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-excluir-64.png"))); // NOI18N
+        btnExcluirCidade.setText("Excluir");
+        btnExcluirCidade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnExcluirCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
+                btnExcluirCidadeActionPerformed(evt);
             }
         });
 
@@ -181,9 +210,9 @@ public class CidadeView extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditarCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExcluirCidade, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -191,8 +220,8 @@ public class CidadeView extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnExcluirCidade, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addComponent(btnEditarCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -213,14 +242,14 @@ public class CidadeView extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        abasDoSistema.addTab("Mostrar", jPanel1);
+        abasDoSistema.addTab("Mostrar cidades", jPanel1);
 
         jPanel4.setBackground(new java.awt.Color(207, 216, 220));
 
@@ -381,7 +410,111 @@ public class CidadeView extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        abasDoSistema.addTab("Cadastrar", jPanel4);
+        abasDoSistema.addTab("Cadastrar cidade", jPanel4);
+
+        jPanel10.setBackground(new java.awt.Color(207, 216, 220));
+
+        jPanel11.setBackground(new java.awt.Color(207, 216, 220));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Pesquisar"));
+
+        jTextField1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextField1.setText("jTextField1");
+
+        btnLimparBuscaEstados.setText("Limpar");
+
+        btnPesquisarEstados.setText("Ir");
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLimparBuscaEstados, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPesquisarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnPesquisarEstados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(btnLimparBuscaEstados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        tableEstados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tableEstados);
+
+        jPanel12.setBackground(new java.awt.Color(207, 216, 220));
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
+
+        btnEditarEstado.setText("Editar");
+
+        btnExluirEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-excluir-64.png"))); // NOI18N
+        btnExluirEstado.setText("Excluir");
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnEditarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnExluirEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnExluirEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                    .addComponent(btnEditarEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        abasDoSistema.addTab("Mostrar estados", jPanel10);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -393,7 +526,9 @@ public class CidadeView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(abasDoSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(abasDoSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -430,7 +565,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
         this.resetInputs();
     }//GEN-LAST:event_btnLimparActionPerformed
 
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+    private void btnExcluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCidadeActionPerformed
         Cidade cidade = new Cidade();
         cidade.id = Integer.parseInt(
                 String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 0)));
@@ -440,9 +575,9 @@ public class CidadeView extends javax.swing.JInternalFrame {
             new CidadeDAO().delete(cidade);
             this.updateTable();
         }
-    }//GEN-LAST:event_btnExcluirActionPerformed
+    }//GEN-LAST:event_btnExcluirCidadeActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btnEditarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarCidadeActionPerformed
         Cidade cidade = new Cidade();
         cidade.id = Integer.parseInt(
                 String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 0)));
@@ -458,30 +593,37 @@ public class CidadeView extends javax.swing.JInternalFrame {
         ComboHelper.setIndex(this.selectEstado, cidade.estado_id);
         
         this.abasDoSistema.setSelectedIndex(1);
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }//GEN-LAST:event_btnEditarCidadeActionPerformed
 
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new CidadeDAO().fillTable(this.tableCidades, this.campoPesquisar.getText());
-    }//GEN-LAST:event_btnPesquisarActionPerformed
-
-    private void btnLimparBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaActionPerformed
-        this.campoPesquisar.setText("");
+    private void btnPesquisarCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarCidadesActionPerformed
+        new CidadeDAO().fillTable(this.tableCidades, this.campoPesquisarCidades.getText());
+    }//GEN-LAST:event_btnPesquisarCidadesActionPerformed
+    
+    private void btnLimparBuscaCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaCidadesActionPerformed
+        this.campoPesquisarCidades.setText("");
         this.updateTable();
-    }//GEN-LAST:event_btnLimparBuscaActionPerformed
+    }//GEN-LAST:event_btnLimparBuscaCidadesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnEditarCidade;
+    private javax.swing.JButton btnEditarEstado;
+    private javax.swing.JButton btnExcluirCidade;
+    private javax.swing.JButton btnExluirEstado;
     private javax.swing.JButton btnLimpar;
-    private javax.swing.JButton btnLimparBusca;
-    private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnLimparBuscaCidades;
+    private javax.swing.JButton btnLimparBuscaEstados;
+    private javax.swing.JButton btnPesquisarCidades;
+    private javax.swing.JButton btnPesquisarEstados;
     private javax.swing.JTextField campoId;
     private javax.swing.JTextField campoNome;
-    private javax.swing.JTextField campoPesquisar;
+    private javax.swing.JTextField campoPesquisarCidades;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -491,7 +633,10 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> selectEstado;
     private javax.swing.JTable tableCidades;
+    private javax.swing.JTable tableEstados;
     // End of variables declaration//GEN-END:variables
 }
