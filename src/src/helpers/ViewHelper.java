@@ -37,4 +37,16 @@ public class ViewHelper {
     public static void setSearchButtonStyle(JButton button){
         ViewHelper.setButtonStyle(button, SystemColors.DEFAULT_BACKEND, Icons.PESQUISAR_16);
     }
+    
+    public static void initButtons(
+        JButton btnEditar,
+        JButton btnExcluir,
+        JButton btnPesquisar,
+        JButton btnLimpar
+    ){
+        ViewHelper.setEditButtonStyle(btnEditar);
+        ViewHelper.setDeleteButtonStyle(btnExcluir);
+        ViewHelper.setSearchButtonStyle(btnPesquisar);
+        ViewHelper.setClearSearchButtonStyle(btnLimpar);
+    }
 }

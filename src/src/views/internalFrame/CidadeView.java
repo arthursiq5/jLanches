@@ -18,6 +18,7 @@ import src.helpers.MessageHelper;
 import src.helpers.ViewHelper;
 import src.model.Cidade;
 import src.model.Estado;
+import src.model.views.CidadeViewModel;
 import src.validators.testers.CidadeValidator;
 import src.views.extensionElements.ComboItem;
 import src.views.internalFrame.helpers.CidadeViewHelper;
@@ -28,41 +29,52 @@ import src.views.internalFrame.helpers.CidadeViewHelper;
  */
 public class CidadeView extends javax.swing.JInternalFrame {
 
+    private CidadeViewModel cidadeView;
+    
     /**
      * Creates new form EstadoView
      */
     public CidadeView() {
         initComponents();
-        this.updateTable();
+        this.initCidadeViewHelper();
+        CidadeViewHelper.updateTables(this.cidadeView);
         this.initStyle();
         this.fillSelectEstado();
     }
     
+    private void initCidadeViewHelper(){
+        this.cidadeView = new CidadeViewModel();
+        
+        this.cidadeView.btnEditarCidade = this.btnEditarCidade;
+        this.cidadeView.btnEditarEstado = this.btnEditarEstado;
+        this.cidadeView.btnExcluirCidade = this.btnExcluirCidade;
+        this.cidadeView.btnExcluirEstado = this.btnExcluirEstado;
+        this.cidadeView.btnLimparBuscaCidades = this.btnLimparBuscaCidades;
+        this.cidadeView.btnLimparBuscaEstados = this.btnLimparBuscaEstados;
+        this.cidadeView.btnPesquisarCidades = this.btnPesquisarCidades;
+        this.cidadeView.btnPesquisarEstados = this.btnPesquisarEstados;
+        
+        this.cidadeView.campoCidadeId = this.campoCidadeId;
+        this.cidadeView.campoCidadeNome = this.campoCidadeNome;
+        
+        this.cidadeView.campoPesquisarCidades = this.campoPesquisarCidades;
+        
+        this.cidadeView.tableCidades = this.tableCidades;
+        this.cidadeView.tableEstados = this.tableEstados;
+    }
+    
     private void initStyle(){
-        CidadeViewHelper.initButtons(
-            this.btnEditarCidade,
-            this.btnEditarEstado,
-            this.btnExcluirCidade,
-            this.btnExcluirEstado,
-            this.btnPesquisarCidades,
-            this.btnPesquisarEstados,
-            this.btnLimparBuscaCidades,
-            this.btnLimparBuscaEstados
-        );
+        CidadeViewHelper.initButtons(this.cidadeView);
     }
     
     private void fillSelectEstado(){
         new EstadoDAO().fillCombo(this.selectEstado);
     }
     
-    private void updateTable(){
-        new CidadeDAO().fillTable(this.tableCidades, "");
-    }
-    
     private void resetInputs(){
-        this.campoId.setText("");
+        this.campoCidadeId.setText("");
         this.campoPesquisarCidades.setText("");
-        this.campoNome.setText("");
+        this.campoCidadeNome.setText("");
     }
 
     /**
@@ -91,9 +103,9 @@ public class CidadeView extends javax.swing.JInternalFrame {
         btnLimpar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        campoNome = new javax.swing.JTextField();
+        campoCidadeNome = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
-        campoId = new javax.swing.JTextField();
+        campoCidadeId = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         selectEstado = new javax.swing.JComboBox<>();
         jPanel10 = new javax.swing.JPanel();
@@ -293,17 +305,17 @@ public class CidadeView extends javax.swing.JInternalFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar)
-                    .addComponent(btnLimpar)))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                    .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jPanel7.setBackground(new java.awt.Color(207, 216, 220));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Nome"));
 
-        campoNome.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoCidadeNome.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -311,22 +323,22 @@ public class CidadeView extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoNome)
+                .addComponent(campoCidadeNome)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(campoCidadeNome, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel8.setBackground(new java.awt.Color(207, 216, 220));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "ID"));
 
-        campoId.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        campoId.setEnabled(false);
+        campoCidadeId.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoCidadeId.setEnabled(false);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -334,14 +346,14 @@ public class CidadeView extends javax.swing.JInternalFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoId)
+                .addComponent(campoCidadeId)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoId, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(campoCidadeId, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -386,12 +398,12 @@ public class CidadeView extends javax.swing.JInternalFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -539,9 +551,8 @@ public class CidadeView extends javax.swing.JInternalFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Cidade cidade = new Cidade();
-        cidade.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
-        cidade.nome = this.campoNome.getText();
-        
+        cidade.id = (this.campoCidadeId.getText().equals("")) ? 0 : Integer.parseInt(this.campoCidadeId.getText());
+        cidade.nome = this.campoCidadeNome.getText();
         ComboItem estado = (ComboItem) this.selectEstado.getSelectedItem();
         
         cidade.estado_id = estado.id;
@@ -559,7 +570,9 @@ public class CidadeView extends javax.swing.JInternalFrame {
                 return;
             }
         }
-        this.updateTable();
+        
+        CidadeViewHelper.updateTables(this.cidadeView);
+        
         this.resetInputs();
         this.abasDoSistema.setSelectedIndex(0);
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -576,7 +589,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
         
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
             new CidadeDAO().delete(cidade);
-            this.updateTable();
+            CidadeViewHelper.updateTables(this.cidadeView);
         }
     }//GEN-LAST:event_btnExcluirCidadeActionPerformed
 
@@ -590,8 +603,8 @@ public class CidadeView extends javax.swing.JInternalFrame {
         Estado estado = (Estado) (this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 2));
         cidade.estado_id = estado.id;
         
-        this.campoId.setText(cidade.id + "");
-        this.campoNome.setText(cidade.nome);
+        this.campoCidadeId.setText(cidade.id + "");
+        this.campoCidadeNome.setText(cidade.nome);
         
         ComboHelper.setIndex(this.selectEstado, cidade.estado_id);
         
@@ -604,7 +617,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
     
     private void btnLimparBuscaCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaCidadesActionPerformed
         this.campoPesquisarCidades.setText("");
-        this.updateTable();
+        CidadeViewHelper.updateTables(this.cidadeView);
     }//GEN-LAST:event_btnLimparBuscaCidadesActionPerformed
 
 
@@ -620,8 +633,8 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimparBuscaEstados;
     private javax.swing.JButton btnPesquisarCidades;
     private javax.swing.JButton btnPesquisarEstados;
-    private javax.swing.JTextField campoId;
-    private javax.swing.JTextField campoNome;
+    private javax.swing.JTextField campoCidadeId;
+    private javax.swing.JTextField campoCidadeNome;
     private javax.swing.JTextField campoPesquisarCidades;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
