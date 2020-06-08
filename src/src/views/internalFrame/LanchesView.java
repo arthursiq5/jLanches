@@ -582,12 +582,12 @@ public class LanchesView extends javax.swing.JInternalFrame {
         if(this.disponivel){
             this.disponivel = false;
             this.btnAtivo.setIcon(
-                new IconHelper().getPngIcon(this.disponivelIndisponivel[1])
+                IconHelper.getPngIcon(this.disponivelIndisponivel[1])
             );
         }else{
             this.disponivel = true;
             this.btnAtivo.setIcon(
-                new IconHelper().getPngIcon(this.disponivelIndisponivel[0])
+                IconHelper.getPngIcon(this.disponivelIndisponivel[0])
             );
         }
     }//GEN-LAST:event_btnAtivoMouseClicked
