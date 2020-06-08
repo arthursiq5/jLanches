@@ -153,7 +153,9 @@ public class LoginScreen extends javax.swing.JFrame {
         String password = new String(this.inputPassword.getPassword());
         
         if(new FuncionarioDAO().autenticate(cpf, password)){
-            new MainScreen().setVisible(true);
+            new MainScreen(
+                    new FuncionarioDAO().get(cpf)
+            ).setVisible(true);
             this.dispose();
         }else{
             MessageHelper.createWarningMessage("Erro", "Login ou senha inválidos");

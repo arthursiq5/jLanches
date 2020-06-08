@@ -15,6 +15,8 @@ import src.views.internalFrame.CidadeView;
 import src.views.internalFrame.CreditosView;
 import src.views.internalFrame.FranquiaView;
 import src.views.internalFrame.FuncionarioView;
+import src.views.internalFrame.admin.ClienteAdminView;
+import src.views.internalFrame.admin.FuncionarioAdminView;
 
 /**
  *
@@ -221,11 +223,11 @@ public class MainScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFuncionarioActionPerformed
-        this.openView(new FuncionarioView());
+        this.openView(this.funcionario.administrador ? new FuncionarioAdminView() : new FuncionarioView());
     }//GEN-LAST:event_itemFuncionarioActionPerformed
 
     private void itemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteActionPerformed
-        this.openView(new ClienteView());
+        this.openView(this.funcionario.administrador ? new ClienteAdminView() : new ClienteView());
     }//GEN-LAST:event_itemClienteActionPerformed
 
     private void itemEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEstadoActionPerformed
