@@ -6,12 +6,16 @@
 package src.views.internalFrame;
 
 import javax.swing.JOptionPane;
+import src.constants.Icons;
+import src.constants.SystemColors;
 import src.dao.CidadeDAO;
 import src.dao.ClienteDAO;
 import src.dao.ContatoDAO;
 import src.dao.FranquiaDAO;
 import src.dao.FuncionarioDAO;
+import src.helpers.ColorHelper;
 import src.helpers.ComboHelper;
+import src.helpers.IconHelper;
 import src.helpers.MessageHelper;
 import src.model.Cidade;
 import src.model.Cliente;
@@ -36,6 +40,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         initComponents();
         this.updateTable();
         this.carregaSelects();
+        this.btnToggleFuncionariosInativos.setIcon(IconHelper.getPngIcon(Icons.USUARIO_PLUS_64.getPath()));
     }
     
     private void carregaSelects(){
@@ -188,7 +193,9 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(207, 216, 220));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
 
+        btnToggleFuncionariosInativos.setBackground(new java.awt.Color(207, 216, 220));
         btnToggleFuncionariosInativos.setText("Mostrar funcionários inativos");
+        btnToggleFuncionariosInativos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnToggleFuncionariosInativos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnToggleFuncionariosInativosActionPerformed(evt);
@@ -586,7 +593,13 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparBuscaActionPerformed
 
     private void btnToggleFuncionariosInativosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToggleFuncionariosInativosActionPerformed
-        // TODO add your handling code here:
+        if(this.btnToggleFuncionariosInativos.isSelected()){
+            this.btnToggleFuncionariosInativos.setIcon(IconHelper.getPngIcon(Icons.USUARIO_CANCEL_64.getPath()));
+            this.btnToggleFuncionariosInativos.setBackground(ColorHelper.getColor(SystemColors.SILVER));
+        }else{
+            this.btnToggleFuncionariosInativos.setIcon(IconHelper.getPngIcon(Icons.USUARIO_PLUS_64.getPath()));
+            this.btnToggleFuncionariosInativos.setBackground(ColorHelper.getColor(SystemColors.DEFAULT_BACKEND));
+        }
     }//GEN-LAST:event_btnToggleFuncionariosInativosActionPerformed
 
 

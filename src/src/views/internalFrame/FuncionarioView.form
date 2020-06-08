@@ -246,7 +246,15 @@
               <SubComponents>
                 <Component class="javax.swing.JToggleButton" name="btnToggleFuncionariosInativos">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="dc" green="d8" red="cf" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Mostrar funcion&#xe1;rios inativos"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                        <BevelBorder/>
+                      </Border>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnToggleFuncionariosInativosActionPerformed"/>
