@@ -11,6 +11,7 @@ import src.dao.CidadeDAO;
 import src.dao.EstadoDAO;
 import src.dao.LancheDAO;
 import src.helpers.ComboHelper;
+import src.helpers.IconHelper;
 import src.helpers.MessageHelper;
 import src.model.Categoria;
 import src.model.Cidade;
@@ -28,8 +29,8 @@ public class LanchesView extends javax.swing.JInternalFrame {
     
     private boolean disponivel;
     private String disponivelIndisponivel[] = {
-        "/media/icons/icons8-selecionado-64.png",
-        "/media/icons/icons8-cancelar-64.png"
+        "icons8-selecionado-64",
+        "icons8-cancelar-64"
     };
 
     /**
@@ -581,12 +582,12 @@ public class LanchesView extends javax.swing.JInternalFrame {
         if(this.disponivel){
             this.disponivel = false;
             this.btnAtivo.setIcon(
-                    new javax.swing.ImageIcon(getClass().getResource(this.disponivelIndisponivel[1]))
+                new IconHelper().getPngIcon(this.disponivelIndisponivel[1])
             );
         }else{
             this.disponivel = true;
             this.btnAtivo.setIcon(
-                    new javax.swing.ImageIcon(getClass().getResource(this.disponivelIndisponivel[0]))
+                new IconHelper().getPngIcon(this.disponivelIndisponivel[0])
             );
         }
     }//GEN-LAST:event_btnAtivoMouseClicked

@@ -15,6 +15,7 @@ import src.views.internalFrame.CidadeView;
 import src.views.internalFrame.CreditosView;
 import src.views.internalFrame.FranquiaView;
 import src.views.internalFrame.FuncionarioView;
+import src.views.internalFrame.LanchesView;
 import src.views.internalFrame.admin.ClienteAdminView;
 import src.views.internalFrame.admin.FuncionarioAdminView;
 
@@ -142,6 +143,11 @@ public class MainScreen extends javax.swing.JFrame {
 
         itemLanche.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-lancheira-16.png"))); // NOI18N
         itemLanche.setText("Lanches");
+        itemLanche.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemLancheActionPerformed(evt);
+            }
+        });
         menuPedido.add(itemLanche);
 
         itemCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-abrir-pasta-16.png"))); // NOI18N
@@ -257,6 +263,10 @@ public class MainScreen extends javax.swing.JFrame {
     private void itemPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPedidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itemPedidoActionPerformed
+
+    private void itemLancheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemLancheActionPerformed
+        this.openView(new LanchesView());
+    }//GEN-LAST:event_itemLancheActionPerformed
 
     /**
      * @param args the command line arguments
