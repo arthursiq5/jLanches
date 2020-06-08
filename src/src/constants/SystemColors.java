@@ -12,7 +12,11 @@ package src.constants;
 public enum SystemColors {
     
     DEFAULT_BACKEND(207, 216, 220),
-    SILVER(192,192,192);
+    SILVER(192,192,192),
+    LIGHT_GREEN(220,237,200),
+    LIGHT_RED(255,205,210),
+    CONFIRM_GREEN(178,255,89),
+    ERASE_BLUE(130,177,255);
     
     private final int red;
     private final int green;
