@@ -405,9 +405,9 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnLimpar" min="-2" pref="293" max="-2" attributes="0"/>
+                              <Component id="btnLimparFormularioCidade" min="-2" pref="293" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnCadastrar" pref="289" max="32767" attributes="0"/>
+                              <Component id="btnCadastrarCidade" pref="289" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -416,15 +416,15 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnCadastrar" alignment="1" pref="126" max="32767" attributes="0"/>
-                                  <Component id="btnLimpar" max="32767" attributes="0"/>
+                                  <Component id="btnCadastrarCidade" alignment="1" pref="126" max="32767" attributes="0"/>
+                                  <Component id="btnLimparFormularioCidade" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="btnLimpar">
+                    <Component class="javax.swing.JButton" name="btnLimparFormularioCidade">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="b1" red="82" type="rgb"/>
@@ -440,10 +440,10 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparFormularioCidadeActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnCadastrar">
+                    <Component class="javax.swing.JButton" name="btnCadastrarCidade">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="59" green="ff" red="b2" type="rgb"/>
@@ -459,7 +459,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarCidadeActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>

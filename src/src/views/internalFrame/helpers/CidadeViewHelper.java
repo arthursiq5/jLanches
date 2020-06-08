@@ -10,7 +10,10 @@ import javax.swing.JTextField;
 import src.dao.CidadeDAO;
 import src.dao.EstadoDAO;
 import src.helpers.ViewHelper;
+import src.model.Cidade;
 import src.model.views.CidadeViewModel;
+import src.validators.testers.CidadeValidator;
+import src.views.extensionElements.ComboItem;
 
 /**
  *
@@ -21,17 +24,10 @@ public class CidadeViewHelper {
     public static void initButtons(
             CidadeViewModel cidadeView
     ){
-        ViewHelper.initButtons(
-                cidadeView.btnEditarEstado, 
-                cidadeView.btnExcluirEstado, 
-                cidadeView.btnPesquisarEstados, 
-                cidadeView.btnLimparBuscaEstados
-        );
-        ViewHelper.initButtons(
-                cidadeView.btnEditarCidade,
-                cidadeView.btnExcluirCidade,
-                cidadeView.btnPesquisarCidades,
-                cidadeView.btnLimparBuscaCidades
+        ViewHelper.initButtons(cidadeView.btnEditar,
+                cidadeView.btnExcluir,
+                cidadeView.btnPesquisar,
+                cidadeView.btnLimparBusca
         );
     }
     
@@ -43,8 +39,35 @@ public class CidadeViewHelper {
         cidadeView.campoCidadeNome.setText("");
     }
     
-    public static void updateTables(CidadeViewModel cidadeView){
-        new CidadeDAO().fillTable(cidadeView.tableCidades, "");
-        new EstadoDAO().fillTable(cidadeView.tableEstados, "");
+    public static void updateTable(CidadeViewModel cidadeView){
+        new CidadeDAO().fillTable(cidadeView.table, "");
+    }
+    
+    public static void cadastrarCidade(CidadeViewModel cidadeView){
+        Cidade cidade = new Cidade();
+        cidade.id = (cidadeView.campoCidadeId.getText().equals("")) ? 0 : Integer.parseInt(cidadeView.campoCidadeId.getText());
+        cidade.nome = cidadeView.campoCidadeNome.getText();
+        ComboItem estado = (ComboItem) cidadeView.selectEstado.getSelectedItem();
+        
+        cidade.estado_id = estado.id;
+        
+        if(cidade.id == 0){
+            if(CidadeValidator.insert(cidade)){
+                new CidadeDAO().save(cidade);
+            }else{
+                return;
+            }
+        }else{
+            if(CidadeValidator.update(cidade)){
+                new CidadeDAO().update(cidade);
+            }else{
+                return;
+            }
+        }
+        
+        CidadeViewHelper.updateTable(cidadeView);
+        
+        CidadeViewHelper.resetCidadeInputs(cidadeView);
+        cidadeView.abasDoSistema.setSelectedIndex(0);
     }
 }
