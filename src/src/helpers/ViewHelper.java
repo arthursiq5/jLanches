@@ -53,12 +53,19 @@ public class ViewHelper {
         ViewHelper.setButtonStyle(button, SystemColors.DEFAULT_BACKEND, Icons.PESQUISAR_16);
     }
     
+    public static void setSearch64ButtonStyle(JButton button){
+        ViewHelper.setButtonStyle(button, SystemColors.DEFAULT_BACKEND, Icons.PESQUISAR_64);
+    }
+    
     public static void setSubmitButtonStyle(JButton button){
         ViewHelper.setButtonStyle(button, SystemColors.CONFIRM_GREEN, Icons.CHECK_64);
     }
     
     public static void setClearFormButtonStyle(JButton button){
         ViewHelper.setButtonStyle(button, SystemColors.ERASE_BLUE, Icons.APAGAR_64);
+    }
+    public static void setCancel64ButtonStyle(JButton button){
+        ViewHelper.setButtonStyle(button, SystemColors.LIGHT_RED, Icons.CANCELAR_64);
     }
     
     public static void initButtons(

@@ -5,6 +5,7 @@
  */
 package src.helpers;
 
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import src.views.extensionElements.ComboItem;
 
@@ -13,6 +14,21 @@ import src.views.extensionElements.ComboItem;
  * @author arthur
  */
 public class ComboHelper {
+    
+    public static void fillCombo(JComboBox combo, Object[] itens){
+        combo.removeAllItems();
+        for(Object item: itens){
+            combo.addItem(item);
+        }
+    }
+    
+    public static void fillCombo(JComboBox combo, ArrayList<Object> itens){
+        combo.removeAllItems();
+        itens.forEach((item) -> {
+            combo.addItem(item);
+        });
+    }
+    
     public static void setIndex(JComboBox combo, int id){
         ComboItem item;
         for (int i = 0; i < combo.getItemCount(); i++)

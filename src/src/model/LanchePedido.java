@@ -5,6 +5,8 @@
  */
 package src.model;
 
+import src.constants.Operation;
+
 /**
  *
  * @author arthur
@@ -18,4 +20,6 @@ public class LanchePedido {
     public double desconto;
     public double acrescimo;
     public String modificacoes;
+    
+    public Operation estado;
 }

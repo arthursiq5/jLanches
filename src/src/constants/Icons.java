@@ -20,6 +20,7 @@ public enum Icons {
     APAGAR_16("icons8-apagador-16"),
     APAGAR_64("icons8-apagador-64"),
     PESQUISAR_16("icons8-pesquisar-16"),
+    PESQUISAR_64("icons8-pesquisar-64"),
     CHECK_64("icons8-selecionado-64");
     
     
