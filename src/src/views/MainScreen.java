@@ -73,8 +73,7 @@ public class MainScreen extends javax.swing.JFrame {
         itemCategoria = new javax.swing.JMenuItem();
         menuEnderecoContato = new javax.swing.JMenu();
         itemContato = new javax.swing.JMenuItem();
-        itemCidade = new javax.swing.JMenuItem();
-        itemEstado = new javax.swing.JMenuItem();
+        itemCidadeEstado = new javax.swing.JMenuItem();
         menuOutros = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         itemCreditos = new javax.swing.JMenuItem();
@@ -173,23 +172,14 @@ public class MainScreen extends javax.swing.JFrame {
         });
         menuEnderecoContato.add(itemContato);
 
-        itemCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pedido-entregue-16.png"))); // NOI18N
-        itemCidade.setText("Cidade");
-        itemCidade.addActionListener(new java.awt.event.ActionListener() {
+        itemCidadeEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pedido-entregue-16.png"))); // NOI18N
+        itemCidadeEstado.setText("Cidades e Estados");
+        itemCidadeEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemCidadeActionPerformed(evt);
+                itemCidadeEstadoActionPerformed(evt);
             }
         });
-        menuEnderecoContato.add(itemCidade);
-
-        itemEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-mapa-do-tesouro-16.png"))); // NOI18N
-        itemEstado.setText("Estado");
-        itemEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemEstadoActionPerformed(evt);
-            }
-        });
-        menuEnderecoContato.add(itemEstado);
+        menuEnderecoContato.add(itemCidadeEstado);
 
         jMenuBar1.add(menuEnderecoContato);
 
@@ -236,10 +226,6 @@ public class MainScreen extends javax.swing.JFrame {
         this.openView(this.funcionario.administrador ? new ClienteAdminView() : new ClienteView());
     }//GEN-LAST:event_itemClienteActionPerformed
 
-    private void itemEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEstadoActionPerformed
-        this.openView(new EstadoView());
-    }//GEN-LAST:event_itemEstadoActionPerformed
-
     private void itemCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCategoriaActionPerformed
         this.openView(new CategoriaView());
     }//GEN-LAST:event_itemCategoriaActionPerformed
@@ -252,9 +238,9 @@ public class MainScreen extends javax.swing.JFrame {
         this.openView(new CreditosView(this));
     }//GEN-LAST:event_itemCreditosActionPerformed
 
-    private void itemCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCidadeActionPerformed
+    private void itemCidadeEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCidadeEstadoActionPerformed
         this.openView(new CidadeView());
-    }//GEN-LAST:event_itemCidadeActionPerformed
+    }//GEN-LAST:event_itemCidadeEstadoActionPerformed
 
     private void itemFranquiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFranquiaActionPerformed
         this.openView(new FranquiaView());
@@ -306,11 +292,10 @@ public class MainScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane frameInterno;
     private javax.swing.JMenuItem itemCategoria;
-    private javax.swing.JMenuItem itemCidade;
+    private javax.swing.JMenuItem itemCidadeEstado;
     private javax.swing.JMenuItem itemCliente;
     private javax.swing.JMenuItem itemContato;
     private javax.swing.JMenuItem itemCreditos;
-    private javax.swing.JMenuItem itemEstado;
     private javax.swing.JMenuItem itemFranquia;
     private javax.swing.JMenuItem itemFuncionario;
     private javax.swing.JMenuItem itemLanche;

@@ -158,7 +158,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
         btnCadastrarEstado = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Cidade");
+        setTitle("Cidades e Estados");
 
         jPanel1.setBackground(new java.awt.Color(207, 216, 220));
 
