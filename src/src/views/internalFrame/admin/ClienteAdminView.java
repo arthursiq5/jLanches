@@ -5,7 +5,6 @@
  */
 package src.views.internalFrame.admin;
 
-import src.views.internalFrame.*;
 import javax.swing.JOptionPane;
 import src.dao.CidadeDAO;
 import src.dao.ClienteDAO;

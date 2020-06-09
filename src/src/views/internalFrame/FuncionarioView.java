@@ -5,7 +5,6 @@
  */
 package src.views.internalFrame;
 
-import javax.swing.JOptionPane;
 import src.constants.Icons;
 import src.constants.SystemColors;
 import src.dao.CidadeDAO;
@@ -16,11 +15,6 @@ import src.dao.FuncionarioDAO;
 import src.helpers.ColorHelper;
 import src.helpers.ComboHelper;
 import src.helpers.IconHelper;
-import src.helpers.MessageHelper;
-import src.model.Cidade;
-import src.model.Cliente;
-import src.model.Contato;
-import src.model.Franquia;
 import src.model.Funcionario;
 import src.validators.testers.FuncionarioValidator;
 import src.validators.testers.PasswordValidator;

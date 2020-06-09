@@ -5,7 +5,6 @@
  */
 package src.validators;
 
-import src.helpers.MessageHelper;
 import src.helpers.ValidatorMessageHelper;
 import src.model.Franquia;
 

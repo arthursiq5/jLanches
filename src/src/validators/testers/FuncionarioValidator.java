@@ -6,7 +6,6 @@
 package src.validators.testers;
 
 import src.helpers.ValidatorMessageHelper;
-import src.model.Cliente;
 import src.model.Funcionario;
 import src.validators.BasicValidators;
 import src.validators.CpfCnpjUtils;

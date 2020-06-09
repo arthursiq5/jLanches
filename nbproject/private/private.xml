@@ -3,16 +3,53 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/arthur/projetos/jLanches/src/src/constants/SystemColors.java</file>
-            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/helpers/EstadoViewHelper.java</file>
-            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/helpers/CidadeViewHelper.java</file>
-            <file>file:/home/arthur/projetos/jLanches/src/src/model/views/CidadeViewModel.java</file>
-            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/EstadoView.java</file>
-            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/CidadeView.java</file>
-            <file>file:/home/arthur/projetos/jLanches/src/src/model/views/AbasDaTela.java</file>
-            <file>file:/home/arthur/projetos/jLanches/src/src/model/views/EstadoViewModel.java</file>
-            <file>file:/home/arthur/projetos/jLanches/src/src/constants/Icons.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/testers/ContatoValidator.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/ValidationAnswers.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/helpers/ValidatorMessageHelper.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/helpers/MessageType.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/dao/ClienteDAO.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/LanchesView.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/admin/FuncionarioAdminView.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/testers/FuncionarioValidator.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/views/LoginScreen.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/dao/FuncionarioDAO.java</file>
             <file>file:/home/arthur/projetos/jLanches/src/src/helpers/ViewHelper.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/helpers/ColorHelper.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/helpers/EstadoViewHelper.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/helpers/FrameHelper.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/dao/FranquiaDAO.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/testers/CidadeValidator.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/testers/PasswordValidator.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/CidadeView.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/views/extensionElements/ComboItem.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/dao/ContatoDAO.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/StringValidators.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/FuncionarioView.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/CpfCnpjUtils.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/ObjectValidator.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/views/MainScreen.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/dao/CidadeDAO.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/testers/CategoriaValidator.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/model/Cliente.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/model/Categoria.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/CategoriaView.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/admin/ClienteAdminView.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/dao/BDConnector.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/testers/LancheValidator.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/model/Cidade.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/BasicObjectValidator.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/FranquiaView.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/views/internalFrame/helpers/CidadeViewHelper.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/BasicValidators.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/FranquiaValidator.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/model/views/AbasDaTela.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/helpers/MessageHelper.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/testers/ClienteValidator.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/helpers/IconHelper.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/dao/EstadoDAO.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/helpers/ComboHelper.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/validators/testers/EstadoValidator.java</file>
+            <file>file:/home/arthur/projetos/jLanches/src/src/dao/CategoriaDAO.java</file>
         </group>
     </open-files>
 </project-private>

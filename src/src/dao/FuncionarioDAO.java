@@ -5,7 +5,6 @@
  */
 package src.dao;
 
-import src.dao.models.ModelDAO;
 import java.util.ArrayList;
 import src.model.Funcionario;
 import java.sql.*;
@@ -15,7 +14,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import src.dao.models.ModelWithComboDao;
 import src.helpers.MessageHelper;
-import src.model.Cliente;
 import src.views.extensionElements.ComboItem;
 
 /**

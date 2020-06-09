@@ -7,7 +7,6 @@ package src.validators.testers;
 
 import src.helpers.MessageHelper;
 import src.model.Cidade;
-import src.model.Estado;
 import src.validators.BasicValidators;
 import src.validators.ObjectValidator;
 import src.validators.ValidationAnswers;

@@ -15,7 +15,6 @@ import javax.swing.table.TableColumn;
 import src.dao.models.ModelWithComboDao;
 import src.helpers.MessageHelper;
 import src.model.Cidade;
-import src.model.Estado;
 import src.views.extensionElements.ComboItem;
 
 /**

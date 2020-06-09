@@ -7,12 +7,8 @@ package src.views.internalFrame;
 
 import javax.swing.JOptionPane;
 import src.dao.CidadeDAO;
-import src.dao.EstadoDAO;
 import src.dao.FranquiaDAO;
 import src.helpers.ComboHelper;
-import src.helpers.MessageHelper;
-import src.model.Cidade;
-import src.model.Estado;
 import src.model.Franquia;
 import src.validators.FranquiaValidator;
 import src.views.extensionElements.ComboItem;
@@ -23,7 +19,7 @@ import src.views.extensionElements.ComboItem;
  */
 public class FranquiaView extends javax.swing.JInternalFrame {
     
-    private String ativoInativo[] = {
+    private final String ativoInativo[] = {
         "/media/icons/icons8-selecionado-64.png",
         "/media/icons/icons8-cancelar-64.png"
     };

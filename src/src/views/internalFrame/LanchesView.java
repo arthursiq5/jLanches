@@ -8,17 +8,11 @@ package src.views.internalFrame;
 import javax.swing.JOptionPane;
 import src.constants.Icons;
 import src.dao.CategoriaDAO;
-import src.dao.CidadeDAO;
-import src.dao.EstadoDAO;
 import src.dao.LancheDAO;
 import src.helpers.ComboHelper;
 import src.helpers.IconHelper;
-import src.helpers.MessageHelper;
 import src.model.Categoria;
-import src.model.Cidade;
-import src.model.Estado;
 import src.model.Lanche;
-import src.validators.testers.CidadeValidator;
 import src.validators.testers.LancheValidator;
 import src.views.extensionElements.ComboItem;
 

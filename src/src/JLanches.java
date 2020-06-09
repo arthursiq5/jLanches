@@ -5,9 +5,7 @@
  */
 package src;
 
-import src.dao.BDConnector;
 import src.views.LoginScreen;
-import src.views.MainScreen;
 
 /**
  *

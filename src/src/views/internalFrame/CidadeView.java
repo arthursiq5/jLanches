@@ -5,12 +5,7 @@
  */
 package src.views.internalFrame;
 
-import javax.swing.JOptionPane;
-import src.dao.CidadeDAO;
 import src.dao.EstadoDAO;
-import src.helpers.ComboHelper;
-import src.model.Cidade;
-import src.model.Estado;
 import src.model.views.AbasDaTela;
 import src.model.views.CidadeViewModel;
 import src.model.views.EstadoViewModel;

@@ -14,7 +14,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import src.helpers.MessageHelper;
-import src.model.Contato;
 import src.views.extensionElements.ComboItem;
 
 /**

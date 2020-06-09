@@ -16,7 +16,6 @@ import javax.swing.table.TableColumn;
 import src.dao.models.ModelWithComboDao;
 import src.helpers.MessageHelper;
 import src.model.Cliente;
-import src.model.Estado;
 import src.views.extensionElements.ComboItem;
 
 /**

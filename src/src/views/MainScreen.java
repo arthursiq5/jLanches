@@ -7,7 +7,6 @@ package src.views;
 
 import src.views.internalFrame.CategoriaView;
 import src.views.internalFrame.ClienteView;
-import src.views.internalFrame.EstadoView;
 import src.views.internalFrame.ContatoView;
 import javax.swing.JInternalFrame;
 import src.helpers.FrameHelper;
