@@ -27,11 +27,23 @@ public class ConvertCoinHelper {
         }
     }
     
+    private static boolean isNumericString(String value){
+        return value.trim().equals("") 
+             || value.contains("^[a-Z]") 
+             || value.contains("^[a-zA-ZÁÂÃÀÇÉÊÍÓÔÕÚÜáâãàçéêíóôõúü]*$")
+             || value.equals(".")
+             || value.equals(",");
+    }
+    
     public static String convertAmericanToBrazilian(String value){
+        if(ConvertCoinHelper.isNumericString(value))
+            return "000,00";
         return ConvertCoinHelper.changeZeros(value).replace(".", ",").replace(" ", "");
     }
     
     public static String convertBrazilianToAmerican(String value){
+        if(ConvertCoinHelper.isNumericString(value))
+            return "000.00";
         return ConvertCoinHelper.changeZeros(value.replace(",", ".")).replace(" ", "");
     }
     
@@ -46,12 +58,8 @@ public class ConvertCoinHelper {
     }
     
     private static String changeZeros(String value){
-        System.out.println(value);
         String [] separatedValue = value.split("\\.");
 
-        System.out.println(separatedValue.length);
-        System.out.println(Arrays.toString(separatedValue));
-        
         if(separatedValue.length == 0)
             return "000.00";
 
