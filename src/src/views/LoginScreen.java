@@ -153,9 +153,11 @@ public class LoginScreen extends javax.swing.JFrame {
         String password = new String(this.inputPassword.getPassword());
         
         if(new FuncionarioDAO().autenticate(cpf, password)){
-            new MainScreen(
-                    new FuncionarioDAO().get(cpf)
-            ).setVisible(true);
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new MainScreen().setVisible(true);
+                }
+            });
             this.dispose();
         }else{
             MessageHelper.createWarningMessage("Erro", "Login ou senha inválidos");
@@ -187,13 +189,12 @@ public class LoginScreen extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginScreen().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new LoginScreen().setVisible(true);
         });
     }
 
