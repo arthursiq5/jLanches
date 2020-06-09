@@ -11,9 +11,11 @@ import src.dao.EstadoDAO;
 import src.helpers.ComboHelper;
 import src.model.Cidade;
 import src.model.Estado;
+import src.model.views.AbasDaTela;
 import src.model.views.CidadeViewModel;
 import src.model.views.EstadoViewModel;
 import src.views.internalFrame.helpers.CidadeViewHelper;
+import src.views.internalFrame.helpers.EstadoViewHelper;
 
 /**
  *
@@ -31,9 +33,20 @@ public class CidadeView extends javax.swing.JInternalFrame {
         initComponents();
         this.initCidadeViewHelper();
         this.initEstadoViewHelper();
-        CidadeViewHelper.updateTable(this.cidadeView);
+        this.renderView();
         this.initStyle();
         this.fillSelectEstado();
+    }
+    
+    private void renderView(){
+        CidadeViewHelper.updateTable(this.cidadeView);
+        EstadoViewHelper.updateTable(this.estadoView);
+        
+        CidadeViewHelper.resetInputs(this.cidadeView);
+        EstadoViewHelper.resetInputs(this.estadoView);
+        
+        CidadeViewHelper.initButtons(this.cidadeView);
+        EstadoViewHelper.initButtons(this.estadoView);
     }
     
     private void initCidadeViewHelper(){
@@ -43,11 +56,17 @@ public class CidadeView extends javax.swing.JInternalFrame {
         this.cidadeView.btnExcluir = this.btnExcluirCidade;
         this.cidadeView.btnLimparBusca = this.btnLimparBuscaCidades;
         this.cidadeView.btnPesquisar = this.btnPesquisarCidades;
+        this.cidadeView.btnLimparFormulario = this.btnLimparFormularioCidade;
+        this.cidadeView.btnCadastrar = this.btnCadastrarCidade;
         
         this.cidadeView.campoCidadeId = this.campoCidadeId;
         this.cidadeView.campoCidadeNome = this.campoCidadeNome;
         
         this.cidadeView.campoPesquisarCidades = this.campoPesquisarCidades;
+        
+        this.cidadeView.abasDoSistema = new AbasDaTela(abasDoSistema, 0, 1);
+        
+        this.cidadeView.selectEstado = this.selectEstado;
         
         this.cidadeView.table = this.tableCidades;
     }
@@ -60,6 +79,15 @@ public class CidadeView extends javax.swing.JInternalFrame {
         this.estadoView.btnLimparBusca = this.btnLimparBuscaEstados;
         this.estadoView.btnPesquisar = this.btnPesquisarEstados;
         
+        this.estadoView.btnCadastrar = this.btnCadastrarEstado;
+        this.estadoView.btnLimparFormulario = this.btnLimparFormularioEstado;
+        
+        this.estadoView.campoPesquisar = this.campoPesquisarEstados;
+        this.estadoView.campoId = this.campoEstadoId;
+        this.estadoView.campoNome = this.campoEstadoNome;
+        this.estadoView.campoSigla = this.campoEstadoSigla;
+        
+        this.estadoView.abasDoSistema = new AbasDaTela(abasDoSistema, 2, 3);
         
         this.estadoView.table = this.tableEstados;
     }
@@ -73,7 +101,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
     }
     
     private void resetInputs(){
-        CidadeViewHelper.resetCidadeInputs(this.cidadeView);
+        CidadeViewHelper.resetInputs(this.cidadeView);
     }
 
     /**
@@ -109,7 +137,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
         selectEstado = new javax.swing.JComboBox<>();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        campoPesquisarEstados = new javax.swing.JTextField();
         btnLimparBuscaEstados = new javax.swing.JButton();
         btnPesquisarEstados = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -117,6 +145,17 @@ public class CidadeView extends javax.swing.JInternalFrame {
         jPanel12 = new javax.swing.JPanel();
         btnEditarEstado = new javax.swing.JButton();
         btnExcluirEstado = new javax.swing.JButton();
+        jPanel13 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        campoEstadoId = new javax.swing.JTextField();
+        jPanel16 = new javax.swing.JPanel();
+        campoEstadoSigla = new javax.swing.JTextField();
+        jPanel17 = new javax.swing.JPanel();
+        campoEstadoNome = new javax.swing.JTextField();
+        jPanel18 = new javax.swing.JPanel();
+        btnLimparFormularioEstado = new javax.swing.JButton();
+        btnCadastrarEstado = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Cidade");
@@ -329,7 +368,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoCidadeNome, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                .addComponent(campoCidadeNome, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -352,7 +391,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoCidadeId, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                .addComponent(campoCidadeId)
                 .addContainerGap())
         );
 
@@ -374,7 +413,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(selectEstado)
+                .addComponent(selectEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -400,9 +439,9 @@ public class CidadeView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -431,10 +470,15 @@ public class CidadeView extends javax.swing.JInternalFrame {
         jPanel11.setBackground(new java.awt.Color(207, 216, 220));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Pesquisar"));
 
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jTextField1.setText("jTextField1");
+        campoPesquisarEstados.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoPesquisarEstados.setText("jTextField1");
 
         btnLimparBuscaEstados.setText("Limpar");
+        btnLimparBuscaEstados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparBuscaEstadosActionPerformed(evt);
+            }
+        });
 
         btnPesquisarEstados.setText("Ir");
 
@@ -444,7 +488,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoPesquisarEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLimparBuscaEstados, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -457,7 +501,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnPesquisarEstados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(campoPesquisarEstados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                     .addComponent(btnLimparBuscaEstados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -479,9 +523,19 @@ public class CidadeView extends javax.swing.JInternalFrame {
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
 
         btnEditarEstado.setText("Editar");
+        btnEditarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarEstadoActionPerformed(evt);
+            }
+        });
 
         btnExcluirEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-excluir-64.png"))); // NOI18N
         btnExcluirEstado.setText("Excluir");
+        btnExcluirEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirEstadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -522,13 +576,172 @@ public class CidadeView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         abasDoSistema.addTab("Mostrar estados", jPanel10);
+
+        jPanel13.setBackground(new java.awt.Color(207, 216, 220));
+
+        jPanel14.setBackground(new java.awt.Color(207, 216, 220));
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Cadastrar novo estado"));
+
+        jPanel15.setBackground(new java.awt.Color(207, 216, 220));
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "ID"));
+
+        campoEstadoId.setEditable(false);
+        campoEstadoId.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoEstadoId.setText("jTextField2");
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(campoEstadoId)
+                .addContainerGap())
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(campoEstadoId, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel16.setBackground(new java.awt.Color(207, 216, 220));
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Sigla*"));
+
+        campoEstadoSigla.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoEstadoSigla.setText("jTextField3");
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(campoEstadoSigla)
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(campoEstadoSigla, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel17.setBackground(new java.awt.Color(207, 216, 220));
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Nome*"));
+
+        campoEstadoNome.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoEstadoNome.setText("jTextField4");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(campoEstadoNome)
+                .addContainerGap())
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(campoEstadoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel18.setBackground(new java.awt.Color(207, 216, 220));
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
+
+        btnLimparFormularioEstado.setText("Limpar");
+        btnLimparFormularioEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparFormularioEstadoActionPerformed(evt);
+            }
+        });
+
+        btnCadastrarEstado.setText("Cadastrar");
+        btnCadastrarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarEstadoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnLimparFormularioEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCadastrarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCadastrarEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                    .addComponent(btnLimparFormularioEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        abasDoSistema.addTab("Cadastrar estados", jPanel13);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -540,16 +753,14 @@ public class CidadeView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(abasDoSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(abasDoSistema)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarCidadeActionPerformed
-        CidadeViewHelper.cadastrarCidade(this.cidadeView);
+        CidadeViewHelper.cadastrar(this.cidadeView);
     }//GEN-LAST:event_btnCadastrarCidadeActionPerformed
 
     private void btnLimparFormularioCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparFormularioCidadeActionPerformed
@@ -557,48 +768,47 @@ public class CidadeView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparFormularioCidadeActionPerformed
 
     private void btnExcluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCidadeActionPerformed
-        Cidade cidade = new Cidade();
-        cidade.id = Integer.parseInt(
-                String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 0)));
-        cidade.nome = String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 1));
-        
-        if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
-            new CidadeDAO().delete(cidade);
-            CidadeViewHelper.updateTable(this.cidadeView);
-        }
+        CidadeViewHelper.delete(this.cidadeView);
     }//GEN-LAST:event_btnExcluirCidadeActionPerformed
 
     private void btnEditarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarCidadeActionPerformed
-        Cidade cidade = new Cidade();
-        cidade.id = Integer.parseInt(
-                String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 0)));
-        cidade.nome = String.valueOf(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 1));
-        //Estado estado = new EstadoDAO().getBySigla(
-        //        String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1)));
-        Estado estado = (Estado) (this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 2));
-        cidade.estado_id = estado.id;
-        
-        this.campoCidadeId.setText(cidade.id + "");
-        this.campoCidadeNome.setText(cidade.nome);
-        
-        ComboHelper.setIndex(this.selectEstado, cidade.estado_id);
-        
-        this.abasDoSistema.setSelectedIndex(1);
+        CidadeViewHelper.update(this.cidadeView);
     }//GEN-LAST:event_btnEditarCidadeActionPerformed
 
     private void btnPesquisarCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarCidadesActionPerformed
-        new CidadeDAO().fillTable(this.tableCidades, this.campoPesquisarCidades.getText());
+        CidadeViewHelper.search(this.cidadeView);
     }//GEN-LAST:event_btnPesquisarCidadesActionPerformed
     
     private void btnLimparBuscaCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaCidadesActionPerformed
-        this.campoPesquisarCidades.setText("");
+        CidadeViewHelper.resetInputs(this.cidadeView);
         CidadeViewHelper.updateTable(this.cidadeView);
     }//GEN-LAST:event_btnLimparBuscaCidadesActionPerformed
+
+    private void btnEditarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEstadoActionPerformed
+        EstadoViewHelper.editar(this.estadoView);
+    }//GEN-LAST:event_btnEditarEstadoActionPerformed
+
+    private void btnCadastrarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarEstadoActionPerformed
+        EstadoViewHelper.cadastrarEstado(this.estadoView);
+    }//GEN-LAST:event_btnCadastrarEstadoActionPerformed
+
+    private void btnLimparFormularioEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparFormularioEstadoActionPerformed
+        EstadoViewHelper.resetInputs(this.estadoView);
+    }//GEN-LAST:event_btnLimparFormularioEstadoActionPerformed
+
+    private void btnLimparBuscaEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaEstadosActionPerformed
+        EstadoViewHelper.resetInputs(this.estadoView);
+    }//GEN-LAST:event_btnLimparBuscaEstadosActionPerformed
+
+    private void btnExcluirEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirEstadoActionPerformed
+        EstadoViewHelper.excluir(this.estadoView);
+    }//GEN-LAST:event_btnExcluirEstadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;
     private javax.swing.JButton btnCadastrarCidade;
+    private javax.swing.JButton btnCadastrarEstado;
     private javax.swing.JButton btnEditarCidade;
     private javax.swing.JButton btnEditarEstado;
     private javax.swing.JButton btnExcluirCidade;
@@ -606,15 +816,26 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimparBuscaCidades;
     private javax.swing.JButton btnLimparBuscaEstados;
     private javax.swing.JButton btnLimparFormularioCidade;
+    private javax.swing.JButton btnLimparFormularioEstado;
     private javax.swing.JButton btnPesquisarCidades;
     private javax.swing.JButton btnPesquisarEstados;
     private javax.swing.JTextField campoCidadeId;
     private javax.swing.JTextField campoCidadeNome;
+    private javax.swing.JTextField campoEstadoId;
+    private javax.swing.JTextField campoEstadoNome;
+    private javax.swing.JTextField campoEstadoSigla;
     private javax.swing.JTextField campoPesquisarCidades;
+    private javax.swing.JTextField campoPesquisarEstados;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -625,7 +846,6 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> selectEstado;
     private javax.swing.JTable tableCidades;
     private javax.swing.JTable tableEstados;

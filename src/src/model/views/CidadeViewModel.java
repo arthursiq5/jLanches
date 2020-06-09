@@ -17,7 +17,7 @@ import javax.swing.JTextField;
  */
 public class CidadeViewModel {
     
-    public JTabbedPane abasDoSistema;
+    public AbasDaTela abasDoSistema;
     
     // buttons
     public JButton btnEditar;

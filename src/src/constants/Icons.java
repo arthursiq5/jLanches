@@ -18,7 +18,9 @@ public enum Icons {
     EDITAR_64("icons8-editar-arquivo-64"),
     EXCLUIR_64("icons8-excluir-64"),
     APAGAR_16("icons8-apagador-16"),
-    PESQUISAR_16("icons8-pesquisar-16");
+    APAGAR_64("icons8-apagador-64"),
+    PESQUISAR_16("icons8-pesquisar-16"),
+    CHECK_64("icons8-selecionado-64");
     
     
     String path;

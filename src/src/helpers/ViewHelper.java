@@ -7,15 +7,30 @@ package src.helpers;
 
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
+import javax.swing.JTabbedPane;
 import javax.swing.border.BevelBorder;
 import src.constants.Icons;
 import src.constants.SystemColors;
+import src.model.views.AbasDaTela;
 
 /**
  *
  * @author arthur
  */
 public class ViewHelper {
+    
+    public static void changeTab(JTabbedPane abasDoSistema, int idAba){
+        abasDoSistema.setSelectedIndex(idAba);
+    }
+    
+    public static void openFormTab(AbasDaTela abasDoSistema){
+        ViewHelper.changeTab(abasDoSistema.PAINEL, abasDoSistema.FORM_ID);
+    }
+    
+    public static void openViewTab(AbasDaTela abasDoSistema){
+        ViewHelper.changeTab(abasDoSistema.PAINEL, abasDoSistema.VIEW_ID);
+    }
+    
     public static void setButtonStyle(JButton button, SystemColors color, Icons icon){
         button.setBackground(ColorHelper.getColor(color));
         button.setIcon(IconHelper.getPngIcon(icon.getPath()));
@@ -38,6 +53,14 @@ public class ViewHelper {
         ViewHelper.setButtonStyle(button, SystemColors.DEFAULT_BACKEND, Icons.PESQUISAR_16);
     }
     
+    public static void setSubmitButtonStyle(JButton button){
+        ViewHelper.setButtonStyle(button, SystemColors.CONFIRM_GREEN, Icons.CHECK_64);
+    }
+    
+    public static void setClearFormButtonStyle(JButton button){
+        ViewHelper.setButtonStyle(button, SystemColors.ERASE_BLUE, Icons.APAGAR_64);
+    }
+    
     public static void initButtons(
         JButton btnEditar,
         JButton btnExcluir,
@@ -48,5 +71,13 @@ public class ViewHelper {
         ViewHelper.setDeleteButtonStyle(btnExcluir);
         ViewHelper.setSearchButtonStyle(btnPesquisar);
         ViewHelper.setClearSearchButtonStyle(btnLimpar);
+    }
+    
+    public static void initFormButtons(
+            JButton btnLimpar,
+            JButton btnCadastrar
+    ){
+        ViewHelper.setSubmitButtonStyle(btnCadastrar);
+        ViewHelper.setClearFormButtonStyle(btnLimpar);
     }
 }

@@ -5,9 +5,12 @@
  */
 package src.views.internalFrame.helpers;
 
+import javax.swing.JOptionPane;
 import src.dao.CidadeDAO;
+import src.helpers.ComboHelper;
 import src.helpers.ViewHelper;
 import src.model.Cidade;
+import src.model.Estado;
 import src.model.views.CidadeViewModel;
 import src.validators.testers.CidadeValidator;
 import src.views.extensionElements.ComboItem;
@@ -26,11 +29,17 @@ public class CidadeViewHelper {
                 cidadeView.btnPesquisar,
                 cidadeView.btnLimparBusca
         );
+        
+        ViewHelper.initFormButtons(
+                cidadeView.btnLimparFormulario,
+                cidadeView.btnCadastrar
+        );
     }
     
-    public static void resetCidadeInputs(
+    public static void resetInputs(
             CidadeViewModel cidadeView
     ){
+        cidadeView.campoPesquisarCidades.setText("");
         cidadeView.campoCidadeId.setText("");
         cidadeView.campoPesquisarCidades.setText("");
         cidadeView.campoCidadeNome.setText("");
@@ -40,7 +49,11 @@ public class CidadeViewHelper {
         new CidadeDAO().fillTable(cidadeView.table, "");
     }
     
-    public static void cadastrarCidade(CidadeViewModel cidadeView){
+    public static void search(CidadeViewModel cidadeView){
+        new CidadeDAO().fillTable(cidadeView.table, cidadeView.campoPesquisarCidades.getText());
+    }
+    
+    public static void cadastrar(CidadeViewModel cidadeView){
         Cidade cidade = new Cidade();
         cidade.id = (cidadeView.campoCidadeId.getText().equals("")) ? 0 : Integer.parseInt(cidadeView.campoCidadeId.getText());
         cidade.nome = cidadeView.campoCidadeNome.getText();
@@ -64,7 +77,37 @@ public class CidadeViewHelper {
         
         CidadeViewHelper.updateTable(cidadeView);
         
-        CidadeViewHelper.resetCidadeInputs(cidadeView);
-        cidadeView.abasDoSistema.setSelectedIndex(0);
+        CidadeViewHelper.resetInputs(cidadeView);
+        ViewHelper.openViewTab(cidadeView.abasDoSistema);
+    }
+    
+    public static void update(CidadeViewModel cidadeView){
+        Cidade cidade = new Cidade();
+        cidade.id = Integer.parseInt(
+                String.valueOf(cidadeView.table.getValueAt(cidadeView.table.getSelectedRow(), 0)));
+        cidade.nome = String.valueOf(cidadeView.table.getValueAt(cidadeView.table.getSelectedRow(), 1));
+        
+        Estado estado = (Estado) (cidadeView.table.getValueAt(cidadeView.table.getSelectedRow(), 2));
+        
+        cidade.estado_id = estado.id;
+        
+        cidadeView.campoCidadeId.setText(cidade.id + "");
+        cidadeView.campoCidadeNome.setText(cidade.nome);
+        
+        ComboHelper.setIndex(cidadeView.selectEstado, cidade.estado_id);
+        
+        ViewHelper.openFormTab(cidadeView.abasDoSistema);
+    }
+    
+    public static void delete(CidadeViewModel cidadeView){
+        Cidade cidade = new Cidade();
+        cidade.id = Integer.parseInt(
+                String.valueOf(cidadeView.table.getValueAt(cidadeView.table.getSelectedRow(), 0)));
+        cidade.nome = String.valueOf(cidadeView.table.getValueAt(cidadeView.table.getSelectedRow(), 1));
+        
+        if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
+            new CidadeDAO().delete(cidade);
+            CidadeViewHelper.updateTable(cidadeView);
+        }
     }
 }
