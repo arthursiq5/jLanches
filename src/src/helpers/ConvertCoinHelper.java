@@ -29,14 +29,14 @@ public class ConvertCoinHelper {
     
     public static String convertAmericanToBrazilian(String value){
         if(!FormatHelpers.isNumeric(value))
-            return "000,00";
-        return ConvertCoinHelper.changeZeros(value).replace(".", ",").replace(" ", "");
+            return "0,00";
+        return (ConvertCoinHelper.convertAmericanToDouble(value) + "").replace(".", ",").replace(" ", "");
     }
     
     public static String convertBrazilianToAmerican(String value){
-        if(!FormatHelpers.isNumeric(value))
-            return "000.00";
-        return ConvertCoinHelper.changeZeros(value.replace(",", ".")).replace(" ", "");
+        if(!FormatHelpers.isNumeric(value.replace(",", ".").replace(" ", "")))
+            return "0.00";
+        return (ConvertCoinHelper.convertAmericanToDouble(value.replace(",", ".")) + "").replace(" ", "");
     }
     
     public static double convertAmericanToDouble(String value){
