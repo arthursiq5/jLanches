@@ -27,22 +27,14 @@ public class ConvertCoinHelper {
         }
     }
     
-    private static boolean isNumericString(String value){
-        return value.trim().equals("") 
-             || value.contains("^[a-Z]") 
-             || value.contains("^[a-zA-ZÁÂÃÀÇÉÊÍÓÔÕÚÜáâãàçéêíóôõúü]*$")
-             || value.equals(".")
-             || value.equals(",");
-    }
-    
     public static String convertAmericanToBrazilian(String value){
-        if(ConvertCoinHelper.isNumericString(value))
+        if(!FormatHelpers.isNumeric(value))
             return "000,00";
         return ConvertCoinHelper.changeZeros(value).replace(".", ",").replace(" ", "");
     }
     
     public static String convertBrazilianToAmerican(String value){
-        if(ConvertCoinHelper.isNumericString(value))
+        if(!FormatHelpers.isNumeric(value))
             return "000.00";
         return ConvertCoinHelper.changeZeros(value.replace(",", ".")).replace(" ", "");
     }
