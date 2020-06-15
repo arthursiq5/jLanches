@@ -51,7 +51,7 @@ CREATE TABLE lanche(
 	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
     ingredientes TEXT,
-    valor DECIMAL(3, 2) NOT NULL DEFAULT '0.0',
+    valor DECIMAL(7, 2) NOT NULL DEFAULT '0.0',
     disponivel BOOLEAN DEFAULT true,
     categoria_id BIGINT UNSIGNED NOT NULL,
     CONSTRAINT pk_lanche PRIMARY KEY(id),
@@ -112,9 +112,9 @@ CREATE TABLE lanche_pedido(
     lanche_id BIGINT UNSIGNED NOT NULL,
     pedido_id BIGINT UNSIGNED NOT NULL,
     quantidade BIGINT UNSIGNED NOT NULL,
-    valor DECIMAL(3, 2) DEFAULT '0',
-    desconto DECIMAL(3, 2) DEFAULT '0',
-    acrescimo DECIMAL(3, 2) DEFAULT '0',
+    valor DECIMAL(10, 2) DEFAULT '0',
+    desconto DECIMAL(7, 2) DEFAULT '0',
+    acrescimo DECIMAL(7, 2) DEFAULT '0',
     modificacoes VARCHAR(255),
     CONSTRAINT pk_lanchepedido PRIMARY KEY (id),
     CONSTRAINT fk_lanchepedido_lanche FOREIGN KEY(lanche_id)
@@ -122,3 +122,5 @@ CREATE TABLE lanche_pedido(
 	CONSTRAINT fk_lanchepedido_pedido FOREIGN KEY(pedido_id)
 		REFERENCES pedido(id)
 ) DEFAULT CHARSET = utf8mb4;
+
+drop database jlanches;
