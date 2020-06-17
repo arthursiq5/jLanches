@@ -5,6 +5,7 @@
  */
 package src.helpers;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
 import javax.swing.JTabbedPane;
@@ -86,5 +87,12 @@ public class ViewHelper {
     ){
         ViewHelper.setSubmitButtonStyle(btnCadastrar);
         ViewHelper.setClearFormButtonStyle(btnLimpar);
+    }
+    
+    public static void eventNumberKeyTyped(KeyEvent evt){
+        if(evt.getKeyChar() == ',') return;
+        
+        if(!FormatHelpers.isNumeric((evt.getKeyChar() + "").replace(",", ".")))
+            evt.consume();
     }
 }
