@@ -13,6 +13,7 @@ import javax.swing.border.BevelBorder;
 import src.constants.Icons;
 import src.constants.SystemColors;
 import src.model.views.AbasDaTela;
+import src.model.views.NumberField;
 
 /**
  *
@@ -89,10 +90,16 @@ public class ViewHelper {
         ViewHelper.setClearFormButtonStyle(btnLimpar);
     }
     
-    public static void eventNumberKeyTyped(KeyEvent evt){
-        if(evt.getKeyChar() == ',') return;
+    public static void eventNumberKeyTyped(NumberField numberField){
+        if(numberField.evento.getKeyChar() == '.') numberField.evento.consume();;
+        if(numberField.evento.getKeyChar() == ',')
+            if(FormatHelpers.charExists(numberField.campo.getText(), numberField.evento.getKeyChar())){
+                numberField.evento.consume();
+            }else{
+                return;
+            }
         
-        if(!FormatHelpers.isNumeric((evt.getKeyChar() + "").replace(",", ".")))
-            evt.consume();
+        if(!FormatHelpers.isNumeric((numberField.evento.getKeyChar() + "").replace(",", ".")))
+            numberField.evento.consume();
     }
 }
