@@ -304,8 +304,6 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
                     + "cpf LIKE '" + cpf +"' AND "
                     + "senha LIKE MD5('" + senha +"')";
             
-            System.out.println("SQL: " + sql);
-            
             this.resultadoQuery = statement.executeQuery(sql);
             
             return this.resultadoQuery.next();
