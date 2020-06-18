@@ -82,7 +82,35 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
 
     @Override
     public Categoria get(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Categoria categoria = new Categoria();
+        
+        try{
+            Statement statement = BDConnector.getInstance().getConnection().createStatement();
+            String sql = ""
+                    + "SELECT * "
+                    + "FROM categoria "
+                    + "WHERE "
+                    + "id LIKE '"+ id +"'";
+            
+            System.out.println(sql);
+            
+            this.resultadoQuery = statement.executeQuery(sql);
+            
+            this.resultadoQuery.next();
+            
+            categoria.id = this.resultadoQuery.getInt("id");
+            categoria.nome = this.resultadoQuery.getString("nome");
+            
+        }catch(Exception e){
+            categoria.id = 0;
+            categoria.nome = "";
+            
+            MessageHelper.createErrorMessage("Erro", "Erro ao puxar categorias do banco\n"
+                    + "Por favor, tente novamente mais parte");
+            System.err.println("Erro: \n" + e);
+        }
+        
+        return categoria;
     }
     
     public void fillTable(JTable table, String criteria){

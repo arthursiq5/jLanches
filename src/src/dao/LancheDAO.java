@@ -32,11 +32,13 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
             
-            String sql = "INSERT INTO lanche (nome, ingredientes, valor, disponivel, categoria_id) VALUES "+
+            String sql = "" 
+                + "INSERT INTO lanche (nome, ingredientes, valor, disponivel, categoria_id) "
+                    +"VALUES "+
                     " ("
                         + "'" + objeto.nome +"', "
                         + "'" + objeto.ingredientes  + "', "
-                        + "'" + objeto.valor  + "', "
+                        + "" + objeto.valor  + ", "
                         + ""  + objeto.disponivel  + ", "
                         + "'" + objeto.categoria_id  + "' "
                     + ")";
@@ -127,7 +129,7 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
         } catch (Exception e) {
             MessageHelper.createWarningMessage(
                     "Aviso", 
-                    "Houveram problemas ao recuperar os estados do banco.\n"
+                    "Houveram problemas ao recuperar os lanches do banco.\n"
                   + "Por favor, tente novamente mais tarde"
             );
             System.err.println("Erro: \n" + e);
@@ -150,8 +152,7 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
                 ? "" 
                 : ("WHERE "
                 + "UCASE(nome) LIKE UCASE('%" + criteria + "%') OR"
-                + "UCASE(cpf) LIKE UCASE('%" + criteria + "%') OR"
-                + "UCASE(endereco) LIKE UCASE('%" + criteria + "%') OR"
+                + "UCASE(ingredientes) LIKE UCASE('%" + criteria + "%') OR"
                 + "");
         
         try {
@@ -160,7 +161,7 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
                                     .createStatement()
                                     .executeQuery(""
                                             + "SELECT count(*) "
-                                            + "FROM cliente "
+                                            + "FROM lanche "
                                             + like
                                     );
             
@@ -168,7 +169,7 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
             
             dadosTabela = new Object[this.resultadoQuery.getInt(1)][6];
         } catch (Exception e) {
-            MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de lanches do banco");
+            MessageHelper.createErrorMessage("Erro", "Erro ao puxar quantidade de lanches do banco");
             System.err.println("Erro: \n" + e);
         }
         
@@ -178,10 +179,15 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
                                     .createStatement()
                                     .executeQuery(""
                                             + "SELECT * "
-                                            + "FROM cliente "
+                                            + "FROM lanche "
                                             + like
                                     );
             int line = 0;
+            System.out.println(""
+                                            + "SELECT * "
+                                            + "FROM lanche "
+                                            + like
+                                    );
             while(this.resultadoQuery.next()){
                 Lanche lanche = this.queryToLanche();
             
@@ -239,19 +245,14 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
                     .getConnection()
                     .createStatement()
                     .executeQuery("" +
-                            "SELECT * FROM cliente"
+                            "SELECT * FROM lanche"
                     );
             if(this.resultadoQuery.isBeforeFirst()){
                 while(this.resultadoQuery.next()){
-                    Cliente cliente = new Cliente();
-                    cliente.cpf = this.resultadoQuery.getString("cpf");
-                    cliente.nome = this.resultadoQuery.getString("nome");
-                    cliente.endereco = this.resultadoQuery.getString("endereco");
-                    cliente.cidade_id = this.resultadoQuery.getInt("cidade_id");
-                    cliente.contato_id = this.resultadoQuery.getInt("contato_id");
+                    Lanche cliente = this.queryToLanche();
                     item = new ComboItem();
                     
-                    item.cpf = cliente.cpf;
+                    item.id = cliente.id;
                     item.descricao = cliente.toString();
             
                     combo.addItem(item);
