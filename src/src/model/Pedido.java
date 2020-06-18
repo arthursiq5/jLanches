@@ -12,6 +12,7 @@ import java.util.Map;
 import src.constants.FormaDePagamento;
 import src.dao.ClienteDAO;
 import src.dao.LancheDAO;
+import src.helpers.DateHelper;
 /**
  *
  * @author arthur
@@ -35,6 +36,7 @@ public class Pedido {
     public String toString(){
         return "Pedido do cliente"
                 + new ClienteDAO().get(this.cliente_cpf).nome
-                + " feito no dia ";
+                + " feito no dia "
+                + DateHelper.dateToString(this.data);
     }
 }
