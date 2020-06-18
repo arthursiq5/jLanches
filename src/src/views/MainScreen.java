@@ -16,6 +16,7 @@ import src.views.internalFrame.CreditosView;
 import src.views.internalFrame.FranquiaView;
 import src.views.internalFrame.FuncionarioView;
 import src.views.internalFrame.LanchesView;
+import src.views.internalFrame.PedidoView;
 import src.views.internalFrame.admin.ClienteAdminView;
 import src.views.internalFrame.admin.FuncionarioAdminView;
 
@@ -258,7 +259,7 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_itemFranquiaActionPerformed
 
     private void itemPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPedidoActionPerformed
-        // TODO add your handling code here:
+        this.openView(new PedidoView());
     }//GEN-LAST:event_itemPedidoActionPerformed
 
     private void itemLancheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemLancheActionPerformed
