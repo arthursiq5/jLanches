@@ -34,7 +34,7 @@ public class AddItemPedido extends javax.swing.JFrame {
     
     public void generateAddItemPedido(Pedido pedido){
         this.addItemPedido = new AddItemPedidoModel();
-        this.addItemPedido.itens = pedido.itens;
+        //this.addItemPedido.itens = pedido.itens;
         this.addItemPedido.pedido_id = pedido.id;
         
         this.addItemPedido.btnAdicionar = this.btnAdicionar;
