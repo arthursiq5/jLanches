@@ -10,11 +10,16 @@ import src.constants.Icons;
 import src.dao.CategoriaDAO;
 import src.dao.LancheDAO;
 import src.helpers.ComboHelper;
+import src.helpers.FormatHelpers;
 import src.helpers.IconHelper;
+import src.helpers.ViewHelper;
 import src.model.Categoria;
 import src.model.Lanche;
+import src.model.views.LancheViewModel;
+import src.model.views.NumberField;
 import src.validators.testers.LancheValidator;
 import src.views.extensionElements.ComboItem;
+import src.views.internalFrame.helpers.LancheViewHelper;
 
 /**
  *
@@ -22,34 +27,41 @@ import src.views.extensionElements.ComboItem;
  */
 public class LanchesView extends javax.swing.JInternalFrame {
     
-    private boolean disponivel;
+    private LancheViewModel lancheView;
 
     /**
      * Creates new form EstadoView
      */
     public LanchesView() {
         initComponents();
-        this.updateTable();
-        this.fillSelectEstado();
-        disponivel = true;
+        this.initLancheViewModel();
+        LancheViewHelper.initLanches(this.lancheView);
     }
     
-    private void fillSelectEstado(){
-        new CategoriaDAO().fillCombo(this.selectCategoria);
-    }
     
-    private void updateTable(){
-        new LancheDAO().fillTable(this.tableCidades, "");
-    }
-    
-    private void resetInputs(){
-        this.campoId.setText("");
-        this.campoPesquisar.setText("");
-        this.campoNome.setText("");
-    }
-    
-    private Lanche getItemFromTable(){
-        return (Lanche)(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 1));
+    private void initLancheViewModel(){
+        this.lancheView = new LancheViewModel();
+        
+        this.lancheView.abasDoSistema = this.abasDoSistema;
+        
+        this.lancheView.disponivel = true;
+        
+        this.lancheView.btnCadastrar = this.btnCadastrar;
+        this.lancheView.btnEditar = this.btnEditar;
+        this.lancheView.btnExcluir = this.btnExcluir;
+        this.lancheView.btnLimpar = this.btnLimpar;
+        this.lancheView.btnLimparBusca = this.btnLimparBusca;
+        this.lancheView.btnPesquisar = this.btnPesquisar;
+        
+        this.lancheView.campoId = this.campoId;
+        this.lancheView.campoIngredientes = this.campoIngredientes;
+        this.lancheView.campoNome = this.campoNome;
+        this.lancheView.campoPesquisar = this.campoPesquisar;
+        this.lancheView.campoValor = this.campoValor;
+        
+        this.lancheView.tableLanches = this.tableLanches;
+        
+        this.lancheView.selectCategoria = this.selectCategoria;
     }
 
     /**
@@ -68,7 +80,7 @@ public class LanchesView extends javax.swing.JInternalFrame {
         btnPesquisar = new javax.swing.JButton();
         btnLimparBusca = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableCidades = new javax.swing.JTable();
+        tableLanches = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -89,7 +101,7 @@ public class LanchesView extends javax.swing.JInternalFrame {
         jPanel11 = new javax.swing.JPanel();
         btnAtivo = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
-        campoValor = new javax.swing.JFormattedTextField();
+        campoValor = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Lanches");
@@ -142,8 +154,8 @@ public class LanchesView extends javax.swing.JInternalFrame {
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        tableCidades.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tableCidades.setModel(new javax.swing.table.DefaultTableModel(
+        tableLanches.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tableLanches.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -162,7 +174,7 @@ public class LanchesView extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableCidades);
+        jScrollPane1.setViewportView(tableLanches);
 
         jPanel3.setBackground(new java.awt.Color(207, 216, 220));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
@@ -403,8 +415,15 @@ public class LanchesView extends javax.swing.JInternalFrame {
         jPanel12.setBackground(new java.awt.Color(207, 216, 220));
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Valor*"));
 
-        campoValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###,##"))));
-        campoValor.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoValor.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        campoValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoValorKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoValorKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -505,83 +524,40 @@ public class LanchesView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Lanche lanche = new Lanche();
-        lanche.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
-        lanche.nome = this.campoNome.getText();
-        lanche.valor = this.campoValor.getText().replaceAll(",", ".");
-        lanche.disponivel = this.disponivel;
-        lanche.ingredientes = this.campoIngredientes.getText();
-        
-        ComboItem categoria = (ComboItem) this.selectCategoria.getSelectedItem();
-        
-        lanche.categoria_id = categoria.id;
-        
-        if(lanche.id == 0){
-            if(LancheValidator.insert(lanche)){
-                new LancheDAO().save(lanche);
-            }else{
-                return;
-            }
-        }else{
-            if(LancheValidator.update(lanche)){
-                new LancheDAO().update(lanche);
-            }else{
-                return;
-            }
-        }
-        this.updateTable();
-        this.resetInputs();
-        this.abasDoSistema.setSelectedIndex(0);
+        LancheViewHelper.insert(this.lancheView);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        this.resetInputs();
+        LancheViewHelper.resetInputs(this.lancheView);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        Lanche lanche = (Lanche)(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 0));
-        
-        if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
-            new LancheDAO().delete(lanche);
-            this.updateTable();
-        }
+        LancheViewHelper.delete(this.lancheView);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Lanche lanche =  this.getItemFromTable();
-        
-        Categoria categoria = (Categoria)(this.tableCidades.getValueAt(this.tableCidades.getSelectedRow(), 5));
-        
-        this.campoId.setText(lanche.id + "");
-        this.campoNome.setText(lanche.nome);
-        
-        ComboHelper.setIndex(this.selectCategoria, lanche.categoria_id);
-        
-        this.abasDoSistema.setSelectedIndex(1);
+        LancheViewHelper.edit(this.lancheView);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new LancheDAO().fillTable(this.tableCidades, this.campoPesquisar.getText());
+        LancheViewHelper.search(this.lancheView);
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnLimparBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaActionPerformed
-        this.campoPesquisar.setText("");
-        this.updateTable();
+        LancheViewHelper.clearSearch(this.lancheView);
     }//GEN-LAST:event_btnLimparBuscaActionPerformed
 
     private void btnAtivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtivoMouseClicked
-        if(this.disponivel){
-            this.disponivel = false;
-            this.btnAtivo.setIcon(
-                IconHelper.getPngIcon(Icons.CANCELAR_64.getPath())
-            );
-        }else{
-            this.disponivel = true;
-            this.btnAtivo.setIcon(
-                IconHelper.getPngIcon(Icons.SELECIONADO_64.getPath())
-            );
-        }
+        LancheViewHelper.changeEstado(this.lancheView);
     }//GEN-LAST:event_btnAtivoMouseClicked
+
+    private void campoValorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoValorKeyReleased
+        
+    }//GEN-LAST:event_campoValorKeyReleased
+
+    private void campoValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoValorKeyTyped
+        ViewHelper.eventNumberKeyTyped(new NumberField(this.campoValor, evt));
+    }//GEN-LAST:event_campoValorKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -597,7 +573,7 @@ public class LanchesView extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea campoIngredientes;
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoPesquisar;
-    private javax.swing.JFormattedTextField campoValor;
+    private javax.swing.JTextField campoValor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -613,6 +589,6 @@ public class LanchesView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> selectCategoria;
-    private javax.swing.JTable tableCidades;
+    private javax.swing.JTable tableLanches;
     // End of variables declaration//GEN-END:variables
 }

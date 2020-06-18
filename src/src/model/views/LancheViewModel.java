@@ -7,6 +7,8 @@ package src.model.views;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -16,6 +18,10 @@ import javax.swing.JTextField;
  * @author arthur
  */
 public class LancheViewModel {
+    public boolean disponivel;
+    
+    public JLabel btnAtivo;
+    
     public JButton btnCadastrar;
     public JButton btnEditar;
     public JButton btnExcluir;
@@ -32,4 +38,6 @@ public class LancheViewModel {
     public JTable tableLanches;
     
     public JComboBox<String> selectCategoria;
+    
+    public JTabbedPane abasDoSistema;
 }

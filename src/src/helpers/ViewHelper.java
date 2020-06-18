@@ -90,16 +90,23 @@ public class ViewHelper {
         ViewHelper.setClearFormButtonStyle(btnLimpar);
     }
     
-    public static void eventNumberKeyTyped(NumberField numberField){
-        if(numberField.evento.getKeyChar() == '.') numberField.evento.consume();;
-        if(numberField.evento.getKeyChar() == ',')
-            if(FormatHelpers.charExists(numberField.campo.getText(), numberField.evento.getKeyChar())){
-                numberField.evento.consume();
-            }else{
-                return;
-            }
-        
-        if(!FormatHelpers.isNumeric((numberField.evento.getKeyChar() + "").replace(",", ".")))
+    private static void commaRepeated(NumberField numberField){
+        if(FormatHelpers.charExists(numberField.campo.getText(), numberField.evento.getKeyChar()))
             numberField.evento.consume();
+    }
+    
+    public static void eventNumberKeyTyped(NumberField numberField){
+        if(numberField.evento.getKeyChar() == '.') numberField.evento.consume();
+        if(numberField.evento.getKeyChar() == ','){
+            ViewHelper.commaRepeated(numberField);
+            return;
+        }
+        
+        if(!ViewHelper.charIsNumeric(numberField.evento.getKeyChar()))
+            numberField.evento.consume();
+    }
+    
+    private static boolean charIsNumeric(char c){
+        return FormatHelpers.isNumeric(c + "");
     }
 }
