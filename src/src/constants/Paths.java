@@ -10,7 +10,8 @@ package src.constants;
  * @author arthur
  */
 public enum Paths {
-    ICONS("/media/icons/");
+    ICONS("/media/icons/"),
+    REPORTS("/reports/");
     
     String path;
     
