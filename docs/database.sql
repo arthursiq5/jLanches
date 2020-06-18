@@ -7,6 +7,7 @@ USE jlanches;
 CREATE TABLE categoria(
 	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE,
     CONSTRAINT pk_categoria PRIMARY KEY(id)
 ) DEFAULT CHARSET = utf8mb4;
 
@@ -14,6 +15,7 @@ CREATE TABLE contato(
 	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     fone CHAR(11),
     email VARCHAR(255),
+    ativo BOOLEAN DEFAULT TRUE,
     CONSTRAINT pk_contato PRIMARY KEY(id)
 ) DEFAULT CHARSET = utf8mb4;
 
@@ -39,7 +41,7 @@ CREATE TABLE cliente(
     endereco VARCHAR(255),
     ativo BOOLEAN  DEFAULT TRUE,
     cidade_id BIGINT UNSIGNED NOT NULL,
-    contato_id BIGINT UNSIGNED NOT NULL,
+    contato_id BIGINT UNSIGNED,
     CONSTRAINT pk_cliente PRIMARY KEY (cpf),
     CONSTRAINT fk_cliente_cidade FOREIGN KEY(cidade_id)
 		REFERENCES cidade(id),
