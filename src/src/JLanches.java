@@ -5,6 +5,8 @@
  */
 package src;
 
+import src.constants.Reports;
+import src.helpers.ReportHelper;
 import src.views.LoginScreen;
 
 /**
@@ -13,6 +15,7 @@ import src.views.LoginScreen;
  */
 public class JLanches {
     public static void main(String[] args) {
+        ReportHelper.compileRepots();
         new LoginScreen().setVisible(true);
     }
 }

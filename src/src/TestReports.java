@@ -30,8 +30,6 @@ public class TestReports {
             JasperViewer.viewReport(fillReport, false);
         } catch (JRException ex) {
             Logger.getLogger(TestReports.class.getName()).log(Level.SEVERE, null, ex);
-        }catch(Exception e){
-            e.printStackTrace(System.err);
         }
     }
 }
