@@ -12,4 +12,10 @@ package src.model;
 public class Categoria {
     public int id;
     public String nome;
+    public boolean ativo;
+    
+    @Override
+    public String toString(){
+        return this.nome;
+    }
 }

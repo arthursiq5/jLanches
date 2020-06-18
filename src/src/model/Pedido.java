@@ -7,7 +7,11 @@ package src.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import src.constants.FormaDePagamento;
+import src.dao.ClienteDAO;
+import src.dao.LancheDAO;
 /**
  *
  * @author arthur
@@ -22,9 +26,15 @@ public class Pedido {
     public String funcionario_cpf;
     public int franquia_id;
     
-    public ArrayList<LanchePedido> itens;
+    public Map<String, LanchePedido> itens;
     
     public Pedido(){
-        this.itens = new ArrayList<LanchePedido>();
+        this.itens = new HashMap<String, LanchePedido>();
+    }
+    
+    public String toString(){
+        return "Pedido do cliente"
+                + new ClienteDAO().get(this.cliente_cpf).nome
+                + " feito no dia ";
     }
 }

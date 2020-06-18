@@ -57,8 +57,8 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
     @Override
     public void delete(Categoria objeto) {
         try {
-            String sql = "DELETE "
-                    + "FROM categoria "
+            String sql = "UPDATE categoria "
+                    + "SET ativo = FALSE "
                     + "WHERE id = '" + objeto.id + "'";
             BDConnector.getInstance()
                         .getConnection()
@@ -115,9 +115,10 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
     
     public void fillTable(JTable table, String criteria){
         Object [][] dadosTabela = null;
-        Object [] cabecalho = new Object[2];
+        Object [] cabecalho = new Object[3];
         cabecalho[0] = "ID";
-        cabecalho[1] = "Sigla";
+        cabecalho[1] = "Nome";
+        cabecalho[2] = "Ativo";
         
         String like = criteria.equals("") ? "" : ("WHERE UCASE(nome) LIKE UCASE('%" + criteria + "%')");
         
@@ -133,7 +134,7 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
             
             this.resultadoQuery.next();
             
-            dadosTabela = new Object[this.resultadoQuery.getInt(1)][2];
+            dadosTabela = new Object[this.resultadoQuery.getInt(1)][3];
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de categorias do banco");
             System.err.println("Erro: \n" + e);
@@ -152,6 +153,7 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
             while(this.resultadoQuery.next()){
                 dadosTabela[line][0] = this.resultadoQuery.getInt("id");
                 dadosTabela[line][1] = this.resultadoQuery.getString("nome");
+                dadosTabela[line][2] = this.resultadoQuery.getBoolean("ativo")?"Ativo":"Inativo";
                 line++;
             }
         } catch (Exception e) {
@@ -198,13 +200,13 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
                     .getConnection()
                     .createStatement()
                     .executeQuery("" +
-                            "SELECT * FROM contato"
+                            "SELECT * FROM categoria"
                     );
             if(this.resultadoQuery.isBeforeFirst()){
                 while(this.resultadoQuery.next()){
                     Categoria categoria = new Categoria();
                         categoria.id = this.resultadoQuery.getInt("id");
-                        categoria.nome = this.resultadoQuery.getString("fone");
+                        categoria.nome = this.resultadoQuery.getString("nome");
                     
                     item = new ComboItem(
                         categoria.id,
