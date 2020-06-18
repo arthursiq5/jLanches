@@ -53,7 +53,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement>
-					<font fontName="t"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
