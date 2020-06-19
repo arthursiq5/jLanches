@@ -58,6 +58,7 @@ public class LanchesView extends javax.swing.JInternalFrame {
         this.lancheView.campoNome = this.campoNome;
         this.lancheView.campoPesquisar = this.campoPesquisar;
         this.lancheView.campoValor = this.campoValor;
+        this.lancheView.btnAtivo = this.btnAtivo;
         
         this.lancheView.tableLanches = this.tableLanches;
         
