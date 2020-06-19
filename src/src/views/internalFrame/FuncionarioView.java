@@ -967,7 +967,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         funcionario.senha = new String(this.campoUserNewPassword.getPassword());
 
         if(FuncionarioValidator.insert(funcionario)){
-            new FuncionarioDAO().save(funcionario);
+            new FuncionarioDAO().update(funcionario);
         }else{
             this.clearUpdateUser();
             return;
