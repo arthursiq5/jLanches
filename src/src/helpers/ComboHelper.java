@@ -7,6 +7,7 @@ package src.helpers;
 
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import src.constants.Meses;
 import src.views.extensionElements.ComboItem;
 
 /**
@@ -22,11 +23,64 @@ public class ComboHelper {
         }
     }
     
+    public static void fillCombo(JComboBox combo, Meses[] itens){
+        combo.removeAllItems();
+        for(Meses item: itens){
+            combo.addItem(new MonthHelper.ComboMonth(item));
+        }
+    }
+    
+    public static void fillCombo(JComboBox combo, int[] itens){
+        combo.removeAllItems();
+        for(Object item: itens){
+            combo.addItem(item);
+        }
+    }
+    
     public static void fillCombo(JComboBox combo, ArrayList<Object> itens){
         combo.removeAllItems();
         itens.forEach((item) -> {
             combo.addItem(item);
         });
+    }
+    
+    public static void setIndexComboData(JComboBox combo, int id){
+        int item;
+        for (int i = 0; i < combo.getItemCount(); i++)
+        {
+            item = (int) combo.getItemAt(i);
+            if (item == id)
+            {
+                combo.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    
+    public static void setIndexComboMonth(JComboBox combo, Meses month){
+        MonthHelper.ComboMonth item;
+        for (int i = 0; i < combo.getItemCount(); i++)
+        {
+            item = (MonthHelper.ComboMonth)combo.getItemAt(i);
+            if (item.mes == month)
+            {
+                combo.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    
+    public static void setIndexComboMonth(JComboBox combo, int month){
+        MonthHelper.ComboMonth item;
+        for (int i = 0; i < combo.getItemCount(); i++)
+        {
+            item = (MonthHelper.ComboMonth)combo.getItemAt(i);
+            if (item.mes.getGregorianMonth() == month)
+            {
+                combo.setSelectedIndex(i);
+                break;
+            }
+        }
     }
     
     public static void setIndex(JComboBox combo, int id){

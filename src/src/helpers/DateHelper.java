@@ -75,6 +75,21 @@ public class DateHelper {
         return meses;
     }
     
+    public static Meses checkMonth(String month){
+        Meses mes = Meses.JANEIRO;
+        
+        for (Meses possibleMonth : DateHelper.getPossibleMonths()) {
+            if(DateHelper.stringEqualsMonth(month, possibleMonth))
+                mes = possibleMonth;
+        }
+        
+        return mes;
+    }
+    
+    public static boolean stringEqualsMonth(String str, Meses month){
+        return str.equalsIgnoreCase(month.toString());
+    }
+    
     public static void main(String[] args) {
         System.out.println("Dia de hoje: " + DateHelper.dateToString(new Date()));
         
@@ -87,5 +102,7 @@ public class DateHelper {
         for (int possibleYear : DateHelper.getPossibleYears()) {
             System.out.println("Ano: "+ possibleYear);
         }
+        
+        System.out.println("FEVEREIRO: " + DateHelper.checkMonth("FEVEREIRO").getQuantidadeDeDias());
     }
 }
