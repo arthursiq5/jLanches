@@ -6,17 +6,25 @@
 package src.model.views;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 /**
  *
  * @author arthur
  */
-public class PedidoFormModel {
+public class PedidoFormModel implements FormUseDatePicker{
     public JButton btnCadastrar;
     public JButton btnLimpar;
     
     public JButton btnMostrarItemPedido;
     public JButton btnAdicionarItemAoPedido;
+    
+    public JTextField campoData;
+
+    @Override
+    public void setData(String data) {
+        this.campoData.setText(data);
+    }
     
     
 }
