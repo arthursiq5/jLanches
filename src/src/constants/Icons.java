@@ -31,7 +31,13 @@ public enum Icons {
     PAYMENT_CHECK_16("icons8-talão-de-cheques.-16"),
     PAYMENT_CHECK_64("icons8-talão-de-cheques.-64"),
     CASH_PAYMENT_16("icons8-dinheiro-na-mão-16"),
-    CASH_PAYMENT_64("icons8-dinheiro-na-mão-64");
+    CASH_PAYMENT_64("icons8-dinheiro-na-mão-64"),
+    CLOCK_16("icons8-relógio-despertador-16"),
+    CLOCK_64("icons8-relógio-despertador-64"),
+    CLOCK_CONFIG_16("icons8-relógio-despertador-16-config"),
+    CLOCK_CONFIG_64("icons8-relógio-despertador-64-config"),
+    WATCH_TIME_16("icons8-assistir-16"),
+    WATCH_TIME_64("icons8-assistir-64");
     
     
     String path;
