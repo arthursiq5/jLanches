@@ -56,6 +56,25 @@ public class DateHelper {
         return anosPossiveis;
     }
     
+    public static Meses[] getPossibleMonths(){
+        Meses[] meses = {
+            Meses.JANEIRO,
+            Meses.FEVEREIRO,
+            Meses.MARCO,
+            Meses.ABRIL,
+            Meses.MAIO,
+            Meses.JUNHO,
+            Meses.JULHO,
+            Meses.AGOSTO,
+            Meses.SETEMBRO,
+            Meses.OUTUBRO,
+            Meses.NOVEMBRO,
+            Meses.DEZEMBRO
+        };
+        
+        return meses;
+    }
+    
     public static void main(String[] args) {
         System.out.println("Dia de hoje: " + DateHelper.dateToString(new Date()));
         
