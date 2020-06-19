@@ -22,16 +22,16 @@ public enum Icons {
     PESQUISAR_16("icons8-pesquisar-16"),
     PESQUISAR_64("icons8-pesquisar-64"),
     CHECK_64("icons8-selecionado-64"),
-    ADD_64("icons8-adicionar-64.png"),
-    ADD_16("icons8-adicionar-16.png"),
-    COIN_16("icons8-barato-2-16.png"),
-    COIN_64("icons8-barato-2-64.png"),
-    CREDIT_CARD_16("icons8-cartão-em-uso-16.png"),
-    CREDIT_CARD_64("icons8-cartão-em-uso-64.png"),
-    PAYMENT_CHECK_16("icons8-talão-de-cheques.-16.png"),
-    PAYMENT_CHECK_64("icons8-talão-de-cheques.-64.png"),
-    CASH_PAYMENT_16("icons8-dinheiro-na-mão-16.png"),
-    CASH_PAYMENT_64("icons8-dinheiro-na-mão-64.png");
+    ADD_64("icons8-adicionar-64"),
+    ADD_16("icons8-adicionar-16"),
+    COIN_16("icons8-barato-2-16"),
+    COIN_64("icons8-barato-2-64"),
+    CREDIT_CARD_16("icons8-cartão-em-uso-16"),
+    CREDIT_CARD_64("icons8-cartão-em-uso-64"),
+    PAYMENT_CHECK_16("icons8-talão-de-cheques.-16"),
+    PAYMENT_CHECK_64("icons8-talão-de-cheques.-64"),
+    CASH_PAYMENT_16("icons8-dinheiro-na-mão-16"),
+    CASH_PAYMENT_64("icons8-dinheiro-na-mão-64");
     
     
     String path;
