@@ -18,7 +18,6 @@ import src.views.internalFrame.FuncionarioView;
 import src.views.internalFrame.LanchesView;
 import src.views.internalFrame.PedidoView;
 import src.views.internalFrame.admin.ClienteAdminView;
-import src.views.internalFrame.admin.FuncionarioAdminView;
 
 /**
  *
