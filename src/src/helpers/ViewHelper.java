@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
 import javax.swing.JTabbedPane;
+import javax.swing.JToggleButton;
 import javax.swing.border.BevelBorder;
 import src.constants.Icons;
 import src.constants.SystemColors;
@@ -34,6 +35,12 @@ public class ViewHelper {
     }
     
     public static void setButtonStyle(JButton button, SystemColors color, Icons icon){
+        button.setBackground(ColorHelper.getColor(color));
+        button.setIcon(IconHelper.getPngIcon(icon.getPath()));
+        button.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+    }
+    
+    public static void setButtonStyle(JToggleButton button, SystemColors color, Icons icon){
         button.setBackground(ColorHelper.getColor(color));
         button.setIcon(IconHelper.getPngIcon(icon.getPath()));
         button.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));

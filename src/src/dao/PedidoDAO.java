@@ -133,7 +133,7 @@ public class PedidoDAO implements ModelDAO<Pedido> {
         return pedido;
     }
     
-    public void fillTable(JTable table, String criteria){
+    public void fillTable(JTable table, boolean showInactive, String criteria){
         Object [][] dadosTabela = null;
         Object [] cabecalho = new Object[7];
         cabecalho[0] = "ID";
@@ -144,7 +144,13 @@ public class PedidoDAO implements ModelDAO<Pedido> {
         cabecalho[5] = "Funcionário";
         cabecalho[6] = "franquia";
         
-        String like = criteria.equals("") ? "" : ("WHERE UCASE(sigla) LIKE UCASE('%" + criteria + "%')");
+        String like = criteria.equals("") ? "" : ("WHERE UCASE(descricao) LIKE UCASE('%" + criteria + "%')");
+        
+        if(!like.equals("") && !showInactive){
+            like += " AND ativo = TRUE";
+        }else if(!showInactive){
+            like = "WHERE ativo = TRUE";
+        }
         
         try {
             this.resultadoQuery = BDConnector.getInstance()
