@@ -17,7 +17,6 @@ import src.views.internalFrame.FranquiaView;
 import src.views.internalFrame.FuncionarioView;
 import src.views.internalFrame.LanchesView;
 import src.views.internalFrame.PedidoView;
-import src.views.internalFrame.admin.ClienteAdminView;
 
 /**
  *
@@ -239,7 +238,7 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_itemFuncionarioActionPerformed
 
     private void itemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteActionPerformed
-        this.openView(this.funcionario.administrador ? new ClienteAdminView() : new ClienteView());
+        this.openView(new ClienteView());
     }//GEN-LAST:event_itemClienteActionPerformed
 
     private void itemCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCategoriaActionPerformed
