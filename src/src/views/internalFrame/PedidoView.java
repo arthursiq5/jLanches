@@ -588,11 +588,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void campoDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataActionPerformed
-        //UtilDateModel model = new UtilDateModel();
-        //JDatePanelImpl datePanel = new JDatePanelImpl(model);
-        //JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
- 
-//frame.add(datePicker);
+        
     }//GEN-LAST:event_campoDataActionPerformed
 
     private void btnSelecionarDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarDataActionPerformed

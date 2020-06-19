@@ -96,7 +96,9 @@ public class DatePicker extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Date Picker");
+        setAlwaysOnTop(true);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -168,7 +170,7 @@ public class DatePicker extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(selectDia, 0, 171, Short.MAX_VALUE)
+                .addComponent(selectDia, 0, 172, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
