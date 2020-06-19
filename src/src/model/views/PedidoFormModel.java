@@ -6,6 +6,7 @@
 package src.model.views;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import src.constants.Icons;
@@ -42,7 +43,7 @@ public class PedidoFormModel implements FormUseDatePicker{
         }
     }
     
-    public boolean pago = true;
+    public BooleanButton pago;
     
     public JButton btnCadastrar;
     public JButton btnLimpar;
@@ -52,6 +53,12 @@ public class PedidoFormModel implements FormUseDatePicker{
     
     public JTextField campoData;
     public JTextField campoId;
+    
+    public JTextField campoComentarios;
+    
+    public JComboBox selectFormaPagamento;
+    public JComboBox selectCliente;
+    public JComboBox selectFuncionario;
 
     @Override
     public void setData(String data) {

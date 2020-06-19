@@ -54,6 +54,7 @@ public class PedidoViewHelper {
     public static void initPedidoView(PedidoViewModel pedidoView){
         PedidoViewHelper.updateMainTable(pedidoView);
         PedidoViewHelper.initButtonsStyle(pedidoView);
+        PedidoFormHelper.carregaFormaDePagamento(pedidoView);
     }
     
     private static Pedido getItemFromTable(PedidoViewModel pedidoView){
