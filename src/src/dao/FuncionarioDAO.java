@@ -165,10 +165,14 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
             System.err.println("Erro: \n" + e);
             funcionario = new Funcionario();
         }
+        System.out.println("cpf: " + funcionario.cpf);
+        System.out.println("nome: "+ funcionario.nome);
+        
+        
         return funcionario;
     }
     
-    public void fillTable(JTable table, String criteria){
+    public void fillTable(JTable table, boolean all, String criteria){
         Object [][] dadosTabela = null;
         Object [] cabecalho = new Object[6];
         cabecalho[0] = "CPF";
@@ -181,10 +185,20 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
         String like = criteria.equals("") 
                 ? "" 
                 : ("WHERE "
-                + "UCASE(nome) LIKE UCASE('%" + criteria + "%') OR"
+                + "(UCASE(nome) LIKE UCASE('%" + criteria + "%') OR"
                 + "UCASE(cpf) LIKE UCASE('%" + criteria + "%') OR"
                 + "UCASE(endereco) LIKE UCASE('%" + criteria + "%')"
-                + "");
+                + ") ");
+        
+        if(all){
+            if(!like.equals("")){
+                like = ""
+                        + "WHERE  ativo = true";
+            }else{
+                like += ""
+                        + " AND ativo = true";
+            }
+        }
         
         try {
             this.resultadoQuery = BDConnector.getInstance()

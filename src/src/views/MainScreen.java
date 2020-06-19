@@ -231,7 +231,12 @@ public class MainScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFuncionarioActionPerformed
-        this.openView(this.funcionario.administrador ? new FuncionarioAdminView() : new FuncionarioView());
+        /*this.openView(
+                        this.funcionario.administrador 
+                            ? new FuncionarioAdminView() : 
+                        new FuncionarioView(this.funcionario)
+                    );*/
+        this.openView(new FuncionarioView(funcionario));
     }//GEN-LAST:event_itemFuncionarioActionPerformed
 
     private void itemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteActionPerformed
