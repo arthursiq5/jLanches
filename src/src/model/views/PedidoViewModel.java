@@ -17,7 +17,7 @@ import javax.swing.JToggleButton;
  *
  * @author arthur
  */
-public class PedidoViewModel {
+public class PedidoViewModel extends PedidoFormModel {
     public static final int ABA_VISUALIZAR = 0;
     public static final int ABA_CADASTRAR = 1;
     public static final int ABA_CONSULTAR = 2;
@@ -45,5 +45,5 @@ public class PedidoViewModel {
     public JToggleButton btnMostrarTodosOsPedidos;
     public JButton btnMostraPedido;
     
-    
+    public JButton btnPagar;
 }
