@@ -3,6 +3,8 @@ use jlanches;
 
 INSERT INTO estado(id, sigla, nome) VALUES (DEFAULT, "RS", "Rio Grande do Sul");
 INSERT INTO cidade (id, nome, estado_id) values (DEFAULT, 'Lajeado', 1);
+INSERT INTO cidade (id, nome, estado_id) values (DEFAULT, 'Teutônia', 1);
+INSERT INTO cidade (id, nome, estado_id) values (DEFAULT, 'Estrela', 1);
 INSERT INTO contato(fone, email) VALUES (99999999999, 'teste@teste');
 INSERT INTO franquia(endereco, ativo, cidade_id) 
 	VALUES ('teste', DEFAULT, 1);
@@ -45,3 +47,9 @@ INSERT INTO lanche(id, nome, ingredientes, valor, disponivel, categoria_id)
 	);
     
 SELECT * FROM lanche;
+
+INSERT INTO estado(id, sigla, nome) VALUES (DEFAULT, "SP", "São Paulo");
+INSERT INTO cidade(id, nome, estado_id) VALUES (DEFAULT, "São Paulo", 2);
+INSERT INTO cidade(id, nome, estado_id) VALUES (DEFAULT, "Guarulhos", 2);
+INSERT INTO cidade(id, nome, estado_id) VALUES (DEFAULT, "Gramado", 1);
+
