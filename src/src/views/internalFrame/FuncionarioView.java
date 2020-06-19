@@ -5,6 +5,7 @@
  */
 package src.views.internalFrame;
 
+import javax.swing.JOptionPane;
 import src.constants.Icons;
 import src.constants.Reports;
 import src.constants.SystemColors;
@@ -18,6 +19,9 @@ import src.helpers.ComboHelper;
 import src.helpers.IconHelper;
 import src.helpers.MessageHelper;
 import src.helpers.ReportHelper;
+import src.model.Cidade;
+import src.model.Contato;
+import src.model.Franquia;
 import src.model.Funcionario;
 import src.validators.testers.FuncionarioValidator;
 import src.validators.testers.PasswordValidator;
@@ -28,19 +32,29 @@ import src.views.extensionElements.ComboItem;
  * @author arthur
  */
 public class FuncionarioView extends javax.swing.JInternalFrame {
-    
+    private boolean editar;
     private Funcionario funcionario;
+    private String cpfAtual;
     
     /**
      * Creates new form EstadoView
      */
     public FuncionarioView(Funcionario funcionario) {
         this.funcionario = funcionario;
+        this.editar = false;
+        this.cpfAtual = "";
         initComponents();
         this.updateTable();
         this.carregaSelects();
         this.btnToggleFuncionariosInativos.setIcon(IconHelper.getPngIcon(Icons.USUARIO_PLUS_64.getPath()));
         this.clearUpdateUser();
+    }
+    
+    private void autenticado(){
+        if(this.funcionario.administrador){
+            this.btnAtualizar.setEnabled(false);
+            this.btnExcluir.setEnabled(false);
+        }
     }
     
     private void clearUpdateUser(){
@@ -83,6 +97,19 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         this.campoSenha.setText("");
         this.campoRepeteSenha.setText("");
     }
+    
+    private Funcionario puxarObjetoTabela(){
+        Funcionario func = new Funcionario();
+        
+        func.cpf = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 0));
+        func.nome = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
+        func.endereco = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 2));
+        func.cidade_id = ((Cidade)this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 3)).id;
+        func.contato_id = ((Contato)this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 4)).id;
+        func.franquia_id = ((Franquia) this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 5)).id;
+        
+        return func;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,6 +130,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         tableClientes = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnToggleFuncionariosInativos = new javax.swing.JToggleButton();
+        btnAtualizar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -183,7 +212,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoPesquisar)
+                .addComponent(campoPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 1009, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLimparBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -252,6 +281,20 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -261,7 +304,12 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 946, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -270,7 +318,12 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -312,7 +365,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -337,7 +390,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addComponent(campoNome)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -516,8 +569,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, Short.MAX_VALUE)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
@@ -925,10 +978,39 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         this.abasDoSistema.setSelectedIndex(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        this.editar = true;
+        
+        Funcionario func = this.puxarObjetoTabela();
+        
+        
+        this.cpfAtual = funcionario.cpf;
+        this.campoCPF.setText(funcionario.cpf);
+        this.campoEndereco.setText(funcionario.endereco);
+        this.campoNome.setText(funcionario.nome);
+        
+        ComboHelper.setIndex(this.selectContato, funcionario.contato_id);
+        ComboHelper.setIndex(this.selectCidade, funcionario.cidade_id);
+        ComboHelper.setIndex(this.selectFranquia, funcionario.franquia_id);
+        
+        this.abasDoSistema.setSelectedIndex(1);
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
+            new FuncionarioDAO().deleteWithAuthentication(this.puxarObjetoTabela(), MessageHelper.createInput("Por favor, digite a senha do usuário a deletar"));
+            this.updateTable();
+        }else{
+            MessageHelper.createWarningMessage("Aviso", "Não foi possível remover o dado");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnLimparBusca;
     private javax.swing.JButton btnPesquisar;
