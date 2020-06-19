@@ -7,12 +7,43 @@ package src.model.views;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.JLabel;
+import src.constants.Icons;
+import src.helpers.IconHelper;
 
 /**
  *
  * @author arthur
  */
 public class PedidoFormModel implements FormUseDatePicker{
+    public static class BooleanButton{
+        public boolean pago;
+        public JLabel button;
+
+        public BooleanButton(JLabel button) {
+            this.button = button;
+            this.pago = false;
+            this.button.setIcon(
+                IconHelper.getPngIcon(Icons.CANCELAR_64.getPath())
+            );
+        }
+        
+        public void changePago(){
+            this.pago = !this.pago;
+            if(this.pago){
+                this.button.setIcon(
+                    IconHelper.getPngIcon(Icons.SELECIONADO_64.getPath())
+                );
+            }else{
+                this.button.setIcon(
+                    IconHelper.getPngIcon(Icons.CANCELAR_64.getPath())
+                );
+            }
+        }
+    }
+    
+    public boolean pago = true;
+    
     public JButton btnCadastrar;
     public JButton btnLimpar;
     
@@ -20,6 +51,7 @@ public class PedidoFormModel implements FormUseDatePicker{
     public JButton btnAdicionarItemAoPedido;
     
     public JTextField campoData;
+    public JTextField campoId;
 
     @Override
     public void setData(String data) {

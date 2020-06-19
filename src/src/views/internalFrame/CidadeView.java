@@ -85,6 +85,10 @@ public class CidadeView extends javax.swing.JInternalFrame {
         this.estadoView.abasDoSistema = new AbasDaTela(abasDoSistema, 2, 3);
         
         this.estadoView.table = this.tableEstados;
+        
+        this.estadoView.btnGenerateReport = this.btnGenerateReport;
+        this.estadoView.btnGenerateSingleReport = this.btnGenerateSingleReport;
+        this.estadoView.selectEstadoReport = this.selectEstadoReport;
     }
     
     private void initStyle(){
@@ -93,6 +97,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
     
     private void fillSelectEstado(){
         new EstadoDAO().fillCombo(this.selectEstado);
+        new EstadoDAO().fillCombo(this.selectEstadoReport);
     }
     
     private void resetInputs(){
@@ -151,6 +156,12 @@ public class CidadeView extends javax.swing.JInternalFrame {
         jPanel18 = new javax.swing.JPanel();
         btnLimparFormularioEstado = new javax.swing.JButton();
         btnCadastrarEstado = new javax.swing.JButton();
+        jPanel19 = new javax.swing.JPanel();
+        jPanel20 = new javax.swing.JPanel();
+        btnGenerateReport = new javax.swing.JButton();
+        jPanel21 = new javax.swing.JPanel();
+        selectEstadoReport = new javax.swing.JComboBox<>();
+        btnGenerateSingleReport = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Cidades e Estados");
@@ -738,6 +749,85 @@ public class CidadeView extends javax.swing.JInternalFrame {
 
         abasDoSistema.addTab("Cadastrar estados", jPanel13);
 
+        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Todos os estados"));
+        jPanel20.setToolTipText("");
+
+        btnGenerateReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pdf-2-64.png"))); // NOI18N
+        btnGenerateReport.setText("Gerar Relatório");
+        btnGenerateReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateReportActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnGenerateReport, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnGenerateReport, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Estado único"));
+
+        selectEstadoReport.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnGenerateSingleReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons/icons8-pdf-2-64.png"))); // NOI18N
+        btnGenerateSingleReport.setText("Gerar relatório");
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnGenerateSingleReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selectEstadoReport, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectEstadoReport, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGenerateSingleReport, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        abasDoSistema.addTab("Reports", jPanel19);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -799,6 +889,10 @@ public class CidadeView extends javax.swing.JInternalFrame {
         EstadoViewHelper.excluir(this.estadoView);
     }//GEN-LAST:event_btnExcluirEstadoActionPerformed
 
+    private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateReportActionPerformed
+        EstadoViewHelper.generateReport(this.estadoView);
+    }//GEN-LAST:event_btnGenerateReportActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;
@@ -808,6 +902,8 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEditarEstado;
     private javax.swing.JButton btnExcluirCidade;
     private javax.swing.JButton btnExcluirEstado;
+    private javax.swing.JButton btnGenerateReport;
+    private javax.swing.JButton btnGenerateSingleReport;
     private javax.swing.JButton btnLimparBuscaCidades;
     private javax.swing.JButton btnLimparBuscaEstados;
     private javax.swing.JButton btnLimparFormularioCidade;
@@ -831,7 +927,10 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -842,6 +941,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> selectEstado;
+    private javax.swing.JComboBox<String> selectEstadoReport;
     private javax.swing.JTable tableCidades;
     private javax.swing.JTable tableEstados;
     // End of variables declaration//GEN-END:variables

@@ -6,6 +6,7 @@
 package src.model.views;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -32,4 +33,8 @@ public class EstadoViewModel {
     public JTextField campoSigla;
     
     public JTable table;
+    
+    public JButton btnGenerateReport;
+    public JButton btnGenerateSingleReport;
+    public JComboBox<String> selectEstadoReport;
 }

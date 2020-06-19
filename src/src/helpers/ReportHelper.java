@@ -34,13 +34,21 @@ public class ReportHelper {
         try {
             JasperReport compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + Reports.EXEMPLO.toString()));
             ReportHelper.reports.put(Reports.EXEMPLO.toString(), compileReport);
+            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + Reports.CIDADE_ESTADO.toString()));
+            ReportHelper.reports.put(Reports.CIDADE_ESTADO.toString(), compileReport);
+            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + Reports.CIDADE_ESTADO_BY_ID.toString()));
+            ReportHelper.reports.put(Reports.CIDADE_ESTADO_BY_ID.toString(), compileReport);
+            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + Reports.FUNCIONARIOS.toString()));
+            ReportHelper.reports.put(Reports.FUNCIONARIOS.toString(), compileReport);
+            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + Reports.FUNCIONARIOS_ATIVOS.toString()));
+            ReportHelper.reports.put(Reports.FUNCIONARIOS_ATIVOS.toString(), compileReport);
         } catch (JRException ex) {
             Logger.getLogger(ReportHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public static void showReport(Reports report){
-        JasperReport compileReport = ReportHelper.reports.get(report.EXEMPLO.toString());
+        JasperReport compileReport = ReportHelper.reports.get(report.toString());
         JasperPrint fillReport;
         try {
             fillReport = JasperFillManager.fillReport(compileReport, new HashMap<>(), BDConnector.getInstance().getConnection());
@@ -49,4 +57,15 @@ public class ReportHelper {
             Logger.getLogger(ReportHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public static void showReport(Reports report, HashMap params){
+        JasperReport compileReport = ReportHelper.reports.get(report.toString());
+        JasperPrint fillReport;
+        try {
+            fillReport = JasperFillManager.fillReport(compileReport, params, BDConnector.getInstance().getConnection());
+            JasperViewer.viewReport(fillReport, false);
+        } catch (JRException ex) {
+            Logger.getLogger(ReportHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

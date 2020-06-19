@@ -10,7 +10,11 @@ package src.constants;
  * @author arthur
  */
 public enum Reports {
-    EXEMPLO("Exemplo.jrxml");
+    EXEMPLO("Exemplo"),
+    CIDADE_ESTADO("cidade_estado"),
+    CIDADE_ESTADO_BY_ID("cidade_estado_by_id"),
+    FUNCIONARIOS("funcionarios"),
+    FUNCIONARIOS_ATIVOS("funcionarios_ativos");
     
     private final String name;
     
@@ -18,7 +22,8 @@ public enum Reports {
         this.name = name;
     }
     
+    @Override
     public String toString(){
-        return this.name;
+        return this.name + ".jrxml";
     }
 }

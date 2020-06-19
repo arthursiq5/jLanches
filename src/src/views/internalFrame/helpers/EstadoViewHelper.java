@@ -5,8 +5,11 @@
  */
 package src.views.internalFrame.helpers;
 
+import java.util.HashMap;
 import javax.swing.JOptionPane;
+import src.constants.Reports;
 import src.dao.EstadoDAO;
+import src.helpers.ReportHelper;
 import src.helpers.ViewHelper;
 import src.model.Estado;
 import src.model.views.EstadoViewModel;
@@ -100,5 +103,13 @@ public class EstadoViewHelper {
         estadoView.campoNome.setText(estado.nome);
         
         estadoView.abasDoSistema.PAINEL.setSelectedIndex(estadoView.abasDoSistema.FORM_ID);
+    }
+    
+    public static void generateReport(EstadoViewModel estadoView){
+        ReportHelper.showReport(Reports.CIDADE_ESTADO);
+    }
+    
+    public static void generateSelectedReport(EstadoViewModel estadoView){
+        ReportHelper.showReport(Reports.CIDADE_ESTADO_BY_ID, (HashMap) new HashMap().put("e", ((Estado) estadoView.selectEstadoReport.getSelectedItem()).id + ""));
     }
 }

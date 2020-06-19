@@ -16,6 +16,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 import src.constants.Paths;
+import src.constants.Reports;
 import src.dao.BDConnector;
 
 /**
@@ -25,10 +26,11 @@ import src.dao.BDConnector;
 public class TestReports {
     public static void main(String[] args) {
         try {
-            JasperReport compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + "Exemplo.jrxml"));
+            JasperReport compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + Reports.CIDADE_ESTADO.toString()));
             JasperPrint fillReport = JasperFillManager.fillReport(compileReport, new HashMap<>(), BDConnector.getInstance().getConnection());
             JasperViewer.viewReport(fillReport, false);
         } catch (JRException ex) {
+            ex.printStackTrace();
             Logger.getLogger(TestReports.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
