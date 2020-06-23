@@ -823,6 +823,11 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         });
 
         jButton4.setText("Limpar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -957,17 +962,18 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             return;
         }
 
-        Funcionario funcionario = new Funcionario();
-        funcionario.cpf = this.funcionario.cpf;
-        funcionario.nome = this.campoUserNome.getText();
-        funcionario.endereco = this.campoUpdateEndereco.getText();
-        funcionario.cidade_id = ((ComboItem) this.selectUserCidade.getSelectedItem()).id;
-        funcionario.contato_id = ((ComboItem) this.selectUserContato.getSelectedItem()).id;
-        funcionario.franquia_id = this.funcionario.franquia_id;
-        funcionario.senha = new String(this.campoUserNewPassword.getPassword());
+        Funcionario func = new Funcionario();
+        func.cpf = this.funcionario.cpf;
+        func.nome = this.campoUserNome.getText();
+        func.endereco = this.campoUpdateEndereco.getText();
+        func.cidade_id = ((ComboItem) this.selectUserCidade.getSelectedItem()).id;
+        func.contato_id = ((ComboItem) this.selectUserContato.getSelectedItem()).id;
+        func.franquia_id = this.funcionario.franquia_id;
+        func.senha = new String(this.campoUserNewPassword.getPassword());
 
-        if(FuncionarioValidator.insert(funcionario)){
-            new FuncionarioDAO().update(funcionario);
+        if(FuncionarioValidator.insert(func)){
+            new FuncionarioDAO().update(func);
+            this.funcionario = func;
         }else{
             this.clearUpdateUser();
             return;
@@ -1004,6 +1010,14 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             MessageHelper.createWarningMessage("Aviso", "Não foi possível remover o dado");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.campoUserNome.setText(this.funcionario.nome);
+        this.campoUpdateEndereco.setText(this.funcionario.endereco);
+        this.campoUserCurrentPassword.setText("");
+        this.campoUserNewPassword.setText("");
+        this.campoUserRepeatPassword.setText("");
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
