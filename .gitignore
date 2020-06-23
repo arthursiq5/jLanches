@@ -25,6 +25,9 @@ hs_err_pid*
 # backups
 *.bak
 
+# dolphin archives
+.directory
+
 # mac archives
 .DS_Store
 
