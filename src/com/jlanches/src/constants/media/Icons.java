@@ -5,6 +5,9 @@
  */
 package com.jlanches.src.constants.media;
 
+import com.jlanches.src.constants.MediaExtensions;
+import com.jlanches.src.constants.Paths;
+
 /**
  *
  * @author arthur
@@ -54,5 +57,9 @@ public enum Icons {
     
     public String getPath(){
         return this.path;
+    }
+    
+    public String getFullPath(){
+        return Paths.ICONS + this.path + MediaExtensions.PNG;
     }
 }

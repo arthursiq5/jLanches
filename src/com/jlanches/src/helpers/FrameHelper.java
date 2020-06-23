@@ -24,11 +24,11 @@ import javax.swing.UIManager;
 public class FrameHelper {
     
     public static void setHeaderIcon(JFrame frame, Icons icone){
-        frame.setIconImage(IconHelper.getPngImage(icone.toString()));
+        frame.setIconImage(IconHelper.getPngImage(icone.getFullPath()));
     }
     
     public static void setHeaderIcon(JFrame frame, MainIcons icone){
-        frame.setIconImage(IconHelper.getPngImage(icone.toString()));
+        frame.setIconImage(IconHelper.getPngImage(icone.getFullPath()));
     }
     
     public static void setLookAndFeel(){

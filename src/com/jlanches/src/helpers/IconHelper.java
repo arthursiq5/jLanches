@@ -23,11 +23,11 @@ public class IconHelper {
     }
     
     public ImageIcon getStaticPngIcon(String name){
-        return new ImageIcon(getClass().getResource(Paths.ICONS + name + MediaExtensions.PNG));
+        return new ImageIcon(getClass().getResource(name));
     }
     
     private Image getStaticPngImage(String name){
-        URL iconPath = getClass().getResource(Paths.ICONS + name + MediaExtensions.PNG);
+        URL iconPath = getClass().getResource(name);
         return Toolkit.getDefaultToolkit().getImage(iconPath);
     }
     
