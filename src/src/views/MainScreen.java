@@ -43,18 +43,18 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
     private void openView(JInternalFrame view){
-    // o "frameInterno" referencia o JDesktopPane
-    this.frameInterno.removeAll();
-    //Tente algo nessas linhas para começo de conversa
-    this.repaint();
-    revalidate();
-    validate(); 
-    this.revalidate();
-    this.validate();
-    //Além disso, sugiro inverter a ordem abaixo: primeiro deixar visivel e depois adicionar ao Frame.
-    this.frameInterno.add(view);
-    view.setVisible(true);
-}
+        // o "frameInterno" referencia o JDesktopPane
+        this.frameInterno.removeAll();
+        //Tente algo nessas linhas para começo de conversa
+        this.repaint();
+        revalidate();
+        validate(); 
+        this.revalidate();
+        this.validate();
+        //Além disso, sugiro inverter a ordem abaixo: primeiro deixar visivel e depois adicionar ao Frame.
+        this.frameInterno.add(view);
+        view.setVisible(true);
+    }
     
     public void closeAllWindows(){
         this.frameInterno.removeAll();
