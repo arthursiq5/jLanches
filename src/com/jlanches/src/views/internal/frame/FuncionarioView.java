@@ -6,7 +6,7 @@
 package com.jlanches.src.views.internal.frame;
 
 import javax.swing.JOptionPane;
-import com.jlanches.src.constants.Icons;
+import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.constants.Reports;
 import com.jlanches.src.constants.SystemColors;
 import com.jlanches.src.dao.CidadeDAO;

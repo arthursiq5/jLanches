@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jlanches.src.constants;
+package com.jlanches.src.constants.media;
 
 /**
  *
@@ -37,7 +37,8 @@ public enum Icons {
     CLOCK_CONFIG_16("icons8-relógio-despertador-16-config"),
     CLOCK_CONFIG_64("icons8-relógio-despertador-64-config"),
     WATCH_TIME_16("icons8-assistir-16"),
-    WATCH_TIME_64("icons8-assistir-64");
+    WATCH_TIME_64("icons8-assistir-64"),
+    ICONE_DO_PROJETO("jlanches-icone");
     
     
     String path;

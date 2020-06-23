@@ -5,6 +5,7 @@
  */
 package com.jlanches.src.views;
 
+import com.jlanches.src.constants.media.Icons;
 import java.awt.event.WindowEvent;
 import com.jlanches.src.dao.FuncionarioDAO;
 import com.jlanches.src.helpers.FrameHelper;
@@ -22,6 +23,8 @@ public class LoginScreen extends javax.swing.JFrame {
     public LoginScreen() {
         FrameHelper.setLookAndFeel();
         initComponents();
+        
+        FrameHelper.setHeaderIcon(this, Icons.ICONE_DO_PROJETO);
     }
     
     private void clearForm(){

@@ -6,7 +6,7 @@
 package com.jlanches.src.views.internal.frame;
 
 import javax.swing.JOptionPane;
-import com.jlanches.src.constants.Icons;
+import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.dao.CategoriaDAO;
 import com.jlanches.src.dao.LancheDAO;
 import com.jlanches.src.helpers.ComboHelper;

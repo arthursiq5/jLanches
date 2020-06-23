@@ -5,7 +5,7 @@
  */
 package com.jlanches.src.views.internal.frame.helpers;
 
-import com.jlanches.src.constants.Icons;
+import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.constants.SystemColors;
 import com.jlanches.src.dao.PedidoDAO;
 import com.jlanches.src.helpers.ViewHelper;

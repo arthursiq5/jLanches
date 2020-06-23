@@ -5,9 +5,13 @@
  */
 package com.jlanches.src.helpers;
 
+import com.jlanches.src.constants.media.Icons;
 import javax.swing.ImageIcon;
 import com.jlanches.src.constants.MediaExtensions;
 import com.jlanches.src.constants.Paths;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 
 /**
  *
@@ -18,7 +22,16 @@ public class IconHelper {
         return new IconHelper().getStaticPngIcon(name);
     }
     
-    private ImageIcon getStaticPngIcon(String name){
+    public ImageIcon getStaticPngIcon(String name){
         return new ImageIcon(getClass().getResource(Paths.ICONS + name + MediaExtensions.PNG));
+    }
+    
+    private Image getStaticPngImage(String name){
+        URL iconPath = getClass().getResource(Paths.ICONS + name + MediaExtensions.PNG);
+        return Toolkit.getDefaultToolkit().getImage(iconPath);
+    }
+    
+    public static Image getPngImage(String name){
+        return new IconHelper().getStaticPngImage(name);
     }
 }

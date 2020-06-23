@@ -5,6 +5,8 @@
  */
 package com.jlanches.src.constants;
 
+import com.jlanches.src.constants.media.Icons;
+
 /**
  *
  * @author arthur

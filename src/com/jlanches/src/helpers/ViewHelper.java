@@ -11,7 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JTabbedPane;
 import javax.swing.JToggleButton;
 import javax.swing.border.BevelBorder;
-import com.jlanches.src.constants.Icons;
+import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.constants.SystemColors;
 import com.jlanches.src.model.views.AbasDaTela;
 import com.jlanches.src.model.views.NumberField;

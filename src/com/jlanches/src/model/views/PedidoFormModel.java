@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import com.jlanches.src.constants.Icons;
+import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.helpers.IconHelper;
 
 /**

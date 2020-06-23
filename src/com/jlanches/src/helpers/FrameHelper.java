@@ -5,8 +5,16 @@
  */
 package com.jlanches.src.helpers;
 
+import com.jlanches.src.constants.media.Icons;
+import com.jlanches.src.constants.MediaExtensions;
+import com.jlanches.src.constants.Paths;
+import com.jlanches.src.constants.media.MainIcons;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.FileInputStream;
+import java.net.URL;
 import java.util.Properties;
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 /**
@@ -14,6 +22,15 @@ import javax.swing.UIManager;
  * @author arthur
  */
 public class FrameHelper {
+    
+    public static void setHeaderIcon(JFrame frame, Icons icone){
+        frame.setIconImage(IconHelper.getPngImage(icone.toString()));
+    }
+    
+    public static void setHeaderIcon(JFrame frame, MainIcons icone){
+        frame.setIconImage(IconHelper.getPngImage(icone.toString()));
+    }
+    
     public static void setLookAndFeel(){
         FrameHelper.setJTattooLookAndFeel();
     }

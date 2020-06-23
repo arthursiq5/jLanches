@@ -9,7 +9,7 @@ import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.jlanches.src.constants.FormaDePagamento;
-import com.jlanches.src.constants.Icons;
+import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.constants.SystemColors;
 import com.jlanches.src.dao.ClienteDAO;
 import com.jlanches.src.dao.FranquiaDAO;

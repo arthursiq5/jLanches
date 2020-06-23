@@ -6,7 +6,7 @@
 package com.jlanches.src.views.extension.elements;
 
 import java.util.Calendar;
-import com.jlanches.src.constants.Icons;
+import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.constants.Meses;
 import com.jlanches.src.constants.SystemColors;
 import com.jlanches.src.helpers.ComboHelper;
