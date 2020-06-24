@@ -95,6 +95,8 @@ public class PedidoViewHelper extends PedidoFormHelper {
         pedidoView.showFuncionario.setText(new FuncionarioDAO().get(pedido.funcionario_cpf).toString());
         pedidoView.showPago.setText(pedido.pago ? "sim" : "não");
         pedidoView.showFormaDePagamento.setText(pedido.formaDePagamento.toString());
+        
+        PedidoViewHelper.changeTab(pedidoView, AbasDoSistema.MOSTRAR_PEDIDO);
     }
     
     public static Pedido getPedidoFromTable(PedidoViewModel pedidoView){
