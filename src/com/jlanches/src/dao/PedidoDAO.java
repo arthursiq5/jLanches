@@ -17,6 +17,7 @@ import com.jlanches.src.dao.models.ModelDAO;
 import com.jlanches.src.dao.models.ModelWithComboDao;
 import com.jlanches.src.helpers.DateHelper;
 import com.jlanches.src.helpers.MessageHelper;
+import com.jlanches.src.model.Cliente;
 import com.jlanches.src.model.Pedido;
 import com.jlanches.src.views.extension.elements.ComboItem;
 
@@ -34,11 +35,11 @@ public class PedidoDAO implements ModelDAO<Pedido> {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
             
             String sql = "INSERT INTO pedido " 
-                + "(id, data, pago, formaDePagamento, comentarios, cliente_cpf, funcionario_cpf, franquia_id)"
+                + "(id, data, pago, forma_de_pagamento, comentarios, cliente_cpf, funcionario_cpf, franquia_id)"
                     + " VALUES ("
                         + "DEFAULT, "
                         + "'" + objeto.data + "', "
-                        + "'" + objeto.pago + "', "
+                        + "" + objeto.pago + ", "
                         + "'" + objeto.formaDePagamento + "', "
                         + "'" + objeto.comentarios + "', "
                         + "'" + objeto.cliente_cpf + "', "
@@ -184,7 +185,7 @@ public class PedidoDAO implements ModelDAO<Pedido> {
                 Pedido pedido = this.queryToObject();
                 dadosTabela[line][0] = pedido.id;
                 dadosTabela[line][1] = pedido;
-                dadosTabela[line][2] = pedido.pago;
+                dadosTabela[line][2] = pedido.pago ? "sim" : "não";
                 dadosTabela[line][3] = pedido.formaDePagamento;
                 dadosTabela[line][4] = pedido.comentarios;
                 dadosTabela[line][5] = new FuncionarioDAO().get(pedido.funcionario_cpf);
@@ -227,10 +228,15 @@ public class PedidoDAO implements ModelDAO<Pedido> {
             pedido.id = this.resultadoQuery.getInt("id");
             pedido.data = DateHelper.stringToDate(this.resultadoQuery.getString("data"));
             pedido.pago = this.resultadoQuery.getBoolean("pago");
+            pedido.cliente_cpf = this.resultadoQuery.getString("cliente_cpf");
+            pedido.funcionario_cpf = this.resultadoQuery.getString("funcionario_cpf");
+            pedido.franquia_id = this.resultadoQuery.getInt("franquia_id");
+            pedido.comentarios = this.resultadoQuery.getString("comentarios");
             pedido.formaDePagamento = this.getFormaPagamento();
             return pedido;
         } catch (Exception e) {
             System.err.println("Erro ao parsear objeto");
+            e.printStackTrace(System.err);
             throw e;
         }
         
@@ -245,6 +251,47 @@ public class PedidoDAO implements ModelDAO<Pedido> {
         if(FormaDePagamento.CARTAO_DE_DEBITO.toString().equals(formaDePagamento))
             return FormaDePagamento.CARTAO_DE_DEBITO;
         return FormaDePagamento.CHEQUE;
+        
+    }
+    
+    public static void main(String[] args) {
+        
+        Cliente cliente = new Cliente();
+        cliente.cpf = "00000000000";
+        cliente.nome = "teste";
+        cliente.cidade_id = 1;
+        cliente.contato_id = 1;
+        cliente.endereco = "testeqwe123";
+        
+        //new ClienteDAO().save(cliente);
+        
+        Pedido pedido = new Pedido();
+        pedido.cliente_cpf = cliente.cpf;
+        pedido.data = new Date(System.currentTimeMillis());
+        pedido.franquia_id = 1;
+        pedido.funcionario_cpf = "99999999999";
+        pedido.comentarios = "uma porcaria";
+        pedido.formaDePagamento = FormaDePagamento.A_VISTA;
+
+        Pedido pedido2 = new Pedido();
+        pedido2.cliente_cpf = cliente.cpf;
+        pedido2.data = new Date(System.currentTimeMillis());
+        pedido2.franquia_id = 1;
+        pedido2.funcionario_cpf = "99999999999";
+        pedido2.comentarios = "uma porcaria";
+        pedido2.formaDePagamento = FormaDePagamento.A_VISTA;
+        
+        Pedido pedido3 = new Pedido();
+        pedido3.cliente_cpf = cliente.cpf;
+        pedido3.data = new Date(System.currentTimeMillis());
+        pedido3.franquia_id = 1;
+        pedido3.funcionario_cpf = "99999999999";
+        pedido3.comentarios = "uma porcaria";
+        pedido3.formaDePagamento = FormaDePagamento.A_VISTA;
+        
+        new PedidoDAO().save(pedido);
+        new PedidoDAO().save(pedido2);
+        new PedidoDAO().save(pedido3);
         
     }
 }
