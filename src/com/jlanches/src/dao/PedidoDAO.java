@@ -144,13 +144,20 @@ public class PedidoDAO implements ModelDAO<Pedido> {
         cabecalho[5] = "Funcionário";
         cabecalho[6] = "franquia";
 
-        String like = criteria.equals("") ? "" : ("WHERE UCASE(descricao) LIKE UCASE('%" + criteria + "%')");
+        String like = criteria.equals("") ? "" : ("WHERE UCASE(comentarios) LIKE UCASE('%" + criteria + "%')"
+                + "OR (SELECT cpf FROM cliente WHERE UCASE(nome) LIKE UCASE('%" + criteria + "%')) = cliente_cpf");
 
         if (!like.equals("") && !showInactive) {
             like += " AND ativo = TRUE";
         } else if (!showInactive) {
             like = "WHERE ativo = TRUE";
         }
+        
+        System.out.println(""
+                    + "SELECT * "
+                    + "FROM pedido "
+                    + like
+            );
 
         try {
             this.resultadoQuery = BDConnector.getInstance()
@@ -179,6 +186,9 @@ public class PedidoDAO implements ModelDAO<Pedido> {
                             + "FROM pedido "
                             + like
                     );
+            
+            
+            
             int line = 0;
             while (this.resultadoQuery.next()) {
                 Pedido pedido = this.queryToObject();

@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 /**
@@ -39,6 +40,7 @@ public class PedidoViewModel extends PedidoFormModel {
 
     public JButton btnShowEditar;
     public JButton btnShowExcluir;
+    public JTextField campoPesquisar;
 
     public JButton btnLimparBusca;
     public JButton btnPesquisar;

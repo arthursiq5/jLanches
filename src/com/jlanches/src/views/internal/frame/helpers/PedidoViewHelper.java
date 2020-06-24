@@ -42,6 +42,14 @@ public class PedidoViewHelper extends PedidoFormHelper {
         pedidoView.btnMostrarTodosOsPedidos.setSelected(false);
         PedidoViewHelper.changeTab(pedidoView, AbasDoSistema.VISUALIZAR);
     }
+    
+    public static void search(PedidoViewModel pedidoView){
+        new PedidoDAO().fillTable(
+                pedidoView.tabelaPedidos,
+                true, 
+                pedidoView.campoPesquisar.getText()
+        );
+    }
 
     public static void mostrarTodosOsPedidos(PedidoViewModel pedidoView) {
         if (pedidoView.btnMostrarTodosOsPedidos.isSelected()) {

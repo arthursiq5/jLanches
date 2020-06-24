@@ -34,6 +34,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void initModel() {
         this.pedidoView = new PedidoViewModel();
 
+        this.pedidoView.campoPesquisar = this.campoPesquisar;
         this.pedidoView.campoId = this.campoId;
         this.pedidoView.selectFormaPagamento = this.selectFormaPagamento;
         this.pedidoView.campoComentarios = this.campoComentarios;
@@ -85,7 +86,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaPedidos = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        campoPesquisar = new javax.swing.JTextField();
         btnLimparBusca = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         btnMostrarTodosOsPedidos = new javax.swing.JToggleButton();
@@ -155,12 +156,17 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Pesquisar"));
 
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jTextField1.setText("jTextField1");
+        campoPesquisar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        campoPesquisar.setText("jTextField1");
 
         btnLimparBusca.setText("Limpar");
 
         btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -168,7 +174,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1)
+                .addComponent(campoPesquisar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLimparBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -181,7 +187,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoPesquisar, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLimparBusca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -772,6 +778,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
         PedidoViewHelper.cadastrar(this.pedidoView);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        PedidoViewHelper.search(this.pedidoView);
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;
     private javax.swing.JButton btnAdicionarItemAoPedido;
@@ -791,6 +801,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField campoComentarios;
     private javax.swing.JTextField campoData;
     private javax.swing.JTextField campoId;
+    private javax.swing.JTextField campoPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -818,7 +829,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> selectCliente;
     private javax.swing.JComboBox<String> selectFormaPagamento;
     private javax.swing.JComboBox<String> selectFuncionario;
