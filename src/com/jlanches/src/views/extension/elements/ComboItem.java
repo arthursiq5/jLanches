@@ -12,7 +12,7 @@ package com.jlanches.src.views.extension.elements;
 public class ComboItem {
     public int id = 0;
     public String cpf = "";
-    public String descricao = "";
+    public Object descricao = "";
     private boolean useCpf = false;
     
     public ComboItem(){
@@ -21,12 +21,12 @@ public class ComboItem {
         this.descricao = "";
     }
     
-    public ComboItem(int id, String descricao){
+    public ComboItem(int id, Object descricao){
         this.id = id;
         this.descricao = descricao;
     }
     
-    public ComboItem(String cpf, String descricao){
+    public ComboItem(String cpf, Object descricao){
         this.cpf = cpf;
         this.descricao = descricao;
         this.useCpf = true;
@@ -44,6 +44,6 @@ public class ComboItem {
      */
     @Override
     public String toString() {
-        return this.descricao;
+        return this.descricao + "";
     }
 }
