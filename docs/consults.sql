@@ -33,4 +33,5 @@ SELECT
     )) as franquia FROM franquia AS fr WHERE f.cidade_id = fr.id ) AS franquia,
     (SELECT fone FROM contato where contato.id = f.contato_id) AS fone,
     (SELECT email FROM contato where contato.id = f.contato_id) AS email
-FROM funcionario AS f;
+FROM funcionario AS f
+WHERE f.ativo = TRUE;

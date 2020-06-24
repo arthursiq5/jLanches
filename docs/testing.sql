@@ -53,3 +53,8 @@ INSERT INTO cidade(id, nome, estado_id) VALUES (DEFAULT, "São Paulo", 2);
 INSERT INTO cidade(id, nome, estado_id) VALUES (DEFAULT, "Guarulhos", 2);
 INSERT INTO cidade(id, nome, estado_id) VALUES (DEFAULT, "Gramado", 1);
 
+INSERT INTO estado(id, sigla, nome) VALUES (DEFAULT, "RJ", "Rio de Janeiro");
+INSERT INTO estado(id, sigla, nome) VALUES (DEFAULT, "SC", "Santa Catarina");
+INSERT INTO estado(id, sigla, nome) VALUES (DEFAULT, "TE", "Teste");
+INSERT INTO estado(id, sigla, nome) VALUES (DEFAULT, "TT", "Teste");
+INSERT INTO estado(id, sigla, nome) VALUES (DEFAULT, "TS", "Teste");
