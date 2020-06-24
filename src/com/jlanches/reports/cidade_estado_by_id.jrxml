@@ -3,7 +3,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cidade_estado" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="23154304-8918-427e-bbf2-17928e4ba6dc">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jlanches"/>
-	<parameter name="e" class="java.lang.String"/>
+	<parameter name="estado_id" class="java.lang.Integer"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT estado.sigla AS sigla_do_estado, (
 		SELECT COUNT(*)
@@ -11,7 +11,7 @@
             where cidade.estado_id = estado.id
 	) AS cidades_por_estado
 	FROM estado
-	WHERE estado.id = $P{e}]]>
+	WHERE estado.id = $P{estado_id}]]>
 	</queryString>
 	<field name="sigla_do_estado" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="sigla_do_estado"/>

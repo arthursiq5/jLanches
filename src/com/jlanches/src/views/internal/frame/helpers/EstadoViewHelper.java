@@ -111,7 +111,12 @@ public class EstadoViewHelper {
     }
     
     public static void generateSelectedReport(EstadoViewModel estadoView){
-        System.out.println(estadoView.selectEstadoReport.getSelectedItem().getClass());
-        ReportHelper.showReport(Reports.CIDADE_ESTADO_BY_ID, (HashMap) new HashMap().put("e", ((Estado)((ComboItem) estadoView.selectEstadoReport.getSelectedItem()).descricao).id + ""));
+        System.out.println((((ComboItem)estadoView.selectEstadoReport.getSelectedItem()).descricao).getClass());
+
+        HashMap hash = new HashMap();
+        hash.put("estado_id", ((Estado)((ComboItem) estadoView.selectEstadoReport.getSelectedItem()).descricao).id);
+        
+        
+        ReportHelper.showReport(Reports.CIDADE_ESTADO_BY_ID, hash);
     }
 }

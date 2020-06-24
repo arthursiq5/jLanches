@@ -20,6 +20,7 @@ import com.jlanches.src.TestReports;
 import com.jlanches.src.constants.Paths;
 import com.jlanches.src.constants.Reports;
 import com.jlanches.src.dao.BDConnector;
+import com.jlanches.src.helpers.extension.HashMapHelper;
 
 /**
  *
@@ -61,6 +62,7 @@ public class ReportHelper {
     public static void showReport(Reports report, HashMap params){
         JasperReport compileReport = ReportHelper.reports.get(report.toString());
         JasperPrint fillReport;
+        HashMapHelper.printHashMap(params);
         try {
             fillReport = JasperFillManager.fillReport(compileReport, params, BDConnector.getInstance().getConnection());
             JasperViewer.viewReport(fillReport, false);
