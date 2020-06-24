@@ -23,13 +23,6 @@ public class AddItemPedidoHelper {
     }
     
     public static void initSelect(AddItemPedidoModel addItemPedido){
-        /*FormaDePagamento[] itens = new FormaDePagamento[4];
-        itens[0] = FormaDePagamento.A_VISTA;
-        itens[1] = FormaDePagamento.CARTAO_DE_CREDITO;
-        itens[2] = FormaDePagamento.CARTAO_DE_DEBITO;
-        itens[3] = FormaDePagamento.CHEQUE;
-        ComboHelper.fillCombo(addItemPedido.selectLanche, itens);*/
-        
         new LancheDAO().fillCombo(addItemPedido.selectLanche);
     }
 }

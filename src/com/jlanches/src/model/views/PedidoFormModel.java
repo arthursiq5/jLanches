@@ -26,7 +26,7 @@ public class PedidoFormModel implements FormUseDatePicker{
             this.button = button;
             this.pago = false;
             this.button.setIcon(
-                IconHelper.getPngIcon(Icons.CANCELAR_64.getPath())
+                IconHelper.getPngIcon(Icons.CANCELAR_64.getFullPath())
             );
         }
         
@@ -34,11 +34,11 @@ public class PedidoFormModel implements FormUseDatePicker{
             this.pago = !this.pago;
             if(this.pago){
                 this.button.setIcon(
-                    IconHelper.getPngIcon(Icons.SELECIONADO_64.getPath())
+                    IconHelper.getPngIcon(Icons.SELECIONADO_64.getFullPath())
                 );
             }else{
                 this.button.setIcon(
-                    IconHelper.getPngIcon(Icons.CANCELAR_64.getPath())
+                    IconHelper.getPngIcon(Icons.CANCELAR_64.getFullPath())
                 );
             }
         }
