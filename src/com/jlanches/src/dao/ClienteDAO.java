@@ -39,7 +39,6 @@ public class ClienteDAO implements ModelWithComboDao<Cliente> {
                         + "'" + objeto.cidade_id  + "', "
                         + "'" + objeto.contato_id  + "' "
                     + ")";
-            System.out.println(sql);
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao inserir dados de cliente do banco");
@@ -134,8 +133,6 @@ public class ClienteDAO implements ModelWithComboDao<Cliente> {
                     + "FROM cliente "
                     + "WHERE "
                     + "cpf LIKE '" + id +"'";
-            
-            System.out.println("SQL: " + sql);
             
             this.resultadoQuery = statement.executeQuery(sql);
             

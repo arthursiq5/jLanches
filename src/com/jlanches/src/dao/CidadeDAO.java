@@ -94,8 +94,6 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
                     + "WHERE "
                     + "id LIKE '" + id +"'";
             
-            System.out.println("SQL: " + sql);
-            
             this.resultadoQuery = statement.executeQuery(sql);
             
             this.resultadoQuery.next();

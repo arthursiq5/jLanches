@@ -92,8 +92,6 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
                     + "WHERE "
                     + "id LIKE '"+ id +"'";
             
-            System.out.println(sql);
-            
             this.resultadoQuery = statement.executeQuery(sql);
             
             this.resultadoQuery.next();

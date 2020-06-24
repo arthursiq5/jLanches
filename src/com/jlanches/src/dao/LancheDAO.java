@@ -42,7 +42,6 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
                         + ""  + objeto.disponivel  + ", "
                         + "'" + objeto.categoria_id  + "' "
                     + ")";
-            System.out.println(sql);
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao inserir dados de lanche do banco");
@@ -117,8 +116,6 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
                     + "WHERE "
                     + "id LIKE '" + id +"'";
             
-            System.out.println("SQL: " + sql);
-            
             this.resultadoQuery = statement.executeQuery(sql);
             
             this.resultadoQuery.next();
@@ -183,11 +180,7 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
                                             + like
                                     );
             int line = 0;
-            System.out.println(""
-                                            + "SELECT * "
-                                            + "FROM lanche "
-                                            + like
-                                    );
+            
             while(this.resultadoQuery.next()){
                 Lanche lanche = this.queryToLanche();
             

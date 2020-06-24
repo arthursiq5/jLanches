@@ -94,8 +94,6 @@ public class EstadoDAO implements ModelWithComboDao<Estado> {
                     + "WHERE "
                     + "id LIKE '" + id +"'";
             
-            System.out.println("SQL: " + sql);
-            
             this.resultadoQuery = statement.executeQuery(sql);
             
             this.resultadoQuery.next();

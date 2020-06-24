@@ -40,7 +40,6 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
                         + "'" + objeto.contato_id  + "', "
                         + "'" + objeto.franquia_id + "' "
                     + ")";
-            System.out.println(sql);
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao inserir dados do funcionário do banco");
@@ -148,8 +147,6 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
                     + "WHERE "
                     + "cpf LIKE '" + id +"'";
             
-            System.out.println("SQL: " + sql);
-            
             this.resultadoQuery = statement.executeQuery(sql);
             
             this.resultadoQuery.next();
@@ -165,9 +162,6 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
             System.err.println("Erro: \n" + e);
             funcionario = new Funcionario();
         }
-        System.out.println("cpf: " + funcionario.cpf);
-        System.out.println("nome: "+ funcionario.nome);
-        
         
         return funcionario;
     }
