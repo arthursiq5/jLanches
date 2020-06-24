@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.Locale;
 import com.jlanches.src.constants.DateFormats;
 import com.jlanches.src.constants.Meses;
+import java.util.Arrays;
 
 /**
  *
@@ -58,22 +59,7 @@ public class DateHelper {
     }
 
     public static Meses[] getPossibleMonths() {
-        Meses[] meses = {
-            Meses.JANEIRO,
-            Meses.FEVEREIRO,
-            Meses.MARCO,
-            Meses.ABRIL,
-            Meses.MAIO,
-            Meses.JUNHO,
-            Meses.JULHO,
-            Meses.AGOSTO,
-            Meses.SETEMBRO,
-            Meses.OUTUBRO,
-            Meses.NOVEMBRO,
-            Meses.DEZEMBRO
-        };
-
-        return meses;
+        return Meses.values();
     }
 
     public static Meses checkMonth(String month) {
@@ -105,6 +91,10 @@ public class DateHelper {
             System.out.println("Ano: " + possibleYear);
         }
 
-        System.out.println("FEVEREIRO: " + DateHelper.checkMonth("FEVEREIRO").getQuantidadeDeDias());
+        Arrays.asList(Meses.values()).forEach((month) -> {
+            System.out.print(month.name());
+            System.out.print(" -> ");
+            System.out.println(month.getQuantidadeDeDias());
+        });
     }
 }
