@@ -5,21 +5,20 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jlanches"/>
 	<parameter name="estado_id" class="java.lang.Integer"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT estado.sigla AS sigla_do_estado, (
-		SELECT COUNT(*)
-			FROM cidade
-            where cidade.estado_id = estado.id
-	) AS cidades_por_estado
-	FROM estado
-	WHERE estado.id = $P{estado_id}]]>
+		<![CDATA[SELECT nome, 
+		(SELECT sigla FROM estado WHERE estado.id = cidade.estado_id) 
+		AS sigla_estado,
+		(SELECT nome FROM estado WHERE estado.id = cidade.estado_id) 
+		AS estado
+	FROM cidade     
+	WHERE cidade.estado_id = $P{estado_id}]]>
 	</queryString>
-	<field name="sigla_do_estado" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="sigla_do_estado"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="estado"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cidade"/>
 	</field>
-	<field name="cidades_por_estado" class="java.lang.Long">
-		<property name="com.jaspersoft.studio.field.label" value="cidades_por_estado"/>
+	<field name="sigla_estado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="sigla_estado"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -48,26 +47,15 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch">
-			<staticText>
-				<reportElement x="-1" y="0" width="551" height="35" uuid="e54a0169-5573-40c6-9a50-e22a2784645e">
-					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
-					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
-					<property name="com.jaspersoft.studio.unit.spacingAfter" value="px"/>
-				</reportElement>
+		<band height="49" splitType="Stretch">
+			<textField>
+				<reportElement x="-1" y="0" width="551" height="49" uuid="795d0eb5-9b8d-482f-aff3-affa2240b7e4"/>
 				<box>
-					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement>
-					<font size="12"/>
-					<paragraph leftIndent="5" rightIndent="5" spacingBefore="5" spacingAfter="5"/>
-				</textElement>
-				<text><![CDATA[Quantidade de cidades para cada estado]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA["Cidades do estado " + $F{nome}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -75,15 +63,15 @@
 			<staticText>
 				<reportElement x="-1" y="0" width="281" height="61" uuid="7398b95d-d40a-4ae8-a34f-da5c2e78f9ad"/>
 				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="16" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Estado]]></text>
+				<text><![CDATA[Cidade]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="280" y="0" width="270" height="61" uuid="77c06bf6-ef1e-414f-8fc7-0dd592ab2e89"/>
@@ -96,14 +84,14 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cidades]]></text>
+				<text><![CDATA[Estado]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<textField>
-				<reportElement positionType="Float" x="-1" y="0" width="281" height="125" uuid="95dd5dab-7c41-4823-b351-816f526a23d4">
+				<reportElement positionType="Float" x="-1" y="0" width="281" height="38" uuid="95dd5dab-7c41-4823-b351-816f526a23d4">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
 					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -112,19 +100,19 @@
 					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="pixel"/>
 				</reportElement>
 				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement>
 					<font size="14"/>
 					<paragraph lineSpacingSize="1.0" leftIndent="5" rightIndent="5" spacingBefore="5" spacingAfter="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{sigla_do_estado}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="280" y="0" width="270" height="125" uuid="ebc409e3-656e-43e3-ba87-e3a102a604e6">
+				<reportElement x="280" y="0" width="270" height="38" uuid="ebc409e3-656e-43e3-ba87-e3a102a604e6">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
 					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
@@ -140,7 +128,7 @@
 					<font size="14"/>
 					<paragraph leftIndent="5" rightIndent="5" spacingBefore="5" spacingAfter="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cidades_por_estado}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{sigla_estado}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
