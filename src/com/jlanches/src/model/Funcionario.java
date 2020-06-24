@@ -20,4 +20,9 @@ public class Funcionario {
     public int cidade_id;
     public int franquia_id;
     public int contato_id;
+    
+    @Override
+    public String toString(){
+        return this.nome;
+    }
 }

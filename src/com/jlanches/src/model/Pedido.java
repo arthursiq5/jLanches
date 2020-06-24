@@ -33,8 +33,9 @@ public class Pedido {
         this.itens = new HashMap<String, LanchePedido>();
     }
     
+    @Override
     public String toString(){
-        return "Pedido do cliente"
+        return "Pedido do cliente "
                 + new ClienteDAO().get(this.cliente_cpf).nome
                 + " feito no dia "
                 + DateHelper.dateToString(this.data);

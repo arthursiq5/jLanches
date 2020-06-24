@@ -25,6 +25,7 @@ public class Cliente {
         this.contato_id = 0;
     }
     
+    @Override
     public String toString(){
         return this.nome + " | " + this.cpf;
     }
