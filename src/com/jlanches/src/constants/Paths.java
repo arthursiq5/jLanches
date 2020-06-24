@@ -12,7 +12,8 @@ package com.jlanches.src.constants;
 public enum Paths {
     ICONS("/com/jlanches/media/icons/"),
     MAIN_ICONS("/com/jlanches/media/icons/main/"),
-    REPORTS("/com/jlanches/reports/");
+    REPORTS("/com/jlanches/reports/"),
+    EFFECTS("/com/jlanches/media/sounds/effects");
     
     String path;
     

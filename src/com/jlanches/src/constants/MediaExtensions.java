@@ -10,7 +10,8 @@ package com.jlanches.src.constants;
  * @author arthur
  */
 public enum MediaExtensions {
-    PNG(".png");
+    PNG(".png"),
+    WAV(".wav");
     
     String extension;
     
