@@ -25,6 +25,14 @@ public abstract class EffectHelper {
         EffectHelper.playSound(SoundEffects.BELL);
     }
     
+    public static void playBeepSound(){
+        EffectHelper.playSound(SoundEffects.BEEP);
+    }
+    
+    public static void playBrokeSound(){
+        EffectHelper.playSound(SoundEffects.BROKE);
+    }
+    
     public static void playSound(SoundEffects effect){
         try 
         {   
