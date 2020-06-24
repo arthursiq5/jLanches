@@ -273,7 +273,7 @@ public class ClienteDAO implements ModelWithComboDao<Cliente> {
                     item = new ComboItem();
 
                     item.cpf = cliente.cpf;
-                    item.descricao = cliente.toString();
+                    item.descricao = cliente;
 
                     combo.addItem(item);
                 }

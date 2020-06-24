@@ -38,7 +38,7 @@ public class PedidoDAO implements ModelDAO<Pedido> {
                     + "(id, data, pago, forma_de_pagamento, comentarios, cliente_cpf, funcionario_cpf, franquia_id)"
                     + " VALUES ("
                     + "DEFAULT, "
-                    + "'" + objeto.data + "', "
+                    + "'" + DateHelper.dateToString(objeto.data) + "', "
                     + "" + objeto.pago + ", "
                     + "'" + objeto.formaDePagamento + "', "
                     + "'" + objeto.comentarios + "', "

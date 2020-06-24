@@ -17,7 +17,7 @@ import com.jlanches.src.model.views.PedidoViewModel;
  *
  * @author arthur
  */
-public class PedidoViewHelper {
+public class PedidoViewHelper extends PedidoFormHelper {
 
     private enum AbasDoSistema {
         VISUALIZAR(0),
@@ -55,6 +55,7 @@ public class PedidoViewHelper {
         PedidoViewHelper.updateMainTable(pedidoView);
         PedidoViewHelper.initButtonsStyle(pedidoView);
         PedidoFormHelper.carregaCombos(pedidoView);
+        PedidoViewHelper.resetCampos(pedidoView);
     }
 
     private static Pedido getItemFromTable(PedidoViewModel pedidoView) {
@@ -66,4 +67,5 @@ public class PedidoViewHelper {
         ViewHelper.setButtonStyle(pedidoView.btnMostraPedido, SystemColors.ERASE_BLUE, Icons.PESQUISAR_64);
         ViewHelper.setButtonStyle(pedidoView.btnMostrarTodosOsPedidos, SystemColors.SILVER, Icons.COIN_64);
     }
+    
 }

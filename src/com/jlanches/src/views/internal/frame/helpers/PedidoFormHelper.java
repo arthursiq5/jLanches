@@ -14,6 +14,7 @@ import com.jlanches.src.constants.SystemColors;
 import com.jlanches.src.dao.ClienteDAO;
 import com.jlanches.src.dao.FranquiaDAO;
 import com.jlanches.src.dao.FuncionarioDAO;
+import com.jlanches.src.dao.PedidoDAO;
 import com.jlanches.src.helpers.ComboHelper;
 import com.jlanches.src.helpers.DateHelper;
 import com.jlanches.src.helpers.ViewHelper;
@@ -21,6 +22,8 @@ import com.jlanches.src.model.Cliente;
 import com.jlanches.src.model.Funcionario;
 import com.jlanches.src.model.Pedido;
 import com.jlanches.src.model.views.PedidoFormModel;
+import com.jlanches.src.model.views.PedidoViewModel;
+import com.jlanches.src.views.extension.elements.ComboItem;
 
 /**
  *
@@ -54,7 +57,16 @@ public class PedidoFormHelper {
     }
 
     public static void insert(PedidoFormModel pedidoForm) {
+        PedidoFormHelper.cadastrar(pedidoForm);
+    }
+    
+    public static void cadastrar(PedidoFormModel pedidoForm){
+        new PedidoDAO().save(PedidoViewHelper.generatePedido(pedidoForm));
+    }
+    
+    public static Pedido generatePedido(PedidoFormModel pedidoForm){
         Pedido pedido = new Pedido();
+        
         pedido.id = pedidoForm.campoId.getText().equals("") ? 0 : Integer.parseInt(pedidoForm.campoId.getText());
         pedido.comentarios = pedidoForm.campoComentarios.getText();
         try {
@@ -63,9 +75,11 @@ public class PedidoFormHelper {
             Logger.getLogger(PedidoFormHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         pedido.formaDePagamento = (FormaDePagamento) pedidoForm.selectFormaPagamento.getSelectedItem();
-        pedido.cliente_cpf = ((Cliente) pedidoForm.selectCliente.getSelectedItem()).cpf;
-        pedido.funcionario_cpf = ((Funcionario) pedidoForm.selectFuncionario.getSelectedItem()).cpf;
-
+        pedido.cliente_cpf = ((Cliente) ((ComboItem)pedidoForm.selectCliente.getSelectedItem()).descricao).cpf;
+        pedido.funcionario_cpf = ((Funcionario) ((ComboItem)pedidoForm.selectFuncionario.getSelectedItem()).descricao).cpf;
+        
         pedido.franquia_id = new FuncionarioDAO().get(pedido.funcionario_cpf).franquia_id;
+        
+        return pedido;
     }
 }

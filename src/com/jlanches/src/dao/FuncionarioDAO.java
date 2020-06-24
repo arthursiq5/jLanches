@@ -290,7 +290,7 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario> {
                     item = new ComboItem();
 
                     item.cpf = funcionario.cpf;
-                    item.descricao = funcionario.toString();
+                    item.descricao = funcionario;
 
                     combo.addItem(item);
                 }

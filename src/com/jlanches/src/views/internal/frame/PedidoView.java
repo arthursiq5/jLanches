@@ -34,6 +34,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void initModel() {
         this.pedidoView = new PedidoViewModel();
 
+        this.pedidoView.campoId = this.campoId;
         this.pedidoView.selectFormaPagamento = this.selectFormaPagamento;
         this.pedidoView.campoComentarios = this.campoComentarios;
         this.pedidoView.selectCliente = this.selectCliente;
@@ -509,6 +510,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ações"));
 
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
 
@@ -761,6 +767,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void btnPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPagoMouseClicked
         this.pedidoView.pago.changePago();
     }//GEN-LAST:event_btnPagoMouseClicked
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        PedidoViewHelper.cadastrar(this.pedidoView);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;
