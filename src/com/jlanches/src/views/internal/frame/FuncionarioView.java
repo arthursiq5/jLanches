@@ -46,7 +46,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         initComponents();
         this.updateTable();
         this.carregaSelects();
-        this.btnToggleFuncionariosInativos.setIcon(IconHelper.getPngIcon(Icons.USUARIO_PLUS_64.getPath()));
+        this.btnToggleFuncionariosInativos.setIcon(IconHelper.getPngIcon(Icons.USUARIO_PLUS_64.getFullPath()));
         this.clearUpdateUser();
     }
     
