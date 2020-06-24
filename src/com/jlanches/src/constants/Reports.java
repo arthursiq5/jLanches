@@ -10,20 +10,26 @@ package com.jlanches.src.constants;
  * @author arthur
  */
 public enum Reports {
-    EXEMPLO("Exemplo"),
-    CIDADE_ESTADO("cidade_estado"),
-    CIDADE_ESTADO_BY_ID("cidade_estado_by_id"),
-    FUNCIONARIOS("funcionarios"),
-    FUNCIONARIOS_ATIVOS("funcionarios_ativos");
+    EXEMPLO(Paths.REPORTS, "Exemplo"),
+    CIDADE_ESTADO(Paths.ADDRESS_REPORTS, "cidade_estado"),
+    CIDADE_ESTADO_BY_ID(Paths.ADDRESS_REPORTS, "cidade_estado_by_id"),
+    FUNCIONARIOS(Paths.REPORTS, "funcionarios"),
+    FUNCIONARIOS_ATIVOS(Paths.REPORTS, "funcionarios_ativos");
     
+    private final Paths path;
     private final String name;
     
-    private Reports(String name){
+    private Reports(Paths path, String name){
         this.name = name;
+        this.path = path;
     }
     
     @Override
     public String toString(){
         return this.name + ".jrxml";
+    }
+    
+    public String getFullPath(){
+        return this.path + this.name + ".jrxml";
     }
 }

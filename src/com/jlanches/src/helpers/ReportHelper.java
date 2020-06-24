@@ -33,19 +33,20 @@ public class ReportHelper {
     public static void compileRepots(){
         ReportHelper.reports = new HashMap<String, JasperReport>();
         try {
-            JasperReport compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + Reports.EXEMPLO.toString()));
+            JasperReport compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Reports.EXEMPLO.getFullPath()));
             ReportHelper.reports.put(Reports.EXEMPLO.toString(), compileReport);
-            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + Reports.CIDADE_ESTADO.toString()));
+            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Reports.CIDADE_ESTADO.getFullPath()));
             ReportHelper.reports.put(Reports.CIDADE_ESTADO.toString(), compileReport);
-            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + Reports.CIDADE_ESTADO_BY_ID.toString()));
+            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Reports.CIDADE_ESTADO_BY_ID.getFullPath()));
             ReportHelper.reports.put(Reports.CIDADE_ESTADO_BY_ID.toString(), compileReport);
-            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + Reports.FUNCIONARIOS.toString()));
+            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Reports.FUNCIONARIOS.getFullPath()));
             ReportHelper.reports.put(Reports.FUNCIONARIOS.toString(), compileReport);
-            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + Reports.FUNCIONARIOS_ATIVOS.toString()));
+            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Reports.FUNCIONARIOS_ATIVOS.getFullPath()));
             ReportHelper.reports.put(Reports.FUNCIONARIOS_ATIVOS.toString(), compileReport);
         } catch (JRException ex) {
             Logger.getLogger(ReportHelper.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(Paths.REPORTS + Reports.EXEMPLO.toString());
+            System.out.println(Reports.EXEMPLO.getFullPath());
+            System.out.println(Reports.CIDADE_ESTADO.getFullPath());
         }
     }
     
