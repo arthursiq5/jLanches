@@ -14,6 +14,7 @@ import com.jlanches.src.helpers.ViewHelper;
 import com.jlanches.src.model.Estado;
 import com.jlanches.src.model.views.EstadoViewModel;
 import com.jlanches.src.validators.testers.EstadoValidator;
+import com.jlanches.src.views.extension.elements.ComboItem;
 
 /**
  *
@@ -110,6 +111,7 @@ public class EstadoViewHelper {
     }
     
     public static void generateSelectedReport(EstadoViewModel estadoView){
-        ReportHelper.showReport(Reports.CIDADE_ESTADO_BY_ID, (HashMap) new HashMap().put("e", ((Estado) estadoView.selectEstadoReport.getSelectedItem()).id + ""));
+        System.out.println(estadoView.selectEstadoReport.getSelectedItem().getClass());
+        ReportHelper.showReport(Reports.CIDADE_ESTADO_BY_ID, (HashMap) new HashMap().put("e", ((Estado)((ComboItem) estadoView.selectEstadoReport.getSelectedItem()).descricao).id + ""));
     }
 }

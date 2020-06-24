@@ -783,6 +783,11 @@ public class CidadeView extends javax.swing.JInternalFrame {
 
         btnGenerateSingleReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlanches/media/icons/icons8-pdf-2-64.png"))); // NOI18N
         btnGenerateSingleReport.setText("Gerar relatório");
+        btnGenerateSingleReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateSingleReportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -892,6 +897,10 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateReportActionPerformed
         EstadoViewHelper.generateReport(this.estadoView);
     }//GEN-LAST:event_btnGenerateReportActionPerformed
+
+    private void btnGenerateSingleReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateSingleReportActionPerformed
+        EstadoViewHelper.generateSelectedReport(estadoView);
+    }//GEN-LAST:event_btnGenerateSingleReportActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
