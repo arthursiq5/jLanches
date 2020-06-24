@@ -5,6 +5,7 @@
  */
 package com.jlanches.src.helpers;
 
+import com.jlanches.src.helpers.extension.EffectHelper;
 import com.jlanches.src.constants.SoundEffects;
 import java.io.IOException;
 import java.io.InputStream;
