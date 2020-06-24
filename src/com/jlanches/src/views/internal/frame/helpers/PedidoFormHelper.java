@@ -27,19 +27,20 @@ import com.jlanches.src.model.views.PedidoFormModel;
  * @author arthur
  */
 public class PedidoFormHelper {
-    public static void initButtons(PedidoFormModel pedidoView){
+
+    public static void initButtons(PedidoFormModel pedidoView) {
         ViewHelper.initFormButtons(pedidoView.btnLimpar, pedidoView.btnCadastrar);
         ViewHelper.setButtonStyle(pedidoView.btnAdicionarItemAoPedido, SystemColors.LIGHT_GREEN, Icons.ADD_64);
         ViewHelper.setButtonStyle(pedidoView.btnMostrarItemPedido, SystemColors.SILVER, Icons.PESQUISAR_64);
     }
-    
-    public static void resetCampos(PedidoFormModel pedidoForm){
+
+    public static void resetCampos(PedidoFormModel pedidoForm) {
         pedidoForm.campoComentarios.setText("");
         pedidoForm.campoData.setText("");
         pedidoForm.campoId.setText("");
     }
-    
-    public static void carregaCombos(PedidoFormModel pedidoForm){
+
+    public static void carregaCombos(PedidoFormModel pedidoForm) {
         FormaDePagamento[] formaPagamento = {
             FormaDePagamento.A_VISTA,
             FormaDePagamento.CARTAO_DE_CREDITO,
@@ -49,12 +50,12 @@ public class PedidoFormHelper {
         ComboHelper.fillCombo(pedidoForm.selectFormaPagamento, formaPagamento);
         new ClienteDAO().fillCombo(pedidoForm.selectCliente);
         new FuncionarioDAO().fillCombo(pedidoForm.selectFuncionario);
-        
+
     }
-    
-    public static void insert(PedidoFormModel pedidoForm){
+
+    public static void insert(PedidoFormModel pedidoForm) {
         Pedido pedido = new Pedido();
-        pedido.id = pedidoForm.campoId.getText().equals("")?0:Integer.parseInt(pedidoForm.campoId.getText());
+        pedido.id = pedidoForm.campoId.getText().equals("") ? 0 : Integer.parseInt(pedidoForm.campoId.getText());
         pedido.comentarios = pedidoForm.campoComentarios.getText();
         try {
             pedido.data = DateHelper.stringToDate(pedidoForm.campoData.getText());
@@ -64,7 +65,7 @@ public class PedidoFormHelper {
         pedido.formaDePagamento = (FormaDePagamento) pedidoForm.selectFormaPagamento.getSelectedItem();
         pedido.cliente_cpf = ((Cliente) pedidoForm.selectCliente.getSelectedItem()).cpf;
         pedido.funcionario_cpf = ((Funcionario) pedidoForm.selectFuncionario.getSelectedItem()).cpf;
-        
+
         pedido.franquia_id = new FuncionarioDAO().get(pedido.funcionario_cpf).franquia_id;
     }
 }

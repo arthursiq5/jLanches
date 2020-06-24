@@ -12,19 +12,19 @@ package com.jlanches.src.constants;
 public enum MediaExtensions {
     PNG(".png"),
     WAV(".wav");
-    
+
     String extension;
-    
-    private MediaExtensions(String extension){
+
+    private MediaExtensions(String extension) {
         this.extension = extension;
     }
-    
-    public String getExtension(){
+
+    public String getExtension() {
         return this.extension;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.extension;
     }
 }

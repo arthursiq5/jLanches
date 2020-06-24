@@ -10,12 +10,13 @@ package com.jlanches.src.model;
  * @author arthur
  */
 public class Categoria {
+
     public int id;
     public String nome;
     public boolean ativo;
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.nome;
     }
 }

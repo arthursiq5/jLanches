@@ -10,30 +10,31 @@ package com.jlanches.src.model;
  * @author arthur
  */
 public class Contato {
+
     public int id;
     public String fone;
     public String email;
-    
-    public Contato(){
+
+    public Contato() {
         this.id = 0;
         this.fone = "";
         this.email = "";
     }
-    
-    public Contato(int id, String email, String fone){
+
+    public Contato(int id, String email, String fone) {
         this.id = id;
         this.fone = fone;
         this.email = email;
     }
-    
-    public String toString(){
-        if(this.email.length() != 0 && this.fone.length() != 0){
+
+    public String toString() {
+        if (this.email.length() != 0 && this.fone.length() != 0) {
             return "Email: " + this.email + " | Fone: " + this.fone;
-        }else if(this.email.length() != 0){
+        } else if (this.email.length() != 0) {
             return "Email: " + this.email;
-        }else if(this.fone.length() != 0){
+        } else if (this.fone.length() != 0) {
             return "Fone: " + this.fone;
-        }else{
+        } else {
             return "Este contato está vazio";
         }
     }

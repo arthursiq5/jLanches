@@ -23,12 +23,12 @@ public class CategoriaView extends javax.swing.JInternalFrame {
         initComponents();
         this.updateTable();
     }
-    
-    private void updateTable(){
+
+    private void updateTable() {
         new CategoriaDAO().fillTable(this.tableCategorias, "");
     }
-    
-    private void resetInputs(){
+
+    private void resetInputs() {
         this.campoId.setText("");
         this.campoPesquisar.setText("");
         this.campoNome.setText("");
@@ -362,11 +362,11 @@ public class CategoriaView extends javax.swing.JInternalFrame {
         Categoria categoria = new Categoria();
         categoria.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
         categoria.nome = this.campoNome.getText();
-        if(categoria.id == 0 && CategoriaValidator.insert(categoria)){
+        if (categoria.id == 0 && CategoriaValidator.insert(categoria)) {
             new CategoriaDAO().save(categoria);
-        }else if(CategoriaValidator.update(categoria)){
+        } else if (CategoriaValidator.update(categoria)) {
             new CategoriaDAO().update(categoria);
-        }else{
+        } else {
             return;
         }
         this.updateTable();
@@ -383,8 +383,8 @@ public class CategoriaView extends javax.swing.JInternalFrame {
         categoria.id = Integer.parseInt(
                 String.valueOf(this.tableCategorias.getValueAt(this.tableCategorias.getSelectedRow(), 0)));
         categoria.nome = String.valueOf(this.tableCategorias.getValueAt(this.tableCategorias.getSelectedRow(), 1));
-        
-        if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
+
+        if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
             new CategoriaDAO().delete(categoria);
             this.updateTable();
         }
@@ -398,7 +398,7 @@ public class CategoriaView extends javax.swing.JInternalFrame {
         categoria.nome = String.valueOf(this.tableCategorias.getValueAt(this.tableCategorias.getSelectedRow(), 1));
         this.campoId.setText(categoria.id + "");
         this.campoNome.setText(categoria.nome);
-        
+
         this.abasDoSistema.setSelectedIndex(1);
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -410,7 +410,6 @@ public class CategoriaView extends javax.swing.JInternalFrame {
         this.campoPesquisar.setText("");
         this.updateTable();
     }//GEN-LAST:event_btnLimparBuscaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;

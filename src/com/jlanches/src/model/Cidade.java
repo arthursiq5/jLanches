@@ -10,12 +10,13 @@ package com.jlanches.src.model;
  * @author arthur
  */
 public class Cidade {
+
     public int id;
     public String nome;
     public int estado_id;
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.nome;
     }
 }

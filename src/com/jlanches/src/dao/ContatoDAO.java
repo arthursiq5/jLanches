@@ -23,18 +23,18 @@ import com.jlanches.src.views.extension.elements.ComboItem;
  * @author arthur
  */
 public class ContatoDAO implements ModelWithComboDao<Contato> {
-    
+
     private ResultSet resultadoQuery = null;
 
     @Override
     public void save(Contato objeto) {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = "INSERT INTO contato (id, fone, email) VALUES ("
-                        + "DEFAULT, "
-                        + "'" + objeto.fone + "', "
-                        + "'" + objeto.email + "')";
+                    + "DEFAULT, "
+                    + "'" + objeto.fone + "', "
+                    + "'" + objeto.email + "')";
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao inserir dados de contatos do banco");
@@ -46,11 +46,11 @@ public class ContatoDAO implements ModelWithComboDao<Contato> {
     public void update(Contato objeto) {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = "UPDATE contato "
-                     + "SET fone = '" + objeto.fone + "', "
-                        + "email = '" + objeto.email + "' "
-                     + "WHERE id = '" + objeto.id + "'";
+                    + "SET fone = '" + objeto.fone + "', "
+                    + "email = '" + objeto.email + "' "
+                    + "WHERE id = '" + objeto.id + "'";
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de contatos do banco");
@@ -65,17 +65,16 @@ public class ContatoDAO implements ModelWithComboDao<Contato> {
                     + "FROM contato "
                     + "WHERE id = " + objeto.id;
             BDConnector.getInstance()
-                        .getConnection()
-                        .createStatement()
-                        .executeUpdate(sql);
-        }catch(SQLIntegrityConstraintViolationException e){
+                    .getConnection()
+                    .createStatement()
+                    .executeUpdate(sql);
+        } catch (SQLIntegrityConstraintViolationException e) {
             MessageHelper.createInfoMessage(
-                "Falha", 
-                "Não foi possível remover o contato, pois ele está atrelado a um usuário ou cliente"
+                    "Falha",
+                    "Não foi possível remover o contato, pois ele está atrelado a um usuário ou cliente"
             );
             System.err.println("Falha: " + e);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao remover dados de contatos do banco");
             System.err.println("Erro: " + e);
         }
@@ -96,29 +95,28 @@ public class ContatoDAO implements ModelWithComboDao<Contato> {
         Contato contato = new Contato();
         try {
             Statement statement = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = ""
                     + "SELECT * "
                     + "FROM contato "
                     + "WHERE "
-                    + "id LIKE '" + id +"'";
-            
+                    + "id LIKE '" + id + "'";
+
             System.out.println("SQL: " + sql);
-            
+
             this.resultadoQuery = statement.executeQuery(sql);
-            
+
             this.resultadoQuery.next();
-            
+
             contato.id = this.resultadoQuery.getInt("id");
             contato.fone = this.resultadoQuery.getString("fone");
             contato.email = this.resultadoQuery.getString("email");
-            
-            
+
         } catch (Exception e) {
             MessageHelper.createWarningMessage(
-                    "Aviso", 
+                    "Aviso",
                     "Houveram problemas ao recuperar os contatos do banco.\n"
-                  + "Por favor, tente novamente mais tarde"
+                    + "Por favor, tente novamente mais tarde"
             );
             System.err.println("Erro: \n" + e);
             contato.id = 0;
@@ -127,49 +125,49 @@ public class ContatoDAO implements ModelWithComboDao<Contato> {
         }
         return contato;
     }
-    
-    public void fillTable(JTable table, String criteria){
-        Object [][] dadosTabela = null;
-        Object [] cabecalho = new Object[3];
+
+    public void fillTable(JTable table, String criteria) {
+        Object[][] dadosTabela = null;
+        Object[] cabecalho = new Object[3];
         cabecalho[0] = "ID";
         cabecalho[1] = "Fone";
         cabecalho[2] = "Email";
-        
-        String like = criteria.equals("") 
-                ? "" 
-                : ("WHERE UCASE(fone) LIKE UCASE('%" + criteria + "%') " 
-                + "OR UCASE(email) LIKE UCASE('%" + criteria +"%')");
-        
+
+        String like = criteria.equals("")
+                ? ""
+                : ("WHERE UCASE(fone) LIKE UCASE('%" + criteria + "%') "
+                + "OR UCASE(email) LIKE UCASE('%" + criteria + "%')");
+
         try {
             this.resultadoQuery = BDConnector.getInstance()
-                                    .getConnection()
-                                    .createStatement()
-                                    .executeQuery(""
-                                            + "SELECT count(*) "
-                                            + "FROM contato "
-                                            + like
-                                    );
-            
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(""
+                            + "SELECT count(*) "
+                            + "FROM contato "
+                            + like
+                    );
+
             this.resultadoQuery.next();
-            
+
             dadosTabela = new Object[this.resultadoQuery.getInt(1)][3];
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de estados do banco");
             System.err.println("Erro: \n" + e);
         }
-        
+
         try {
             this.resultadoQuery = BDConnector.getInstance()
-                                    .getConnection()
-                                    .createStatement()
-                                    .executeQuery(""
-                                            + "SELECT * "
-                                            + "FROM contato "
-                                            + like
-                                    );
-            
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(""
+                            + "SELECT * "
+                            + "FROM contato "
+                            + like
+                    );
+
             int line = 0;
-            while(this.resultadoQuery.next()){
+            while (this.resultadoQuery.next()) {
                 Contato contato = new Contato();
                 contato.id = this.resultadoQuery.getInt("id");
                 contato.fone = this.resultadoQuery.getString("fone");
@@ -178,14 +176,14 @@ public class ContatoDAO implements ModelWithComboDao<Contato> {
                 dadosTabela[line][0] = contato.id;
                 dadosTabela[line][1] = contato.fone;
                 dadosTabela[line][2] = contato.email;
-                
+
                 line++;
             }
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de contatos do banco");
             System.err.println("Erro: \n" + e);
         }
-        
+
         table.setModel(new DefaultTableModel(dadosTabela, cabecalho) {
             @Override
             // quando retorno for FALSE, a tabela nao é editavel
@@ -193,7 +191,7 @@ public class ContatoDAO implements ModelWithComboDao<Contato> {
                 return false;
             }
         });
-        
+
         table.setSelectionMode(0);
 
         // redimensiona as colunas de uma tabela
@@ -214,37 +212,36 @@ public class ContatoDAO implements ModelWithComboDao<Contato> {
     @Override
     public void fillCombo(JComboBox combo) {
         combo.removeAllItems();
-        
+
         ComboItem item = new ComboItem();
         item.id = 0;
         item.descricao = "Selecione";
         combo.addItem(item);
-        
+
         try {
-            
+
             this.resultadoQuery = new BDConnector()
                     .getConnection()
                     .createStatement()
-                    .executeQuery("" +
-                            "SELECT * FROM contato"
+                    .executeQuery(""
+                            + "SELECT * FROM contato"
                     );
-            if(this.resultadoQuery.isBeforeFirst()){
-                while(this.resultadoQuery.next()){
+            if (this.resultadoQuery.isBeforeFirst()) {
+                while (this.resultadoQuery.next()) {
                     Contato contato = new Contato(
-                        this.resultadoQuery.getInt("id"),
-                        this.resultadoQuery.getString("fone"),
-                        this.resultadoQuery.getString("email")
+                            this.resultadoQuery.getInt("id"),
+                            this.resultadoQuery.getString("fone"),
+                            this.resultadoQuery.getString("email")
                     );
                     item = new ComboItem(
-                        contato.id,
-                        contato + ""
+                            contato.id,
+                            contato + ""
                     );
-            
+
                     combo.addItem(item);
                 }
             }
-            
-            
+
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao tentar popular o campo \"select\"");
             System.err.println("Erro: \n" + e);

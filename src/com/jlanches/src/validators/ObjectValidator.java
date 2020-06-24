@@ -10,12 +10,13 @@ package com.jlanches.src.validators;
  * @author arthur
  */
 public abstract class ObjectValidator {
-    public static boolean update(Object object) throws Exception{
+
+    public static boolean update(Object object) throws Exception {
         throw new Exception("Not generated (yet)");
     }
-    
-    public static boolean insert(Object object) throws Exception{
+
+    public static boolean insert(Object object) throws Exception {
         throw new Exception("Not generated (yet)");
     }
-    
+
 }

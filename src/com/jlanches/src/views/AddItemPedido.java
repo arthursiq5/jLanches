@@ -19,9 +19,10 @@ import com.jlanches.src.views.internal.frame.helpers.AddItemPedidoHelper;
 public class AddItemPedido extends javax.swing.JFrame {
 
     private AddItemPedidoModel addItemPedido;
-    
+
     /**
      * Creates new form AddItemPedido
+     *
      * @param pedido
      */
     public AddItemPedido(Pedido pedido) {
@@ -31,22 +32,22 @@ public class AddItemPedido extends javax.swing.JFrame {
         AddItemPedidoHelper.initButtons(this.addItemPedido);
         AddItemPedidoHelper.initSelect(this.addItemPedido);
     }
-    
-    public void generateAddItemPedido(Pedido pedido){
+
+    public void generateAddItemPedido(Pedido pedido) {
         this.addItemPedido = new AddItemPedidoModel();
         //this.addItemPedido.itens = pedido.itens;
         this.addItemPedido.pedido_id = pedido.id;
-        
+
         this.addItemPedido.btnAdicionar = this.btnAdicionar;
         this.addItemPedido.btnCancelar = this.btnCancelar;
         this.addItemPedido.btnShowLanche = this.showLanche;
-        
+
         this.addItemPedido.campoId = this.campoId;
         this.addItemPedido.campoAcrescimo = this.campoAcrescimo;
         this.addItemPedido.campoDesconto = this.campoDesconto;
         this.addItemPedido.campoModificacoes = this.campoModificacoes;
         this.addItemPedido.campoTotal = this.campoTotal;
-        
+
         this.addItemPedido.selectLanche = this.selectLanche;
     }
 

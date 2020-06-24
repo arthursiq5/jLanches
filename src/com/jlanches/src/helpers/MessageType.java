@@ -18,14 +18,15 @@ public enum MessageType {
     PLAIN(JOptionPane.PLAIN_MESSAGE),
     QUESTION(JOptionPane.QUESTION_MESSAGE),
     WARNING(JOptionPane.WARNING_MESSAGE);
-    
+
     private final int type;
+
     private MessageType(int type) {
         this.type = type;
     }
-    
-    public int getValue(){
+
+    public int getValue() {
         return this.type;
     }
-    
+
 }

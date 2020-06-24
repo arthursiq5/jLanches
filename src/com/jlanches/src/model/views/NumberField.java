@@ -13,10 +13,11 @@ import javax.swing.JTextField;
  * @author arthur
  */
 public class NumberField {
+
     public JTextField campo;
     public KeyEvent evento;
-    
-    public NumberField(JTextField campo, KeyEvent evento){
+
+    public NumberField(JTextField campo, KeyEvent evento) {
         this.campo = campo;
         this.evento = evento;
     }

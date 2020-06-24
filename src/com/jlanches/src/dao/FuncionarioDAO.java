@@ -20,25 +20,25 @@ import com.jlanches.src.views.extension.elements.ComboItem;
  *
  * @author arthur
  */
-public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
-    
+public class FuncionarioDAO implements ModelWithComboDao<Funcionario> {
+
     private ResultSet resultadoQuery = null;
 
     @Override
     public void save(Funcionario objeto) {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = "INSERT INTO funcionario "
-                + "(cpf, nome, senha, endereco, cidade_id, contato_id, franquia_id) VALUES "+
-                    " ("
-                        + "'" + objeto.cpf +"', "
-                        + "'" + objeto.nome  + "', "
-                        + "MD5('" + objeto.senha + "'), "
-                        + "'" + objeto.endereco  + "', "
-                        + "'" + objeto.cidade_id  + "', "
-                        + "'" + objeto.contato_id  + "', "
-                        + "'" + objeto.franquia_id + "' "
+                    + "(cpf, nome, senha, endereco, cidade_id, contato_id, franquia_id) VALUES "
+                    + " ("
+                    + "'" + objeto.cpf + "', "
+                    + "'" + objeto.nome + "', "
+                    + "MD5('" + objeto.senha + "'), "
+                    + "'" + objeto.endereco + "', "
+                    + "'" + objeto.cidade_id + "', "
+                    + "'" + objeto.contato_id + "', "
+                    + "'" + objeto.franquia_id + "' "
                     + ")";
             st.executeUpdate(sql);
         } catch (Exception e) {
@@ -46,33 +46,35 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
             System.err.println("Erro: " + e);
         }
     }
-    
-    public void deleteWithAuthentication(Funcionario funcionario, String senha){
-        if(this.autenticate(funcionario.cpf, senha))
+
+    public void deleteWithAuthentication(Funcionario funcionario, String senha) {
+        if (this.autenticate(funcionario.cpf, senha)) {
             this.delete(funcionario);
+        }
     }
-    
-    public void updateWithAuthentication(Funcionario funcionario, String senha){
-        if(this.autenticate(funcionario.cpf, senha))
+
+    public void updateWithAuthentication(Funcionario funcionario, String senha) {
+        if (this.autenticate(funcionario.cpf, senha)) {
             this.update(funcionario);
+        }
     }
 
     @Override
     public void update(Funcionario objeto) {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
-            
-            String sql = "" 
-                + "UPDATE funcionario "
-                + "SET " 
-                            + " cpf = '"  + objeto.cpf + "', "
-                            + " nome = '" + objeto.nome + "', "
-                        + " endereco = '" + objeto.endereco + "', "
-                       + " cidade_id = '" + objeto.cidade_id + "', "
-                      + " contato_id = '" + objeto.contato_id + "', "
-                     + " franquia_id = '" + objeto.franquia_id + "', "
-                       + " senha = MD5('" + objeto.senha + "') "
-                + "WHERE cpf = '" + objeto.cpfEditar + "'";
+
+            String sql = ""
+                    + "UPDATE funcionario "
+                    + "SET "
+                    + " cpf = '" + objeto.cpf + "', "
+                    + " nome = '" + objeto.nome + "', "
+                    + " endereco = '" + objeto.endereco + "', "
+                    + " cidade_id = '" + objeto.cidade_id + "', "
+                    + " contato_id = '" + objeto.contato_id + "', "
+                    + " franquia_id = '" + objeto.franquia_id + "', "
+                    + " senha = MD5('" + objeto.senha + "') "
+                    + "WHERE cpf = '" + objeto.cpfEditar + "'";
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de cliente do banco");
@@ -84,17 +86,17 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
     public void delete(Funcionario objeto) {
         try {
             String sql = ""
-                + "UPDATE  funcionario "
-                + "SET ativo = FALSE "
-                + "WHERE cpf = '" + objeto.cpf + "'";
+                    + "UPDATE  funcionario "
+                    + "SET ativo = FALSE "
+                    + "WHERE cpf = '" + objeto.cpf + "'";
             BDConnector.getInstance()
-                        .getConnection()
-                        .createStatement()
-                        .executeUpdate(sql);
-        }catch(SQLIntegrityConstraintViolationException e){
+                    .getConnection()
+                    .createStatement()
+                    .executeUpdate(sql);
+        } catch (SQLIntegrityConstraintViolationException e) {
             MessageHelper.createInfoMessage(
-                "Falha", 
-                "Não foi possível remover o funcionario"
+                    "Falha",
+                    "Não foi possível remover o funcionario"
             );
             System.err.println("Falha: " + e);
         } catch (Exception e) {
@@ -102,21 +104,21 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
             System.err.println("Erro: " + e);
         }
     }
-    
+
     public void retore(Funcionario objeto) {
         try {
             String sql = ""
-                + "UPDATE  funcionario "
-                + "SET ativo = TRUE "
-                + "WHERE cpf = '" + objeto.cpf + "'";
+                    + "UPDATE  funcionario "
+                    + "SET ativo = TRUE "
+                    + "WHERE cpf = '" + objeto.cpf + "'";
             BDConnector.getInstance()
-                        .getConnection()
-                        .createStatement()
-                        .executeUpdate(sql);
-        }catch(SQLIntegrityConstraintViolationException e){
+                    .getConnection()
+                    .createStatement()
+                    .executeUpdate(sql);
+        } catch (SQLIntegrityConstraintViolationException e) {
             MessageHelper.createInfoMessage(
-                "Falha", 
-                "Não foi possível restaurar o funcionario"
+                    "Falha",
+                    "Não foi possível restaurar o funcionario"
             );
             System.err.println("Falha: " + e);
         } catch (Exception e) {
@@ -140,91 +142,91 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
         Funcionario funcionario;
         try {
             Statement statement = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = ""
                     + "SELECT * "
                     + "FROM funcionario "
                     + "WHERE "
-                    + "cpf LIKE '" + id +"'";
-            
+                    + "cpf LIKE '" + id + "'";
+
             this.resultadoQuery = statement.executeQuery(sql);
-            
+
             this.resultadoQuery.next();
-            
+
             funcionario = this.queryToFuncionario();
-            
+
         } catch (Exception e) {
             MessageHelper.createWarningMessage(
-                    "Aviso", 
+                    "Aviso",
                     "Houveram problemas ao recuperar os estados do banco.\n"
-                  + "Por favor, tente novamente mais tarde"
+                    + "Por favor, tente novamente mais tarde"
             );
             System.err.println("Erro: \n" + e);
             funcionario = new Funcionario();
         }
-        
+
         return funcionario;
     }
-    
-    public void fillTable(JTable table, boolean all, String criteria){
-        Object [][] dadosTabela = null;
-        Object [] cabecalho = new Object[6];
+
+    public void fillTable(JTable table, boolean all, String criteria) {
+        Object[][] dadosTabela = null;
+        Object[] cabecalho = new Object[6];
         cabecalho[0] = "CPF";
         cabecalho[1] = "Nome";
         cabecalho[2] = "Endereço";
         cabecalho[3] = "Cidade";
         cabecalho[4] = "Contato";
         cabecalho[5] = "Franquia";
-        
-        String like = criteria.equals("") 
-                ? "" 
+
+        String like = criteria.equals("")
+                ? ""
                 : ("WHERE "
                 + "(UCASE(nome) LIKE UCASE('%" + criteria + "%') OR"
                 + "UCASE(cpf) LIKE UCASE('%" + criteria + "%') OR"
                 + "UCASE(endereco) LIKE UCASE('%" + criteria + "%')"
                 + ") ");
-        
-        if(all){
-            if(!like.equals("")){
+
+        if (all) {
+            if (!like.equals("")) {
                 like = ""
                         + "WHERE  ativo = true";
-            }else{
+            } else {
                 like += ""
                         + " AND ativo = true";
             }
         }
-        
+
         try {
             this.resultadoQuery = BDConnector.getInstance()
-                                    .getConnection()
-                                    .createStatement()
-                                    .executeQuery(""
-                                            + "SELECT count(*) "
-                                            + "FROM funcionario "
-                                            + like
-                                    );
-            
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(""
+                            + "SELECT count(*) "
+                            + "FROM funcionario "
+                            + like
+                    );
+
             this.resultadoQuery.next();
-            
+
             dadosTabela = new Object[this.resultadoQuery.getInt(1)][6];
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de clientes do banco");
             System.err.println("Erro: \n" + e);
         }
-        
+
         try {
             this.resultadoQuery = BDConnector.getInstance()
-                                    .getConnection()
-                                    .createStatement()
-                                    .executeQuery(""
-                                            + "SELECT * "
-                                            + "FROM funcionario "
-                                            + like
-                                    );
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(""
+                            + "SELECT * "
+                            + "FROM funcionario "
+                            + like
+                    );
             int line = 0;
-            while(this.resultadoQuery.next()){
+            while (this.resultadoQuery.next()) {
                 Funcionario funcionario = this.queryToFuncionario();
-            
+
                 dadosTabela[line][0] = funcionario.cpf;
                 dadosTabela[line][1] = funcionario.nome;
                 dadosTabela[line][2] = funcionario.endereco;
@@ -237,7 +239,7 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de clientes do banco");
             System.err.println("Erro: \n" + e);
         }
-        
+
         table.setModel(new DefaultTableModel(dadosTabela, cabecalho) {
             @Override
             // quando retorno for FALSE, a tabela nao é editavel
@@ -245,7 +247,7 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
                 return false;
             }
         });
-        
+
         table.setSelectionMode(0);
 
         // redimensiona as colunas de uma tabela
@@ -266,64 +268,63 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario>{
     @Override
     public void fillCombo(JComboBox combo) {
         combo.removeAllItems();
-        
+
         ComboItem item = new ComboItem();
         item.id = 0;
         item.descricao = "Selecione";
         combo.addItem(item);
-        
+
         try {
-            
+
             this.resultadoQuery = new BDConnector()
                     .getConnection()
                     .createStatement()
-                    .executeQuery("" +
-                            "SELECT * FROM funcionario"
+                    .executeQuery(""
+                            + "SELECT * FROM funcionario"
                     );
-            if(this.resultadoQuery.isBeforeFirst()){
-                while(this.resultadoQuery.next()){
-            
+            if (this.resultadoQuery.isBeforeFirst()) {
+                while (this.resultadoQuery.next()) {
+
                     Funcionario funcionario = this.queryToFuncionario();
-                    
+
                     item = new ComboItem();
-                    
+
                     item.cpf = funcionario.cpf;
                     item.descricao = funcionario.toString();
-            
+
                     combo.addItem(item);
                 }
             }
-            
-            
+
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao tentar popular o campo \"select\"");
             System.err.println("Erro: \n" + e);
         }
     }
-    
-    public boolean autenticate(String cpf, String senha){
+
+    public boolean autenticate(String cpf, String senha) {
         try {
             Statement statement = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = ""
                     + "SELECT * "
                     + "FROM funcionario "
                     + "WHERE "
-                    + "cpf LIKE '" + cpf +"' AND "
-                    + "senha LIKE MD5('" + senha +"')";
-            
+                    + "cpf LIKE '" + cpf + "' AND "
+                    + "senha LIKE MD5('" + senha + "')";
+
             this.resultadoQuery = statement.executeQuery(sql);
-            
+
             return this.resultadoQuery.next();
-            
+
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao autenticar");
             System.err.println("Erro ao autenticar: \n" + e);
             return false;
         }
     }
-    
-    private Funcionario queryToFuncionario() throws Exception{
+
+    private Funcionario queryToFuncionario() throws Exception {
         Funcionario funcionario = new Funcionario();
         try {
             funcionario.cpf = this.resultadoQuery.getString("cpf");

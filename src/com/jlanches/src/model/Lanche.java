@@ -10,15 +10,16 @@ package com.jlanches.src.model;
  * @author arthur
  */
 public class Lanche {
+
     public int id;
     public String nome;
     public String ingredientes;
     public String valor;
     public boolean disponivel;
     public int categoria_id;
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.nome;
     }
 }

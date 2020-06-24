@@ -10,6 +10,7 @@ package com.jlanches.src.model;
  * @author arthur
  */
 public class Funcionario {
+
     public String cpfEditar;
     public String cpf;
     public String nome;
@@ -20,9 +21,9 @@ public class Funcionario {
     public int cidade_id;
     public int franquia_id;
     public int contato_id;
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.nome;
     }
 }

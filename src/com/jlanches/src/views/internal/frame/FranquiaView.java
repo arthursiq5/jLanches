@@ -18,12 +18,12 @@ import com.jlanches.src.views.extension.elements.ComboItem;
  * @author arthur
  */
 public class FranquiaView extends javax.swing.JInternalFrame {
-    
+
     private final String ativoInativo[] = {
         "/com/jlanches/media/icons/icons8-selecionado-64.png",
         "/com/jlanches/media/icons/icons8-cancelar-64.png"
     };
-    
+
     private boolean ativo;
 
     /**
@@ -33,19 +33,19 @@ public class FranquiaView extends javax.swing.JInternalFrame {
         initComponents();
         this.updateTable();
         this.fillSelectCidade();
-        
+
         this.ativo = true;
     }
-    
-    private void fillSelectCidade(){
+
+    private void fillSelectCidade() {
         new CidadeDAO().fillCombo(this.selectCidade);
     }
-    
-    private void updateTable(){
+
+    private void updateTable() {
         new FranquiaDAO().fillTable(this.tableFranquias, "");
     }
-    
-    private void resetInputs(){
+
+    private void resetInputs() {
         this.campoId.setText("");
         this.campoPesquisar.setText("");
         this.campoCNPJ.setText("");
@@ -478,21 +478,21 @@ public class FranquiaView extends javax.swing.JInternalFrame {
         Franquia franquia = new Franquia();
         franquia.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
         franquia.cnpj = this.campoCNPJ.getText();
-        
+
         ComboItem cidade = (ComboItem) this.selectCidade.getSelectedItem();
-        
+
         franquia.cidade_id = cidade.id;
-        
-        if(franquia.id == 0){
-            if(FranquiaValidator.insert(franquia)){
+
+        if (franquia.id == 0) {
+            if (FranquiaValidator.insert(franquia)) {
                 new FranquiaDAO().save(franquia);
-            }else{
+            } else {
                 return;
             }
-        }else{
-            if(FranquiaValidator.update(franquia)){
+        } else {
+            if (FranquiaValidator.update(franquia)) {
                 new FranquiaDAO().update(franquia);
-            }else{
+            } else {
                 return;
             }
         }
@@ -509,8 +509,8 @@ public class FranquiaView extends javax.swing.JInternalFrame {
         Franquia franquia = new Franquia();
         franquia.id = Integer.parseInt(
                 String.valueOf(this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 0)));
-        
-        if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
+
+        if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
             new FranquiaDAO().delete(franquia);
             this.updateTable();
         }
@@ -521,13 +521,13 @@ public class FranquiaView extends javax.swing.JInternalFrame {
         franquia = (Franquia) this.tableFranquias.getValueAt(this.tableFranquias.getSelectedRow(), 1);
         //Estado estado = new EstadoDAO().getBySigla(
         //        String.valueOf(this.tableEstados.getValueAt(this.tableEstados.getSelectedRow(), 1)));
-        
+
         this.campoId.setText(franquia.id + "");
         this.campoCNPJ.setText(franquia.cnpj);
         this.campoEndereco.setText(franquia.endereco);
-        
+
         ComboHelper.setIndex(this.selectCidade, franquia.cidade_id);
-        
+
         this.abasDoSistema.setSelectedIndex(1);
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -541,19 +541,18 @@ public class FranquiaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparBuscaActionPerformed
 
     private void btnAtivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtivoMouseClicked
-        if(this.ativo){
+        if (this.ativo) {
             this.ativo = false;
             btnAtivo.setIcon(
                     new javax.swing.ImageIcon(getClass().getResource(this.ativoInativo[1]))
             );
-        }else{
+        } else {
             this.ativo = true;
             btnAtivo.setIcon(
                     new javax.swing.ImageIcon(getClass().getResource(this.ativoInativo[0]))
             );
         }
     }//GEN-LAST:event_btnAtivoMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;

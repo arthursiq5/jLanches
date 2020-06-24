@@ -12,6 +12,7 @@ import com.jlanches.src.constants.Operation;
  * @author arthur
  */
 public class LanchePedido {
+
     public int id;
     public int lanche_id;
     public int pedido_id;
@@ -20,6 +21,6 @@ public class LanchePedido {
     public double desconto;
     public double acrescimo;
     public String modificacoes;
-    
+
     public Operation estado;
 }

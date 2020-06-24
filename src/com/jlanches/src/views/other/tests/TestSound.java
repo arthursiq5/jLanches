@@ -108,7 +108,6 @@ public class TestSound extends javax.swing.JInternalFrame {
         SoundHelper.playCoinSound();
     }//GEN-LAST:event_btnCoinActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBeep;
     private javax.swing.JButton btnBell;

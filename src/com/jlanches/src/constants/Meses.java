@@ -22,34 +22,35 @@ public enum Meses {
     OUTUBRO("Outubro", 9, 31),
     NOVEMBRO("Novembro", 10, 30),
     DEZEMBRO("Dezembro", 11, 31);
-    
+
     private final String nome;
     private final int gregorianMonth;
     private final int quantidadeDeDias;
-    
-    private Meses(String nome, int gregorianMonth, int quantidadeDeDias){
+
+    private Meses(String nome, int gregorianMonth, int quantidadeDeDias) {
         this.nome = nome;
         this.gregorianMonth = gregorianMonth;
         this.quantidadeDeDias = quantidadeDeDias;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.nome;
     }
-    
-    public int getQuantidadeDeDias(){
+
+    public int getQuantidadeDeDias() {
         return this.quantidadeDeDias;
     }
-    
-    public String getMonth(){
+
+    public String getMonth() {
         String month = (this.gregorianMonth + 1) + "";
-        if(month.length() == 1)
+        if (month.length() == 1) {
             month = "0" + month;
+        }
         return month;
     }
-    
-    public int getGregorianMonth(){
+
+    public int getGregorianMonth() {
         return this.gregorianMonth;
     }
 }

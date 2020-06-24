@@ -22,4 +22,5 @@ import javax.swing.SwingUtilities;
  *
  * @author arthur
  */
-public class SoundHelper extends EffectHelper {}
+public class SoundHelper extends EffectHelper {
+}

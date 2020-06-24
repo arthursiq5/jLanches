@@ -24,11 +24,11 @@ public class LoginScreen extends javax.swing.JFrame {
     public LoginScreen() {
         FrameHelper.setLookAndFeel();
         initComponents();
-        
+
         FrameHelper.setHeaderIcon(this, MainIcons.LANCHEIRA_PRINCIPAL);
     }
-    
-    private void clearForm(){
+
+    private void clearForm() {
         this.inputCPF.setText("");
         this.inputPassword.setText("");
     }
@@ -157,15 +157,15 @@ public class LoginScreen extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String cpf = this.inputCPF.getText().replaceAll("[^0-9]", "");
         String password = new String(this.inputPassword.getPassword());
-        
-        if(new FuncionarioDAO().autenticate(cpf, password)){
+
+        if (new FuncionarioDAO().autenticate(cpf, password)) {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new MainScreen(new FuncionarioDAO().get(cpf)).setVisible(true);
                 }
             });
             this.dispose();
-        }else{
+        } else {
             MessageHelper.createWarningMessage("Erro", "Login ou senha inválidos");
         }
     }//GEN-LAST:event_btnLoginActionPerformed

@@ -24,6 +24,7 @@ import com.jlanches.src.dao.BDConnector;
  * @author arthur
  */
 public class TestReports {
+
     public static void main(String[] args) {
         try {
             JasperReport compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Paths.REPORTS + Reports.CIDADE_ESTADO.toString()));

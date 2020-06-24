@@ -22,44 +22,44 @@ import javax.swing.UIManager;
  * @author arthur
  */
 public class FrameHelper {
-    
-    public static void setHeaderIcon(JFrame frame, Icons icone){
+
+    public static void setHeaderIcon(JFrame frame, Icons icone) {
         frame.setIconImage(IconHelper.getPngImage(icone.getFullPath()));
     }
-    
-    public static void setHeaderIcon(JFrame frame, MainIcons icone){
+
+    public static void setHeaderIcon(JFrame frame, MainIcons icone) {
         frame.setIconImage(IconHelper.getPngImage(icone.getFullPath()));
     }
-    
-    public static void setLookAndFeel(){
+
+    public static void setLookAndFeel() {
         FrameHelper.setJTattooLookAndFeel();
     }
-    
-    public static boolean setJTattooLookAndFeel(){
+
+    public static boolean setJTattooLookAndFeel() {
         boolean success = false;
-        
+
         String jTattoo = "";
-        try{
+        try {
             Properties prop = new Properties();
             prop.load(new FileInputStream("lib.properties"));
             jTattoo = prop.getProperty("lib.jtattoo");
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.print("Erro: ");
             System.err.println(e);
         }
-        if(!jTattoo.equals(""))
+        if (!jTattoo.equals("")) {
             try {
                 UIManager.setLookAndFeel(jTattoo);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                FrameHelper.setNimbusLookAndFeel();
+            }
         }
-        catch (Exception ex) {
-            ex.printStackTrace();
-            FrameHelper.setNimbusLookAndFeel();
-        }
-        
+
         return success;
     }
-    
-    public static boolean setNimbusLookAndFeel(){
+
+    public static boolean setNimbusLookAndFeel() {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -68,7 +68,7 @@ public class FrameHelper {
                 }
             }
             return true;
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

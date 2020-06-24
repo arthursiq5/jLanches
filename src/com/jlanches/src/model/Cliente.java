@@ -10,25 +10,25 @@ package com.jlanches.src.model;
  * @author arthur
  */
 public class Cliente {
+
     public String cpfEditar;
     public String cpf;
     public String nome;
     public String endereco;
     public int cidade_id;
     public int contato_id;
-    
-    public Cliente(){
+
+    public Cliente() {
         this.cpf = "";
         this.nome = "";
         this.endereco = "";
         this.cidade_id = 0;
         this.contato_id = 0;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.nome + " | " + this.cpf;
     }
-    
-    
+
 }

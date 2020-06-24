@@ -21,7 +21,7 @@ import com.jlanches.src.views.extension.elements.ComboItem;
  * @author arthur
  */
 public class ClienteView extends javax.swing.JInternalFrame {
-    
+
     private String cpfAtual;
     private boolean editar;
 
@@ -35,19 +35,19 @@ public class ClienteView extends javax.swing.JInternalFrame {
         this.cpfAtual = "";
         this.editar = false;
     }
-    
-    private void carregaSelects(){
+
+    private void carregaSelects() {
         new CidadeDAO().fillCombo(this.selectCidade);
         new ContatoDAO().fillCombo(this.selectContato);
     }
-    
-    private void updateTable(){
+
+    private void updateTable() {
         new ClienteDAO().fillTable(this.tableClientes, "");
     }
-    
-    private void resetInputs(){
+
+    private void resetInputs() {
         this.editar = false;
-        
+
         this.campoCPF.setText("");
         this.campoPesquisar.setText("");
         this.campoNome.setText("");
@@ -476,16 +476,16 @@ public class ClienteView extends javax.swing.JInternalFrame {
         cliente.endereco = this.campoEndereco.getText();
         cliente.cidade_id = ((ComboItem) this.selectCidade.getSelectedItem()).id;
         cliente.contato_id = ((ComboItem) this.selectContato.getSelectedItem()).id;
-        if(this.editar && ClienteValidator.insert(cliente)){
+        if (this.editar && ClienteValidator.insert(cliente)) {
             cliente.cpfEditar = this.cpfAtual;
             new ClienteDAO().update(cliente);
             this.editar = false;
-        }else if(ClienteValidator.update(cliente)){
+        } else if (ClienteValidator.update(cliente)) {
             new ClienteDAO().save(cliente);
-        }else{
+        } else {
             return;
         }
-        
+
         this.updateTable();
         this.resetInputs();
         this.abasDoSistema.setSelectedIndex(0);
@@ -501,13 +501,13 @@ public class ClienteView extends javax.swing.JInternalFrame {
         cliente.nome = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
         cliente.endereco = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
         cliente.cidade_id = Integer.parseInt(
-            String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1))
+                String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1))
         );
         cliente.contato_id = Integer.parseInt(
-            String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1))
+                String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1))
         );
-        
-        if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
+
+        if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
             new ClienteDAO().delete(cliente);
             this.updateTable();
         }
@@ -515,23 +515,22 @@ public class ClienteView extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         this.editar = true;
-        
+
         Cliente cliente = new Cliente();
         cliente.cpf = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 0));
         cliente.nome = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
         cliente.endereco = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 2));
-        cliente.cidade_id = ((Cidade)this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 3)).id;
-        cliente.contato_id = ((Contato)this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 4)).id;
-        
+        cliente.cidade_id = ((Cidade) this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 3)).id;
+        cliente.contato_id = ((Contato) this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 4)).id;
+
         this.cpfAtual = cliente.cpf;
         this.campoCPF.setText(cliente.cpf);
         this.campoEndereco.setText(cliente.endereco);
         this.campoNome.setText(cliente.nome);
-        
+
         ComboHelper.setIndex(this.selectContato, cliente.contato_id);
         ComboHelper.setIndex(this.selectCidade, cliente.cidade_id);
-        
-        
+
         this.abasDoSistema.setSelectedIndex(1);
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -543,7 +542,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
         this.campoPesquisar.setText("");
         this.updateTable();
     }//GEN-LAST:event_btnLimparBuscaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;

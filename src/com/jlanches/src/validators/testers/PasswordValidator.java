@@ -16,12 +16,14 @@ import com.jlanches.src.validators.ValidationAnswers;
  * @author arthur
  */
 public class PasswordValidator extends ObjectValidator {
-    
-    public static boolean confereSenha(String senha, String repeteSenha){
-        if(StringValidators.isEqual(senha, repeteSenha) == ValidationAnswers.FAIL)
+
+    public static boolean confereSenha(String senha, String repeteSenha) {
+        if (StringValidators.isEqual(senha, repeteSenha) == ValidationAnswers.FAIL) {
             return ValidatorMessageHelper.alert("As senhas precisam ser iguais");
-        if(BasicValidators.isEmpty(senha) == ValidationAnswers.FAIL)
+        }
+        if (BasicValidators.isEmpty(senha) == ValidationAnswers.FAIL) {
             return ValidatorMessageHelper.alert("O campo senha deve ser preenchido");
+        }
         return true;
     }
 }

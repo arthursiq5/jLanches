@@ -26,7 +26,7 @@ import com.jlanches.src.views.internal.frame.helpers.LancheViewHelper;
  * @author arthur
  */
 public class LanchesView extends javax.swing.JInternalFrame {
-    
+
     private LancheViewModel lancheView;
 
     /**
@@ -37,31 +37,30 @@ public class LanchesView extends javax.swing.JInternalFrame {
         this.initLancheViewModel();
         LancheViewHelper.initLanches(this.lancheView);
     }
-    
-    
-    private void initLancheViewModel(){
+
+    private void initLancheViewModel() {
         this.lancheView = new LancheViewModel();
-        
+
         this.lancheView.abasDoSistema = this.abasDoSistema;
-        
+
         this.lancheView.disponivel = true;
-        
+
         this.lancheView.btnCadastrar = this.btnCadastrar;
         this.lancheView.btnEditar = this.btnEditar;
         this.lancheView.btnExcluir = this.btnExcluir;
         this.lancheView.btnLimpar = this.btnLimpar;
         this.lancheView.btnLimparBusca = this.btnLimparBusca;
         this.lancheView.btnPesquisar = this.btnPesquisar;
-        
+
         this.lancheView.campoId = this.campoId;
         this.lancheView.campoIngredientes = this.campoIngredientes;
         this.lancheView.campoNome = this.campoNome;
         this.lancheView.campoPesquisar = this.campoPesquisar;
         this.lancheView.campoValor = this.campoValor;
         this.lancheView.btnAtivo = this.btnAtivo;
-        
+
         this.lancheView.tableLanches = this.tableLanches;
-        
+
         this.lancheView.selectCategoria = this.selectCategoria;
     }
 
@@ -553,13 +552,12 @@ public class LanchesView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAtivoMouseClicked
 
     private void campoValorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoValorKeyReleased
-        
+
     }//GEN-LAST:event_campoValorKeyReleased
 
     private void campoValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoValorKeyTyped
         ViewHelper.eventNumberKeyTyped(new NumberField(this.campoValor, evt));
     }//GEN-LAST:event_campoValorKeyTyped
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;

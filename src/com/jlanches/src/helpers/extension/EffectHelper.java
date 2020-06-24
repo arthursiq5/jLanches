@@ -21,36 +21,32 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author arthur
  */
 public abstract class EffectHelper {
-    
-    public static void playBellSound(){
+
+    public static void playBellSound() {
         EffectHelper.playSound(SoundEffects.BELL);
     }
-    
-    public static void playBeepSound(){
+
+    public static void playBeepSound() {
         EffectHelper.playSound(SoundEffects.BEEP);
     }
-    
-    public static void playBrokeSound(){
+
+    public static void playBrokeSound() {
         EffectHelper.playSound(SoundEffects.BROKE);
     }
-    
-    public static void playCoinSound(){
+
+    public static void playCoinSound() {
         EffectHelper.playSound(SoundEffects.COIN);
     }
-    
-    public static void playSound(SoundEffects effect){
-        try 
-        {   
+
+    public static void playSound(SoundEffects effect) {
+        try {
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(SoundHelper.class.getResource(effect.getFullPath()));
             AudioFormat format = inputStream.getFormat();
             DataLine.Info info = new DataLine.Info(Clip.class, format);
-            Clip clip = (Clip)AudioSystem.getLine(info);
+            Clip clip = (Clip) AudioSystem.getLine(info);
             clip.open(inputStream);
             clip.start();
-        }
-
-    catch (IOException | LineUnavailableException | UnsupportedAudioFileException e1)
-        {
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e1) {
             System.out.println(effect.getFullPath());
             e1.printStackTrace();
         }

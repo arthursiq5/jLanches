@@ -12,15 +12,18 @@ import com.jlanches.src.constants.Meses;
  * @author arthur
  */
 public class MonthHelper {
-    public static class ComboMonth{
+
+    public static class ComboMonth {
+
         public final Meses mes;
         public final String nome;
-        public ComboMonth(Meses mes){
+
+        public ComboMonth(Meses mes) {
             this.mes = mes;
             this.nome = mes.toString();
         }
-        
-        public String toString(){
+
+        public String toString() {
             return this.nome;
         }
     }

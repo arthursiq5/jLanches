@@ -16,13 +16,14 @@ import com.jlanches.src.model.views.AddItemPedidoModel;
  * @author arthur
  */
 public class AddItemPedidoHelper {
-    public static void initButtons(AddItemPedidoModel addItemPedido){
+
+    public static void initButtons(AddItemPedidoModel addItemPedido) {
         ViewHelper.setSubmitButtonStyle(addItemPedido.btnAdicionar);
         ViewHelper.setCancel64ButtonStyle(addItemPedido.btnCancelar);
         ViewHelper.setSearch64ButtonStyle(addItemPedido.btnShowLanche);
     }
-    
-    public static void initSelect(AddItemPedidoModel addItemPedido){
+
+    public static void initSelect(AddItemPedidoModel addItemPedido) {
         new LancheDAO().fillCombo(addItemPedido.selectLanche);
     }
 }

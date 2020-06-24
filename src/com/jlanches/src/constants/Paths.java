@@ -15,19 +15,19 @@ public enum Paths {
     REPORTS("/com/jlanches/reports/"),
     ADDRESS_REPORTS("/com/jlanches/reports/endereco/"),
     EFFECTS("/com/jlanches/media/sounds/effects/");
-    
+
     String path;
-    
-    private Paths(String path){
+
+    private Paths(String path) {
         this.path = path;
     }
-    
-    public String getPath(){
+
+    public String getPath() {
         return this.path;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.path;
     }
 }

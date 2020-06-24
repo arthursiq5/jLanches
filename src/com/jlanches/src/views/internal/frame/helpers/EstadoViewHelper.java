@@ -21,39 +21,40 @@ import com.jlanches.src.views.extension.elements.ComboItem;
  * @author arthur
  */
 public class EstadoViewHelper {
-    public static void updateTable(EstadoViewModel estadoView){
+
+    public static void updateTable(EstadoViewModel estadoView) {
         new EstadoDAO().fillTable(estadoView.table, "");
     }
-    
+
     public static void initButtons(
             EstadoViewModel estadoView
-    ){
+    ) {
         ViewHelper.initButtons(
                 estadoView.btnEditar,
                 estadoView.btnExcluir,
                 estadoView.btnPesquisar,
                 estadoView.btnLimparBusca
         );
-        
+
         ViewHelper.initFormButtons(
                 estadoView.btnLimparFormulario,
                 estadoView.btnCadastrar
         );
     }
-    
-    public static void resetInputs(EstadoViewModel estadoView){
+
+    public static void resetInputs(EstadoViewModel estadoView) {
         estadoView.campoId.setText("");
         estadoView.campoNome.setText("");
         estadoView.campoSigla.setText("");
         estadoView.campoPesquisar.setText("");
     }
-    
-    public static void cadastrarEstado(EstadoViewModel estadoView){
-        if(estadoView.campoSigla.getText().length() > 2){
+
+    public static void cadastrarEstado(EstadoViewModel estadoView) {
+        if (estadoView.campoSigla.getText().length() > 2) {
             JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter no máximo dois caracteres", "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(estadoView.campoSigla.getText().length() < 2){
+        if (estadoView.campoSigla.getText().length() < 2) {
             JOptionPane.showMessageDialog(null, "O campo \"sigla\" deve ter ao menos dois caracteres", "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -61,16 +62,16 @@ public class EstadoViewHelper {
         estado.id = (estadoView.campoId.getText().equals("")) ? 0 : Integer.parseInt(estadoView.campoId.getText());
         estado.sigla = estadoView.campoSigla.getText().toUpperCase();
         estado.nome = estadoView.campoNome.getText();
-        if(estado.id == 0){
-            if(EstadoValidator.insert(estado)){
+        if (estado.id == 0) {
+            if (EstadoValidator.insert(estado)) {
                 new EstadoDAO().save(estado);
-            }else{
+            } else {
                 return;
             }
-        }else{
-            if(EstadoValidator.update(estado)){
+        } else {
+            if (EstadoValidator.update(estado)) {
                 new EstadoDAO().update(estado);
-            }else{
+            } else {
                 return;
             }
         }
@@ -78,45 +79,44 @@ public class EstadoViewHelper {
         EstadoViewHelper.resetInputs(estadoView);
         estadoView.abasDoSistema.PAINEL.setSelectedIndex(estadoView.abasDoSistema.VIEW_ID);
     }
-    
-    public static void excluir(EstadoViewModel estadoView){
+
+    public static void excluir(EstadoViewModel estadoView) {
         Estado estado = new Estado();
         estado.id = Integer.parseInt(
                 String.valueOf(estadoView.table.getValueAt(estadoView.table.getSelectedRow(), 0)));
         estado.sigla = String.valueOf(estadoView.table.getValueAt(estadoView.table.getSelectedRow(), 1));
         estado.nome = String.valueOf(estadoView.table.getValueAt(estadoView.table.getSelectedRow(), 2));
-        
-        if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
+
+        if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
             new EstadoDAO().delete(estado);
             EstadoViewHelper.updateTable(estadoView);
         }
     }
-    
-    public static void editar(EstadoViewModel estadoView){
+
+    public static void editar(EstadoViewModel estadoView) {
         Estado estado = new Estado();
         estado.id = Integer.parseInt(
                 String.valueOf(estadoView.table.getValueAt(estadoView.table.getSelectedRow(), 0)));
         estado.sigla = String.valueOf(estadoView.table.getValueAt(estadoView.table.getSelectedRow(), 1));
         estado.nome = String.valueOf(estadoView.table.getValueAt(estadoView.table.getSelectedRow(), 2));
-        
+
         estadoView.campoId.setText(estado.id + "");
         estadoView.campoSigla.setText(estado.sigla);
         estadoView.campoNome.setText(estado.nome);
-        
+
         estadoView.abasDoSistema.PAINEL.setSelectedIndex(estadoView.abasDoSistema.FORM_ID);
     }
-    
-    public static void generateReport(EstadoViewModel estadoView){
+
+    public static void generateReport(EstadoViewModel estadoView) {
         ReportHelper.showReport(Reports.CIDADE_ESTADO);
     }
-    
-    public static void generateSelectedReport(EstadoViewModel estadoView){
-        System.out.println((((ComboItem)estadoView.selectEstadoReport.getSelectedItem()).descricao).getClass());
+
+    public static void generateSelectedReport(EstadoViewModel estadoView) {
+        System.out.println((((ComboItem) estadoView.selectEstadoReport.getSelectedItem()).descricao).getClass());
 
         HashMap hash = new HashMap();
-        hash.put("estado_id", ((Estado)((ComboItem) estadoView.selectEstadoReport.getSelectedItem()).descricao).id);
-        
-        
+        hash.put("estado_id", ((Estado) ((ComboItem) estadoView.selectEstadoReport.getSelectedItem()).descricao).id);
+
         ReportHelper.showReport(Reports.CIDADE_ESTADO_BY_ID, hash);
     }
 }

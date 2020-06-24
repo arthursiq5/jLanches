@@ -13,7 +13,9 @@ import com.jlanches.src.views.MainScreen;
  * @author arthur
  */
 public class CreditosView extends javax.swing.JInternalFrame {
+
     private MainScreen mainScreen;
+
     /**
      * Creates new form CreditosView
      */
@@ -95,7 +97,6 @@ public class CreditosView extends javax.swing.JInternalFrame {
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         this.mainScreen.closeAllWindows();
     }//GEN-LAST:event_btnOkActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;

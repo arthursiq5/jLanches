@@ -12,18 +12,18 @@ package com.jlanches.src.constants;
 public enum DateFormats {
     ISO_DATETIME("yyyy-MM-dd HH:mm:ss", ""),
     ISO_DATE("yyyy-MM-dd", "");
-    
+
     //AAAA-MM-DD HH:MM:SS
     private final String format;
     private final String sql_placeholder;
-    
-    private DateFormats(String format, String sql_placeholder){
+
+    private DateFormats(String format, String sql_placeholder) {
         this.format = format;
         this.sql_placeholder = sql_placeholder;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.format;
     }
 }

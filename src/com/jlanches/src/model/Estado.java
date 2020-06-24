@@ -10,12 +10,13 @@ package com.jlanches.src.model;
  * @author arthur
  */
 public class Estado {
+
     public int id;
     public String sigla;
     public String nome;
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return sigla;
     }
 }

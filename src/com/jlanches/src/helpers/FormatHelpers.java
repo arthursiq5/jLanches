@@ -10,24 +10,25 @@ package com.jlanches.src.helpers;
  * @author arthur
  */
 public class FormatHelpers {
-    public static boolean isNumeric(String value){
+
+    public static boolean isNumeric(String value) {
         boolean isNumeric;
         try {
-	    double aux = (Double.parseDouble(value));
+            double aux = (Double.parseDouble(value));
             isNumeric = true;
-	} catch (NumberFormatException e) {	  
+        } catch (NumberFormatException e) {
             isNumeric = false;
-	}
+        }
 
         return isNumeric;
     }
-    
-    public static boolean charExists(String message, char comparator){
+
+    public static boolean charExists(String message, char comparator) {
         System.out.println("char: " + comparator);
         System.out.println("char exists: " + message.contains(comparator + ""));
         return message.contains(comparator + "");
     }
-    
+
     public static void main(String[] args) {
         System.out.println("Testes com isNumeric");
         System.out.println("------------\\\\\\------------");
@@ -37,7 +38,7 @@ public class FormatHelpers {
         System.out.println("\"ãÃç\" is number: " + FormatHelpers.isNumeric("ãÃç"));
         System.out.println("\"0,01\" is number: " + FormatHelpers.isNumeric("0,01"));
         System.out.println("\"0.01\" is number: " + FormatHelpers.isNumeric("0.01"));
-        
+
         System.out.println("caractere \",\" existe na string \"123,45\": " + FormatHelpers.charExists("123,45", ','));
         System.out.println("caractere \",\" existe na string \"12345\": " + FormatHelpers.charExists("12345", ','));
     }

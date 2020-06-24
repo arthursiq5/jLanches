@@ -25,12 +25,12 @@ public class ContatoView extends javax.swing.JInternalFrame {
         initComponents();
         this.updateTable();
     }
-    
-    private void updateTable(){
+
+    private void updateTable() {
         new ContatoDAO().fillTable(this.tableContatos, "");
     }
-    
-    private void resetInputs(){
+
+    private void resetInputs() {
         this.campoId.setText("");
         this.campoPesquisar.setText("");
         this.campoEmail.setText("");
@@ -396,16 +396,16 @@ public class ContatoView extends javax.swing.JInternalFrame {
         contato.id = (this.campoId.getText().equals("")) ? 0 : Integer.parseInt(this.campoId.getText());
         contato.fone = this.campoFone.getText().replaceAll("[^0-9]", "");
         contato.email = this.campoEmail.getText().toUpperCase();
-        if(contato.id == 0){
-            if(ContatoValidator.insert(contato)){
+        if (contato.id == 0) {
+            if (ContatoValidator.insert(contato)) {
                 new ContatoDAO().save(contato);
-            }else{
+            } else {
                 return;
             }
-        }else{
-            if(ContatoValidator.update(contato)){
+        } else {
+            if (ContatoValidator.update(contato)) {
                 new ContatoDAO().update(contato);
-            }else{
+            } else {
                 return;
             }
         }
@@ -424,8 +424,8 @@ public class ContatoView extends javax.swing.JInternalFrame {
                 String.valueOf(this.tableContatos.getValueAt(this.tableContatos.getSelectedRow(), 0)));
         contato.fone = String.valueOf(this.tableContatos.getValueAt(this.tableContatos.getSelectedRow(), 1));
         contato.email = String.valueOf(this.tableContatos.getValueAt(this.tableContatos.getSelectedRow(), 2));
-        
-        if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
+
+        if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
             new ContatoDAO().delete(contato);
             this.updateTable();
         }
@@ -440,7 +440,7 @@ public class ContatoView extends javax.swing.JInternalFrame {
         this.campoId.setText(contato.id + "");
         this.campoEmail.setText(contato.email);
         this.campoFone.setText(contato.fone);
-        
+
         this.abasDoSistema.setSelectedIndex(1);
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -452,7 +452,6 @@ public class ContatoView extends javax.swing.JInternalFrame {
         this.campoPesquisar.setText("");
         this.updateTable();
     }//GEN-LAST:event_btnLimparBuscaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;

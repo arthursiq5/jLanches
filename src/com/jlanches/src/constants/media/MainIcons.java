@@ -27,25 +27,25 @@ public enum MainIcons {
     CROISSANT("croissant", MediaExtensions.PNG),
     SALADA("salad", MediaExtensions.PNG),
     ESPETINHO("skewer", MediaExtensions.PNG);
-    
+
     private String path;
     private MediaExtensions extension;
-    
-    private MainIcons(String path, MediaExtensions extension){
+
+    private MainIcons(String path, MediaExtensions extension) {
         this.path = path;
         this.extension = extension;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.path;
     }
-    
-    public String getPath(){
+
+    public String getPath() {
         return this.path;
     }
-    
-    public String getFullPath(){
+
+    public String getFullPath() {
         return Paths.MAIN_ICONS + this.path + this.extension;
     }
 }

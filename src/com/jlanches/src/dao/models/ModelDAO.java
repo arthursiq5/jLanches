@@ -11,17 +11,17 @@ import java.util.ArrayList;
  *
  * @author arthur
  */
-public interface ModelDAO <T> {
-    
+public interface ModelDAO<T> {
+
     public void save(T objeto);
-    
+
     public void update(T objeto);
-    
+
     public void delete(T objeto);
-    
+
     public ArrayList<T> getAll();
-    
+
     public ArrayList<T> search(String criterio);
-    
+
     public T get(String id);
 }

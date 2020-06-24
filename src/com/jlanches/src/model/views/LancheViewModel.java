@@ -18,26 +18,27 @@ import javax.swing.JTextField;
  * @author arthur
  */
 public class LancheViewModel {
+
     public boolean disponivel;
-    
+
     public JLabel btnAtivo;
-    
+
     public JButton btnCadastrar;
     public JButton btnEditar;
     public JButton btnExcluir;
     public JButton btnLimpar;
     public JButton btnLimparBusca;
     public JButton btnPesquisar;
-    
+
     public JTextField campoId;
     public JTextArea campoIngredientes;
     public JTextField campoNome;
     public JTextField campoPesquisar;
     public JTextField campoValor;
-    
+
     public JTable tableLanches;
-    
+
     public JComboBox<String> selectCategoria;
-    
+
     public JTabbedPane abasDoSistema;
 }

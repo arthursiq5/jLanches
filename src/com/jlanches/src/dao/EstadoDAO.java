@@ -21,18 +21,18 @@ import com.jlanches.src.views.extension.elements.ComboItem;
  * @author arthur
  */
 public class EstadoDAO implements ModelWithComboDao<Estado> {
-    
+
     private ResultSet resultadoQuery = null;
 
     @Override
     public void save(Estado objeto) {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = "INSERT INTO estado (id, sigla, nome) VALUES ("
-                        + "DEFAULT, "
-                        + "'" + objeto.sigla + "', "
-                        + "'" + objeto.nome + "' "
+                    + "DEFAULT, "
+                    + "'" + objeto.sigla + "', "
+                    + "'" + objeto.nome + "' "
                     + ")";
             st.executeUpdate(sql);
         } catch (Exception e) {
@@ -45,10 +45,10 @@ public class EstadoDAO implements ModelWithComboDao<Estado> {
     public void update(Estado objeto) {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = "UPDATE estado "
-                        + "SET sigla = '" + objeto.sigla + "' "
-                        + "WHERE id = '" + objeto.id + "'";
+                    + "SET sigla = '" + objeto.sigla + "' "
+                    + "WHERE id = '" + objeto.id + "'";
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de estados do banco");
@@ -63,9 +63,9 @@ public class EstadoDAO implements ModelWithComboDao<Estado> {
                     + "FROM estado "
                     + "WHERE id = '" + objeto.id + "'";
             BDConnector.getInstance()
-                        .getConnection()
-                        .createStatement()
-                        .executeUpdate(sql);
+                    .getConnection()
+                    .createStatement()
+                    .executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao remover dados de estados do banco");
             System.err.println("Erro: " + e);
@@ -87,69 +87,68 @@ public class EstadoDAO implements ModelWithComboDao<Estado> {
         Estado estado = new Estado();
         try {
             Statement statement = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = ""
                     + "SELECT * "
                     + "FROM estado "
                     + "WHERE "
-                    + "id LIKE '" + id +"'";
-            
+                    + "id LIKE '" + id + "'";
+
             this.resultadoQuery = statement.executeQuery(sql);
-            
+
             this.resultadoQuery.next();
-            
+
             estado = this.queryToObject();
-            
-            
+
         } catch (Exception e) {
             MessageHelper.createWarningMessage(
-                    "Aviso", 
+                    "Aviso",
                     "Houveram problemas ao recuperar os estados do banco.\n"
-                  + "Por favor, tente novamente mais tarde"
+                    + "Por favor, tente novamente mais tarde"
             );
             System.err.println("Erro: \n" + e);
         }
         return estado;
     }
-    
-    public void fillTable(JTable table, String criteria){
-        Object [][] dadosTabela = null;
-        Object [] cabecalho = new Object[3];
+
+    public void fillTable(JTable table, String criteria) {
+        Object[][] dadosTabela = null;
+        Object[] cabecalho = new Object[3];
         cabecalho[0] = "ID";
         cabecalho[1] = "Sigla";
         cabecalho[2] = "Nome";
-        
+
         String like = criteria.equals("") ? "" : ("WHERE UCASE(sigla) LIKE UCASE('%" + criteria + "%')");
-        
+
         try {
             this.resultadoQuery = BDConnector.getInstance()
-                                    .getConnection()
-                                    .createStatement()
-                                    .executeQuery(""
-                                            + "SELECT count(*) "
-                                            + "FROM estado "
-                                            + like
-                                    );
-            
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(""
+                            + "SELECT count(*) "
+                            + "FROM estado "
+                            + like
+                    );
+
             this.resultadoQuery.next();
-            
+
             dadosTabela = new Object[this.resultadoQuery.getInt(1)][3];
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de estados do banco");
             System.err.println("Erro: \n" + e);
         }
-        
+
         try {
             this.resultadoQuery = BDConnector.getInstance()
-                                    .getConnection()
-                                    .createStatement()
-                                    .executeQuery(""
-                                            + "SELECT * "
-                                            + "FROM estado "
-                                            + like
-                                    );
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(""
+                            + "SELECT * "
+                            + "FROM estado "
+                            + like
+                    );
             int line = 0;
-            while(this.resultadoQuery.next()){
+            while (this.resultadoQuery.next()) {
                 Estado estado = this.queryToObject();
                 dadosTabela[line][0] = estado.id;
                 dadosTabela[line][1] = estado;
@@ -160,7 +159,7 @@ public class EstadoDAO implements ModelWithComboDao<Estado> {
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de estados do banco");
             System.err.println("Erro: \n" + e);
         }
-        
+
         table.setModel(new DefaultTableModel(dadosTabela, cabecalho) {
             @Override
             // quando retorno for FALSE, a tabela nao é editavel
@@ -168,7 +167,7 @@ public class EstadoDAO implements ModelWithComboDao<Estado> {
                 return false;
             }
         });
-        
+
         table.setSelectionMode(0);
 
         // redimensiona as colunas de uma tabela
@@ -189,42 +188,41 @@ public class EstadoDAO implements ModelWithComboDao<Estado> {
     @Override
     public void fillCombo(JComboBox combo) {
         combo.removeAllItems();
-        
+
         ComboItem item = new ComboItem();
         item.id = 0;
         item.descricao = "Selecione";
         combo.addItem(item);
-        
+
         try {
-            
+
             this.resultadoQuery = new BDConnector()
                     .getConnection()
                     .createStatement()
-                    .executeQuery("" +
-                            "SELECT * FROM estado"
+                    .executeQuery(""
+                            + "SELECT * FROM estado"
                     );
-            if(this.resultadoQuery.isBeforeFirst()){
-                while(this.resultadoQuery.next()){
-                    
+            if (this.resultadoQuery.isBeforeFirst()) {
+                while (this.resultadoQuery.next()) {
+
                     Estado estado = this.queryToObject();
-                    
+
                     item = new ComboItem(
                             estado.id,
-                             estado
+                            estado
                     );
-            
+
                     combo.addItem(item);
                 }
             }
-            
-            
+
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao tentar popular o campo \"select\"");
             System.err.println("Erro: \n" + e);
         }
     }
-    
-    private Estado queryToObject() throws Exception{
+
+    private Estado queryToObject() throws Exception {
         try {
             Estado estado = new Estado();
             estado.id = this.resultadoQuery.getInt("id");
@@ -235,6 +233,6 @@ public class EstadoDAO implements ModelWithComboDao<Estado> {
             System.err.println("Erro ao parsear objeto");
             throw e;
         }
-        
+
     }
 }

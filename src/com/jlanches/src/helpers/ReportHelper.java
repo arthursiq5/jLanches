@@ -27,10 +27,10 @@ import com.jlanches.src.helpers.extension.HashMapHelper;
  * @author arthur
  */
 public class ReportHelper {
-    
+
     public static Map<String, JasperReport> reports = null;
-    
-    public static void compileRepots(){
+
+    public static void compileRepots() {
         ReportHelper.reports = new HashMap<String, JasperReport>();
         try {
             JasperReport compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Reports.EXEMPLO.getFullPath()));
@@ -49,8 +49,8 @@ public class ReportHelper {
             System.out.println(Reports.CIDADE_ESTADO.getFullPath());
         }
     }
-    
-    public static void showReport(Reports report){
+
+    public static void showReport(Reports report) {
         JasperReport compileReport = ReportHelper.reports.get(report.toString());
         JasperPrint fillReport;
         try {
@@ -62,7 +62,8 @@ public class ReportHelper {
             SoundHelper.playBrokeSound();
         }
     }
-    public static void showReport(Reports report, HashMap params){
+
+    public static void showReport(Reports report, HashMap params) {
         JasperReport compileReport = ReportHelper.reports.get(report.toString());
         JasperPrint fillReport;
         HashMapHelper.printHashMap(params);
@@ -75,5 +76,5 @@ public class ReportHelper {
             SoundHelper.playBrokeSound();
         }
     }
-    
+
 }

@@ -22,17 +22,18 @@ import com.jlanches.src.views.extension.elements.ComboItem;
  * @author arthur
  */
 public class CidadeDAO implements ModelWithComboDao<Cidade> {
+
     private ResultSet resultadoQuery = null;
 
     @Override
     public void save(Cidade objeto) {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = "INSERT INTO cidade (id, nome, estado_id) VALUES ("
-                        + "DEFAULT, "
-                        + "'" + objeto.nome + "', " 
-                        + objeto.estado_id + ")";
+                    + "DEFAULT, "
+                    + "'" + objeto.nome + "', "
+                    + objeto.estado_id + ")";
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao inserir dados de cidades do banco");
@@ -44,11 +45,11 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
     public void update(Cidade objeto) {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = "UPDATE cidade "
-                        + "SET nome = '" + objeto.nome + "' "
-                        + "SET estado_id = '" + objeto.estado_id + "' "
-                        + "WHERE id = '" + objeto.id + "'";
+                    + "SET nome = '" + objeto.nome + "' "
+                    + "SET estado_id = '" + objeto.estado_id + "' "
+                    + "WHERE id = '" + objeto.id + "'";
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de cidades do banco");
@@ -63,9 +64,9 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
                     + "FROM cidade "
                     + "WHERE id = '" + objeto.id + "'";
             BDConnector.getInstance()
-                        .getConnection()
-                        .createStatement()
-                        .executeUpdate(sql);
+                    .getConnection()
+                    .createStatement()
+                    .executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao remover dados de cidades do banco");
             System.err.println("Erro: " + e);
@@ -87,27 +88,26 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
         Cidade cidade = new Cidade();
         try {
             Statement statement = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = ""
                     + "SELECT * "
                     + "FROM cidade "
                     + "WHERE "
-                    + "id LIKE '" + id +"'";
-            
+                    + "id LIKE '" + id + "'";
+
             this.resultadoQuery = statement.executeQuery(sql);
-            
+
             this.resultadoQuery.next();
-            
+
             cidade.id = this.resultadoQuery.getInt("id");
             cidade.nome = this.resultadoQuery.getString("nome");
             cidade.estado_id = this.resultadoQuery.getInt("estado_id");
-            
-            
+
         } catch (Exception e) {
             MessageHelper.createWarningMessage(
-                    "Aviso", 
+                    "Aviso",
                     "Houveram problemas ao recuperar os estados do banco.\n"
-                  + "Por favor, tente novamente mais tarde"
+                    + "Por favor, tente novamente mais tarde"
             );
             System.err.println("Erro: \n" + e);
             cidade.id = 0;
@@ -116,45 +116,45 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
         }
         return cidade;
     }
-    
-    public void fillTable(JTable table, String criteria){
-        Object [][] dadosTabela = null;
-        Object [] cabecalho = new Object[3];
+
+    public void fillTable(JTable table, String criteria) {
+        Object[][] dadosTabela = null;
+        Object[] cabecalho = new Object[3];
         cabecalho[0] = "ID";
         cabecalho[1] = "Nome";
         cabecalho[2] = "Estado";
-        
+
         String like = criteria.equals("") ? "" : ("WHERE UCASE(nome) LIKE UCASE('%" + criteria + "%')");
-        
+
         try {
             this.resultadoQuery = BDConnector.getInstance()
-                                    .getConnection()
-                                    .createStatement()
-                                    .executeQuery(""
-                                            + "SELECT count(*) "
-                                            + "FROM cidade "
-                                            + like
-                                    );
-            
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(""
+                            + "SELECT count(*) "
+                            + "FROM cidade "
+                            + like
+                    );
+
             this.resultadoQuery.next();
-            
+
             dadosTabela = new Object[this.resultadoQuery.getInt(1)][3];
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de cidades do banco");
             System.err.println("Erro: \n" + e);
         }
-        
+
         try {
             this.resultadoQuery = BDConnector.getInstance()
-                                    .getConnection()
-                                    .createStatement()
-                                    .executeQuery(""
-                                            + "SELECT * "
-                                            + "FROM cidade "
-                                            + like
-                                    );
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(""
+                            + "SELECT * "
+                            + "FROM cidade "
+                            + like
+                    );
             int line = 0;
-            while(this.resultadoQuery.next()){
+            while (this.resultadoQuery.next()) {
                 dadosTabela[line][0] = this.resultadoQuery.getInt("id");
                 dadosTabela[line][1] = this.resultadoQuery.getString("nome");
                 dadosTabela[line][2] = new EstadoDAO().get(this.resultadoQuery.getInt("estado_id") + "");
@@ -164,7 +164,7 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de cidades do banco");
             System.err.println("Erro: \n" + e);
         }
-        
+
         table.setModel(new DefaultTableModel(dadosTabela, cabecalho) {
             @Override
             // quando retorno for FALSE, a tabela nao é editavel
@@ -172,7 +172,7 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
                 return false;
             }
         });
-        
+
         table.setSelectionMode(0);
 
         // redimensiona as colunas de uma tabela
@@ -193,36 +193,33 @@ public class CidadeDAO implements ModelWithComboDao<Cidade> {
     @Override
     public void fillCombo(JComboBox combo) {
         combo.removeAllItems();
-        
+
         ComboItem item = new ComboItem();
         item.id = 0;
         item.descricao = "Selecione";
         combo.addItem(item);
-        
+
         try {
-            
+
             this.resultadoQuery = new BDConnector()
                     .getConnection()
                     .createStatement()
-                    .executeQuery("" +
-                            "SELECT * FROM cidade"
+                    .executeQuery(""
+                            + "SELECT * FROM cidade"
                     );
-            if(this.resultadoQuery.isBeforeFirst()){
-                while(this.resultadoQuery.next()){
+            if (this.resultadoQuery.isBeforeFirst()) {
+                while (this.resultadoQuery.next()) {
                     item = new ComboItem(
-                        this.resultadoQuery.getInt(1),
-                        (
-                            this.resultadoQuery.getString(2)
-                          + "/"
-                          + new EstadoDAO().get(this.resultadoQuery.getInt("estado_id") + "")
-                        )
+                            this.resultadoQuery.getInt(1),
+                            (this.resultadoQuery.getString(2)
+                            + "/"
+                            + new EstadoDAO().get(this.resultadoQuery.getInt("estado_id") + ""))
                     );
-            
+
                     combo.addItem(item);
                 }
             }
-            
-            
+
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao tentar popular o campo \"select\"");
             System.err.println("Erro: \n" + e);

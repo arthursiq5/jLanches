@@ -16,35 +16,35 @@ import com.jlanches.src.validators.ValidationAnswers;
  * @author arthur
  */
 public class CidadeValidator extends ObjectValidator {
-    
-    public static boolean insert(Cidade cidade){
+
+    public static boolean insert(Cidade cidade) {
         boolean answer = false;
-        
-        if(BasicValidators.isEmpty(cidade.nome) == ValidationAnswers.FAIL){
+
+        if (BasicValidators.isEmpty(cidade.nome) == ValidationAnswers.FAIL) {
             MessageHelper.createInfoMessage("Aviso", "Campo nome não foi preenchido");
-        }else if(BasicValidators.isTooLong(cidade.nome, 255) == ValidationAnswers.FAIL){
+        } else if (BasicValidators.isTooLong(cidade.nome, 255) == ValidationAnswers.FAIL) {
             MessageHelper.createInfoMessage("Aviso", "Campo nome possui mais que 255 caracteres. Por favor, reduza o tamanho");
-        }else if(BasicValidators.isZeroOrNegative(cidade.estado_id) == ValidationAnswers.FAIL){
+        } else if (BasicValidators.isZeroOrNegative(cidade.estado_id) == ValidationAnswers.FAIL) {
             MessageHelper.createInfoMessage("Aviso", "Não foi selecionado um estado");
-        }else{
+        } else {
             answer = true;
         }
-        
+
         return answer;
     }
-    
-    public static boolean update(Cidade cidade){
+
+    public static boolean update(Cidade cidade) {
         boolean answer = CidadeValidator.insert(cidade);
-        
-        if(answer){
-            if(BasicValidators.isEmpty(cidade.id + "")     == ValidationAnswers.FAIL &&
-               BasicValidators.isZeroOrNegative(cidade.id) == ValidationAnswers.FAIL){
-                    MessageHelper.createInfoMessage("Aviso", "Não é possível atualizar com um campo nulo ou negativo");
-                    answer = false;
+
+        if (answer) {
+            if (BasicValidators.isEmpty(cidade.id + "") == ValidationAnswers.FAIL
+                    && BasicValidators.isZeroOrNegative(cidade.id) == ValidationAnswers.FAIL) {
+                MessageHelper.createInfoMessage("Aviso", "Não é possível atualizar com um campo nulo ou negativo");
+                answer = false;
             }
         }
-        
+
         return answer;
-        
+
     }
 }

@@ -13,11 +13,13 @@ import com.jlanches.src.constants.FormaDePagamento;
 import com.jlanches.src.dao.ClienteDAO;
 import com.jlanches.src.dao.LancheDAO;
 import com.jlanches.src.helpers.DateHelper;
+
 /**
  *
  * @author arthur
  */
 public class Pedido {
+
     public int id;
     public Date data;
     public boolean pago;
@@ -26,15 +28,15 @@ public class Pedido {
     public String cliente_cpf;
     public String funcionario_cpf;
     public int franquia_id;
-    
+
     public Map<String, LanchePedido> itens;
-    
-    public Pedido(){
+
+    public Pedido() {
         this.itens = new HashMap<String, LanchePedido>();
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Pedido do cliente "
                 + new ClienteDAO().get(this.cliente_cpf).nome
                 + " feito no dia "

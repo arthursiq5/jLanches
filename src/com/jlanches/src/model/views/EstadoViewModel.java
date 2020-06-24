@@ -17,24 +17,24 @@ import javax.swing.JTextField;
  * @author arthur
  */
 public class EstadoViewModel {
-    
+
     public AbasDaTela abasDoSistema;
-    
+
     public JButton btnEditar;
     public JButton btnExcluir;
     public JButton btnLimparBusca;
     public JButton btnPesquisar;
-    
+
     public JButton btnCadastrar;
     public JButton btnLimparFormulario;
-    
+
     public JTextField campoPesquisar;
     public JTextField campoId;
     public JTextField campoNome;
     public JTextField campoSigla;
-    
+
     public JTable table;
-    
+
     public JButton btnGenerateReport;
     public JButton btnGenerateSingleReport;
     public JComboBox<String> selectEstadoReport;

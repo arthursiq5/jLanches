@@ -13,6 +13,7 @@ import com.jlanches.src.views.LoginScreen;
  * @author arthur
  */
 public class JLanches {
+
     public static void main(String[] args) {
         ReportHelper.compileRepots();
         new LoginScreen().setVisible(true);

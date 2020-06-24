@@ -18,17 +18,18 @@ import com.jlanches.src.model.LanchePedido;
  * @author arthur
  */
 public class AddItemPedidoModel {
+
     public ArrayList<LanchePedido> itens;
     public int pedido_id;
-    
+
     public JTextField campoId;
     public JFormattedTextField campoAcrescimo;
     public JFormattedTextField campoDesconto;
     public JTextArea campoModificacoes;
     public JTextField campoTotal;
-    
+
     public JComboBox<String> selectLanche;
-    
+
     public JButton btnShowLanche;
     public JButton btnAdicionar;
     public JButton btnCancelar;

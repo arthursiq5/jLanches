@@ -15,36 +15,36 @@ import com.jlanches.src.validators.ValidationAnswers;
  *
  * @author arthur
  */
-public abstract class EstadoValidator extends ObjectValidator{
-    
-    public static boolean insert(Estado estado){
+public abstract class EstadoValidator extends ObjectValidator {
+
+    public static boolean insert(Estado estado) {
         boolean answer = false;
-        
-        if(BasicValidators.isEmpty(estado.nome) == ValidationAnswers.FAIL){
+
+        if (BasicValidators.isEmpty(estado.nome) == ValidationAnswers.FAIL) {
             MessageHelper.createInfoMessage("Aviso", "Campo nome não foi preenchido");
-        }else if(BasicValidators.isTooLong(estado.nome, 255) == ValidationAnswers.FAIL){
+        } else if (BasicValidators.isTooLong(estado.nome, 255) == ValidationAnswers.FAIL) {
             MessageHelper.createInfoMessage("Aviso", "Campo nome possui mais que 255 caracteres. Por favor, reduza o tamanho");
-        }else if(BasicValidators.hasIncorrectLength(estado.sigla, 2) == ValidationAnswers.FAIL){
+        } else if (BasicValidators.hasIncorrectLength(estado.sigla, 2) == ValidationAnswers.FAIL) {
             MessageHelper.createInfoMessage("Aviso", "O campo sigla deve possuir exatamente dois caracteres");
-        }else{
+        } else {
             answer = true;
         }
-        
+
         return answer;
     }
-    
-    public static boolean update(Estado estado){
+
+    public static boolean update(Estado estado) {
         boolean answer = EstadoValidator.insert(estado);
-        
-        if(answer){
-            if(BasicValidators.isEmpty(estado.id + "")     == ValidationAnswers.FAIL &&
-               BasicValidators.isZeroOrNegative(estado.id) == ValidationAnswers.FAIL){
-                    MessageHelper.createInfoMessage("Aviso", "Não é possível atualizar com um campo nulo ou negativo");
-                    answer = false;
+
+        if (answer) {
+            if (BasicValidators.isEmpty(estado.id + "") == ValidationAnswers.FAIL
+                    && BasicValidators.isZeroOrNegative(estado.id) == ValidationAnswers.FAIL) {
+                MessageHelper.createInfoMessage("Aviso", "Não é possível atualizar com um campo nulo ou negativo");
+                answer = false;
             }
         }
-        
+
         return answer;
-        
+
     }
 }

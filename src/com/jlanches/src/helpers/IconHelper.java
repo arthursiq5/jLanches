@@ -17,20 +17,21 @@ import java.net.URL;
  * @author arthur
  */
 public class IconHelper {
-    public static ImageIcon getPngIcon(String name){
+
+    public static ImageIcon getPngIcon(String name) {
         return new IconHelper().getStaticPngIcon(name);
     }
-    
-    public ImageIcon getStaticPngIcon(String name){
+
+    public ImageIcon getStaticPngIcon(String name) {
         return new ImageIcon(getClass().getResource(name));
     }
-    
-    private Image getStaticPngImage(String name){
+
+    private Image getStaticPngImage(String name) {
         URL iconPath = getClass().getResource(name);
         return Toolkit.getDefaultToolkit().getImage(iconPath);
     }
-    
-    public static Image getPngImage(String name){
+
+    public static Image getPngImage(String name) {
         return new IconHelper().getStaticPngImage(name);
     }
 }

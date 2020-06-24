@@ -10,5 +10,6 @@ package com.jlanches.src.model.views;
  * @author arthur
  */
 public interface FormUseDatePicker {
+
     public void setData(String data);
 }

@@ -18,9 +18,10 @@ import com.jlanches.src.views.internal.frame.helpers.PedidoViewHelper;
  * @author arthur
  */
 public class PedidoView extends javax.swing.JInternalFrame {
+
     private JDatePickerImpl datePicker;
     private PedidoViewModel pedidoView;
-    
+
     /**
      * Creates new form PedidoView
      */
@@ -29,37 +30,37 @@ public class PedidoView extends javax.swing.JInternalFrame {
         this.initModel();
         PedidoViewHelper.initPedidoView(this.pedidoView);
     }
-    
-    private void initModel(){
+
+    private void initModel() {
         this.pedidoView = new PedidoViewModel();
-        
+
         this.pedidoView.selectFormaPagamento = this.selectFormaPagamento;
         this.pedidoView.campoComentarios = this.campoComentarios;
         this.pedidoView.selectCliente = this.selectCliente;
         this.pedidoView.selectFuncionario = this.selectFuncionario;
-        
+
         this.pedidoView.pago = new PedidoViewModel.BooleanButton(this.btnPago);
-        
+
         this.pedidoView.campoData = this.campoData;
-        
+
         this.pedidoView.btnPagar = this.btnPagar;
-        
+
         this.pedidoView.btnCadastrar = this.btnCadastrar;
         this.pedidoView.btnLimpar = this.btnLimpar;
-        
+
         this.pedidoView.tabelaPedidos = this.tabelaPedidos;
         this.pedidoView.tabelaShowItens = this.tabelaShowItens;
-        
+
         this.pedidoView.abasDoSistema = this.abasDoSistema;
-        
+
         this.pedidoView.btnMostrarTodosOsPedidos = this.btnMostrarTodosOsPedidos;
         this.pedidoView.btnPesquisar = this.btnPesquisar;
-        
+
         this.pedidoView.btnShowEditar = this.btnShowEditar;
         this.pedidoView.btnShowExcluir = this.btnShowExcluir;
         this.pedidoView.btnLimparBusca = this.btnLimparBusca;
         this.pedidoView.btnMostraPedido = this.btnMostraPedido;
-        
+
         this.pedidoView.showCliente = this.showCliente;
         this.pedidoView.showComentarios = this.showComentarios;
         this.pedidoView.showData = this.showData;
@@ -745,7 +746,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void campoDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataActionPerformed
-        
+
     }//GEN-LAST:event_campoDataActionPerformed
 
     private void btnSelecionarDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarDataActionPerformed
@@ -760,7 +761,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void btnPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPagoMouseClicked
         this.pedidoView.pago.changePago();
     }//GEN-LAST:event_btnPagoMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;

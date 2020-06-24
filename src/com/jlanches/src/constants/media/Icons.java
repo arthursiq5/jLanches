@@ -13,7 +13,7 @@ import com.jlanches.src.constants.Paths;
  * @author arthur
  */
 public enum Icons {
-    
+
     SELECIONADO_64("icons8-selecionado-64", MediaExtensions.PNG),
     CANCELAR_64("icons8-cancelar-64", MediaExtensions.PNG),
     USUARIO_CANCEL_64("icons8-usuário-masculino-cancel-64", MediaExtensions.PNG),
@@ -42,26 +42,25 @@ public enum Icons {
     WATCH_TIME_16("icons8-assistir-16", MediaExtensions.PNG),
     WATCH_TIME_64("icons8-assistir-64", MediaExtensions.PNG),
     ICONE_DO_PROJETO("jlanches-icone", MediaExtensions.PNG);
-    
-    
+
     String path;
     private MediaExtensions extension;
-    
-    private Icons(String path, MediaExtensions extension){
+
+    private Icons(String path, MediaExtensions extension) {
         this.path = path;
         this.extension = extension;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.path;
     }
-    
-    public String getPath(){
+
+    public String getPath() {
         return this.path;
     }
-    
-    public String getFullPath(){
+
+    public String getFullPath() {
         return Paths.ICONS + this.path + this.extension;
     }
 }

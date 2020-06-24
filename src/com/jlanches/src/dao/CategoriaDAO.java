@@ -21,17 +21,17 @@ import com.jlanches.src.views.extension.elements.ComboItem;
  * @author arthur
  */
 public class CategoriaDAO implements ModelDAO<Categoria> {
-    
+
     private ResultSet resultadoQuery = null;
 
     @Override
     public void save(Categoria objeto) {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = "INSERT INTO categoria (id, nome) VALUES ("
-                        + "DEFAULT, "
-                        + "'" + objeto.nome + "')";
+                    + "DEFAULT, "
+                    + "'" + objeto.nome + "')";
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao inserir dados de categorias do banco");
@@ -43,10 +43,10 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
     public void update(Categoria objeto) {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = "UPDATE categoria "
-                        + "SET nome = '" + objeto.nome + "' "
-                        + "WHERE id = '" + objeto.id + "'";
+                    + "SET nome = '" + objeto.nome + "' "
+                    + "WHERE id = '" + objeto.id + "'";
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de categorias do banco");
@@ -61,9 +61,9 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
                     + "SET ativo = FALSE "
                     + "WHERE id = '" + objeto.id + "'";
             BDConnector.getInstance()
-                        .getConnection()
-                        .createStatement()
-                        .executeUpdate(sql);
+                    .getConnection()
+                    .createStatement()
+                    .executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao remover dados de categorias do banco");
             System.err.println("Erro: " + e);
@@ -83,82 +83,82 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
     @Override
     public Categoria get(String id) {
         Categoria categoria = new Categoria();
-        
-        try{
+
+        try {
             Statement statement = BDConnector.getInstance().getConnection().createStatement();
             String sql = ""
                     + "SELECT * "
                     + "FROM categoria "
                     + "WHERE "
-                    + "id LIKE '"+ id +"'";
-            
+                    + "id LIKE '" + id + "'";
+
             this.resultadoQuery = statement.executeQuery(sql);
-            
+
             this.resultadoQuery.next();
-            
+
             categoria.id = this.resultadoQuery.getInt("id");
             categoria.nome = this.resultadoQuery.getString("nome");
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             categoria.id = 0;
             categoria.nome = "";
-            
+
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar categorias do banco\n"
                     + "Por favor, tente novamente mais parte");
             System.err.println("Erro: \n" + e);
         }
-        
+
         return categoria;
     }
-    
-    public void fillTable(JTable table, String criteria){
-        Object [][] dadosTabela = null;
-        Object [] cabecalho = new Object[3];
+
+    public void fillTable(JTable table, String criteria) {
+        Object[][] dadosTabela = null;
+        Object[] cabecalho = new Object[3];
         cabecalho[0] = "ID";
         cabecalho[1] = "Nome";
         cabecalho[2] = "Ativo";
-        
+
         String like = criteria.equals("") ? "" : ("WHERE UCASE(nome) LIKE UCASE('%" + criteria + "%')");
-        
+
         try {
             this.resultadoQuery = BDConnector.getInstance()
-                                    .getConnection()
-                                    .createStatement()
-                                    .executeQuery(""
-                                            + "SELECT count(*) "
-                                            + "FROM categoria "
-                                            + like
-                                    );
-            
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(""
+                            + "SELECT count(*) "
+                            + "FROM categoria "
+                            + like
+                    );
+
             this.resultadoQuery.next();
-            
+
             dadosTabela = new Object[this.resultadoQuery.getInt(1)][3];
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de categorias do banco");
             System.err.println("Erro: \n" + e);
         }
-        
+
         try {
             this.resultadoQuery = BDConnector.getInstance()
-                                    .getConnection()
-                                    .createStatement()
-                                    .executeQuery(""
-                                            + "SELECT * "
-                                            + "FROM categoria "
-                                            + like
-                                    );
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(""
+                            + "SELECT * "
+                            + "FROM categoria "
+                            + like
+                    );
             int line = 0;
-            while(this.resultadoQuery.next()){
+            while (this.resultadoQuery.next()) {
                 dadosTabela[line][0] = this.resultadoQuery.getInt("id");
                 dadosTabela[line][1] = this.resultadoQuery.getString("nome");
-                dadosTabela[line][2] = this.resultadoQuery.getBoolean("ativo")?"Ativo":"Inativo";
+                dadosTabela[line][2] = this.resultadoQuery.getBoolean("ativo") ? "Ativo" : "Inativo";
                 line++;
             }
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de categorias do banco");
             System.err.println("Erro: \n" + e);
         }
-        
+
         table.setModel(new DefaultTableModel(dadosTabela, cabecalho) {
             @Override
             // quando retorno for FALSE, a tabela nao é editavel
@@ -166,7 +166,7 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
                 return false;
             }
         });
-        
+
         table.setSelectionMode(0);
 
         // redimensiona as colunas de uma tabela
@@ -183,39 +183,38 @@ public class CategoriaDAO implements ModelDAO<Categoria> {
             }
         }
     }
-    
+
     public void fillCombo(JComboBox combo) {
         combo.removeAllItems();
-        
+
         ComboItem item = new ComboItem();
         item.id = 0;
         item.descricao = "Selecione";
         combo.addItem(item);
-        
+
         try {
-            
+
             this.resultadoQuery = new BDConnector()
                     .getConnection()
                     .createStatement()
-                    .executeQuery("" +
-                            "SELECT * FROM categoria"
+                    .executeQuery(""
+                            + "SELECT * FROM categoria"
                     );
-            if(this.resultadoQuery.isBeforeFirst()){
-                while(this.resultadoQuery.next()){
+            if (this.resultadoQuery.isBeforeFirst()) {
+                while (this.resultadoQuery.next()) {
                     Categoria categoria = new Categoria();
-                        categoria.id = this.resultadoQuery.getInt("id");
-                        categoria.nome = this.resultadoQuery.getString("nome");
-                    
+                    categoria.id = this.resultadoQuery.getInt("id");
+                    categoria.nome = this.resultadoQuery.getString("nome");
+
                     item = new ComboItem(
-                        categoria.id,
-                        categoria + ""
+                            categoria.id,
+                            categoria + ""
                     );
-            
+
                     combo.addItem(item);
                 }
             }
-            
-            
+
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao tentar popular o campo \"select\"");
             System.err.println("Erro: \n" + e);

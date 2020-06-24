@@ -13,7 +13,8 @@ import java.util.HashMap;
  * @author arthur
  */
 public class HashMapHelper {
-    public static void printHashMap(HashMap hash){
+
+    public static void printHashMap(HashMap hash) {
         System.out.println(Arrays.asList(hash));
     }
 }

@@ -10,5 +10,5 @@ package com.jlanches.src.validators;
  * @author arthur
  */
 public interface BasicObjectValidator {
-    
+
 }

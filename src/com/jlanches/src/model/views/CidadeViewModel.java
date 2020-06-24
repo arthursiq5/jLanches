@@ -17,30 +17,29 @@ import javax.swing.JTextField;
  * @author arthur
  */
 public class CidadeViewModel {
-    
+
     public AbasDaTela abasDoSistema;
-    
+
     // buttons
     public JButton btnEditar;
-    
+
     public JButton btnExcluir;
-    
+
     public JButton btnLimparBusca;
-    
+
     public JButton btnPesquisar;
-    
+
     public JButton btnCadastrar;
     public JButton btnLimparFormulario;
-    
+
     // campos
     public JTextField campoCidadeId;
     public JTextField campoCidadeNome;
     public JTextField campoPesquisarCidades;
-    
+
     // tables
     public JTable table;
-    
-    
+
     // combobox
     public JComboBox<String> selectEstado;
 }

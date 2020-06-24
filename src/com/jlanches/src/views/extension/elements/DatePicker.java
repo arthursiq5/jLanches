@@ -23,7 +23,7 @@ import com.jlanches.src.model.views.PedidoViewModel;
  * @author arthur
  */
 public class DatePicker extends javax.swing.JFrame {
-    
+
     private FormUseDatePicker form;
 
     /**
@@ -39,34 +39,34 @@ public class DatePicker extends javax.swing.JFrame {
         this.run();
         this.setToday();
     }
-    
-    public DatePicker(FormUseDatePicker form){
+
+    public DatePicker(FormUseDatePicker form) {
         this.form = form;
         this.run();
         this.setToday();
     }
-    
-    private void run(){
+
+    private void run() {
         this.initComponents();
         ViewHelper.setButtonStyle(this.btnSelecionar, SystemColors.CONFIRM_GREEN, Icons.CLOCK_64);
         ViewHelper.setButtonStyle(this.btnCancelar, SystemColors.LIGHT_RED, Icons.CANCELAR_64);
-        
+
         ComboHelper.fillCombo(this.selectAno, DateHelper.getPossibleYears());
         ComboHelper.fillCombo(this.selectMes, DateHelper.getPossibleMonths());
         ComboHelper.fillCombo(
-            this.selectDia, 
-            DateHelper.monthToDays(((MonthHelper.ComboMonth) this.selectMes.getSelectedItem()).mes)
+                this.selectDia,
+                DateHelper.monthToDays(((MonthHelper.ComboMonth) this.selectMes.getSelectedItem()).mes)
         );
-        
+
         ComboHelper.fillCombo(this.selectHora, TimeHelper.getPossibleHours());
         ComboHelper.fillCombo(this.selectMinuto, TimeHelper.getPossibleMinutes());
     }
-    
-    private void setToday(){
+
+    private void setToday() {
         ComboHelper.setIndexComboMonth(this.selectMes, this.getCurrentCalendarMonth());
         ComboHelper.setIndexComboData(this.selectAno, this.getCurrentYear());
         ComboHelper.setIndexComboData(this.selectDia, this.getCurrentDay());
-        
+
         ComboHelper.setIndexComboData(this.selectHora, this.getCurrentHour());
         ComboHelper.setIndexComboData(this.selectMinuto, this.getCurrentMinute());
     }
@@ -298,23 +298,21 @@ public class DatePicker extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectAnoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectAnoItemStateChanged
-        
+
     }//GEN-LAST:event_selectAnoItemStateChanged
 
     private void selectMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectMesItemStateChanged
         try {
             System.out.println("mes: " + ((MonthHelper.ComboMonth) this.selectMes.getSelectedItem()));
             ComboHelper.fillCombo(
-                this.selectDia, 
-                DateHelper.monthToDays(
-                        (
-                            (MonthHelper.ComboMonth) this.selectMes.getSelectedItem()
-                        ).mes)
+                    this.selectDia,
+                    DateHelper.monthToDays(
+                            ((MonthHelper.ComboMonth) this.selectMes.getSelectedItem()).mes)
             );
         } catch (Exception e) {
             // e.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_selectMesItemStateChanged
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
@@ -324,7 +322,7 @@ public class DatePicker extends javax.swing.JFrame {
                 + this.remakeNumber(this.selectDia.getSelectedItem().toString()) + " "
                 + this.remakeNumber(this.selectHora.getSelectedItem().toString()) + ":"
                 + this.remakeNumber(this.selectMinuto.getSelectedItem().toString()) + ":00";
-        
+
         this.form.setData(data);
         this.dispose();
     }//GEN-LAST:event_btnSelecionarActionPerformed
@@ -333,41 +331,42 @@ public class DatePicker extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private String remakeNumber(String number){
+    private String remakeNumber(String number) {
         String returned = number + "";
-        if(returned.length() == 1)
+        if (returned.length() == 1) {
             returned = "0" + returned;
+        }
         return returned;
     }
-    
-    private Calendar getCalendarNow(){
+
+    private Calendar getCalendarNow() {
         return Calendar.getInstance();
     }
-    
-    private int getCurrentDay(){
+
+    private int getCurrentDay() {
         return this.getCalendarNow().get(Calendar.DATE);
     }
-    
-    private int getCurrentCalendarMonth(){
+
+    private int getCurrentCalendarMonth() {
         Calendar data = Calendar.getInstance();
         return this.getCalendarNow().get(Calendar.MONTH);
     }
-    
-    private int getCurrentYear(){
+
+    private int getCurrentYear() {
         Calendar data = Calendar.getInstance();
         return this.getCalendarNow().get(Calendar.YEAR);
     }
-    
-    private int getCurrentHour(){
+
+    private int getCurrentHour() {
         Calendar data = Calendar.getInstance();
         return this.getCalendarNow().get(Calendar.HOUR);
     }
-    
-    private int getCurrentMinute(){
+
+    private int getCurrentMinute() {
         Calendar data = Calendar.getInstance();
         return this.getCalendarNow().get(Calendar.MINUTE);
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -396,8 +395,8 @@ public class DatePicker extends javax.swing.JFrame {
         //</editor-fold>
 
         DatePicker d = new DatePicker();
-        
-        System.out.println("data: " + d.getCurrentYear() + "-" + d.getCurrentCalendarMonth() + "-" + d.getCurrentDay() );
+
+        System.out.println("data: " + d.getCurrentYear() + "-" + d.getCurrentCalendarMonth() + "-" + d.getCurrentDay());
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

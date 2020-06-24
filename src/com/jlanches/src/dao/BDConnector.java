@@ -15,11 +15,11 @@ import com.jlanches.src.helpers.MessageHelper;
  * @author arthur
  */
 public class BDConnector {
-    
+
     private static BDConnector instance = null;
     private Connection connection = null;
-    
-    public BDConnector(){
+
+    public BDConnector() {
         try {
             Properties prop = new Properties();
             prop.load(new FileInputStream("db.properties"));
@@ -27,12 +27,12 @@ public class BDConnector {
             String dburl = prop.getProperty("db.url");
             String dbuser = prop.getProperty("db.user");
             String dbpassword = "qwer1234";
-            
+
             Class.forName(dbdriver);
-            
-            if(dbuser.length() != 0){
+
+            if (dbuser.length() != 0) {
                 this.connection = DriverManager.getConnection(dburl, dbuser, dbpassword);
-            }else{
+            } else {
                 this.connection = DriverManager.getConnection(dburl);
             }
         } catch (Exception e) {
@@ -40,20 +40,22 @@ public class BDConnector {
             System.err.println(e);
         }
     }
-    
-    public static BDConnector getInstance(){
-        if(instance == null)
+
+    public static BDConnector getInstance() {
+        if (instance == null) {
             instance = new BDConnector();
+        }
         return instance;
     }
-    
-    public Connection getConnection(){
-        if(this.connection == null)
+
+    public Connection getConnection() {
+        if (this.connection == null) {
             throw new RuntimeException("Conexão perdida");
+        }
         return this.connection;
     }
-    
-    public void shutDown(){
+
+    public void shutDown() {
         try {
             this.connection.close();
             instance = null;

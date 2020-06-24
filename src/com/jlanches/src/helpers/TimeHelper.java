@@ -10,21 +10,24 @@ package com.jlanches.src.helpers;
  * @author arthur
  */
 public class TimeHelper {
-    public static int[] getPossibleHours(){
+
+    public static int[] getPossibleHours() {
         int[] hours = new int[24];
-        
-        for (int i = 0; i < hours.length; i++)
+
+        for (int i = 0; i < hours.length; i++) {
             hours[i] = i;
-        
+        }
+
         return hours;
     }
-    
-    public static int[] getPossibleMinutes(){
+
+    public static int[] getPossibleMinutes() {
         int[] minutes = new int[60];
-        
-        for (int i = 0; i < minutes.length; i++)
+
+        for (int i = 0; i < minutes.length; i++) {
             minutes[i] = i;
-        
+        }
+
         return minutes;
     }
 }

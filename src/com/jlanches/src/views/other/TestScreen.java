@@ -21,14 +21,14 @@ public class TestScreen extends javax.swing.JFrame {
     public TestScreen() {
         initComponents();
     }
-    
-    private void openView(JInternalFrame view){
+
+    private void openView(JInternalFrame view) {
         // o "frameInterno" referencia o JDesktopPane
         this.frameInterno.removeAll();
         //Tente algo nessas linhas para começo de conversa
         this.repaint();
         revalidate();
-        validate(); 
+        validate();
         this.revalidate();
         this.validate();
         //Além disso, sugiro inverter a ordem abaixo: primeiro deixar visivel e depois adicionar ao Frame.

@@ -13,21 +13,25 @@ import com.jlanches.src.model.Franquia;
  * @author arthur
  */
 public class FranquiaValidator {
-    
-    public static boolean insert(Franquia franquia){
-        if(BasicValidators.isEmpty(franquia.endereco) == ValidationAnswers.FAIL)
+
+    public static boolean insert(Franquia franquia) {
+        if (BasicValidators.isEmpty(franquia.endereco) == ValidationAnswers.FAIL) {
             return ValidatorMessageHelper.alertEndereco();
-        if(BasicValidators.isZeroOrNegative(franquia.cidade_id) == ValidationAnswers.FAIL)
+        }
+        if (BasicValidators.isZeroOrNegative(franquia.cidade_id) == ValidationAnswers.FAIL) {
             return ValidatorMessageHelper.alert("cidade");
-        
+        }
+
         return true;
     }
-    
-    public static boolean update(Franquia franquia){
+
+    public static boolean update(Franquia franquia) {
         boolean answer = FranquiaValidator.insert(franquia);
-        if(answer)
-            if(BasicValidators.isZeroOrNegative(franquia.id) == ValidationAnswers.FAIL)
+        if (answer) {
+            if (BasicValidators.isZeroOrNegative(franquia.id) == ValidationAnswers.FAIL) {
                 answer = ValidatorMessageHelper.alertID();
+            }
+        }
         return answer;
     }
 }

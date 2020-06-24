@@ -18,32 +18,33 @@ import javax.swing.JToggleButton;
  * @author arthur
  */
 public class PedidoViewModel extends PedidoFormModel {
+
     public static final int ABA_VISUALIZAR = 0;
     public static final int ABA_CADASTRAR = 1;
     public static final int ABA_CONSULTAR = 2;
-    
+
     public JTabbedPane abasDoSistema;
-    
+
     public JTable tabelaPedidos;
     public JTable tabelaShowItens;
-    
+
     public JLabel showCliente;
     public JLabel showId;
     public JLabel showFuncionario;
     public JLabel showData;
     public JLabel showFormaDePagamento;
     public JLabel showPago;
-    
+
     public JTextArea showComentarios;
-    
+
     public JButton btnShowEditar;
     public JButton btnShowExcluir;
-    
+
     public JButton btnLimparBusca;
     public JButton btnPesquisar;
-    
+
     public JToggleButton btnMostrarTodosOsPedidos;
     public JButton btnMostraPedido;
-    
+
     public JButton btnPagar;
 }

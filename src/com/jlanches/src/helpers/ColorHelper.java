@@ -13,12 +13,12 @@ import com.jlanches.src.constants.SystemColors;
  * @author arthur
  */
 public class ColorHelper {
-    
-    public static Color getColor(SystemColors color){
+
+    public static Color getColor(SystemColors color) {
         return ColorHelper.getColor(color.getRed(), color.getGreen(), color.getBlue());
     }
-    
-    public static Color getColor(int red, int green, int blue){
+
+    public static Color getColor(int red, int green, int blue) {
         return new Color(red, green, blue);
     }
 }

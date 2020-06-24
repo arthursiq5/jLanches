@@ -32,10 +32,11 @@ import com.jlanches.src.views.extension.elements.ComboItem;
  * @author arthur
  */
 public class FuncionarioView extends javax.swing.JInternalFrame {
+
     private boolean editar;
     private Funcionario funcionario;
     private String cpfAtual;
-    
+
     /**
      * Creates new form EstadoView
      */
@@ -49,15 +50,15 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         this.btnToggleFuncionariosInativos.setIcon(IconHelper.getPngIcon(Icons.USUARIO_PLUS_64.getFullPath()));
         this.clearUpdateUser();
     }
-    
-    private void autenticado(){
-        if(this.funcionario.administrador){
+
+    private void autenticado() {
+        if (this.funcionario.administrador) {
             this.btnAtualizar.setEnabled(false);
             this.btnExcluir.setEnabled(false);
         }
     }
-    
-    private void clearUpdateUser(){
+
+    private void clearUpdateUser() {
         this.campoUserNome.setText(funcionario.nome);
         this.campoUserCurrentPassword.setText("");
         this.campoUserNewPassword.setText("");
@@ -66,48 +67,48 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         ComboHelper.setIndex(this.selectUserCidade, this.funcionario.cidade_id);
         this.campoUpdateEndereco.setText(this.funcionario.endereco);
     }
-    
-    private void carregaSelects(){
+
+    private void carregaSelects() {
         new CidadeDAO().fillCombo(this.selectCidade);
         new ContatoDAO().fillCombo(this.selectContato);
         new FranquiaDAO().fillCombo(this.selectFranquia);
         new CidadeDAO().fillCombo(this.selectUserCidade);
         new ContatoDAO().fillCombo(this.selectUserContato);
     }
-    
-    private void updateTable(){
+
+    private void updateTable() {
         new FuncionarioDAO().fillTable(this.tableClientes, this.btnToggleFuncionariosInativos.isSelected(), "");
     }
-    
-    private void resetInputs(){
-        
+
+    private void resetInputs() {
+
         this.campoCPF.setText("");
         this.campoPesquisar.setText("");
         this.campoNome.setText("");
         this.campoEndereco.setText("");
-        
+
         this.resetPasswordFields();
-        
+
         ComboHelper.setIndex(this.selectContato, 0);
         ComboHelper.setIndex(this.selectCidade, 0);
         ComboHelper.setIndex(this.selectFranquia, 0);
     }
-    
-    private void resetPasswordFields(){
+
+    private void resetPasswordFields() {
         this.campoSenha.setText("");
         this.campoRepeteSenha.setText("");
     }
-    
-    private Funcionario puxarObjetoTabela(){
+
+    private Funcionario puxarObjetoTabela() {
         Funcionario func = new Funcionario();
-        
+
         func.cpf = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 0));
         func.nome = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 1));
         func.endereco = String.valueOf(this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 2));
-        func.cidade_id = ((Cidade)this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 3)).id;
-        func.contato_id = ((Contato)this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 4)).id;
+        func.cidade_id = ((Cidade) this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 3)).id;
+        func.contato_id = ((Contato) this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 4)).id;
         func.franquia_id = ((Franquia) this.tableClientes.getValueAt(this.tableClientes.getSelectedRow(), 5)).id;
-        
+
         return func;
     }
 
@@ -903,7 +904,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        if(!PasswordValidator.confereSenha(new String(this.campoSenha.getPassword()), new String(this.campoRepeteSenha.getPassword()))){
+        if (!PasswordValidator.confereSenha(new String(this.campoSenha.getPassword()), new String(this.campoRepeteSenha.getPassword()))) {
             this.resetPasswordFields();
             return;
         }
@@ -917,9 +918,9 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         funcionario.franquia_id = ((ComboItem) this.selectFranquia.getSelectedItem()).id;
         funcionario.senha = new String(this.campoSenha.getPassword());
 
-        if(FuncionarioValidator.insert(funcionario)){
+        if (FuncionarioValidator.insert(funcionario)) {
             new FuncionarioDAO().save(funcionario);
-        }else{
+        } else {
             this.resetPasswordFields();
             return;
         }
@@ -934,10 +935,10 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnToggleFuncionariosInativosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToggleFuncionariosInativosActionPerformed
-        if(this.btnToggleFuncionariosInativos.isSelected()){
+        if (this.btnToggleFuncionariosInativos.isSelected()) {
             this.btnToggleFuncionariosInativos.setIcon(IconHelper.getPngIcon(Icons.USUARIO_CANCEL_64.getPath()));
             this.btnToggleFuncionariosInativos.setBackground(ColorHelper.getColor(SystemColors.SILVER));
-        }else{
+        } else {
             this.btnToggleFuncionariosInativos.setIcon(IconHelper.getPngIcon(Icons.USUARIO_PLUS_64.getPath()));
             this.btnToggleFuncionariosInativos.setBackground(ColorHelper.getColor(SystemColors.DEFAULT_BACKEND));
         }
@@ -953,11 +954,11 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(new FuncionarioDAO().autenticate(this.funcionario.cpf, new String(this.campoUserCurrentPassword.getPassword()))){
+        if (new FuncionarioDAO().autenticate(this.funcionario.cpf, new String(this.campoUserCurrentPassword.getPassword()))) {
             MessageHelper.createInfoMessage("Erro de autenticação", "A senha atual está incorreta, por favor, tente novamente");
         }
-        
-        if(!PasswordValidator.confereSenha(new String(this.campoUserNewPassword.getPassword()), new String(this.campoUserRepeatPassword.getPassword()))){
+
+        if (!PasswordValidator.confereSenha(new String(this.campoUserNewPassword.getPassword()), new String(this.campoUserRepeatPassword.getPassword()))) {
             this.resetPasswordFields();
             return;
         }
@@ -971,10 +972,10 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         func.franquia_id = this.funcionario.franquia_id;
         func.senha = new String(this.campoUserNewPassword.getPassword());
 
-        if(FuncionarioValidator.insert(func)){
+        if (FuncionarioValidator.insert(func)) {
             new FuncionarioDAO().update(func);
             this.funcionario = func;
-        }else{
+        } else {
             this.clearUpdateUser();
             return;
         }
@@ -986,27 +987,26 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         this.editar = true;
-        
+
         Funcionario func = this.puxarObjetoTabela();
-        
-        
+
         this.cpfAtual = funcionario.cpf;
         this.campoCPF.setText(funcionario.cpf);
         this.campoEndereco.setText(funcionario.endereco);
         this.campoNome.setText(funcionario.nome);
-        
+
         ComboHelper.setIndex(this.selectContato, funcionario.contato_id);
         ComboHelper.setIndex(this.selectCidade, funcionario.cidade_id);
         ComboHelper.setIndex(this.selectFranquia, funcionario.franquia_id);
-        
+
         this.abasDoSistema.setSelectedIndex(1);
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION){
+        if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
             new FuncionarioDAO().deleteWithAuthentication(this.puxarObjetoTabela(), MessageHelper.createInput("Por favor, digite a senha do usuário a deletar"));
             this.updateTable();
-        }else{
+        } else {
             MessageHelper.createWarningMessage("Aviso", "Não foi possível remover o dado");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -1018,7 +1018,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         this.campoUserNewPassword.setText("");
         this.campoUserRepeatPassword.setText("");
     }//GEN-LAST:event_jButton4ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;

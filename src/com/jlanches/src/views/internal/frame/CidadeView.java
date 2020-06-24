@@ -20,7 +20,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
 
     private CidadeViewModel cidadeView;
     private EstadoViewModel estadoView;
-    
+
     /**
      * Creates new form EstadoView
      */
@@ -32,75 +32,75 @@ public class CidadeView extends javax.swing.JInternalFrame {
         this.initStyle();
         this.fillSelectEstado();
     }
-    
-    private void renderView(){
+
+    private void renderView() {
         CidadeViewHelper.updateTable(this.cidadeView);
         EstadoViewHelper.updateTable(this.estadoView);
-        
+
         CidadeViewHelper.resetInputs(this.cidadeView);
         EstadoViewHelper.resetInputs(this.estadoView);
-        
+
         CidadeViewHelper.initButtons(this.cidadeView);
         EstadoViewHelper.initButtons(this.estadoView);
     }
-    
-    private void initCidadeViewHelper(){
+
+    private void initCidadeViewHelper() {
         this.cidadeView = new CidadeViewModel();
-        
+
         this.cidadeView.btnEditar = this.btnEditarCidade;
         this.cidadeView.btnExcluir = this.btnExcluirCidade;
         this.cidadeView.btnLimparBusca = this.btnLimparBuscaCidades;
         this.cidadeView.btnPesquisar = this.btnPesquisarCidades;
         this.cidadeView.btnLimparFormulario = this.btnLimparFormularioCidade;
         this.cidadeView.btnCadastrar = this.btnCadastrarCidade;
-        
+
         this.cidadeView.campoCidadeId = this.campoCidadeId;
         this.cidadeView.campoCidadeNome = this.campoCidadeNome;
-        
+
         this.cidadeView.campoPesquisarCidades = this.campoPesquisarCidades;
-        
+
         this.cidadeView.abasDoSistema = new AbasDaTela(abasDoSistema, 0, 1);
-        
+
         this.cidadeView.selectEstado = this.selectEstado;
-        
+
         this.cidadeView.table = this.tableCidades;
     }
-    
-    private void initEstadoViewHelper(){
+
+    private void initEstadoViewHelper() {
         this.estadoView = new EstadoViewModel();
-        
+
         this.estadoView.btnEditar = this.btnEditarEstado;
         this.estadoView.btnExcluir = this.btnExcluirEstado;
         this.estadoView.btnLimparBusca = this.btnLimparBuscaEstados;
         this.estadoView.btnPesquisar = this.btnPesquisarEstados;
-        
+
         this.estadoView.btnCadastrar = this.btnCadastrarEstado;
         this.estadoView.btnLimparFormulario = this.btnLimparFormularioEstado;
-        
+
         this.estadoView.campoPesquisar = this.campoPesquisarEstados;
         this.estadoView.campoId = this.campoEstadoId;
         this.estadoView.campoNome = this.campoEstadoNome;
         this.estadoView.campoSigla = this.campoEstadoSigla;
-        
+
         this.estadoView.abasDoSistema = new AbasDaTela(abasDoSistema, 2, 3);
-        
+
         this.estadoView.table = this.tableEstados;
-        
+
         this.estadoView.btnGenerateReport = this.btnGenerateReport;
         this.estadoView.btnGenerateSingleReport = this.btnGenerateSingleReport;
         this.estadoView.selectEstadoReport = this.selectEstadoReport;
     }
-    
-    private void initStyle(){
+
+    private void initStyle() {
         CidadeViewHelper.initButtons(this.cidadeView);
     }
-    
-    private void fillSelectEstado(){
+
+    private void fillSelectEstado() {
         new EstadoDAO().fillCombo(this.selectEstado);
         new EstadoDAO().fillCombo(this.selectEstadoReport);
     }
-    
-    private void resetInputs(){
+
+    private void resetInputs() {
         CidadeViewHelper.resetInputs(this.cidadeView);
     }
 
@@ -868,7 +868,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private void btnPesquisarCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarCidadesActionPerformed
         CidadeViewHelper.search(this.cidadeView);
     }//GEN-LAST:event_btnPesquisarCidadesActionPerformed
-    
+
     private void btnLimparBuscaCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparBuscaCidadesActionPerformed
         CidadeViewHelper.resetInputs(this.cidadeView);
         CidadeViewHelper.updateTable(this.cidadeView);
@@ -901,7 +901,6 @@ public class CidadeView extends javax.swing.JInternalFrame {
     private void btnGenerateSingleReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateSingleReportActionPerformed
         EstadoViewHelper.generateSelectedReport(estadoView);
     }//GEN-LAST:event_btnGenerateSingleReportActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abasDoSistema;
