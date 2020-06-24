@@ -10,6 +10,7 @@ import com.jlanches.src.constants.media.MainIcons;
 import java.awt.event.WindowEvent;
 import com.jlanches.src.dao.FuncionarioDAO;
 import com.jlanches.src.helpers.FrameHelper;
+import com.jlanches.src.helpers.HeaderHelper;
 import com.jlanches.src.helpers.MessageHelper;
 
 /**
@@ -25,7 +26,8 @@ public class LoginScreen extends javax.swing.JFrame {
         FrameHelper.setLookAndFeel();
         initComponents();
 
-        FrameHelper.setHeaderIcon(this, MainIcons.LANCHEIRA_PRINCIPAL);
+        HeaderHelper.setIcon(MainIcons.LANCHEIRA_PADLOCK);
+        HeaderHelper.loadIcon(this);
     }
 
     private void clearForm() {

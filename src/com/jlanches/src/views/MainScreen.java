@@ -5,11 +5,13 @@
  */
 package com.jlanches.src.views;
 
+import com.jlanches.src.constants.media.MainIcons;
 import com.jlanches.src.views.internal.frame.CategoriaView;
 import com.jlanches.src.views.internal.frame.ClienteView;
 import com.jlanches.src.views.internal.frame.ContatoView;
 import javax.swing.JInternalFrame;
 import com.jlanches.src.helpers.FrameHelper;
+import com.jlanches.src.helpers.HeaderHelper;
 import com.jlanches.src.model.Funcionario;
 import com.jlanches.src.views.internal.frame.CidadeView;
 import com.jlanches.src.views.internal.frame.CreditosView;
@@ -25,7 +27,8 @@ import com.jlanches.src.views.internal.frame.PedidoView;
 public class MainScreen extends javax.swing.JFrame {
 
     private Funcionario funcionario;
-
+    private MainIcons icon = MainIcons.LANCHEIRA_PRINCIPAL;
+    
     /**
      * Creates new form MainScreen
      */
@@ -35,11 +38,23 @@ public class MainScreen extends javax.swing.JFrame {
 
         this.funcionario = null;
         initComponents();
+        this.setIconOnInit();
     }
 
     public MainScreen(Funcionario funcionario) {
         this.funcionario = funcionario;
         this.initComponents();
+        this.setIconOnInit();
+    }
+    
+    private void setIconOnInit(){
+        HeaderHelper.setFrame(this);
+        this.reloadIcon();
+    }
+    
+    private void reloadIcon(){
+        HeaderHelper.setIcon(this.icon);
+        HeaderHelper.loadIcon();
     }
 
     private void openView(JInternalFrame view) {
