@@ -25,6 +25,7 @@
                   <Component id="btnBeep" max="32767" attributes="0"/>
                   <Component id="btnBell" max="32767" attributes="0"/>
                   <Component id="btnBroke" alignment="0" pref="370" max="32767" attributes="0"/>
+                  <Component id="btnCoin" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -39,6 +40,8 @@
               <Component id="btnBell" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnBroke" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnCoin" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -67,6 +70,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBrokeActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCoin">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Coin"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCoinActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

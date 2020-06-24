@@ -12,7 +12,8 @@ package com.jlanches.src.constants;
 public enum SoundEffects {
     BEEP("beep", MediaExtensions.WAV),
     BELL("bell", MediaExtensions.WAV),
-    BROKE("broke", MediaExtensions.WAV);
+    BROKE("broke", MediaExtensions.WAV),
+    COIN("coin", MediaExtensions.WAV);
     
     private final String path;
     private final MediaExtensions extension;

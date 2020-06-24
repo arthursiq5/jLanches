@@ -32,6 +32,7 @@ public class TestSound extends javax.swing.JInternalFrame {
         btnBeep = new javax.swing.JButton();
         btnBell = new javax.swing.JButton();
         btnBroke = new javax.swing.JButton();
+        btnCoin = new javax.swing.JButton();
 
         btnBeep.setText("Beep");
         btnBeep.addActionListener(new java.awt.event.ActionListener() {
@@ -54,6 +55,13 @@ public class TestSound extends javax.swing.JInternalFrame {
             }
         });
 
+        btnCoin.setText("Coin");
+        btnCoin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCoinActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,7 +71,8 @@ public class TestSound extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBeep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBell, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBroke, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
+                    .addComponent(btnBroke, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                    .addComponent(btnCoin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -75,6 +84,8 @@ public class TestSound extends javax.swing.JInternalFrame {
                 .addComponent(btnBell)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBroke)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCoin)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -93,10 +104,15 @@ public class TestSound extends javax.swing.JInternalFrame {
         SoundHelper.playBrokeSound();
     }//GEN-LAST:event_btnBrokeActionPerformed
 
+    private void btnCoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCoinActionPerformed
+        SoundHelper.playCoinSound();
+    }//GEN-LAST:event_btnCoinActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBeep;
     private javax.swing.JButton btnBell;
     private javax.swing.JButton btnBroke;
+    private javax.swing.JButton btnCoin;
     // End of variables declaration//GEN-END:variables
 }

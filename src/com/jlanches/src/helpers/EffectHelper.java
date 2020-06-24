@@ -33,6 +33,10 @@ public abstract class EffectHelper {
         EffectHelper.playSound(SoundEffects.BROKE);
     }
     
+    public static void playCoinSound(){
+        EffectHelper.playSound(SoundEffects.COIN);
+    }
+    
     public static void playSound(SoundEffects effect){
         try 
         {   
@@ -46,6 +50,7 @@ public abstract class EffectHelper {
 
     catch (IOException | LineUnavailableException | UnsupportedAudioFileException e1)
         {
+            System.out.println(effect.getFullPath());
             e1.printStackTrace();
         }
     }
