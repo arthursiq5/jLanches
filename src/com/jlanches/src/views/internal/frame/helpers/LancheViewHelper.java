@@ -63,12 +63,12 @@ public class LancheViewHelper {
         if (lancheView.disponivel) {
             lancheView.disponivel = false;
             lancheView.btnAtivo.setIcon(
-                    IconHelper.getPngIcon(Icons.CANCELAR_64.getPath())
+                    IconHelper.getPngIcon(Icons.CANCELAR_64.getFullPath())
             );
         } else {
             lancheView.disponivel = true;
             lancheView.btnAtivo.setIcon(
-                    IconHelper.getPngIcon(Icons.SELECIONADO_64.getPath())
+                    IconHelper.getPngIcon(Icons.SELECIONADO_64.getFullPath())
             );
         }
     }
