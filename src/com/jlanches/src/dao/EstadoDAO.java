@@ -208,9 +208,11 @@ public class EstadoDAO implements ModelWithComboDao<Estado> {
             if(this.resultadoQuery.isBeforeFirst()){
                 while(this.resultadoQuery.next()){
                     
+                    Estado estado = this.queryToObject();
+                    
                     item = new ComboItem(
-                        this.resultadoQuery.getInt(1), 
-                        this.resultadoQuery.getString(2)
+                            estado.id,
+                             estado
                     );
             
                     combo.addItem(item);
