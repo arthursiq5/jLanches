@@ -5,7 +5,6 @@
  */
 package com.jlanches.src.helpers;
 
-import com.jlanches.src.constants.media.Icons;
 import javax.swing.ImageIcon;
 import com.jlanches.src.constants.MediaExtensions;
 import com.jlanches.src.constants.Paths;

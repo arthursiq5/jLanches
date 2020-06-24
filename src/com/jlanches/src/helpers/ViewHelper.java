@@ -36,7 +36,7 @@ public class ViewHelper {
     
     public static void setButtonStyle(JButton button, SystemColors color, Icons icon){
         button.setBackground(ColorHelper.getColor(color));
-        button.setIcon(IconHelper.getPngIcon(icon.getPath()));
+        button.setIcon(IconHelper.getPngIcon(icon.getFullPath()));
         button.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
     }
     
