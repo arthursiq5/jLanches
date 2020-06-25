@@ -304,5 +304,36 @@ public class PedidoDAO implements ModelDAO<Pedido> {
         new PedidoDAO().save(pedido2);
         new PedidoDAO().save(pedido3);
 
+        System.out.println(new PedidoDAO().databaseHasClienteFuncionarioData(
+            "99999999999", "11111111111", "1985-01-01 00:00:00", "2025-01-01 00:00:00"));
+    }
+    
+    public boolean databaseHasClienteFuncionarioData(
+            String funcionario_cpf, 
+            String cliente_cpf, 
+            String dataInicio,
+            String dataFim
+    ){
+        String sql = "WHERE funcionario_cpf LIKE '" + funcionario_cpf + "' "
+                + "AND cliente_cpf LIKE '" + cliente_cpf + "' "
+                + "AND (data BETWEEN '" + dataInicio + "' AND '" + dataFim + "')" ;
+        
+        return this.databaseHasItens(sql);
+    }
+    
+    public boolean databaseHasItens(String sqlData){
+        try {
+            Statement statement = BDConnector.getInstance().getConnection().createStatement();
+            
+            String sql = ""
+                    + "SELECT * "
+                    + "FROM pedido "+ sqlData;
+            this.resultadoQuery = statement.executeQuery(sql);
+            return this.resultadoQuery.next();
+        } catch (SQLException e) {
+            MessageHelper.createErrorMessage("Erro", "Erro ao tentar verificar existência de dados no banco");
+            e.printStackTrace(System.err);
+            return false;
+        }
     }
 }
