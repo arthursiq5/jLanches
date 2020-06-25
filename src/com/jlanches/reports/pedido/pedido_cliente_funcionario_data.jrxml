@@ -62,7 +62,6 @@
 				BETWEEN $P{data_inicio}
 				AND $P{data_fim}
 			) AND
-			pedido.pago = $P{pago} AND
 			pedido.cliente_cpf LIKE $P{cliente_cpf} AND
 			pedido.funcionario_cpf LIKE $P{funcionario_cpf}
 			ORDER BY pedido.data ASC]]>
@@ -438,7 +437,7 @@
 				<textElement>
 					<paragraph leftIndent="5" rightIndent="5" spacingBefore="5" spacingAfter="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[(!!$P{pago} ? "Sim" : "Não")]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(!!$F{pago} ? "Sim" : "Não")]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
