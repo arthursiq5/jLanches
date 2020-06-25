@@ -303,7 +303,6 @@ public class DatePicker extends javax.swing.JFrame {
 
     private void selectMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectMesItemStateChanged
         try {
-            System.out.println("mes: " + ((MonthHelper.ComboMonth) this.selectMes.getSelectedItem()));
             ComboHelper.fillCombo(
                     this.selectDia,
                     DateHelper.monthToDays(
