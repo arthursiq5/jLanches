@@ -46,6 +46,10 @@ public class ReportHelper {
             ReportHelper.reports.put(Reports.FUNCIONARIOS_ATIVOS.toString(), compileReport);
             compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Reports.PEDIDO_COMPLETO.getFullPath()));
             ReportHelper.reports.put(Reports.PEDIDO_COMPLETO.toString(), compileReport);
+            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Reports.PEDIDO_CLIENTE_FUNCIONARIO_DATA.getFullPath()));
+            ReportHelper.reports.put(Reports.PEDIDO_CLIENTE_FUNCIONARIO_DATA.toString(), compileReport);
+            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Reports.ERROR_REPORT.getFullPath()));
+            ReportHelper.reports.put(Reports.ERROR_REPORT.toString(), compileReport);
         } catch (JRException ex) {
             Logger.getLogger(ReportHelper.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(Reports.EXEMPLO.getFullPath());
