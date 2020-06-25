@@ -14,6 +14,7 @@ public enum Paths {
     MAIN_ICONS("/com/jlanches/media/icons/main/"),
     REPORTS("/com/jlanches/reports/"),
     ADDRESS_REPORTS("/com/jlanches/reports/endereco/"),
+    PEDIDO_REPORTS("/com/jlanches/reports/pedido/"),
     EFFECTS("/com/jlanches/media/sounds/effects/");
 
     String path;

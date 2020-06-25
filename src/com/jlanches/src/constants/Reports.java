@@ -14,7 +14,8 @@ public enum Reports {
     CIDADE_ESTADO(Paths.ADDRESS_REPORTS, "cidade_estado"),
     CIDADE_ESTADO_BY_ID(Paths.ADDRESS_REPORTS, "cidade_estado_by_id"),
     FUNCIONARIOS(Paths.REPORTS, "funcionarios"),
-    FUNCIONARIOS_ATIVOS(Paths.REPORTS, "funcionarios_ativos");
+    FUNCIONARIOS_ATIVOS(Paths.REPORTS, "funcionarios_ativos"),
+    PEDIDO_COMPLETO(Paths.PEDIDO_REPORTS, "pedido_cliente_funcionario_data_pago_forma_pagamento");
 
     private final Paths path;
     private final String name;
