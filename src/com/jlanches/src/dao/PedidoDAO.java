@@ -328,6 +328,7 @@ public class PedidoDAO implements ModelDAO<Pedido> {
             String sql = ""
                     + "SELECT * "
                     + "FROM pedido "+ sqlData;
+            System.out.println(sql);
             this.resultadoQuery = statement.executeQuery(sql);
             return this.resultadoQuery.next();
         } catch (SQLException e) {

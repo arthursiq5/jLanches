@@ -38,7 +38,6 @@ public class PedidoReportModel  {
         private final JTextField field;
         
         public ParseDate(JTextField field) {
-            System.out.println("inicializado");
             this.field = field;
         }
 

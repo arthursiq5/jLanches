@@ -973,6 +973,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
         );
 
         btnGenerateGeralReport.setText("Gerar report");
+        btnGenerateGeralReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateGeralReportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -1093,6 +1098,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void btnReportInsertDataFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportInsertDataFimActionPerformed
         PedidoReportHelper.getDataFim(this.pedidoReport);
     }//GEN-LAST:event_btnReportInsertDataFimActionPerformed
+
+    private void btnGenerateGeralReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateGeralReportActionPerformed
+        PedidoReportHelper.generate(this.pedidoReport);
+    }//GEN-LAST:event_btnGenerateGeralReportActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> SelectReportCliente;
