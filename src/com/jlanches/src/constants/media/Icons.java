@@ -41,7 +41,19 @@ public enum Icons {
     CLOCK_CONFIG_64("icons8-relógio-despertador-64-config", MediaExtensions.PNG),
     WATCH_TIME_16("icons8-assistir-16", MediaExtensions.PNG),
     WATCH_TIME_64("icons8-assistir-64", MediaExtensions.PNG),
-    ICONE_DO_PROJETO("jlanches-icone", MediaExtensions.PNG);
+    ICONE_DO_PROJETO("jlanches-icone", MediaExtensions.PNG),
+    OPEN_FOLDER_64("icons8-abrir-pasta-64", MediaExtensions.PNG),
+    OPEN_FOLDER_16("icons8-abrir-pasta-16", MediaExtensions.PNG),
+    FILE_16("icons8-arquivo-de-fichas-16", MediaExtensions.PNG),
+    FILE_64("icons8-arquivo-de-fichas-64", MediaExtensions.PNG),
+    PEDIDO_ENTREGUE_16("icons8-pedido-entregue-16", MediaExtensions.PNG),
+    PEDIDO_ENTREGUE_64("icons8-pedido-entregue-64", MediaExtensions.PNG),
+    PHONE_16("icons8-telefone-sem-uso-16", MediaExtensions.PNG),
+    PHONE_64("icons8-telefone-sem-uso-64", MediaExtensions.PNG),
+    USERS_16("icons8-grupos-de-usuários-16", MediaExtensions.PNG),
+    USERS_64("icons8-grupos-de-usuários-64", MediaExtensions.PNG),
+    FILIAL_16("icons8-loja-16", MediaExtensions.PNG),
+    FILIAL_64("icons8-loja-64", MediaExtensions.PNG);
 
     String path;
     private MediaExtensions extension;
