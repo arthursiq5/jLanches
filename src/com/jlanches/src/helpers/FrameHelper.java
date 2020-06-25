@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.net.URL;
 import java.util.Properties;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.UIManager;
 
 /**
@@ -23,6 +24,13 @@ import javax.swing.UIManager;
  */
 public class FrameHelper {
 
+    public static void setHeaderIcon(JInternalFrame frame, Icons icone) {
+        frame.setFrameIcon(IconHelper.getPngIcon(icone.getFullPath()));
+    }
+    public static void setHeaderIcon(JInternalFrame frame, MainIcons icone) {
+        frame.setFrameIcon(IconHelper.getPngIcon(icone.getFullPath()));
+    }
+    
     public static void setHeaderIcon(JFrame frame, Icons icone) {
         frame.setIconImage(IconHelper.getPngImage(icone.getFullPath()));
     }
