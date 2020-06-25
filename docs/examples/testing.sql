@@ -9,7 +9,7 @@ INSERT INTO contato(fone, email) VALUES (99999999999, 'teste@teste');
 INSERT INTO franquia(endereco, ativo, cidade_id) 
 	VALUES ('teste', DEFAULT, 1);
 INSERT INTO funcionario(nome, senha, ativo, cidade_id, franquia_id, contato_id, cpf, administrador) 
-	VALUES ('teste', MD5('qwe123'), DEFAULT, 1, 1, 1, '99999999999', TRUE);
+	VALUES ('teste', SHA2(SHA2(MD5('qwe123'), 256), 512), DEFAULT, 1, 1, 1, '99999999999', TRUE);
 INSERT INTO categoria(id, nome)
 	VALUES (
 		DEFAULT, 

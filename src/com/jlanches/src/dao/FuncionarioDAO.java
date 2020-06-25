@@ -34,7 +34,7 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario> {
                     + " ("
                     + "'" + objeto.cpf + "', "
                     + "'" + objeto.nome + "', "
-                    + "MD5('" + objeto.senha + "'), "
+                    + " senha = SHA2(SHA2(MD5('" + objeto.senha + "'), 256), 512) "
                     + "'" + objeto.endereco + "', "
                     + "'" + objeto.cidade_id + "', "
                     + "'" + objeto.contato_id + "', "
@@ -73,7 +73,7 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario> {
                     + " cidade_id = '" + objeto.cidade_id + "', "
                     + " contato_id = '" + objeto.contato_id + "', "
                     + " franquia_id = '" + objeto.franquia_id + "', "
-                    + " senha = MD5('" + objeto.senha + "') "
+                    + " senha = SHA2(SHA2(MD5('" + objeto.senha + "'), 256), 512) "
                     + "WHERE cpf = '" + objeto.cpfEditar + "'";
             st.executeUpdate(sql);
         } catch (Exception e) {
@@ -311,7 +311,7 @@ public class FuncionarioDAO implements ModelWithComboDao<Funcionario> {
                     + "FROM funcionario "
                     + "WHERE "
                     + "cpf LIKE '" + cpf + "' AND "
-                    + "senha LIKE MD5('" + senha + "')";
+                    + "senha LIKE SHA2(SHA2(MD5('" + senha + "'), 256), 512) ";
 
             this.resultadoQuery = statement.executeQuery(sql);
 
