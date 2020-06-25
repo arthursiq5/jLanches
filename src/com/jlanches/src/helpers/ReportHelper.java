@@ -21,6 +21,7 @@ import com.jlanches.src.constants.Paths;
 import com.jlanches.src.constants.Reports;
 import com.jlanches.src.dao.BDConnector;
 import com.jlanches.src.helpers.extension.HashMapHelper;
+import java.util.Arrays;
 
 /**
  *
@@ -43,6 +44,8 @@ public class ReportHelper {
             ReportHelper.reports.put(Reports.FUNCIONARIOS.toString(), compileReport);
             compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Reports.FUNCIONARIOS_ATIVOS.getFullPath()));
             ReportHelper.reports.put(Reports.FUNCIONARIOS_ATIVOS.toString(), compileReport);
+            compileReport = JasperCompileManager.compileReport(TestReports.class.getResourceAsStream(Reports.PEDIDO_COMPLETO.getFullPath()));
+            ReportHelper.reports.put(Reports.PEDIDO_COMPLETO.toString(), compileReport);
         } catch (JRException ex) {
             Logger.getLogger(ReportHelper.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(Reports.EXEMPLO.getFullPath());
