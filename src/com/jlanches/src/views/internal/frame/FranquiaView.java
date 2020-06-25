@@ -5,10 +5,12 @@
  */
 package com.jlanches.src.views.internal.frame;
 
+import com.jlanches.src.constants.media.Icons;
 import javax.swing.JOptionPane;
 import com.jlanches.src.dao.CidadeDAO;
 import com.jlanches.src.dao.FranquiaDAO;
 import com.jlanches.src.helpers.ComboHelper;
+import com.jlanches.src.helpers.FrameHelper;
 import com.jlanches.src.model.Franquia;
 import com.jlanches.src.validators.FranquiaValidator;
 import com.jlanches.src.views.extension.elements.ComboItem;
@@ -31,6 +33,7 @@ public class FranquiaView extends javax.swing.JInternalFrame {
      */
     public FranquiaView() {
         initComponents();
+        FrameHelper.setHeaderIcon(this, Icons.FILIAL_64);
         this.updateTable();
         this.fillSelectCidade();
 

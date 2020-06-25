@@ -5,7 +5,9 @@
  */
 package com.jlanches.src.views.internal.frame;
 
+import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.dao.EstadoDAO;
+import com.jlanches.src.helpers.FrameHelper;
 import com.jlanches.src.model.views.AbasDaTela;
 import com.jlanches.src.model.views.CidadeViewModel;
 import com.jlanches.src.model.views.EstadoViewModel;
@@ -26,6 +28,7 @@ public class CidadeView extends javax.swing.JInternalFrame {
      */
     public CidadeView() {
         initComponents();
+        FrameHelper.setHeaderIcon(this, Icons.PEDIDO_ENTREGUE_64);
         this.initCidadeViewHelper();
         this.initEstadoViewHelper();
         this.renderView();

@@ -16,6 +16,7 @@ import com.jlanches.src.dao.FranquiaDAO;
 import com.jlanches.src.dao.FuncionarioDAO;
 import com.jlanches.src.helpers.ColorHelper;
 import com.jlanches.src.helpers.ComboHelper;
+import com.jlanches.src.helpers.FrameHelper;
 import com.jlanches.src.helpers.IconHelper;
 import com.jlanches.src.helpers.MessageHelper;
 import com.jlanches.src.helpers.ReportHelper;
@@ -45,6 +46,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         this.editar = false;
         this.cpfAtual = "";
         initComponents();
+        FrameHelper.setHeaderIcon(this, Icons.USERS_64);
         this.updateTable();
         this.carregaSelects();
         this.btnToggleFuncionariosInativos.setIcon(IconHelper.getPngIcon(Icons.USUARIO_PLUS_64.getFullPath()));

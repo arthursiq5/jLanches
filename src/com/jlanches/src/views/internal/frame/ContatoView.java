@@ -5,9 +5,11 @@
  */
 package com.jlanches.src.views.internal.frame;
 
+import com.jlanches.src.constants.media.Icons;
 import javax.swing.JOptionPane;
 import com.jlanches.src.dao.ContatoDAO;
 import com.jlanches.src.dao.EstadoDAO;
+import com.jlanches.src.helpers.FrameHelper;
 import com.jlanches.src.model.Contato;
 import com.jlanches.src.model.Estado;
 import com.jlanches.src.validators.testers.ContatoValidator;
@@ -23,6 +25,7 @@ public class ContatoView extends javax.swing.JInternalFrame {
      */
     public ContatoView() {
         initComponents();
+        FrameHelper.setHeaderIcon(this, Icons.PHONE_64);
         this.updateTable();
     }
 

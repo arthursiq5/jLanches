@@ -5,8 +5,10 @@
  */
 package com.jlanches.src.views.internal.frame;
 
+import com.jlanches.src.constants.media.Icons;
 import javax.swing.JOptionPane;
 import com.jlanches.src.dao.CategoriaDAO;
+import com.jlanches.src.helpers.FrameHelper;
 import com.jlanches.src.model.Categoria;
 import com.jlanches.src.validators.testers.CategoriaValidator;
 
@@ -22,6 +24,7 @@ public class CategoriaView extends javax.swing.JInternalFrame {
     public CategoriaView() {
         initComponents();
         this.updateTable();
+        FrameHelper.setHeaderIcon(this, Icons.OPEN_FOLDER_64);
     }
 
     private void updateTable() {

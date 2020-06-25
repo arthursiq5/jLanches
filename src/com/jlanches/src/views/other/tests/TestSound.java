@@ -5,7 +5,11 @@
  */
 package com.jlanches.src.views.other.tests;
 
+import com.jlanches.src.constants.media.Icons;
+import com.jlanches.src.constants.media.MainIcons;
+import com.jlanches.src.helpers.FrameHelper;
 import com.jlanches.src.helpers.SoundHelper;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,6 +22,8 @@ public class TestSound extends javax.swing.JInternalFrame {
      */
     public TestSound() {
         initComponents();
+        FrameHelper.setHeaderIcon(this, Icons.COIN_16);
+        
     }
 
     /**

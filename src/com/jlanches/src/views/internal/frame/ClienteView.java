@@ -5,11 +5,13 @@
  */
 package com.jlanches.src.views.internal.frame;
 
+import com.jlanches.src.constants.media.Icons;
 import javax.swing.JOptionPane;
 import com.jlanches.src.dao.CidadeDAO;
 import com.jlanches.src.dao.ClienteDAO;
 import com.jlanches.src.dao.ContatoDAO;
 import com.jlanches.src.helpers.ComboHelper;
+import com.jlanches.src.helpers.FrameHelper;
 import com.jlanches.src.model.Cidade;
 import com.jlanches.src.model.Cliente;
 import com.jlanches.src.model.Contato;
@@ -30,6 +32,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
      */
     public ClienteView() {
         initComponents();
+        FrameHelper.setHeaderIcon(this, Icons.USERS_64);
         this.updateTable();
         this.carregaSelects();
         this.cpfAtual = "";

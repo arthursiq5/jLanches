@@ -7,10 +7,12 @@ package com.jlanches.src.views.internal.frame;
 
 import javax.swing.JOptionPane;
 import com.jlanches.src.constants.media.Icons;
+import com.jlanches.src.constants.media.MainIcons;
 import com.jlanches.src.dao.CategoriaDAO;
 import com.jlanches.src.dao.LancheDAO;
 import com.jlanches.src.helpers.ComboHelper;
 import com.jlanches.src.helpers.FormatHelpers;
+import com.jlanches.src.helpers.FrameHelper;
 import com.jlanches.src.helpers.IconHelper;
 import com.jlanches.src.helpers.ViewHelper;
 import com.jlanches.src.model.Categoria;
@@ -34,6 +36,7 @@ public class LanchesView extends javax.swing.JInternalFrame {
      */
     public LanchesView() {
         initComponents();
+        FrameHelper.setHeaderIcon(this, MainIcons.HAMBURGER);
         this.initLancheViewModel();
         LancheViewHelper.initLanches(this.lancheView);
     }
