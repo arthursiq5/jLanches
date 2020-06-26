@@ -4,12 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/arthur/projetos/jLanches/src/com/jlanches/src/views/internal/frame/helpers/PedidoReportHelper.java</file>
-            <file>file:/home/arthur/projetos/jLanches/src/com/jlanches/reports/pedido/pedido_cliente_funcionario_data.jrxml</file>
+            <file>file:/home/arthur/projetos/jLanches/src/com/jlanches/src/views/internal/frame/advanced/search/SearchPedido.java</file>
             <file>file:/home/arthur/projetos/jLanches/src/com/jlanches/src/dao/PedidoDAO.java</file>
             <file>file:/home/arthur/projetos/jLanches/src/com/jlanches/src/views/internal/frame/PedidoView.java</file>
-            <file>file:/home/arthur/projetos/jLanches/src/com/jlanches/src/views/internal/frame/helpers/EstadoViewHelper.java</file>
             <file>file:/home/arthur/projetos/jLanches/src/com/jlanches/src/helpers/ReportHelper.java</file>
-            <file>file:/home/arthur/projetos/jLanches/src/com/jlanches/src/model/views/PedidoReportModel.java</file>
             <file>file:/home/arthur/projetos/jLanches/src/com/jlanches/src/views/extension/elements/ComboItem.java</file>
         </group>
     </open-files>
