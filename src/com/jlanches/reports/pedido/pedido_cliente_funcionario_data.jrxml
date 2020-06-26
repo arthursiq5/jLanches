@@ -10,61 +10,17 @@
 	<parameter name="cliente_cpf" class="java.lang.String"/>
 	<parameter name="funcionario_cpf" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT ativo, 
-				pedido.data, 
-				pedido.pago, 
-				pedido.forma_de_pagamento, 
-				pedido.comentarios, 
-				(SELECT cliente.nome 
-					FROM cliente 
-					WHERE cliente.cpf = pedido.cliente_cpf
-				) AS cliente_nome,
-				(SELECT CONCAT(
-					'Franquia ', 
-					f.id, 
-					' de ',
-					(
-						SELECT CONCAT(
-							nome,
-							'/',
-							(
-								SELECT sigla
-								FROM estado
-								WHERE estado.id = cidade.estado_id
-							)
-							)
-						FROM cidade
-						WHERE f.cidade_id = cidade.id
-					)
-				)
-					FROM franquia AS f
-					WHERE pedido.franquia_id = f.id
-				) AS franquia,
-				(
-					SELECT funcionario.nome
-					FROM funcionario
-					WHERE 
-						funcionario.cpf = pedido.funcionario_cpf
-				) AS funcionario_nome,
-				(SELECT
-					 (
-						SUM(valor) 
-						+ SUM(acrescimo) 
-						- SUM(desconto)
-					) 
-					FROM lanche_pedido 
-					WHERE lanche_pedido.pedido_id = pedido.id
-				) AS valor
-	FROM pedido
+		<![CDATA[SELECT *
+	FROM pedido_report_view AS pedido_w
 		WHERE
 			(
-				pedido.data
+				pedido_w.data
 				BETWEEN $P{data_inicio}
 				AND $P{data_fim}
 			) AND
-			pedido.cliente_cpf LIKE $P{cliente_cpf} AND
-			pedido.funcionario_cpf LIKE $P{funcionario_cpf}
-			ORDER BY pedido.data ASC]]>
+			pedido_w.cliente_cpf LIKE $P{cliente_cpf} AND
+			pedido_w.funcionario_cpf LIKE $P{funcionario_cpf}
+			ORDER BY pedido_w.data ASC]]>
 	</queryString>
 	<field name="ativo" class="java.lang.Boolean">
 		<property name="com.jaspersoft.studio.field.label" value="ativo"/>

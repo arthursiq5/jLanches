@@ -11,62 +11,22 @@
 	<parameter name="funcionario_cpf" class="java.lang.String"/>
 	<parameter name="pago" class="java.lang.Boolean"/>
 	<queryString>
-		<![CDATA[SELECT ativo, 
-				pedido.data, 
-				pedido.pago, 
-				pedido.forma_de_pagamento, 
-				pedido.comentarios, 
-				(SELECT cliente.nome 
-					FROM cliente 
-					WHERE cliente.cpf = pedido.cliente_cpf
-				) AS cliente_nome,
-				(SELECT CONCAT(
-					'Franquia ', 
-					f.id, 
-					' de ',
-					(
-						SELECT CONCAT(
-							nome,
-							'/',
-							(
-								SELECT sigla
-								FROM estado
-								WHERE estado.id = cidade.estado_id
-							)
-							)
-						FROM cidade
-						WHERE f.cidade_id = cidade.id
-					)
-				)
-					FROM franquia AS f
-					WHERE pedido.franquia_id = f.id
-				) AS franquia,
-				(
-					SELECT funcionario.nome
-					FROM funcionario
-					WHERE 
-						funcionario.cpf = pedido.funcionario_cpf
-				) AS funcionario_nome,
-				(SELECT
-					 (
-						SUM(valor) 
-						+ SUM(acrescimo) 
-						- SUM(desconto)
-					) 
-					FROM lanche_pedido 
-					WHERE lanche_pedido.pedido_id = pedido.id
-				) AS valor
-	FROM pedido
+		<![CDATA[SELECT *
+	FROM pedido_report_view AS pedido_w
 		WHERE
 			(
-				pedido.data
+				pedido_w.data
 				BETWEEN $P{data_inicio}
 				AND $P{data_fim}
 			) AND
-			pedido.pago = $P{pago} AND
-			pedido.cliente_cpf LIKE $P{cliente_cpf} AND
-			pedido.funcionario_cpf LIKE $P{funcionario_cpf}]]>
+			pedido_w.pago = $P{pago} AND
+			pedido_w.cliente_cpf LIKE $P{cliente_cpf} AND
+			pedido_w.funcionario_cpf LIKE $P{funcionario_cpf}]]>
 	</queryString>
+	<field name="id" class="java.math.BigInteger">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pedido"/>
+	</field>
 	<field name="ativo" class="java.lang.Boolean">
 		<property name="com.jaspersoft.studio.field.label" value="ativo"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pedido"/>
@@ -90,11 +50,17 @@
 	<field name="cliente_nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="cliente_nome"/>
 	</field>
+	<field name="cliente_cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cliente_cpf"/>
+	</field>
 	<field name="franquia" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="franquia"/>
 	</field>
 	<field name="funcionario_nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="funcionario_nome"/>
+	</field>
+	<field name="funcionario_cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="funcionario_cpf"/>
 	</field>
 	<field name="valor" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="valor"/>
