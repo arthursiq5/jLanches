@@ -38,6 +38,7 @@ public class MainScreen extends javax.swing.JFrame {
 
         this.funcionario = null;
         initComponents();
+        this.setLocationRelativeTo(null);
         this.setIconOnInit();
     }
 

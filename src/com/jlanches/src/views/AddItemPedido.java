@@ -28,6 +28,7 @@ public class AddItemPedido extends javax.swing.JFrame {
     public AddItemPedido(Pedido pedido) {
         FrameHelper.setLookAndFeel();
         initComponents();
+        this.setLocationRelativeTo(null);
         this.generateAddItemPedido(pedido);
         AddItemPedidoHelper.initButtons(this.addItemPedido);
         AddItemPedidoHelper.initSelect(this.addItemPedido);
