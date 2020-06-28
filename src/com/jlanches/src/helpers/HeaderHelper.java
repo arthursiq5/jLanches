@@ -35,13 +35,14 @@ public class HeaderHelper {
     public static void loadIcon(JFrame frame) {
         FrameHelper.setHeaderIcon(frame, HeaderHelper.instance.icon);
     }
-    
-    public static void setFrame(JFrame frame){
+
+    public static void setFrame(JFrame frame) {
         HeaderHelper.getInstance().frame = frame;
     }
-    
+
     public static void loadIcon() {
-        if(HeaderHelper.getInstance().frame != null)
+        if (HeaderHelper.getInstance().frame != null) {
             FrameHelper.setHeaderIcon(HeaderHelper.getInstance().frame, HeaderHelper.instance.icon);
+        }
     }
 }

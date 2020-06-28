@@ -27,10 +27,11 @@ public class FrameHelper {
     public static void setHeaderIcon(JInternalFrame frame, Icons icone) {
         frame.setFrameIcon(IconHelper.getPngIcon(icone.getFullPath()));
     }
+
     public static void setHeaderIcon(JInternalFrame frame, MainIcons icone) {
         frame.setFrameIcon(IconHelper.getPngIcon(icone.getFullPath()));
     }
-    
+
     public static void setHeaderIcon(JFrame frame, Icons icone) {
         frame.setIconImage(IconHelper.getPngImage(icone.getFullPath()));
     }

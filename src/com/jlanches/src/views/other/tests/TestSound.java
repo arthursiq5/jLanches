@@ -23,7 +23,7 @@ public class TestSound extends javax.swing.JInternalFrame {
     public TestSound() {
         initComponents();
         FrameHelper.setHeaderIcon(this, Icons.COIN_16);
-        
+
     }
 
     /**

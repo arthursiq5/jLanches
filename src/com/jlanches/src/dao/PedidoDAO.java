@@ -152,12 +152,12 @@ public class PedidoDAO implements ModelDAO<Pedido> {
         } else if (!showInactive) {
             like = "WHERE ativo = TRUE";
         }
-        
+
         System.out.println(""
-                    + "SELECT * "
-                    + "FROM pedido "
-                    + like
-            );
+                + "SELECT * "
+                + "FROM pedido "
+                + like
+        );
 
         try {
             this.resultadoQuery = BDConnector.getInstance()
@@ -186,9 +186,7 @@ public class PedidoDAO implements ModelDAO<Pedido> {
                             + "FROM pedido "
                             + like
                     );
-            
-            
-            
+
             int line = 0;
             while (this.resultadoQuery.next()) {
                 Pedido pedido = this.queryToObject();
@@ -305,29 +303,29 @@ public class PedidoDAO implements ModelDAO<Pedido> {
         new PedidoDAO().save(pedido3);
 
         System.out.println(new PedidoDAO().databaseHasClienteFuncionarioData(
-            "99999999999", "11111111111", "1985-01-01 00:00:00", "2025-01-01 00:00:00"));
+                "99999999999", "11111111111", "1985-01-01 00:00:00", "2025-01-01 00:00:00"));
     }
-    
+
     public boolean databaseHasClienteFuncionarioData(
-            String funcionario_cpf, 
-            String cliente_cpf, 
+            String funcionario_cpf,
+            String cliente_cpf,
             String dataInicio,
             String dataFim
-    ){
+    ) {
         String sql = "WHERE funcionario_cpf LIKE '" + funcionario_cpf + "' "
                 + "AND cliente_cpf LIKE '" + cliente_cpf + "' "
-                + "AND (data BETWEEN '" + dataInicio + "' AND '" + dataFim + "')" ;
-        
+                + "AND (data BETWEEN '" + dataInicio + "' AND '" + dataFim + "')";
+
         return this.databaseHasItens(sql);
     }
-    
-    public boolean databaseHasItens(String sqlData){
+
+    public boolean databaseHasItens(String sqlData) {
         try {
             Statement statement = BDConnector.getInstance().getConnection().createStatement();
-            
+
             String sql = ""
                     + "SELECT * "
-                    + "FROM pedido "+ sqlData;
+                    + "FROM pedido " + sqlData;
             System.out.println(sql);
             this.resultadoQuery = statement.executeQuery(sql);
             return this.resultadoQuery.next();

@@ -46,11 +46,11 @@ public class PedidoViewHelper extends PedidoFormHelper {
         pedidoView.btnMostrarTodosOsPedidos.setSelected(false);
         PedidoViewHelper.changeTab(pedidoView, AbasDoSistema.VISUALIZAR);
     }
-    
-    public static void search(PedidoViewModel pedidoView){
+
+    public static void search(PedidoViewModel pedidoView) {
         new PedidoDAO().fillTable(
                 pedidoView.tabelaPedidos,
-                true, 
+                true,
                 pedidoView.campoPesquisar.getText()
         );
     }
@@ -80,13 +80,13 @@ public class PedidoViewHelper extends PedidoFormHelper {
         ViewHelper.setButtonStyle(pedidoView.btnMostraPedido, SystemColors.ERASE_BLUE, Icons.PESQUISAR_64);
         ViewHelper.setButtonStyle(pedidoView.btnMostrarTodosOsPedidos, SystemColors.SILVER, Icons.COIN_64);
     }
-    
-    public static void cadastrar(PedidoViewModel pedidoView){
+
+    public static void cadastrar(PedidoViewModel pedidoView) {
         PedidoFormHelper.cadastrar(pedidoView);
         PedidoViewHelper.updateMainTable(pedidoView);
     }
-    
-    public static void showPedido(PedidoViewModel pedidoView){
+
+    public static void showPedido(PedidoViewModel pedidoView) {
         Pedido pedido = PedidoViewHelper.getPedidoFromTable(pedidoView);
         pedidoView.showId.setText(pedido.id + "");
         pedidoView.showComentarios.setText(pedido.comentarios);
@@ -95,11 +95,11 @@ public class PedidoViewHelper extends PedidoFormHelper {
         pedidoView.showFuncionario.setText(new FuncionarioDAO().get(pedido.funcionario_cpf).toString());
         pedidoView.showPago.setText(pedido.pago ? "sim" : "não");
         pedidoView.showFormaDePagamento.setText(pedido.formaDePagamento.toString());
-        
+
         PedidoViewHelper.changeTab(pedidoView, AbasDoSistema.MOSTRAR_PEDIDO);
     }
-    
-    public static Pedido getPedidoFromTable(PedidoViewModel pedidoView){
+
+    public static Pedido getPedidoFromTable(PedidoViewModel pedidoView) {
         return (Pedido) (pedidoView.tabelaPedidos.getValueAt(pedidoView.tabelaPedidos.getSelectedRow(), 1));
     }
 }

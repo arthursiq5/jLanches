@@ -16,27 +16,27 @@ import javax.swing.JTextField;
  *
  * @author arthur
  */
-public class PedidoReportModel  {
-    
+public class PedidoReportModel {
+
     public Date dataInicio;
     public Date dataFim;
     public Funcionario funcionario;
     public Cliente cliente;
-    
+
     public JComboBox selectReportFuncionario;
     public JComboBox selectReportCliente;
     public ParseDate campoDataInicio;
     public ParseDate campoDataFim;
-    
+
     public JButton btnReportClearDataFim;
     public JButton btnReportClearDataInicio;
     public JButton btnReportInsertDataFim;
     public JButton btnReportInsertDataInicio;
-    
-    public static class ParseDate implements FormUseDatePicker{
+
+    public static class ParseDate implements FormUseDatePicker {
 
         private final JTextField field;
-        
+
         public ParseDate(JTextField field) {
             this.field = field;
         }
@@ -45,15 +45,15 @@ public class PedidoReportModel  {
         public void setData(String data) {
             this.field.setText(data);
         }
-        
-        public void clearData(){
+
+        public void clearData() {
             this.field.setText("");
         }
-        
-        public String getData(){
+
+        public String getData() {
             return this.field.getText();
         }
-        
+
     }
-    
+
 }

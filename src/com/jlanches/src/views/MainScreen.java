@@ -28,7 +28,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private Funcionario funcionario;
     private MainIcons icon = MainIcons.LANCHEIRA_PRINCIPAL;
-    
+
     /**
      * Creates new form MainScreen
      */
@@ -47,13 +47,13 @@ public class MainScreen extends javax.swing.JFrame {
         this.initComponents();
         this.setIconOnInit();
     }
-    
-    private void setIconOnInit(){
+
+    private void setIconOnInit() {
         HeaderHelper.setFrame(this);
         this.reloadIcon();
     }
-    
-    private void reloadIcon(){
+
+    private void reloadIcon() {
         HeaderHelper.setIcon(this.icon);
         HeaderHelper.loadIcon();
     }

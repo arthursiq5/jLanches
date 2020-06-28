@@ -21,7 +21,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private JDatePickerImpl datePicker;
     private PedidoViewModel pedidoView;
     private PedidoReportModel pedidoReport;
-    
+
     /**
      * Creates new form PedidoView
      */
@@ -32,18 +32,18 @@ public class PedidoView extends javax.swing.JInternalFrame {
         PedidoViewHelper.initPedidoView(this.pedidoView);
         PedidoReportHelper.initComponents(this.pedidoReport);
     }
-    
-    private void initReportModel(){
+
+    private void initReportModel() {
         this.pedidoReport = new PedidoReportModel();
-        
+
         this.pedidoReport.campoDataInicio = new PedidoReportModel.ParseDate(this.campoReportDataInicio);
         this.pedidoReport.campoDataFim = new PedidoReportModel.ParseDate(this.campoReportDataFim);
-        
+
         this.pedidoReport.btnReportClearDataFim = this.btnReportClearDataFim;
         this.pedidoReport.btnReportClearDataInicio = this.btnReportClearDataInicio;
         this.pedidoReport.btnReportInsertDataFim = this.btnReportInsertDataFim;
         this.pedidoReport.btnReportInsertDataInicio = this.btnReportInsertDataInicio;
-        
+
         this.pedidoReport.selectReportCliente = this.SelectReportCliente;
         this.pedidoReport.selectReportFuncionario = this.selectReportFuncionario;
     }
@@ -1072,7 +1072,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPagoMouseClicked
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        PedidoViewHelper.cadastrar((PedidoViewModel)this.pedidoView);
+        PedidoViewHelper.cadastrar((PedidoViewModel) this.pedidoView);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed

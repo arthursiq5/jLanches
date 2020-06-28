@@ -59,14 +59,14 @@ public class PedidoFormHelper {
     public static void insert(PedidoFormModel pedidoForm) {
         PedidoFormHelper.cadastrar(pedidoForm);
     }
-    
-    public static void cadastrar(PedidoFormModel pedidoForm){
+
+    public static void cadastrar(PedidoFormModel pedidoForm) {
         new PedidoDAO().save(PedidoViewHelper.generatePedido(pedidoForm));
     }
-    
-    public static Pedido generatePedido(PedidoFormModel pedidoForm){
+
+    public static Pedido generatePedido(PedidoFormModel pedidoForm) {
         Pedido pedido = new Pedido();
-        
+
         pedido.id = pedidoForm.campoId.getText().equals("") ? 0 : Integer.parseInt(pedidoForm.campoId.getText());
         pedido.comentarios = pedidoForm.campoComentarios.getText();
         try {
@@ -75,11 +75,11 @@ public class PedidoFormHelper {
             Logger.getLogger(PedidoFormHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         pedido.formaDePagamento = (FormaDePagamento) pedidoForm.selectFormaPagamento.getSelectedItem();
-        pedido.cliente_cpf = ((Cliente) ((ComboItem)pedidoForm.selectCliente.getSelectedItem()).descricao).cpf;
-        pedido.funcionario_cpf = ((Funcionario) ((ComboItem)pedidoForm.selectFuncionario.getSelectedItem()).descricao).cpf;
-        
+        pedido.cliente_cpf = ((Cliente) ((ComboItem) pedidoForm.selectCliente.getSelectedItem()).descricao).cpf;
+        pedido.funcionario_cpf = ((Funcionario) ((ComboItem) pedidoForm.selectFuncionario.getSelectedItem()).descricao).cpf;
+
         pedido.franquia_id = new FuncionarioDAO().get(pedido.funcionario_cpf).franquia_id;
-        
+
         return pedido;
     }
 }
