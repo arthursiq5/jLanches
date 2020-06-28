@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jlanches.src.views;
+package com.jlanches.src.views.internal.frame.advanced.add.item;
 
 import java.util.ArrayList;
 import com.jlanches.src.helpers.FrameHelper;
