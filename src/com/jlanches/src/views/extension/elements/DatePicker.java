@@ -7,16 +7,12 @@ package com.jlanches.src.views.extension.elements;
 
 import java.util.Calendar;
 import com.jlanches.src.constants.media.Icons;
-import com.jlanches.src.constants.Meses;
 import com.jlanches.src.constants.SystemColors;
 import com.jlanches.src.helpers.ComboHelper;
 import com.jlanches.src.helpers.DateHelper;
 import com.jlanches.src.helpers.ViewHelper;
-import com.jlanches.src.helpers.IconHelper;
 import com.jlanches.src.helpers.MonthHelper;
 import com.jlanches.src.helpers.TimeHelper;
-import com.jlanches.src.model.views.FormUseDatePicker;
-import com.jlanches.src.model.views.PedidoViewModel;
 import javax.swing.JTextField;
 
 /**
@@ -25,7 +21,13 @@ import javax.swing.JTextField;
  */
 public class DatePicker extends javax.swing.JFrame {
     
-    public static class ParseDate implements FormUseDatePicker {
+    public static interface FormUseDatePicker {
+
+        public void setData(String data);
+    }
+
+    
+    public static class ParseDate implements DatePicker.FormUseDatePicker {
 
         private final JTextField field;
 

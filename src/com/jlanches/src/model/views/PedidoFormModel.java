@@ -5,19 +5,19 @@
  */
 package com.jlanches.src.model.views;
 
-import com.jlanches.src.model.views.FormUseDatePicker;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.helpers.IconHelper;
+import com.jlanches.src.views.extension.elements.DatePicker;
 
 /**
  *
  * @author arthur
  */
-public class PedidoFormModel implements FormUseDatePicker {
+public class PedidoFormModel implements DatePicker.FormUseDatePicker {
 
     public static class BooleanButton {
 
