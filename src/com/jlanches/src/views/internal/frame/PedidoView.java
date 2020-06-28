@@ -36,8 +36,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void initReportModel() {
         this.pedidoReport = new PedidoReportModel();
 
-        this.pedidoReport.campoDataInicio = new PedidoReportModel.ParseDate(this.campoReportDataInicio);
-        this.pedidoReport.campoDataFim = new PedidoReportModel.ParseDate(this.campoReportDataFim);
+        this.pedidoReport.campoDataInicio = new DatePicker.ParseDate(this.campoReportDataInicio);
+        this.pedidoReport.campoDataFim    = new DatePicker.ParseDate(this.campoReportDataFim);
 
         this.pedidoReport.btnReportClearDataFim = this.btnReportClearDataFim;
         this.pedidoReport.btnReportClearDataInicio = this.btnReportClearDataInicio;

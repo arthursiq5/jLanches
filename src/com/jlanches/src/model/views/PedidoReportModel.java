@@ -7,6 +7,7 @@ package com.jlanches.src.model.views;
 
 import com.jlanches.src.model.Cliente;
 import com.jlanches.src.model.Funcionario;
+import com.jlanches.src.views.extension.elements.DatePicker;
 import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,35 +26,15 @@ public class PedidoReportModel {
 
     public JComboBox selectReportFuncionario;
     public JComboBox selectReportCliente;
-    public ParseDate campoDataInicio;
-    public ParseDate campoDataFim;
+    
+    public DatePicker.ParseDate campoDataInicio;
+    public DatePicker.ParseDate campoDataFim;
 
     public JButton btnReportClearDataFim;
     public JButton btnReportClearDataInicio;
     public JButton btnReportInsertDataFim;
     public JButton btnReportInsertDataInicio;
 
-    public static class ParseDate implements FormUseDatePicker {
-
-        private final JTextField field;
-
-        public ParseDate(JTextField field) {
-            this.field = field;
-        }
-
-        @Override
-        public void setData(String data) {
-            this.field.setText(data);
-        }
-
-        public void clearData() {
-            this.field.setText("");
-        }
-
-        public String getData() {
-            return this.field.getText();
-        }
-
-    }
+    
 
 }

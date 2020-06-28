@@ -17,12 +17,36 @@ import com.jlanches.src.helpers.MonthHelper;
 import com.jlanches.src.helpers.TimeHelper;
 import com.jlanches.src.model.views.FormUseDatePicker;
 import com.jlanches.src.model.views.PedidoViewModel;
+import javax.swing.JTextField;
 
 /**
  *
  * @author arthur
  */
 public class DatePicker extends javax.swing.JFrame {
+    
+    public static class ParseDate implements FormUseDatePicker {
+
+        private final JTextField field;
+
+        public ParseDate(JTextField field) {
+            this.field = field;
+        }
+
+        @Override
+        public void setData(String data) {
+            this.field.setText(data);
+        }
+
+        public void clearData() {
+            this.field.setText("");
+        }
+
+        public String getData() {
+            return this.field.getText();
+        }
+
+    }
 
     private FormUseDatePicker form;
 
