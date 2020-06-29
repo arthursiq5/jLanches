@@ -100,6 +100,35 @@ public class PedidoDAO implements ModelDAO<Pedido> {
     public ArrayList<Pedido> search(String criterio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public Pedido getUltimoPedido(){
+        Pedido pedido = null;
+        
+        try {
+            String sql = ""
+                    + "SELECT * "
+                    + "FROM pedido "
+                    + "WHERE id = ("
+                        + "SELECT MAX(id)"
+                        + "FROM pedido"
+                    + ")";
+            
+            this.resultadoQuery = BDConnector.getInstance()
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(sql);
+            
+            if(this.resultadoQuery.next())
+                pedido = this.queryToObject();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        
+        if(pedido == null)
+            pedido = new Pedido();
+        
+        return pedido;
+    }
 
     @Override
     public Pedido get(String id) {
