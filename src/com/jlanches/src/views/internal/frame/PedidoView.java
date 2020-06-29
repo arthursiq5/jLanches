@@ -11,6 +11,7 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import com.jlanches.src.model.views.PedidoViewModel;
 import com.jlanches.src.views.extension.elements.DatePicker;
 import com.jlanches.src.views.internal.frame.advanced.add.item.AddItemPedido;
+import com.jlanches.src.views.internal.frame.helpers.PedidoFormHelper;
 import com.jlanches.src.views.internal.frame.helpers.PedidoReportHelper;
 import com.jlanches.src.views.internal.frame.helpers.PedidoViewHelper;
 
@@ -308,6 +309,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         btnExcluirItemDoPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlanches/media/icons/icons8-excluir-64.png"))); // NOI18N
         btnExcluirItemDoPedido.setText("Excluir");
+        btnExcluirItemDoPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirItemDoPedidoActionPerformed(evt);
+            }
+        });
 
         btnAdicionarItemAoPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlanches/media/icons/icons8-adicionar-64.png"))); // NOI18N
         btnAdicionarItemAoPedido.setText("Adicionar");
@@ -1114,6 +1120,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void btnAdicionarItemAoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarItemAoPedidoActionPerformed
         new AddItemPedido(this.pedidoView).setVisible(true);
     }//GEN-LAST:event_btnAdicionarItemAoPedidoActionPerformed
+
+    private void btnExcluirItemDoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirItemDoPedidoActionPerformed
+        PedidoFormHelper.deletePedidoItem(pedidoView);
+    }//GEN-LAST:event_btnExcluirItemDoPedidoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> SelectReportCliente;

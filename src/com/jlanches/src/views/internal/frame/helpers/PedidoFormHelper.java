@@ -14,6 +14,7 @@ import com.jlanches.src.constants.SystemColors;
 import com.jlanches.src.dao.ClienteDAO;
 import com.jlanches.src.dao.FranquiaDAO;
 import com.jlanches.src.dao.FuncionarioDAO;
+import com.jlanches.src.dao.LanchePedidoDAO;
 import com.jlanches.src.dao.PedidoDAO;
 import com.jlanches.src.helpers.ComboHelper;
 import com.jlanches.src.helpers.DateHelper;
@@ -63,6 +64,12 @@ public class PedidoFormHelper {
 
     public static void cadastrar(PedidoFormModel pedidoForm) {
         new PedidoDAO().save(PedidoViewHelper.generatePedido(pedidoForm));
+        int id = new PedidoDAO().getUltimoPedido().id;
+        
+        pedidoForm.pedido.itens.forEach(el -> {
+            el.pedido_id = id;
+            new LanchePedidoDAO().save(el);
+        });
     }
 
     public static Pedido generatePedido(PedidoFormModel pedidoForm) {
@@ -87,5 +94,9 @@ public class PedidoFormHelper {
     public static void updatePedidoLancheTable(PedidoFormModel form){
         System.out.println("chamando update");
         TableHelper.populaTabelaLanchePedido(form.tabelaItensPedido, form.pedido.itens);
+    }
+    
+    public static void deletePedidoItem(PedidoFormModel form){
+        int itemRemover = form.tabelaItensPedido.getSelectedRow();
     }
 }
