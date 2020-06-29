@@ -5,10 +5,12 @@
  */
 package com.jlanches.src.views.internal.frame;
 
+import com.jlanches.src.model.views.PedidoFormModel;
 import com.jlanches.src.model.views.PedidoReportModel;
 import org.jdatepicker.impl.JDatePickerImpl;
 import com.jlanches.src.model.views.PedidoViewModel;
 import com.jlanches.src.views.extension.elements.DatePicker;
+import com.jlanches.src.views.internal.frame.advanced.add.item.AddItemPedido;
 import com.jlanches.src.views.internal.frame.helpers.PedidoReportHelper;
 import com.jlanches.src.views.internal.frame.helpers.PedidoViewHelper;
 
@@ -51,6 +53,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void initMainModel() {
         this.pedidoView = new PedidoViewModel();
 
+        this.pedidoView.tabelaItensPedido = this.tabelaItens;
         this.pedidoView.campoPesquisar = this.campoPesquisar;
         this.pedidoView.campoId = this.campoId;
         this.pedidoView.selectFormaPagamento = this.selectFormaPagamento;
@@ -308,6 +311,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         btnAdicionarItemAoPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlanches/media/icons/icons8-adicionar-64.png"))); // NOI18N
         btnAdicionarItemAoPedido.setText("Adicionar");
+        btnAdicionarItemAoPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarItemAoPedidoActionPerformed(evt);
+            }
+        });
 
         btnMostrarItemPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlanches/media/icons/icons8-pesquisar-64.png"))); // NOI18N
         btnMostrarItemPedido.setText("Mostrar");
@@ -1102,6 +1110,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void btnGenerateGeralReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateGeralReportActionPerformed
         PedidoReportHelper.generate(this.pedidoReport);
     }//GEN-LAST:event_btnGenerateGeralReportActionPerformed
+
+    private void btnAdicionarItemAoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarItemAoPedidoActionPerformed
+        new AddItemPedido(this.pedidoView).setVisible(true);
+    }//GEN-LAST:event_btnAdicionarItemAoPedidoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> SelectReportCliente;

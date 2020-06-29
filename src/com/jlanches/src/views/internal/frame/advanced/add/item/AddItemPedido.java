@@ -5,12 +5,18 @@
  */
 package com.jlanches.src.views.internal.frame.advanced.add.item;
 
+import com.jlanches.src.dao.LancheDAO;
 import java.util.ArrayList;
 import com.jlanches.src.helpers.FrameHelper;
+import com.jlanches.src.helpers.MessageHelper;
 import com.jlanches.src.model.LanchePedido;
 import com.jlanches.src.model.Pedido;
 import com.jlanches.src.model.views.AddItemPedidoModel;
+import com.jlanches.src.model.views.PedidoFormModel;
+import com.jlanches.src.views.extension.elements.ComboItem;
 import com.jlanches.src.views.internal.frame.helpers.AddItemPedidoHelper;
+import com.jlanches.src.views.internal.frame.helpers.PedidoFormHelper;
+import javax.swing.JTable;
 
 /**
  *
@@ -20,16 +26,19 @@ public class AddItemPedido extends javax.swing.JFrame {
 
     private AddItemPedidoModel addItemPedido;
 
+    private PedidoFormModel pedidoForm;
+    
     /**
      * Creates new form AddItemPedido
      *
      * @param pedido
      */
-    public AddItemPedido(Pedido pedido) {
+    public AddItemPedido(PedidoFormModel pedidoForm) {
+        this.pedidoForm = pedidoForm;
         FrameHelper.setLookAndFeel();
         initComponents();
         this.setLocationRelativeTo(null);
-        this.generateAddItemPedido(pedido);
+        this.generateAddItemPedido(pedidoForm.pedido);
         AddItemPedidoHelper.initButtons(this.addItemPedido);
         AddItemPedidoHelper.initSelect(this.addItemPedido);
     }
@@ -52,6 +61,11 @@ public class AddItemPedido extends javax.swing.JFrame {
         this.addItemPedido.selectLanche = this.selectLanche;
     }
 
+    private boolean formIsValid(){
+        if(this.selectLanche.getSelectedIndex() == 0)
+            return false;
+        return true;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,8 +96,10 @@ public class AddItemPedido extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         campoTotal = new javax.swing.JTextField();
+        jPanel9 = new javax.swing.JPanel();
+        selectQuantidade = new javax.swing.JSpinner();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(207, 216, 220));
 
@@ -245,6 +261,11 @@ public class AddItemPedido extends javax.swing.JFrame {
 
         btnAdicionar.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         btnAdicionar.setText("Adicionar");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -254,7 +275,7 @@ public class AddItemPedido extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -298,6 +319,28 @@ public class AddItemPedido extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel9.setBackground(new java.awt.Color(207, 216, 220));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Quantidade"));
+
+        selectQuantidade.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectQuantidade)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectQuantidade)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -315,7 +358,8 @@ public class AddItemPedido extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -327,15 +371,16 @@ public class AddItemPedido extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -355,6 +400,22 @@ public class AddItemPedido extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        if(!this.formIsValid())
+            MessageHelper.createWarningMessage("Formulário inválido", "Por favor, escolha um lanche válido");
+        LanchePedido lanchePedido = new LanchePedido();
+        lanchePedido.lanche_id = ((ComboItem)this.selectLanche.getSelectedItem()).id;
+        lanchePedido.acrescimo = Double.parseDouble(this.campoAcrescimo.getText().replace(",", "."));
+        lanchePedido.desconto = Double.parseDouble(this.campoDesconto.getText().replace(",", "."));
+        lanchePedido.modificacoes = this.campoModificacoes.getText();
+        lanchePedido.quantidade = Integer.parseInt(this.selectQuantidade.getValue().toString());
+        lanchePedido.valor = (new LancheDAO().get(lanchePedido.lanche_id + "")).valor;
+        lanchePedido.pedido_id = this.pedidoForm.pedido.id;
+        
+        this.pedidoForm.pedido.itens.add(lanchePedido);
+        PedidoFormHelper.updatePedidoLancheTable(this.pedidoForm);
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -363,7 +424,7 @@ public class AddItemPedido extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddItemPedido(new Pedido()).setVisible(true);
+                new AddItemPedido(new PedidoFormModel()).setVisible(true);
             }
         });
     }
@@ -387,8 +448,10 @@ public class AddItemPedido extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> selectLanche;
+    private javax.swing.JSpinner selectQuantidade;
     private javax.swing.JButton showLanche;
     // End of variables declaration//GEN-END:variables
 }

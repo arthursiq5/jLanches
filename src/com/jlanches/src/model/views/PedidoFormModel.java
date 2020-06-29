@@ -11,13 +11,21 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.helpers.IconHelper;
+import com.jlanches.src.model.Pedido;
 import com.jlanches.src.views.extension.elements.DatePicker;
+import javax.swing.JTable;
 
 /**
  *
  * @author arthur
  */
 public class PedidoFormModel implements DatePicker.FormUseDatePicker {
+    
+    public Pedido pedido;
+    
+    public void resetPedido(){
+        this.pedido = new Pedido();
+    }
 
     public static class BooleanButton {
 
@@ -62,6 +70,12 @@ public class PedidoFormModel implements DatePicker.FormUseDatePicker {
     public JComboBox selectFormaPagamento;
     public JComboBox selectCliente;
     public JComboBox selectFuncionario;
+    
+    public JTable tabelaItensPedido;
+    
+    public PedidoFormModel(){
+        this.pedido = new Pedido();
+    }
 
     @Override
     public void setData(String data) {

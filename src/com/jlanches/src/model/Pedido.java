@@ -29,10 +29,10 @@ public class Pedido {
     public String funcionario_cpf;
     public int franquia_id;
 
-    public Map<String, LanchePedido> itens;
+    public ArrayList<LanchePedido> itens;
 
     public Pedido() {
-        this.itens = new HashMap<String, LanchePedido>();
+        this.itens = new ArrayList<>();
     }
 
     @Override

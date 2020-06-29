@@ -116,6 +116,8 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
                     + "WHERE "
                     + "id LIKE '" + id + "'";
 
+            System.out.println(sql);
+            
             this.resultadoQuery = statement.executeQuery(sql);
 
             this.resultadoQuery.next();
@@ -241,11 +243,11 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
                     );
             if (this.resultadoQuery.isBeforeFirst()) {
                 while (this.resultadoQuery.next()) {
-                    Lanche cliente = this.queryToLanche();
+                    Lanche lanche = this.queryToLanche();
                     item = new ComboItem();
 
-                    item.id = cliente.id;
-                    item.descricao = cliente.toString();
+                    item.id = lanche.id;
+                    item.descricao = lanche.toString();
 
                     combo.addItem(item);
                 }

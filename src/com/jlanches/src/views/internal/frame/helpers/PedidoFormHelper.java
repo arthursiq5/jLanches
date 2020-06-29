@@ -17,6 +17,7 @@ import com.jlanches.src.dao.FuncionarioDAO;
 import com.jlanches.src.dao.PedidoDAO;
 import com.jlanches.src.helpers.ComboHelper;
 import com.jlanches.src.helpers.DateHelper;
+import com.jlanches.src.helpers.TableHelper;
 import com.jlanches.src.helpers.ViewHelper;
 import com.jlanches.src.model.Cliente;
 import com.jlanches.src.model.Funcionario;
@@ -81,5 +82,10 @@ public class PedidoFormHelper {
         pedido.franquia_id = new FuncionarioDAO().get(pedido.funcionario_cpf).franquia_id;
 
         return pedido;
+    }
+    
+    public static void updatePedidoLancheTable(PedidoFormModel form){
+        System.out.println("chamando update");
+        TableHelper.populaTabelaLanchePedido(form.tabelaItensPedido, form.pedido.itens);
     }
 }
