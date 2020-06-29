@@ -5,17 +5,20 @@
  */
 package com.jlanches.src.views.internal.frame.advanced.search;
 
+import com.jlanches.src.constants.Reports;
 import com.jlanches.src.dao.ClienteDAO;
 import com.jlanches.src.dao.FuncionarioDAO;
 import com.jlanches.src.dao.PedidoDAO;
 import com.jlanches.src.helpers.DateHelper;
 import com.jlanches.src.helpers.FrameHelper;
+import com.jlanches.src.helpers.ReportHelper;
 import com.jlanches.src.model.Cliente;
 import com.jlanches.src.model.Funcionario;
 import com.jlanches.src.model.views.PedidoViewModel;
 import com.jlanches.src.views.extension.elements.ComboItem;
 import com.jlanches.src.views.extension.elements.DatePicker;
 import static com.jlanches.src.views.extension.elements.DatePicker.ParseDate;
+import java.util.HashMap;
 
 /**
  *
@@ -273,6 +276,11 @@ public class SearchPedido extends javax.swing.JFrame {
         btnGenerateReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlanches/media/icons/icons8-pdf-2-64.png"))); // NOI18N
         btnGenerateReport.setText("Gerar relatório");
         btnGenerateReport.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnGenerateReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateReportActionPerformed(evt);
+            }
+        });
 
         btnLimparData.setText("Não filtrar por data");
         btnLimparData.addActionListener(new java.awt.event.ActionListener() {
@@ -380,6 +388,38 @@ public class SearchPedido extends javax.swing.JFrame {
     private void btnSetDataFimAsAtualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetDataFimAsAtualActionPerformed
         this.dataFim.setData(new DatePicker.InternalDateHelper().getNow());
     }//GEN-LAST:event_btnSetDataFimAsAtualActionPerformed
+
+    private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateReportActionPerformed
+        HashMap<String, String> hash = new HashMap<String, String>();
+        QueryModel query = new QueryModel();
+        query.dataInicio = this.dataInicio.getData();
+        query.dataFim = this.dataFim.getData();
+        String aux = ((ComboItem)this.selectCliente.getSelectedItem()).cpf != null ? (((ComboItem)this.selectCliente.getSelectedItem()).cpf) : "";
+        query.cliente = 
+                !aux.equals("") 
+                    ? new ClienteDAO().get(aux) 
+                    : null;
+        aux = (((ComboItem)this.selectFuncionario.getSelectedItem()).cpf);
+        query.funcionario = !aux.equals("") ? new FuncionarioDAO().get(aux) : null;
+        
+        String sql = new QueryMaker().getQuery(query).replace("pedido", "pedido_w");
+        
+        hash.put("query", sql);
+        hash.put("header_message", "Pedidos "
+                + (!query.dataInicio.equals("") && !query.dataFim.equals("") 
+                        ? "realizados entre " + query.dataInicio + " e " + query.dataFim + " "
+                        :(
+                                !query.dataInicio.equals("") ? "realizados a partir de " + query.dataInicio + " "
+                                        : (!query.dataFim.equals("") ? "realizados antes de " + query.dataFim + " " : "")
+                   ))
+                + ( query.cliente != null && !query.cliente.cpf.equals("") ? "feitos pelo cliente " + query.cliente.nome + " " : "")
+                + ( query.funcionario != null && query.funcionario.cpf.equals("") ? " cadastrados pelo funcionário " + query.funcionario.nome + " " : "")
+        );
+        
+        ReportHelper.showReport(Reports.PEDIDO_GENERICO, hash);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnGenerateReportActionPerformed
 
     /**
      * @param args the command line arguments
