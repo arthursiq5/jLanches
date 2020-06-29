@@ -69,6 +69,7 @@ public class PedidoViewHelper extends PedidoFormHelper {
         PedidoViewHelper.initButtonsStyle(pedidoView);
         PedidoFormHelper.carregaCombos(pedidoView);
         PedidoViewHelper.resetCampos(pedidoView);
+        PedidoViewHelper.updatePedidoLancheTable(pedidoView);
     }
 
     private static Pedido getItemFromTable(PedidoViewModel pedidoView) {
