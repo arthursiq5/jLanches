@@ -252,6 +252,7 @@ public class ClienteDAO implements ModelWithComboDao<Cliente> {
         ComboItem item = new ComboItem();
         item.id = 0;
         item.descricao = "Selecione";
+        item.cpf = null;
         combo.addItem(item);
 
         try {
@@ -270,6 +271,7 @@ public class ClienteDAO implements ModelWithComboDao<Cliente> {
                     cliente.endereco = this.resultadoQuery.getString("endereco");
                     cliente.cidade_id = this.resultadoQuery.getInt("cidade_id");
                     cliente.contato_id = this.resultadoQuery.getInt("contato_id");
+                    
                     item = new ComboItem();
 
                     item.cpf = cliente.cpf;

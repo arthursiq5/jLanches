@@ -5,10 +5,12 @@
  */
 package com.jlanches.src.views.internal.frame.advanced.add.item;
 
+import com.jlanches.src.dao.ClienteDAO;
 import com.jlanches.src.dao.LancheDAO;
 import java.util.ArrayList;
 import com.jlanches.src.helpers.FrameHelper;
 import com.jlanches.src.helpers.MessageHelper;
+import com.jlanches.src.model.Lanche;
 import com.jlanches.src.model.LanchePedido;
 import com.jlanches.src.model.Pedido;
 import com.jlanches.src.model.views.AddItemPedidoModel;
@@ -16,6 +18,7 @@ import com.jlanches.src.model.views.PedidoFormModel;
 import com.jlanches.src.views.extension.elements.ComboItem;
 import com.jlanches.src.views.internal.frame.helpers.AddItemPedidoHelper;
 import com.jlanches.src.views.internal.frame.helpers.PedidoFormHelper;
+import java.text.DecimalFormat;
 import javax.swing.JTable;
 
 /**
@@ -25,6 +28,7 @@ import javax.swing.JTable;
 public class AddItemPedido extends javax.swing.JFrame {
 
     private AddItemPedidoModel addItemPedido;
+    private boolean carregado = false;
 
     private PedidoFormModel pedidoForm;
     
@@ -41,6 +45,7 @@ public class AddItemPedido extends javax.swing.JFrame {
         this.generateAddItemPedido(pedidoForm.pedido);
         AddItemPedidoHelper.initButtons(this.addItemPedido);
         AddItemPedidoHelper.initSelect(this.addItemPedido);
+        this.carregado = true;
     }
 
     public void generateAddItemPedido(Pedido pedido) {
@@ -323,6 +328,17 @@ public class AddItemPedido extends javax.swing.JFrame {
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Quantidade"));
 
         selectQuantidade.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        selectQuantidade.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        selectQuantidade.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                selectQuantidadeStateChanged(evt);
+            }
+        });
+        selectQuantidade.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                selectQuantidadePropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -409,12 +425,34 @@ public class AddItemPedido extends javax.swing.JFrame {
         lanchePedido.desconto = Double.parseDouble(this.campoDesconto.getText().replace(",", "."));
         lanchePedido.modificacoes = this.campoModificacoes.getText();
         lanchePedido.quantidade = Integer.parseInt(this.selectQuantidade.getValue().toString());
-        lanchePedido.valor = (new LancheDAO().get(lanchePedido.lanche_id + "")).valor;
+        lanchePedido.valor = (new LancheDAO().get(lanchePedido.lanche_id + "")).valor * lanchePedido.quantidade;
         lanchePedido.pedido_id = this.pedidoForm.pedido.id;
         
         this.pedidoForm.pedido.itens.add(lanchePedido);
         PedidoFormHelper.updatePedidoLancheTable(this.pedidoForm);
     }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void selectQuantidadePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_selectQuantidadePropertyChange
+        /*
+        if(((ComboItem) this.selectLanche.getSelectedItem()).id == 0 && !this.carregado)
+            return;
+        double valor = new LancheDAO().get(((ComboItem)this.selectLanche.getSelectedItem()).id + "").valor;
+        double acrescimo = Double.parseDouble(this.campoAcrescimo.getText().replace(",", "."));
+        double desconto = Double.parseDouble(this.campoDesconto.getText().replace(",", "."));
+        double total = (valor + acrescimo -desconto) * Integer.parseInt(this.selectQuantidade.getValue().toString());
+        DecimalFormat decimalFormat = new DecimalFormat(",##0.00");
+        this.campoTotal.setText(decimalFormat.format(total));
+        */
+    }//GEN-LAST:event_selectQuantidadePropertyChange
+
+    private void selectQuantidadeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_selectQuantidadeStateChanged
+        double valor = new LancheDAO().get(((ComboItem)this.selectLanche.getSelectedItem()).id + "").valor;
+        double acrescimo = Double.parseDouble(this.campoAcrescimo.getText().replace(",", "."));
+        double desconto = Double.parseDouble(this.campoDesconto.getText().replace(",", "."));
+        double total = (valor + acrescimo -desconto) * Integer.parseInt(this.selectQuantidade.getValue().toString());
+        DecimalFormat decimalFormat = new DecimalFormat(",##0.00");
+        this.campoTotal.setText(decimalFormat.format(total));
+    }//GEN-LAST:event_selectQuantidadeStateChanged
 
     /**
      * @param args the command line arguments

@@ -247,7 +247,7 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
                     item = new ComboItem();
 
                     item.id = lanche.id;
-                    item.descricao = lanche.toString();
+                    item.descricao = lanche;
 
                     combo.addItem(item);
                 }
