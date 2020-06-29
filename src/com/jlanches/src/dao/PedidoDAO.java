@@ -257,6 +257,86 @@ public class PedidoDAO implements ModelDAO<Pedido> {
             }
         }
     }
+    public void fillTableGeneric(JTable table, String where) {
+        Object[][] dadosTabela = null;
+        Object[] cabecalho = new Object[7];
+        cabecalho[0] = "ID";
+        cabecalho[1] = "Descrição";
+        cabecalho[2] = "Pago";
+        cabecalho[3] = "Forma de Pagamento";
+        cabecalho[4] = "Comentários";
+        cabecalho[5] = "Funcionário";
+        cabecalho[6] = "franquia";
+
+        try {
+            this.resultadoQuery = BDConnector.getInstance()
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(""
+                            + "SELECT count(*) "
+                            + "FROM pedido "
+                            + where
+                    );
+
+            this.resultadoQuery.next();
+
+            dadosTabela = new Object[this.resultadoQuery.getInt(1)][7];
+        } catch (Exception e) {
+            MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de estados do banco");
+            System.err.println("Erro: \n" + e);
+        }
+
+        try {
+            this.resultadoQuery = BDConnector.getInstance()
+                    .getConnection()
+                    .createStatement()
+                    .executeQuery(""
+                            + "SELECT * "
+                            + "FROM pedido "
+                            + where
+                    );
+
+            int line = 0;
+            while (this.resultadoQuery.next()) {
+                Pedido pedido = this.queryToObject();
+                dadosTabela[line][0] = pedido.id;
+                dadosTabela[line][1] = pedido;
+                dadosTabela[line][2] = pedido.pago ? "sim" : "não";
+                dadosTabela[line][3] = pedido.formaDePagamento;
+                dadosTabela[line][4] = pedido.comentarios;
+                dadosTabela[line][5] = new FuncionarioDAO().get(pedido.funcionario_cpf);
+                dadosTabela[line][6] = new FranquiaDAO().get(pedido.franquia_id + "");
+                line++;
+            }
+        } catch (Exception e) {
+            MessageHelper.createErrorMessage("Erro", "Erro ao puxar dados de estados do banco");
+            System.err.println("Erro: \n" + e);
+        }
+
+        table.setModel(new DefaultTableModel(dadosTabela, cabecalho) {
+            @Override
+            // quando retorno for FALSE, a tabela nao é editavel
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+
+        table.setSelectionMode(0);
+
+        // redimensiona as colunas de uma tabela
+        TableColumn column = null;
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            column = table.getColumnModel().getColumn(i);
+            switch (i) {
+                case 0:
+                    column.setPreferredWidth(17);
+                    break;
+                case 1:
+                    column.setPreferredWidth(140);
+                    break;
+            }
+        }
+    }
 
     private Pedido queryToObject() throws Exception {
         try {

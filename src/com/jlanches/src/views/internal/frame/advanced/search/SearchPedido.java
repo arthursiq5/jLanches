@@ -5,11 +5,15 @@
  */
 package com.jlanches.src.views.internal.frame.advanced.search;
 
+import com.jlanches.src.dao.ClienteDAO;
+import com.jlanches.src.dao.FuncionarioDAO;
+import com.jlanches.src.dao.PedidoDAO;
 import com.jlanches.src.helpers.DateHelper;
 import com.jlanches.src.helpers.FrameHelper;
 import com.jlanches.src.model.Cliente;
 import com.jlanches.src.model.Funcionario;
 import com.jlanches.src.model.views.PedidoViewModel;
+import com.jlanches.src.views.extension.elements.ComboItem;
 import com.jlanches.src.views.extension.elements.DatePicker;
 import static com.jlanches.src.views.extension.elements.DatePicker.ParseDate;
 
@@ -28,7 +32,35 @@ public class SearchPedido extends javax.swing.JFrame {
     
     public static class QueryMaker{
         public String getQuery(QueryModel model){
-            return "";
+            String selectData = "";
+            String selectCliente = "";
+            String selectFuncionario = "";
+            if(!model.dataInicio.equals("") && !model.dataFim.equals("")){
+                selectData = "("
+                    + "pedido.data "
+                    + "BETWEEN '"
+                    + model.dataInicio
+                    +"' AND '" + model.dataFim +"'"
+                    + ") AND";
+            }else if(!model.dataInicio.equals("")){
+                selectData = " pedido.data >= '" + model.dataInicio + "' AND ";
+            }else if(!model.dataFim.equals("")){
+                selectData = " poedido.data <= '" + model.dataFim + "' AND ";
+            }else{
+                selectData = "";
+            }
+            
+            if(model.cliente != null && !model.cliente.cpf.equals(""))
+                selectCliente = " pedido.cliente_cpf LIKE " + model.cliente.cpf.replace(".", "").replace("-", "").replace(" ", "");
+            if(model.funcionario != null && !model.funcionario.cpf.equals(""))
+                selectFuncionario = " pedido.funcionario_cpf LIKE " + model.funcionario.cpf.replace(".", "").replace("-", "").replace(" ", "");
+            
+            if(!selectFuncionario.equals("") && !selectCliente.equals(""))
+                selectCliente = selectCliente + " AND ";
+            
+            if(selectData.equals("") && selectCliente.equals("") && selectFuncionario.equals(""))
+                return "";
+            return " WHERE " + selectData + selectCliente + selectFuncionario;
         }
     }
     
@@ -51,6 +83,8 @@ public class SearchPedido extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.dataInicio = new ParseDate(this.campoDataInicio);
         this.dataFim = new ParseDate(this.campoDataFim);
+        new ClienteDAO().fillCombo(this.selectCliente);
+        new FuncionarioDAO().fillCombo(this.selectFuncionario);
     }
 
     /**
@@ -72,9 +106,9 @@ public class SearchPedido extends javax.swing.JFrame {
         btnSetDataFim = new javax.swing.JButton();
         btnSetDataFimAsAtual = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        selectCliente = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        selectFuncionario = new javax.swing.JComboBox<>();
         btnCancel = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
@@ -177,8 +211,8 @@ public class SearchPedido extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Cliente"));
 
-        jComboBox1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectCliente.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        selectCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -186,21 +220,21 @@ public class SearchPedido extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(selectCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(selectCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Funcionário"));
 
-        jComboBox2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectFuncionario.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        selectFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -208,14 +242,14 @@ public class SearchPedido extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(selectFuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox2, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(selectFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -309,7 +343,21 @@ public class SearchPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+        QueryModel query = new QueryModel();
+        query.dataInicio = this.dataInicio.getData();
+        query.dataFim = this.dataFim.getData();
+        String aux = ((ComboItem)this.selectCliente.getSelectedItem()).cpf != null ? (((ComboItem)this.selectCliente.getSelectedItem()).cpf) : "";
+        query.cliente = 
+                !aux.equals("") 
+                    ? new ClienteDAO().get(aux) 
+                    : null;
+        aux = (((ComboItem)this.selectFuncionario.getSelectedItem()).cpf);
+        query.funcionario = !aux.equals("") ? new FuncionarioDAO().get(aux) : null;
+        
+        String sql = new QueryMaker().getQuery(query);
+        System.out.println(sql);
+        new PedidoDAO().fillTableGeneric(this.view.tabelaPedidos, sql);
+        this.dispose();
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnLimparDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparDataActionPerformed
@@ -356,12 +404,12 @@ public class SearchPedido extends javax.swing.JFrame {
     private javax.swing.JButton btnSetDataInicioAsAtual;
     private javax.swing.JTextField campoDataFim;
     private javax.swing.JTextField campoDataInicio;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JComboBox<String> selectCliente;
+    private javax.swing.JComboBox<String> selectFuncionario;
     // End of variables declaration//GEN-END:variables
 }

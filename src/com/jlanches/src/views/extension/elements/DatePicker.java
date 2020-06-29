@@ -77,7 +77,7 @@ public class DatePicker extends javax.swing.JFrame {
     public static class ParseDate implements DatePicker.FormUseDatePicker {
 
         private final JTextField field;
-
+        
         public ParseDate(JTextField field) {
             this.field = field;
             this.field.setText("");
