@@ -318,11 +318,11 @@ public class SearchPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparDataActionPerformed
 
     private void btnSetDataInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetDataInicioActionPerformed
-        new DatePicker(this.dataInicio);
+        new DatePicker(this.dataInicio).setVisible(true);
     }//GEN-LAST:event_btnSetDataInicioActionPerformed
 
     private void btnSetDataFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetDataFimActionPerformed
-        new DatePicker(this.dataFim);
+        new DatePicker(this.dataFim).setVisible(true);
     }//GEN-LAST:event_btnSetDataFimActionPerformed
 
     private void btnSetDataInicioAsAtualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetDataInicioAsAtualActionPerformed
