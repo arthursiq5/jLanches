@@ -44,6 +44,7 @@ public class PedidoViewModel extends PedidoFormModel {
 
     public JButton btnLimparBusca;
     public JButton btnPesquisar;
+    public JButton btnPesquisaAvancada;
 
     public JToggleButton btnMostrarTodosOsPedidos;
     public JButton btnMostraPedido;

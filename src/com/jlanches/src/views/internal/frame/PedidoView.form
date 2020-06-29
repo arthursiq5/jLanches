@@ -122,6 +122,8 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="campoPesquisar" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnPesquisaAvancada" min="-2" pref="188" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnLimparBusca" min="-2" pref="168" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnPesquisar" min="-2" pref="148" max="-2" attributes="0"/>
@@ -134,7 +136,8 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="btnPesquisar" pref="76" max="32767" attributes="0"/>
+                              <Component id="btnPesquisaAvancada" max="32767" attributes="0"/>
+                              <Component id="btnPesquisar" alignment="1" pref="76" max="32767" attributes="0"/>
                               <Component id="campoPesquisar" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnLimparBusca" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -163,6 +166,14 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnPesquisaAvancada">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Pesquisa avan&#xe7;ada"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisaAvancadaActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

@@ -5,14 +5,43 @@
  */
 package com.jlanches.src.views.internal.frame.advanced.search;
 
+import com.jlanches.src.helpers.DateHelper;
 import com.jlanches.src.helpers.FrameHelper;
+import com.jlanches.src.model.Cliente;
+import com.jlanches.src.model.Funcionario;
+import com.jlanches.src.model.views.PedidoViewModel;
+import com.jlanches.src.views.extension.elements.DatePicker;
+import static com.jlanches.src.views.extension.elements.DatePicker.ParseDate;
 
 /**
  *
  * @author arthur
  */
 public class SearchPedido extends javax.swing.JFrame {
+    
+    public static class QueryModel{
+        public String dataInicio;
+        public String dataFim;
+        public Cliente cliente;
+        public Funcionario funcionario;
+    }
+    
+    public static class QueryMaker{
+        public String getQuery(QueryModel model){
+            return "";
+        }
+    }
+    
 
+    private PedidoViewModel view;
+    private ParseDate dataInicio;
+    private ParseDate dataFim;
+    
+    public SearchPedido(PedidoViewModel view) {
+        this();
+        this.view = view;
+    }
+    
     /**
      * Creates new form SearchPedido
      */
@@ -20,6 +49,8 @@ public class SearchPedido extends javax.swing.JFrame {
         FrameHelper.setLookAndFeel();
         initComponents();
         this.setLocationRelativeTo(null);
+        this.dataInicio = new ParseDate(this.campoDataInicio);
+        this.dataFim = new ParseDate(this.campoDataFim);
     }
 
     /**
@@ -33,11 +64,11 @@ public class SearchPedido extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        campoDataInicio = new javax.swing.JTextField();
         btnSetDataInicio = new javax.swing.JButton();
         btnSetDataInicioAsAtual = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        campoDataFim = new javax.swing.JTextField();
         btnSetDataFim = new javax.swing.JButton();
         btnSetDataFimAsAtual = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -48,21 +79,32 @@ public class SearchPedido extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnGenerateReport = new javax.swing.JButton();
+        btnLimparData = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
         setResizable(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Data de Início"));
         jPanel2.setToolTipText("");
 
-        jTextField1.setText("jTextField1");
+        campoDataInicio.setText("jTextField1");
 
         btnSetDataInicio.setText("Selecionar data");
         btnSetDataInicio.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSetDataInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSetDataInicioActionPerformed(evt);
+            }
+        });
 
         btnSetDataInicioAsAtual.setText("Data atual");
         btnSetDataInicioAsAtual.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSetDataInicioAsAtual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSetDataInicioAsAtualActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -70,7 +112,7 @@ public class SearchPedido extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1)
+                .addComponent(campoDataInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSetDataInicioAsAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -83,22 +125,31 @@ public class SearchPedido extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSetDataInicioAsAtual, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField1)
-                        .addComponent(btnSetDataInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))
+                    .addComponent(campoDataInicio)
+                    .addComponent(btnSetDataInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Data de Fim"));
         jPanel3.setToolTipText("");
 
-        jTextField2.setText("jTextField1");
+        campoDataFim.setText("jTextField1");
 
         btnSetDataFim.setText("Selecionar data");
         btnSetDataFim.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSetDataFim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSetDataFimActionPerformed(evt);
+            }
+        });
 
         btnSetDataFimAsAtual.setText("Data atual");
         btnSetDataFimAsAtual.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSetDataFimAsAtual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSetDataFimAsAtualActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -106,7 +157,7 @@ public class SearchPedido extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2)
+                .addComponent(campoDataFim)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSetDataFimAsAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -119,9 +170,8 @@ public class SearchPedido extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSetDataFimAsAtual, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField2)
-                        .addComponent(btnSetDataFim, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))
+                    .addComponent(campoDataFim)
+                    .addComponent(btnSetDataFim, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -180,10 +230,22 @@ public class SearchPedido extends javax.swing.JFrame {
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlanches/media/icons/icons8-pesquisar-64.png"))); // NOI18N
         btnSearch.setText("Pesquisar");
         btnSearch.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnGenerateReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlanches/media/icons/icons8-pdf-2-64.png"))); // NOI18N
         btnGenerateReport.setText("Gerar relatório");
         btnGenerateReport.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btnLimparData.setText("Não filtrar por data");
+        btnLimparData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparDataActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -201,7 +263,9 @@ public class SearchPedido extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGenerateReport, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                        .addComponent(btnLimparData, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGenerateReport, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -222,9 +286,10 @@ public class SearchPedido extends javax.swing.JFrame {
                     .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGenerateReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(btnLimparData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -233,7 +298,7 @@ public class SearchPedido extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,6 +307,31 @@ public class SearchPedido extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnLimparDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparDataActionPerformed
+        this.campoDataInicio.setText("");
+        this.campoDataFim.setText("");
+    }//GEN-LAST:event_btnLimparDataActionPerformed
+
+    private void btnSetDataInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetDataInicioActionPerformed
+        new DatePicker(this.dataInicio);
+    }//GEN-LAST:event_btnSetDataInicioActionPerformed
+
+    private void btnSetDataFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetDataFimActionPerformed
+        new DatePicker(this.dataFim);
+    }//GEN-LAST:event_btnSetDataFimActionPerformed
+
+    private void btnSetDataInicioAsAtualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetDataInicioAsAtualActionPerformed
+        this.dataInicio.setData(new DatePicker.InternalDateHelper().getNow());
+    }//GEN-LAST:event_btnSetDataInicioAsAtualActionPerformed
+
+    private void btnSetDataFimAsAtualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetDataFimAsAtualActionPerformed
+        this.dataFim.setData(new DatePicker.InternalDateHelper().getNow());
+    }//GEN-LAST:event_btnSetDataFimAsAtualActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,11 +348,14 @@ public class SearchPedido extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnGenerateReport;
+    private javax.swing.JButton btnLimparData;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSetDataFim;
     private javax.swing.JButton btnSetDataFimAsAtual;
     private javax.swing.JButton btnSetDataInicio;
     private javax.swing.JButton btnSetDataInicioAsAtual;
+    private javax.swing.JTextField campoDataFim;
+    private javax.swing.JTextField campoDataInicio;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JPanel jPanel1;
@@ -270,7 +363,5 @@ public class SearchPedido extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

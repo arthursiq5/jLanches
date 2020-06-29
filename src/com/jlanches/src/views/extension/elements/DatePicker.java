@@ -20,19 +20,67 @@ import javax.swing.JTextField;
  * @author arthur
  */
 public class DatePicker extends javax.swing.JFrame {
-    
+
+    public static class InternalDateHelper {
+
+        public String getNow(){
+            return ""
+                    + this.getCurrentYear() +"-"
+                    + this.remakeNumber(this.getCurrentCalendarMonth() + "") + "-"
+                    + this.remakeNumber(this.getCurrentDay() + "") + " "
+                    + this.remakeNumber(this.getCurrentHour() + "") + ":"
+                    + this.remakeNumber(this.getCurrentMinute() + "") + ":00";
+        }
+        
+        public String remakeNumber(String number) {
+            String returned = number + "";
+            if (returned.length() == 1) {
+                returned = "0" + returned;
+            }
+            return returned;
+        }
+
+        public Calendar getCalendarNow() {
+            return Calendar.getInstance();
+        }
+
+        public int getCurrentDay() {
+            return this.getCalendarNow().get(Calendar.DATE);
+        }
+
+        public int getCurrentCalendarMonth() {
+            Calendar data = Calendar.getInstance();
+            return this.getCalendarNow().get(Calendar.MONTH);
+        }
+
+        public int getCurrentYear() {
+            Calendar data = Calendar.getInstance();
+            return this.getCalendarNow().get(Calendar.YEAR);
+        }
+
+        public int getCurrentHour() {
+            Calendar data = Calendar.getInstance();
+            return this.getCalendarNow().get(Calendar.HOUR);
+        }
+
+        public int getCurrentMinute() {
+            Calendar data = Calendar.getInstance();
+            return this.getCalendarNow().get(Calendar.MINUTE);
+        }
+    }
+
     public static interface FormUseDatePicker {
 
         public void setData(String data);
     }
 
-    
     public static class ParseDate implements DatePicker.FormUseDatePicker {
 
         private final JTextField field;
 
         public ParseDate(JTextField field) {
             this.field = field;
+            this.field.setText("");
         }
 
         @Override
@@ -364,30 +412,30 @@ public class DatePicker extends javax.swing.JFrame {
         return returned;
     }
 
-    private Calendar getCalendarNow() {
+    public Calendar getCalendarNow() {
         return Calendar.getInstance();
     }
 
-    private int getCurrentDay() {
+    public int getCurrentDay() {
         return this.getCalendarNow().get(Calendar.DATE);
     }
 
-    private int getCurrentCalendarMonth() {
+    public int getCurrentCalendarMonth() {
         Calendar data = Calendar.getInstance();
         return this.getCalendarNow().get(Calendar.MONTH);
     }
 
-    private int getCurrentYear() {
+    public int getCurrentYear() {
         Calendar data = Calendar.getInstance();
         return this.getCalendarNow().get(Calendar.YEAR);
     }
 
-    private int getCurrentHour() {
+    public int getCurrentHour() {
         Calendar data = Calendar.getInstance();
         return this.getCalendarNow().get(Calendar.HOUR);
     }
 
-    private int getCurrentMinute() {
+    public int getCurrentMinute() {
         Calendar data = Calendar.getInstance();
         return this.getCalendarNow().get(Calendar.MINUTE);
     }
@@ -409,13 +457,17 @@ public class DatePicker extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DatePicker.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatePicker.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DatePicker.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatePicker.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DatePicker.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatePicker.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DatePicker.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatePicker.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

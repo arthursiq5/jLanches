@@ -16,6 +16,7 @@ import com.jlanches.src.model.Lanche;
 import com.jlanches.src.model.Pedido;
 import com.jlanches.src.model.views.PedidoFormModel;
 import com.jlanches.src.model.views.PedidoViewModel;
+import com.jlanches.src.views.internal.frame.advanced.search.SearchPedido;
 
 /**
  *
@@ -102,5 +103,9 @@ public class PedidoViewHelper extends PedidoFormHelper {
 
     public static Pedido getPedidoFromTable(PedidoViewModel pedidoView) {
         return (Pedido) (pedidoView.tabelaPedidos.getValueAt(pedidoView.tabelaPedidos.getSelectedRow(), 1));
+    }
+    
+    public static void openPesquisaAvancada(PedidoViewModel view){
+        new SearchPedido(view).setVisible(true);
     }
 }

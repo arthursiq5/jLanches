@@ -54,6 +54,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void initMainModel() {
         this.pedidoView = new PedidoViewModel();
 
+        this.pedidoView.btnPesquisaAvancada = this.btnPesquisaAvancada;
+        
         this.pedidoView.tabelaItensPedido = this.tabelaItens;
         this.pedidoView.campoPesquisar = this.campoPesquisar;
         this.pedidoView.campoId = this.campoId;
@@ -110,6 +112,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         campoPesquisar = new javax.swing.JTextField();
         btnLimparBusca = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
+        btnPesquisaAvancada = new javax.swing.JButton();
         btnMostrarTodosOsPedidos = new javax.swing.JToggleButton();
         btnMostraPedido = new javax.swing.JButton();
         btnPagar = new javax.swing.JButton();
@@ -211,6 +214,13 @@ public class PedidoView extends javax.swing.JInternalFrame {
             }
         });
 
+        btnPesquisaAvancada.setText("Pesquisa avançada");
+        btnPesquisaAvancada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisaAvancadaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -218,6 +228,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(campoPesquisar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPesquisaAvancada, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLimparBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -229,6 +241,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnPesquisaAvancada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                     .addComponent(campoPesquisar, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLimparBusca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1125,6 +1138,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
         PedidoFormHelper.deletePedidoItem(pedidoView);
     }//GEN-LAST:event_btnExcluirItemDoPedidoActionPerformed
 
+    private void btnPesquisaAvancadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaAvancadaActionPerformed
+        PedidoViewHelper.openPesquisaAvancada(pedidoView);
+    }//GEN-LAST:event_btnPesquisaAvancadaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> SelectReportCliente;
     private javax.swing.JTabbedPane abasDoSistema;
@@ -1139,6 +1156,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JToggleButton btnMostrarTodosOsPedidos;
     private javax.swing.JButton btnPagar;
     private javax.swing.JLabel btnPago;
+    private javax.swing.JButton btnPesquisaAvancada;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnReportClearDataFim;
     private javax.swing.JButton btnReportClearDataInicio;
