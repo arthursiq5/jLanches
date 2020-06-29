@@ -14,7 +14,7 @@ public class Lanche {
     public int id;
     public String nome;
     public String ingredientes;
-    public String valor;
+    public double valor;
     public boolean disponivel;
     public int categoria_id;
 

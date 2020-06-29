@@ -61,7 +61,7 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
                     + " ingredientes = '" + objeto.ingredientes + "', "
                     + " valor = '" + objeto.valor + "', "
                     + " disponivel = " + objeto.disponivel + ", "
-                    + " categoria_id = '" + objeto.categoria_id
+                    + " categoria_id = '" + objeto.categoria_id + "' "
                     + "WHERE id = '" + objeto.id + "'";
             st.executeUpdate(sql);
         } catch (Exception e) {
@@ -263,7 +263,7 @@ public class LancheDAO implements ModelWithComboDao<Lanche> {
             lanche.id = this.resultadoQuery.getInt("id");
             lanche.nome = this.resultadoQuery.getString("nome");
             lanche.ingredientes = this.resultadoQuery.getString("ingredientes");
-            lanche.valor = this.resultadoQuery.getString("valor");
+            lanche.valor = this.resultadoQuery.getDouble("valor");
             lanche.disponivel = this.resultadoQuery.getBoolean("disponivel");
             lanche.categoria_id = this.resultadoQuery.getInt("categoria_id");
             return lanche;

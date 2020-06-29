@@ -93,7 +93,7 @@ public class LancheViewHelper {
         Lanche lanche = new Lanche();
         lanche.id = (lancheView.campoId.getText().equals("")) ? 0 : Integer.parseInt(lancheView.campoId.getText());
         lanche.nome = lancheView.campoNome.getText();
-        lanche.valor = lancheView.campoValor.getText().replaceAll(",", ".");
+        lanche.valor = Double.parseDouble(lancheView.campoValor.getText().replaceAll(",", "."));
         lanche.disponivel = lancheView.disponivel;
         lanche.ingredientes = lancheView.campoIngredientes.getText();
 
@@ -126,6 +126,8 @@ public class LancheViewHelper {
 
         lancheView.campoId.setText(lanche.id + "");
         lancheView.campoNome.setText(lanche.nome);
+        lancheView.campoValor.setText((lanche.valor + "").replace(".", ","));
+        lancheView.campoIngredientes.setText(lanche.ingredientes);
 
         ComboHelper.setIndex(lancheView.selectCategoria, lanche.categoria_id);
 
@@ -136,7 +138,7 @@ public class LancheViewHelper {
         Lanche lanche = new Lanche();
         lanche.id = lancheView.campoId.getText().equals("") ? 0 : Integer.parseInt(lancheView.campoId.getText());
         lanche.nome = lancheView.campoNome.getText();
-        lanche.valor = lancheView.campoValor.getText().replaceAll(",", ".");
+        lanche.valor = Double.parseDouble(lancheView.campoValor.getText().replaceAll(",", "."));
         lanche.disponivel = lancheView.disponivel;
         lanche.ingredientes = lancheView.campoIngredientes.getText();
 
