@@ -20,6 +20,11 @@ import java.util.Arrays;
  */
 public class DateHelper {
 
+    public static String dateToString(Date date, DateFormats format){
+        SimpleDateFormat formato = new SimpleDateFormat(format + "", Locale.US);
+        return formato.format(date);
+    }
+    
     public static String dateToString(Date date) {
         SimpleDateFormat formato = new SimpleDateFormat(DateFormats.ISO_DATETIME + "", Locale.US);
         return formato.format(date);

@@ -11,7 +11,10 @@ package com.jlanches.src.constants;
  */
 public enum DateFormats {
     ISO_DATETIME("yyyy-MM-dd HH:mm:ss", ""),
-    ISO_DATE("yyyy-MM-dd", "");
+    ISO_DATE("yyyy-MM-dd", ""),
+    BRAZILIAN_DATE("dd/MM/yyyy", ""),
+    BRAZILIAN_TIME("HH:mm:ss", ""),
+    BRAZILIAN_DATETIME("dd/MM/yyyy HH:mm:ss", "");
 
     //AAAA-MM-DD HH:MM:SS
     private final String format;

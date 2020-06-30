@@ -5,6 +5,7 @@
  */
 package com.jlanches.src.views.internal.frame.helpers;
 
+import com.jlanches.src.constants.DateFormats;
 import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.constants.SystemColors;
 import com.jlanches.src.dao.ClienteDAO;
@@ -83,7 +84,7 @@ public class PedidoViewHelper extends PedidoFormHelper {
         PedidoViewHelper.loadItens(pedidoView.pedidoShow);
         pedidoView.showId.setText(pedido.id + "");
         pedidoView.showComentarios.setText(pedido.comentarios);
-        pedidoView.showData.setText(DateHelper.dateToString(pedido.data));
+        pedidoView.showData.setText(DateHelper.dateToString(pedido.data, DateFormats.BRAZILIAN_DATETIME));
         pedidoView.showCliente.setText(new ClienteDAO().get(pedido.cliente_cpf).toString());
         pedidoView.showFuncionario.setText(new FuncionarioDAO().get(pedido.funcionario_cpf).toString());
         pedidoView.showPago.setText(pedido.pago ? "sim" : "não");

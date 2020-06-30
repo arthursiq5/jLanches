@@ -61,7 +61,7 @@ public class PedidoDAO implements ModelDAO<Pedido> {
             String sql = "UPDATE pedido "
                     + "SET "
                     + "data = '" + DateHelper.dateToString(objeto.data) + "', "
-                    + "pago = '" + objeto.pago + "', "
+                    + "pago = " + objeto.pago + ", "
                     + "forma_de_pagamento = '" + objeto.formaDePagamento + "', "
                     + "comentarios = '" + objeto.comentarios + "', "
                     + "cliente_cpf = '" + objeto.cliente_cpf + "', "
