@@ -1189,7 +1189,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnShowEditarActionPerformed
 
     private void btnShowExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowExcluirActionPerformed
-        new PedidoDAO().delete(this.pedidoView.pedidoShow);
+        PedidoViewHelper.deletePedido(this.pedidoView);
     }//GEN-LAST:event_btnShowExcluirActionPerformed
 
     private void btnMostrarItemPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarItemPedidoActionPerformed

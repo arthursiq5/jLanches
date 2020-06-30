@@ -129,4 +129,11 @@ public class PedidoViewHelper extends PedidoFormHelper {
         view.showId.setText("");
         view.showPago.setText("");
     }
+    
+    public static void deletePedido(PedidoViewModel view){
+        new PedidoDAO().delete(view.pedidoShow);
+        PedidoViewHelper.clearViewSinglePedido(view);
+        PedidoViewHelper.changeTab(view, PedidoFormHelper.AbasDoSistema.VISUALIZAR);
+        PedidoViewHelper.updateMainTable(view);
+    }
 }
