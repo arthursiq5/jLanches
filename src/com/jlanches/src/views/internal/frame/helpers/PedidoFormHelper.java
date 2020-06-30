@@ -101,11 +101,14 @@ public class PedidoFormHelper {
     }
     
     public static void updatePedidoLancheTable(PedidoFormModel form){
-        System.out.println("chamando update");
         TableHelper.populaTabelaLanchePedido(form.tabelaItensPedido, form.pedido.itens);
     }
     
     public static void deletePedidoItem(PedidoFormModel form){
         int itemRemover = form.tabelaItensPedido.getSelectedRow();
+        if(form.pedido.itens.get(itemRemover).id != 0)
+            new LanchePedidoDAO().delete(form.pedido.itens.get(itemRemover));
+        form.pedido.itens.remove(itemRemover);
+        PedidoFormHelper.updatePedidoLancheTable(form);
     }
 }
