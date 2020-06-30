@@ -355,7 +355,12 @@ public class PedidoView extends javax.swing.JInternalFrame {
         });
 
         btnMostrarItemPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlanches/media/icons/icons8-pesquisar-64.png"))); // NOI18N
-        btnMostrarItemPedido.setText("Mostrar");
+        btnMostrarItemPedido.setText("Editar");
+        btnMostrarItemPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarItemPedidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1186,6 +1191,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void btnShowExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowExcluirActionPerformed
         new PedidoDAO().delete(this.pedidoView.pedidoShow);
     }//GEN-LAST:event_btnShowExcluirActionPerformed
+
+    private void btnMostrarItemPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarItemPedidoActionPerformed
+        new AddItemPedido(pedidoView, this.tabelaItens.getSelectedRow()).setVisible(true);
+    }//GEN-LAST:event_btnMostrarItemPedidoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> SelectReportCliente;

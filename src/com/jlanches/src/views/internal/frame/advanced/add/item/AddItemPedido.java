@@ -7,6 +7,7 @@ package com.jlanches.src.views.internal.frame.advanced.add.item;
 
 import com.jlanches.src.dao.ClienteDAO;
 import com.jlanches.src.dao.LancheDAO;
+import com.jlanches.src.helpers.ComboHelper;
 import java.util.ArrayList;
 import com.jlanches.src.helpers.FrameHelper;
 import com.jlanches.src.helpers.MessageHelper;
@@ -28,9 +29,16 @@ import javax.swing.JTable;
 public class AddItemPedido extends javax.swing.JFrame {
 
     private AddItemPedidoModel addItemPedido;
-    private boolean carregado = false;
-
+    private int index = -1;
+    
     private PedidoFormModel pedidoForm;
+    
+    public AddItemPedido(PedidoFormModel pedidoForm, int index){
+        this(pedidoForm);
+        this.index = index;
+        if(this.index >= 0 && this.index < this.pedidoForm.pedido.itens.size())
+            this.initCampos();
+    }
     
     /**
      * Creates new form AddItemPedido
@@ -42,10 +50,10 @@ public class AddItemPedido extends javax.swing.JFrame {
         FrameHelper.setLookAndFeel();
         initComponents();
         this.setLocationRelativeTo(null);
+        this.campoId.setText("");
         this.generateAddItemPedido(pedidoForm.pedido);
         AddItemPedidoHelper.initButtons(this.addItemPedido);
         AddItemPedidoHelper.initSelect(this.addItemPedido);
-        this.carregado = true;
     }
 
     public void generateAddItemPedido(Pedido pedido) {
@@ -70,6 +78,16 @@ public class AddItemPedido extends javax.swing.JFrame {
         if(this.selectLanche.getSelectedIndex() == 0)
             return false;
         return true;
+    }
+    
+    private void initCampos(){
+        LanchePedido lanchePedido = this.pedidoForm.pedido.itens.get(this.index);
+        this.campoId.setText((lanchePedido.id == 0) ? "" : lanchePedido.id + "");
+        this.campoAcrescimo.setText((lanchePedido.acrescimo + "").replace(".", ","));
+        this.campoAcrescimo.setText((lanchePedido.desconto + "").replace(".", ","));
+        this.campoModificacoes.setText(lanchePedido.modificacoes);
+        this.selectQuantidade.setValue(lanchePedido.quantidade);
+        ComboHelper.setIndex(this.selectLanche, lanchePedido.lanche_id);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -419,7 +437,9 @@ public class AddItemPedido extends javax.swing.JFrame {
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         if(!this.formIsValid())
             MessageHelper.createWarningMessage("Formulário inválido", "Por favor, escolha um lanche válido");
+        
         LanchePedido lanchePedido = new LanchePedido();
+        lanchePedido.id = (!this.campoId.getText().equals("")) ? Integer.parseInt(this.campoId.getText()) : 0;
         lanchePedido.lanche_id = ((ComboItem)this.selectLanche.getSelectedItem()).id;
         lanchePedido.acrescimo = Double.parseDouble(this.campoAcrescimo.getText().replace(",", "."));
         lanchePedido.desconto = Double.parseDouble(this.campoDesconto.getText().replace(",", "."));
@@ -428,8 +448,14 @@ public class AddItemPedido extends javax.swing.JFrame {
         lanchePedido.valor = (new LancheDAO().get(lanchePedido.lanche_id + "")).valor * lanchePedido.quantidade;
         lanchePedido.pedido_id = this.pedidoForm.pedido.id;
         
+        if(this.index != -1){
+            this.pedidoForm.pedido.itens.remove(this.index);
+        }
+        
         this.pedidoForm.pedido.itens.add(lanchePedido);
+        
         PedidoFormHelper.updatePedidoLancheTable(this.pedidoForm);
+        this.dispose();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void selectQuantidadePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_selectQuantidadePropertyChange
