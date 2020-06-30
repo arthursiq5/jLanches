@@ -44,11 +44,11 @@ public class SearchPedido extends javax.swing.JFrame {
                     + "BETWEEN '"
                     + model.dataInicio
                     +"' AND '" + model.dataFim +"'"
-                    + ") AND";
+                    + ") ";
             }else if(!model.dataInicio.equals("")){
-                selectData = " pedido.data >= '" + model.dataInicio + "' AND ";
+                selectData = " pedido.data >= '" + model.dataInicio + "' ";
             }else if(!model.dataFim.equals("")){
-                selectData = " poedido.data <= '" + model.dataFim + "' AND ";
+                selectData = " poedido.data <= '" + model.dataFim + "' ";
             }else{
                 selectData = "";
             }
@@ -65,6 +65,8 @@ public class SearchPedido extends javax.swing.JFrame {
             
             if(selectData.equals("") && selectCliente.equals("") && selectFuncionario.equals(""))
                 return "";
+            if(!selectData.equals("") && (!selectCliente.equals("") || !selectFuncionario.equals("")))
+                selectData = selectData + " AND ";
             return " WHERE " + selectData + selectCliente + selectFuncionario;
         }
     }
