@@ -95,6 +95,7 @@ public class PedidoViewHelper extends PedidoFormHelper {
     }
     
     public static void editPedido(PedidoViewModel view){
+        view.pedido = view.pedidoShow;
         view.campoId.setText(view.pedidoShow.id + "");
         view.campoData.setText(DateHelper.dateToString(view.pedidoShow.data));
         view.campoComentarios.setText(view.pedidoShow.comentarios);

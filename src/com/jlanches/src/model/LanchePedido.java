@@ -38,6 +38,10 @@ public class LanchePedido {
 
     public Operation estado;
     
+    public LanchePedido(){
+        this.id = 0;
+    }
+    
     public String getValorTotal(){
         return "R$ " 
             + LanchePedido.decimalFormat.format(this.valor + this.acrescimo - this.desconto)
