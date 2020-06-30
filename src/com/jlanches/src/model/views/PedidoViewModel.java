@@ -26,8 +26,6 @@ public class PedidoViewModel extends PedidoFormModel {
     public static final int ABA_CADASTRAR = 1;
     public static final int ABA_CONSULTAR = 2;
 
-    public JTabbedPane abasDoSistema;
-
     public JTable tabelaPedidos;
     public JTable tabelaShowItens;
 

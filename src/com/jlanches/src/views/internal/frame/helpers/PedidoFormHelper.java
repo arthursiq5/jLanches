@@ -22,16 +22,36 @@ import com.jlanches.src.helpers.TableHelper;
 import com.jlanches.src.helpers.ViewHelper;
 import com.jlanches.src.model.Cliente;
 import com.jlanches.src.model.Funcionario;
+import com.jlanches.src.model.LanchePedido;
 import com.jlanches.src.model.Pedido;
 import com.jlanches.src.model.views.PedidoFormModel;
 import com.jlanches.src.model.views.PedidoViewModel;
 import com.jlanches.src.views.extension.elements.ComboItem;
+import java.util.ArrayList;
 
 /**
  *
  * @author arthur
  */
 public class PedidoFormHelper {
+    
+    protected enum AbasDoSistema {
+        VISUALIZAR(0),
+        CADASTRAR(1),
+        MOSTRAR_PEDIDO(2);
+
+        public final int id;
+
+        private AbasDoSistema(int id) {
+            this.id = id;
+        }
+    }
+
+    protected static void changeTab(PedidoFormModel pedidoView, AbasDoSistema aba) {
+        pedidoView.abasDoSistema.setSelectedIndex(
+                aba.id
+        );
+    }
 
     public static void initButtons(PedidoFormModel pedidoView) {
         ViewHelper.initFormButtons(pedidoView.btnLimpar, pedidoView.btnCadastrar);
@@ -70,6 +90,9 @@ public class PedidoFormHelper {
             el.pedido_id = id;
             new LanchePedidoDAO().save(el);
         });
+        
+        PedidoFormHelper.clearForm(pedidoForm);
+        PedidoFormHelper.changeTab(pedidoForm, AbasDoSistema.VISUALIZAR);
     }
     public static void edita(PedidoFormModel pedidoForm) {
         new PedidoDAO().update(PedidoViewHelper.generatePedido(pedidoForm));
@@ -79,6 +102,7 @@ public class PedidoFormHelper {
             el.pedido_id = id;
             new LanchePedidoDAO().save(el);
         });
+        PedidoFormHelper.changeTab(pedidoForm, AbasDoSistema.VISUALIZAR);
     }
 
     public static Pedido generatePedido(PedidoFormModel pedidoForm) {
@@ -96,6 +120,8 @@ public class PedidoFormHelper {
         pedido.funcionario_cpf = ((Funcionario) ((ComboItem) pedidoForm.selectFuncionario.getSelectedItem()).descricao).cpf;
 
         pedido.franquia_id = new FuncionarioDAO().get(pedido.funcionario_cpf).franquia_id;
+        
+        pedido.pago = pedidoForm.pago.pago;
 
         return pedido;
     }
@@ -110,5 +136,16 @@ public class PedidoFormHelper {
             new LanchePedidoDAO().delete(form.pedido.itens.get(itemRemover));
         form.pedido.itens.remove(itemRemover);
         PedidoFormHelper.updatePedidoLancheTable(form);
+    }
+    
+    public static void clearForm(PedidoFormModel form){
+        form.pedido = new Pedido();
+        form.campoComentarios.setText("");
+        form.campoData.setText("");
+        form.campoId.setText("");
+        form.selectCliente.setSelectedIndex(0);
+        form.selectFormaPagamento.setSelectedIndex(0);
+        form.selectFuncionario.setSelectedIndex(0);
+        TableHelper.populaTabelaLanchePedido(form.tabelaItensPedido, new ArrayList<LanchePedido>());
     }
 }

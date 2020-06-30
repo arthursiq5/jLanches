@@ -27,23 +27,7 @@ import java.util.ArrayList;
  */
 public class PedidoViewHelper extends PedidoFormHelper {
 
-    private enum AbasDoSistema {
-        VISUALIZAR(0),
-        CADASTRAR(1),
-        MOSTRAR_PEDIDO(2);
-
-        private int id;
-
-        private AbasDoSistema(int id) {
-            this.id = id;
-        }
-    }
-
-    private static void changeTab(PedidoViewModel pedidoView, AbasDoSistema aba) {
-        pedidoView.abasDoSistema.setSelectedIndex(
-                aba.id
-        );
-    }
+    
 
     public static void updateMainTable(PedidoViewModel pedidoView) {
         new PedidoDAO().fillTable(pedidoView.tabelaPedidos, false, "");
@@ -107,8 +91,6 @@ public class PedidoViewHelper extends PedidoFormHelper {
     }
     
     public static void editPedido(PedidoViewModel view){
-        System.out.println(view.pedidoShow.cliente_cpf);
-        System.out.println(view.pedidoShow.funcionario_cpf);
         view.campoId.setText(view.pedidoShow.id + "");
         view.campoData.setText(DateHelper.dateToString(view.pedidoShow.data));
         view.campoComentarios.setText(view.pedidoShow.comentarios);
@@ -116,6 +98,8 @@ public class PedidoViewHelper extends PedidoFormHelper {
         ComboHelper.setIndex(view.selectCliente, view.pedidoShow.cliente_cpf);
         ComboHelper.setIndex(view.selectFuncionario, view.pedidoShow.funcionario_cpf);
         view.pago.set(view.pedidoShow.pago);
+        
+        PedidoViewHelper.changeTab(view, AbasDoSistema.CADASTRAR);
     }
 
     public static Pedido getPedidoFromTable(PedidoViewModel pedidoView) {

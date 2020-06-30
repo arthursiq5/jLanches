@@ -13,6 +13,7 @@ import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.helpers.IconHelper;
 import com.jlanches.src.model.Pedido;
 import com.jlanches.src.views.extension.elements.DatePicker;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
 /**
@@ -85,6 +86,8 @@ public class PedidoFormModel implements DatePicker.FormUseDatePicker {
     public JComboBox selectFuncionario;
     
     public JTable tabelaItensPedido;
+    
+    public JTabbedPane abasDoSistema;
     
     public PedidoFormModel(){
         this.pedido = new Pedido();
