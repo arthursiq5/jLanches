@@ -9,6 +9,7 @@ import com.jlanches.src.constants.media.Icons;
 import com.jlanches.src.constants.SystemColors;
 import com.jlanches.src.dao.ClienteDAO;
 import com.jlanches.src.dao.FuncionarioDAO;
+import com.jlanches.src.dao.LanchePedidoDAO;
 import com.jlanches.src.dao.PedidoDAO;
 import com.jlanches.src.helpers.ComboHelper;
 import com.jlanches.src.helpers.DateHelper;
@@ -79,6 +80,7 @@ public class PedidoViewHelper extends PedidoFormHelper {
     public static void showPedido(PedidoViewModel pedidoView) {
         Pedido pedido = PedidoViewHelper.getPedidoFromTable(pedidoView);
         pedidoView.pedidoShow = pedido;
+        PedidoViewHelper.loadItens(pedidoView.pedidoShow);
         pedidoView.showId.setText(pedido.id + "");
         pedidoView.showComentarios.setText(pedido.comentarios);
         pedidoView.showData.setText(DateHelper.dateToString(pedido.data));
@@ -87,6 +89,8 @@ public class PedidoViewHelper extends PedidoFormHelper {
         pedidoView.showPago.setText(pedido.pago ? "sim" : "não");
         pedidoView.showFormaDePagamento.setText(pedido.formaDePagamento.toString());
 
+        TableHelper.populaTabelaLanchePedido(pedidoView.tabelaShowItens, pedidoView.pedidoShow.itens);
+        
         PedidoViewHelper.changeTab(pedidoView, AbasDoSistema.MOSTRAR_PEDIDO);
     }
     
@@ -104,6 +108,10 @@ public class PedidoViewHelper extends PedidoFormHelper {
 
     public static Pedido getPedidoFromTable(PedidoViewModel pedidoView) {
         return (Pedido) (pedidoView.tabelaPedidos.getValueAt(pedidoView.tabelaPedidos.getSelectedRow(), 1));
+    }
+    
+    public static void loadItens(Pedido pedido){
+        pedido.itens = new LanchePedidoDAO().getFromPedido(pedido.id + "");
     }
     
     public static void openPesquisaAvancada(PedidoViewModel view){
