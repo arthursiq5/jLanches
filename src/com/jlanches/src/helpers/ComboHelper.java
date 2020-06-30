@@ -92,9 +92,12 @@ public class ComboHelper {
         ComboItem item;
         for (int i = 0; i < combo.getItemCount(); i++) {
             item = (ComboItem) combo.getItemAt(i);
-            if (item.cpf.equalsIgnoreCase(cpf)) {
-                combo.setSelectedIndex(i);
-                break;
+            
+            if(item.cpf != null){
+                if (item.cpf.equalsIgnoreCase(cpf)) {
+                    combo.setSelectedIndex(i);
+                    break;
+                }
             }
         }
     }
