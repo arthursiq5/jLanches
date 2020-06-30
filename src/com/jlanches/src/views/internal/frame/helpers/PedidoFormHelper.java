@@ -96,11 +96,15 @@ public class PedidoFormHelper {
     }
     public static void edita(PedidoFormModel pedidoForm) {
         new PedidoDAO().update(PedidoViewHelper.generatePedido(pedidoForm));
-        int id = new PedidoDAO().getUltimoPedido().id;
+        int id = pedidoForm.pedido.id;
         
         pedidoForm.pedido.itens.forEach(el -> {
             el.pedido_id = id;
-            new LanchePedidoDAO().save(el);
+            if(el.id == 0){
+                new LanchePedidoDAO().save(el);
+            }else{
+                new LanchePedidoDAO().update(el);
+            }
         });
         PedidoFormHelper.changeTab(pedidoForm, AbasDoSistema.VISUALIZAR);
     }
