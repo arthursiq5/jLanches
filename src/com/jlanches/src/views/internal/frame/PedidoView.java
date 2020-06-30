@@ -5,12 +5,14 @@
  */
 package com.jlanches.src.views.internal.frame;
 
+import com.jlanches.src.dao.PedidoDAO;
 import com.jlanches.src.model.views.PedidoFormModel;
 import com.jlanches.src.model.views.PedidoReportModel;
 import org.jdatepicker.impl.JDatePickerImpl;
 import com.jlanches.src.model.views.PedidoViewModel;
 import com.jlanches.src.views.extension.elements.DatePicker;
 import com.jlanches.src.views.internal.frame.advanced.add.item.AddItemPedido;
+import com.jlanches.src.views.internal.frame.advanced.search.SearchPedidoByLanche;
 import com.jlanches.src.views.internal.frame.helpers.PedidoFormHelper;
 import com.jlanches.src.views.internal.frame.helpers.PedidoReportHelper;
 import com.jlanches.src.views.internal.frame.helpers.PedidoViewHelper;
@@ -113,6 +115,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         btnLimparBusca = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         btnPesquisaAvancada = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         btnMostrarTodosOsPedidos = new javax.swing.JToggleButton();
         btnMostraPedido = new javax.swing.JButton();
         btnPagar = new javax.swing.JButton();
@@ -221,15 +224,24 @@ public class PedidoView extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton4.setText("Pesquisar por lanche");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(campoPesquisar)
+                .addComponent(campoPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPesquisaAvancada, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPesquisaAvancada, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLimparBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -241,10 +253,13 @@ public class PedidoView extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnPesquisaAvancada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                     .addComponent(campoPesquisar, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLimparBusca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnLimparBusca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(btnPesquisaAvancada, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -778,8 +793,18 @@ public class PedidoView extends javax.swing.JInternalFrame {
         );
 
         btnShowEditar.setText("Alterar");
+        btnShowEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowEditarActionPerformed(evt);
+            }
+        });
 
         btnShowExcluir.setText("Excluir");
+        btnShowExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1099,7 +1124,12 @@ public class PedidoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPagoMouseClicked
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        PedidoViewHelper.cadastrar((PedidoViewModel) this.pedidoView);
+        if(this.campoId.getText().equals("")){
+            PedidoViewHelper.cadastrar((PedidoViewModel) this.pedidoView);
+            return;
+        }else{
+            PedidoViewHelper.edita((PedidoViewModel) this.pedidoView);
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -1142,6 +1172,18 @@ public class PedidoView extends javax.swing.JInternalFrame {
         PedidoViewHelper.openPesquisaAvancada(pedidoView);
     }//GEN-LAST:event_btnPesquisaAvancadaActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        new SearchPedidoByLanche(this.pedidoView).setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void btnShowEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowEditarActionPerformed
+        PedidoViewHelper.editPedido(this.pedidoView);
+    }//GEN-LAST:event_btnShowEditarActionPerformed
+
+    private void btnShowExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowExcluirActionPerformed
+        new PedidoDAO().delete(this.pedidoView.pedidoShow);
+    }//GEN-LAST:event_btnShowExcluirActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> SelectReportCliente;
     private javax.swing.JTabbedPane abasDoSistema;
@@ -1174,6 +1216,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -71,6 +71,15 @@ public class PedidoFormHelper {
             new LanchePedidoDAO().save(el);
         });
     }
+    public static void edita(PedidoFormModel pedidoForm) {
+        new PedidoDAO().update(PedidoViewHelper.generatePedido(pedidoForm));
+        int id = new PedidoDAO().getUltimoPedido().id;
+        
+        pedidoForm.pedido.itens.forEach(el -> {
+            el.pedido_id = id;
+            new LanchePedidoDAO().save(el);
+        });
+    }
 
     public static Pedido generatePedido(PedidoFormModel pedidoForm) {
         Pedido pedido = new Pedido();

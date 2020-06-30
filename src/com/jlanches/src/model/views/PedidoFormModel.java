@@ -52,6 +52,19 @@ public class PedidoFormModel implements DatePicker.FormUseDatePicker {
                 );
             }
         }
+        
+        public void set(boolean pago){
+            this.pago = pago;
+            if (this.pago) {
+                this.button.setIcon(
+                        IconHelper.getPngIcon(Icons.SELECIONADO_64.getFullPath())
+                );
+            } else {
+                this.button.setIcon(
+                        IconHelper.getPngIcon(Icons.CANCELAR_64.getFullPath())
+                );
+            }
+        }
     }
 
     public BooleanButton pago;

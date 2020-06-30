@@ -5,6 +5,7 @@
  */
 package com.jlanches.src.model.views;
 
+import com.jlanches.src.model.Pedido;
 import java.awt.Label;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,6 +20,7 @@ import javax.swing.JToggleButton;
  * @author arthur
  */
 public class PedidoViewModel extends PedidoFormModel {
+    public Pedido pedidoShow;
 
     public static final int ABA_VISUALIZAR = 0;
     public static final int ABA_CADASTRAR = 1;

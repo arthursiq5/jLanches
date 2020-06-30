@@ -10,7 +10,9 @@ import com.jlanches.src.constants.SystemColors;
 import com.jlanches.src.dao.ClienteDAO;
 import com.jlanches.src.dao.FuncionarioDAO;
 import com.jlanches.src.dao.PedidoDAO;
+import com.jlanches.src.helpers.ComboHelper;
 import com.jlanches.src.helpers.DateHelper;
+import com.jlanches.src.helpers.TableHelper;
 import com.jlanches.src.helpers.ViewHelper;
 import com.jlanches.src.model.Lanche;
 import com.jlanches.src.model.Pedido;
@@ -90,6 +92,7 @@ public class PedidoViewHelper extends PedidoFormHelper {
 
     public static void showPedido(PedidoViewModel pedidoView) {
         Pedido pedido = PedidoViewHelper.getPedidoFromTable(pedidoView);
+        pedidoView.pedidoShow = pedido;
         pedidoView.showId.setText(pedido.id + "");
         pedidoView.showComentarios.setText(pedido.comentarios);
         pedidoView.showData.setText(DateHelper.dateToString(pedido.data));
@@ -99,6 +102,16 @@ public class PedidoViewHelper extends PedidoFormHelper {
         pedidoView.showFormaDePagamento.setText(pedido.formaDePagamento.toString());
 
         PedidoViewHelper.changeTab(pedidoView, AbasDoSistema.MOSTRAR_PEDIDO);
+    }
+    
+    public static void editPedido(PedidoViewModel view){
+        view.campoId.setText(view.pedidoShow.id + "");
+        view.campoData.setText(DateHelper.dateToString(view.pedidoShow.data));
+        view.campoComentarios.setText(view.pedidoShow.comentarios);
+        TableHelper.populaTabelaLanchePedido(view.tabelaItensPedido, view.pedidoShow.itens);
+        ComboHelper.setIndex(view.selectCliente, view.pedidoShow.cliente_cpf);
+        ComboHelper.setIndex(view.selectFuncionario, view.pedidoShow.funcionario_cpf);
+        view.pago.set(view.pedidoShow.pago);
     }
 
     public static Pedido getPedidoFromTable(PedidoViewModel pedidoView) {
