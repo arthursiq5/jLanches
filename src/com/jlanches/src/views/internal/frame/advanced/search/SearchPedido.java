@@ -54,9 +54,11 @@ public class SearchPedido extends javax.swing.JFrame {
             }
             
             if(model.cliente != null && !model.cliente.cpf.equals(""))
-                selectCliente = " pedido.cliente_cpf LIKE " + model.cliente.cpf.replace(".", "").replace("-", "").replace(" ", "");
+                selectCliente = " pedido.cliente_cpf LIKE '" 
+                        + model.cliente.cpf.replace(".", "").replace("-", "").replace(" ", "") + "'";
             if(model.funcionario != null && !model.funcionario.cpf.equals(""))
-                selectFuncionario = " pedido.funcionario_cpf LIKE " + model.funcionario.cpf.replace(".", "").replace("-", "").replace(" ", "");
+                selectFuncionario = " pedido.funcionario_cpf LIKE '" 
+                        + model.funcionario.cpf.replace(".", "").replace("-", "").replace(" ", "") + "'";
             
             if(!selectFuncionario.equals("") && !selectCliente.equals(""))
                 selectCliente = selectCliente + " AND ";
@@ -363,7 +365,7 @@ public class SearchPedido extends javax.swing.JFrame {
         query.funcionario = !aux.equals("") ? new FuncionarioDAO().get(aux) : null;
         
         String sql = new QueryMaker().getQuery(query);
-        System.out.println(sql);
+        
         new PedidoDAO().fillTableGeneric(this.view.tabelaPedidos, sql);
         this.dispose();
     }//GEN-LAST:event_btnSearchActionPerformed
