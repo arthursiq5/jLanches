@@ -19,6 +19,7 @@ import com.jlanches.src.model.Pedido;
 import com.jlanches.src.model.views.PedidoFormModel;
 import com.jlanches.src.model.views.PedidoViewModel;
 import com.jlanches.src.views.internal.frame.advanced.search.SearchPedido;
+import java.util.ArrayList;
 
 /**
  *
@@ -73,6 +74,7 @@ public class PedidoViewHelper extends PedidoFormHelper {
         PedidoFormHelper.carregaCombos(pedidoView);
         PedidoViewHelper.resetCampos(pedidoView);
         PedidoViewHelper.updatePedidoLancheTable(pedidoView);
+        PedidoViewHelper.clearViewSinglePedido(pedidoView);
     }
 
     private static Pedido getItemFromTable(PedidoViewModel pedidoView) {
@@ -120,5 +122,16 @@ public class PedidoViewHelper extends PedidoFormHelper {
     
     public static void openPesquisaAvancada(PedidoViewModel view){
         new SearchPedido(view).setVisible(true);
+    }
+    
+    public static void clearViewSinglePedido(PedidoViewModel view){
+        TableHelper.populaTabelaLanchePedido(view.tabelaShowItens, new ArrayList<>());
+        view.showCliente.setText("");
+        view.showComentarios.setText("");
+        view.showData.setText("");
+        view.showFormaDePagamento.setText("");
+        view.showFuncionario.setText("");
+        view.showId.setText("");
+        view.showPago.setText("");
     }
 }

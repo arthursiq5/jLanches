@@ -6,6 +6,7 @@
 package com.jlanches.src.views.internal.frame;
 
 import com.jlanches.src.dao.PedidoDAO;
+import com.jlanches.src.helpers.TableHelper;
 import com.jlanches.src.model.views.PedidoFormModel;
 import com.jlanches.src.model.views.PedidoReportModel;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -16,6 +17,7 @@ import com.jlanches.src.views.internal.frame.advanced.search.SearchPedidoByLanch
 import com.jlanches.src.views.internal.frame.helpers.PedidoFormHelper;
 import com.jlanches.src.views.internal.frame.helpers.PedidoReportHelper;
 import com.jlanches.src.views.internal.frame.helpers.PedidoViewHelper;
+import java.util.ArrayList;
 
 /**
  *
@@ -36,6 +38,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         this.initReportModel();
         PedidoViewHelper.initPedidoView(this.pedidoView);
         PedidoReportHelper.initComponents(this.pedidoReport);
+        TableHelper.populaTabelaLanchePedido(this.tabelaShowItens, new ArrayList<>());
     }
 
     private void initReportModel() {
