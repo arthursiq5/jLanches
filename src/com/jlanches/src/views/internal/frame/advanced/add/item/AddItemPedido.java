@@ -30,6 +30,7 @@ public class AddItemPedido extends javax.swing.JFrame {
 
     private AddItemPedidoModel addItemPedido;
     private int index = -1;
+    private boolean carregado = false;
     
     private PedidoFormModel pedidoForm;
     
@@ -54,6 +55,7 @@ public class AddItemPedido extends javax.swing.JFrame {
         this.generateAddItemPedido(pedidoForm.pedido);
         AddItemPedidoHelper.initButtons(this.addItemPedido);
         AddItemPedidoHelper.initSelect(this.addItemPedido);
+        this.carregado = true;
     }
 
     public void generateAddItemPedido(Pedido pedido) {
@@ -158,6 +160,11 @@ public class AddItemPedido extends javax.swing.JFrame {
         selectLanche.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         selectLanche.setForeground(new java.awt.Color(0, 0, 0));
         selectLanche.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectLanche.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                selectLancheItemStateChanged(evt);
+            }
+        });
 
         showLanche.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         showLanche.setText("Mostrar dados");
@@ -192,6 +199,17 @@ public class AddItemPedido extends javax.swing.JFrame {
         }
         campoDesconto.setText("000,00");
         campoDesconto.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        campoDesconto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                campoDescontoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoDescontoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoDescontoKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel2.setText("R$");
@@ -227,6 +245,17 @@ public class AddItemPedido extends javax.swing.JFrame {
         }
         campoAcrescimo.setText("000,00");
         campoAcrescimo.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        campoAcrescimo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                campoAcrescimoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoAcrescimoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoAcrescimoKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel3.setText("R$");
@@ -472,14 +501,57 @@ public class AddItemPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_selectQuantidadePropertyChange
 
     private void selectQuantidadeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_selectQuantidadeStateChanged
-        double valor = new LancheDAO().get(((ComboItem)this.selectLanche.getSelectedItem()).id + "").valor;
+        this.updateTotalValue();
+    }//GEN-LAST:event_selectQuantidadeStateChanged
+
+    private void selectLancheItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectLancheItemStateChanged
+       this.updateTotalValue();
+    }//GEN-LAST:event_selectLancheItemStateChanged
+
+    private void campoDescontoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescontoKeyPressed
+        this.updateTotalValue();
+    }//GEN-LAST:event_campoDescontoKeyPressed
+
+    private void campoDescontoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescontoKeyReleased
+        this.updateTotalValue();
+    }//GEN-LAST:event_campoDescontoKeyReleased
+
+    private void campoDescontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescontoKeyTyped
+        this.updateTotalValue();
+    }//GEN-LAST:event_campoDescontoKeyTyped
+
+    private void campoAcrescimoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoAcrescimoKeyPressed
+        this.updateTotalValue();
+    }//GEN-LAST:event_campoAcrescimoKeyPressed
+
+    private void campoAcrescimoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoAcrescimoKeyReleased
+        this.updateTotalValue();
+    }//GEN-LAST:event_campoAcrescimoKeyReleased
+
+    private void campoAcrescimoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoAcrescimoKeyTyped
+        this.updateTotalValue();
+    }//GEN-LAST:event_campoAcrescimoKeyTyped
+
+    private void updateTotalValue(){
+        double valor;
+        
+        if(this.carregado){
+            if(((ComboItem)this.selectLanche.getSelectedItem()).id == 0)
+                valor = 0;
+            else
+                valor = new LancheDAO().get(((ComboItem)this.selectLanche.getSelectedItem()).id + "").valor;
+        }else{
+            valor = 0;
+        }
+        
+            
         double acrescimo = Double.parseDouble(this.campoAcrescimo.getText().replace(",", "."));
         double desconto = Double.parseDouble(this.campoDesconto.getText().replace(",", "."));
         double total = (valor + acrescimo -desconto) * Integer.parseInt(this.selectQuantidade.getValue().toString());
         DecimalFormat decimalFormat = new DecimalFormat(",##0.00");
         this.campoTotal.setText(decimalFormat.format(total));
-    }//GEN-LAST:event_selectQuantidadeStateChanged
-
+    }
+    
     /**
      * @param args the command line arguments
      */
