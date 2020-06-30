@@ -90,6 +90,7 @@ public class AddItemPedido extends javax.swing.JFrame {
         this.campoModificacoes.setText(lanchePedido.modificacoes);
         this.selectQuantidade.setValue(lanchePedido.quantidade);
         ComboHelper.setIndex(this.selectLanche, lanchePedido.lanche_id);
+        this.updateTotalValue();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -509,26 +510,38 @@ public class AddItemPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_selectLancheItemStateChanged
 
     private void campoDescontoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescontoKeyPressed
+        if("\b".contains(evt.getKeyChar() + ""))
+            evt.setKeyChar('0');
         this.updateTotalValue();
     }//GEN-LAST:event_campoDescontoKeyPressed
 
     private void campoDescontoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescontoKeyReleased
+        if("\b".contains(evt.getKeyChar() + ""))
+            evt.setKeyChar('0');this.updateTotalValue();
         this.updateTotalValue();
     }//GEN-LAST:event_campoDescontoKeyReleased
 
     private void campoDescontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescontoKeyTyped
+        if("\b".contains(evt.getKeyChar() + ""))
+            evt.setKeyChar('0');
         this.updateTotalValue();
     }//GEN-LAST:event_campoDescontoKeyTyped
 
     private void campoAcrescimoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoAcrescimoKeyPressed
+        if("\b".contains(evt.getKeyChar() + ""))
+            evt.setKeyChar('0');
         this.updateTotalValue();
     }//GEN-LAST:event_campoAcrescimoKeyPressed
 
     private void campoAcrescimoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoAcrescimoKeyReleased
+        if("\b".contains(evt.getKeyChar() + ""))
+            evt.setKeyChar('0');
         this.updateTotalValue();
     }//GEN-LAST:event_campoAcrescimoKeyReleased
 
     private void campoAcrescimoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoAcrescimoKeyTyped
+        if("\b".contains(evt.getKeyChar() + ""))
+            evt.setKeyChar('0');
         this.updateTotalValue();
     }//GEN-LAST:event_campoAcrescimoKeyTyped
 
@@ -545,8 +558,8 @@ public class AddItemPedido extends javax.swing.JFrame {
         }
         
             
-        double acrescimo = Double.parseDouble(this.campoAcrescimo.getText().replace(",", "."));
-        double desconto = Double.parseDouble(this.campoDesconto.getText().replace(",", "."));
+        double acrescimo = Double.parseDouble(this.campoAcrescimo.getText().replace(",", ".").replace(" ", ""));
+        double desconto = Double.parseDouble(this.campoDesconto.getText().replace(",", ".").replace(" ", ""));
         double total = (valor + acrescimo -desconto) * Integer.parseInt(this.selectQuantidade.getValue().toString());
         DecimalFormat decimalFormat = new DecimalFormat(",##0.00");
         this.campoTotal.setText(decimalFormat.format(total));
