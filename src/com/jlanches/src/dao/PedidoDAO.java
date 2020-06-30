@@ -48,7 +48,25 @@ public class PedidoDAO implements ModelDAO<Pedido> {
                     + ")";
             st.executeUpdate(sql);
         } catch (Exception e) {
-            MessageHelper.createErrorMessage("Erro", "Erro ao inserir dados de estados do banco");
+            MessageHelper.createErrorMessage("Erro", "Erro ao inserir dados de pedidos do banco");
+            System.err.println("Erro: " + e);
+        }
+    }
+    
+    public void changeToPago(Pedido pedido){
+        try {
+            Statement st = BDConnector.getInstance().getConnection().createStatement();
+            
+            String sql = ""
+                    + "UPDATE pedido "
+                    + "SET "
+                    + "pago = TRUE "
+                    + "WHERE id = '" + pedido.id + "'";
+            
+            st.executeUpdate(sql);
+            
+        } catch (Exception e) {
+            MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de pedidos do banco");
             System.err.println("Erro: " + e);
         }
     }
@@ -68,10 +86,10 @@ public class PedidoDAO implements ModelDAO<Pedido> {
                     + "funcionario_cpf = '" + objeto.funcionario_cpf + "', "
                     + "franquia_id = '" + objeto.franquia_id + "' "
                     + "WHERE id = '" + objeto.id + "'";
-            System.out.println(sql);
+
             st.executeUpdate(sql);
         } catch (Exception e) {
-            MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de estados do banco");
+            MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de pedidos do banco");
             System.err.println("Erro: " + e);
         }
     }

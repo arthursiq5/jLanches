@@ -1111,7 +1111,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnMostrarTodosOsPedidosActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        // TODO add your handling code here:
+        PedidoViewHelper.pagar(this.pedidoView);
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void campoDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataActionPerformed

@@ -137,4 +137,9 @@ public class PedidoViewHelper extends PedidoFormHelper {
         PedidoViewHelper.changeTab(view, PedidoFormHelper.AbasDoSistema.VISUALIZAR);
         PedidoViewHelper.updateMainTable(view);
     }
+    
+    public static void pagar(PedidoViewModel view){
+        new PedidoDAO().changeToPago(PedidoViewHelper.getPedidoFromTable(view));
+        PedidoViewHelper.updateMainTable(view);
+    }
 }

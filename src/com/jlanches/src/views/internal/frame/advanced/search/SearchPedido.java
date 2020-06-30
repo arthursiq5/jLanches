@@ -370,7 +370,7 @@ public class SearchPedido extends javax.swing.JFrame {
         query.funcionario = !aux.equals("") ? new FuncionarioDAO().get(aux) : null;
         
         String sql = new QueryMaker().getQuery(query);
-        
+        System.out.println(sql);
         new PedidoDAO().fillTableGeneric(this.view.tabelaPedidos, sql);
         this.dispose();
     }//GEN-LAST:event_btnSearchActionPerformed
