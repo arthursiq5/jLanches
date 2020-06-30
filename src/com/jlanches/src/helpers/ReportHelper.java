@@ -65,10 +65,10 @@ public class ReportHelper {
         try {
             fillReport = JasperFillManager.fillReport(compileReport, new HashMap<>(), BDConnector.getInstance().getConnection());
             JasperViewer.viewReport(fillReport, false);
-            SoundHelper.playCoinSound();
+            //SoundHelper.playCoinSound();
         } catch (JRException ex) {
             Logger.getLogger(ReportHelper.class.getName()).log(Level.SEVERE, null, ex);
-            SoundHelper.playBrokeSound();
+            //SoundHelper.playBrokeSound();
         }
     }
 
@@ -79,10 +79,10 @@ public class ReportHelper {
         try {
             fillReport = JasperFillManager.fillReport(compileReport, params, BDConnector.getInstance().getConnection());
             JasperViewer.viewReport(fillReport, false);
-            SoundHelper.playCoinSound();
+            //SoundHelper.playCoinSound();
         } catch (JRException ex) {
             Logger.getLogger(ReportHelper.class.getName()).log(Level.SEVERE, null, ex);
-            SoundHelper.playBrokeSound();
+            //SoundHelper.playBrokeSound();
         }
     }
 
