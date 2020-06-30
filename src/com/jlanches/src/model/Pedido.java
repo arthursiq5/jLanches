@@ -23,6 +23,7 @@ public class Pedido {
     public int id;
     public Date data;
     public boolean pago;
+    public boolean ativo;
     public FormaDePagamento formaDePagamento;
     public String comentarios;
     public String cliente_cpf;
@@ -37,9 +38,12 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido do cliente "
+        String mensagem = "Pedido do cliente "
                 + new ClienteDAO().get(this.cliente_cpf).nome
                 + " feito no dia "
                 + DateHelper.dateToString(this.data);
+        if(!this.ativo)
+            mensagem = "(inativo) " + mensagem;
+        return mensagem;
     }
 }

@@ -58,16 +58,17 @@ public class PedidoDAO implements ModelDAO<Pedido> {
         try {
             Statement st = BDConnector.getInstance().getConnection().createStatement();
 
-            String sql = "UPDATE estado "
+            String sql = "UPDATE pedido "
                     + "SET "
-                    + "'" + objeto.data + "', "
-                    + "'" + objeto.pago + "', "
-                    + "'" + objeto.formaDePagamento + "', "
-                    + "'" + objeto.comentarios + "', "
-                    + "'" + objeto.cliente_cpf + "', "
-                    + "'" + objeto.funcionario_cpf + "', "
-                    + "'" + objeto.franquia_id + "' "
+                    + "data = '" + DateHelper.dateToString(objeto.data) + "', "
+                    + "pago = '" + objeto.pago + "', "
+                    + "forma_de_pagamento = '" + objeto.formaDePagamento + "', "
+                    + "comentarios = '" + objeto.comentarios + "', "
+                    + "cliente_cpf = '" + objeto.cliente_cpf + "', "
+                    + "funcionario_cpf = '" + objeto.funcionario_cpf + "', "
+                    + "franquia_id = '" + objeto.franquia_id + "' "
                     + "WHERE id = '" + objeto.id + "'";
+            System.out.println(sql);
             st.executeUpdate(sql);
         } catch (Exception e) {
             MessageHelper.createErrorMessage("Erro", "Erro ao atualizar dados de estados do banco");
@@ -86,7 +87,7 @@ public class PedidoDAO implements ModelDAO<Pedido> {
                     .createStatement()
                     .executeUpdate(sql);
         } catch (Exception e) {
-            MessageHelper.createErrorMessage("Erro", "Erro ao remover dados de estados do banco");
+            MessageHelper.createErrorMessage("Erro", "Erro ao remover dados de pedidos do banco");
             System.err.println("Erro: " + e);
         }
     }
@@ -343,6 +344,7 @@ public class PedidoDAO implements ModelDAO<Pedido> {
             Pedido pedido = new Pedido();
             pedido.id = this.resultadoQuery.getInt("id");
             pedido.data = DateHelper.stringToDate(this.resultadoQuery.getString("data"));
+            pedido.ativo = this.resultadoQuery.getBoolean("ativo");
             pedido.pago = this.resultadoQuery.getBoolean("pago");
             pedido.cliente_cpf = this.resultadoQuery.getString("cliente_cpf");
             pedido.funcionario_cpf = this.resultadoQuery.getString("funcionario_cpf");
