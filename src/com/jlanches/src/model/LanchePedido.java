@@ -44,7 +44,7 @@ public class LanchePedido {
     
     public String getValorTotal(){
         return "R$ " 
-            + LanchePedido.decimalFormat.format(this.valor + this.acrescimo - this.desconto)
+            + LanchePedido.decimalFormat.format((this.valor + this.acrescimo - this.desconto) * this.quantidade)
                 .replace(".", "AUX")
                 .replace(",", ".")
                 .replace("AUX", ",");

@@ -1134,9 +1134,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         if(this.campoId.getText().equals("")){
             PedidoViewHelper.cadastrar((PedidoViewModel) this.pedidoView);
+            PedidoViewHelper.updateMainTable(this.pedidoView);
             return;
         }else{
             PedidoViewHelper.edita((PedidoViewModel) this.pedidoView);
+            PedidoViewHelper.updateMainTable(this.pedidoView);
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 

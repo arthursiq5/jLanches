@@ -18,6 +18,7 @@ import com.jlanches.src.dao.LanchePedidoDAO;
 import com.jlanches.src.dao.PedidoDAO;
 import com.jlanches.src.helpers.ComboHelper;
 import com.jlanches.src.helpers.DateHelper;
+import com.jlanches.src.helpers.MessageHelper;
 import com.jlanches.src.helpers.TableHelper;
 import com.jlanches.src.helpers.ViewHelper;
 import com.jlanches.src.model.Cliente;
@@ -83,6 +84,13 @@ public class PedidoFormHelper {
     }
 
     public static void cadastrar(PedidoFormModel pedidoForm) {
+        if(pedidoForm.selectCliente.getSelectedIndex() == 0 ||
+            pedidoForm.selectFuncionario.getSelectedIndex() == 0 ||
+            pedidoForm.campoData.getText().equals("")){
+            MessageHelper.createWarningMessage("Formulário inválido", "Por favor, preencha os campos obrigatórios");
+            return;
+        }
+        
         new PedidoDAO().save(PedidoViewHelper.generatePedido(pedidoForm));
         int id = new PedidoDAO().getUltimoPedido().id;
         
@@ -95,6 +103,13 @@ public class PedidoFormHelper {
         PedidoFormHelper.changeTab(pedidoForm, AbasDoSistema.VISUALIZAR);
     }
     public static void edita(PedidoFormModel pedidoForm) {
+        if(pedidoForm.selectCliente.getSelectedIndex() == 0 ||
+            pedidoForm.selectFuncionario.getSelectedIndex() == 0 ||
+            pedidoForm.campoData.getText().equals("")){
+            MessageHelper.createWarningMessage("Formulário inválido", "Por favor, preencha os campos obrigatórios");
+            return;
+        }
+        
         new PedidoDAO().update(PedidoViewHelper.generatePedido(pedidoForm));
         int id = pedidoForm.pedido.id;
         
