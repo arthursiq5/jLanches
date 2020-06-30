@@ -265,6 +265,11 @@ public class SearchPedido extends javax.swing.JFrame {
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlanches/media/icons/icons8-apagador-64.png"))); // NOI18N
         btnClear.setText("Limpar");
         btnClear.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlanches/media/icons/icons8-pesquisar-64.png"))); // NOI18N
         btnSearch.setText("Pesquisar");
@@ -422,6 +427,13 @@ public class SearchPedido extends javax.swing.JFrame {
         
         this.dispose();
     }//GEN-LAST:event_btnGenerateReportActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        this.dataFim.clearData();
+        this.dataInicio.clearData();
+        this.selectCliente.setSelectedIndex(0);
+        this.selectFuncionario.setSelectedIndex(0);
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments
